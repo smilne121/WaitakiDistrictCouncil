@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--Landing Page-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController title="Landing Page" id="BYZ-38-t0r" customClass="LandingPageController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home screen.png" translatesAutoresizingMaskIntoConstraints="NO" id="bmd-Zs-NgJ">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCb-9u-FQH">
+                                <rect key="frame" x="-7" y="427" width="173" height="173"/>
+                                <state key="normal" image="OS Ubuntu_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDh-vv-0hV">
+                                <rect key="frame" x="-7" y="735" width="173" height="173"/>
+                                <state key="normal" image="Configure alt 3_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Gy6-Qi-KpJ" kind="showDetail" id="9k1-zz-rZe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGJ-lA-EQc">
+                                <rect key="frame" x="-7" y="99" width="173" height="173"/>
+                                <state key="normal" image="Search alt_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cWU-iy-lBU" kind="showDetail" id="xky-DY-bks"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Landing Page - Inspection-->
+        <scene sceneID="Ov0-8l-dy2">
+            <objects>
+                <viewController title="Landing Page - Inspection" id="cWU-iy-lBU" customClass="LandingPageController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Sk-et-41x"/>
+                        <viewControllerLayoutGuide type="bottom" id="LFk-8d-sRk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ij8-iV-huR">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home screen inspection.png" translatesAutoresizingMaskIntoConstraints="NO" id="byD-hs-2dl">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IE8-tL-GlF">
+                                <rect key="frame" x="-7" y="99" width="173" height="173"/>
+                                <state key="normal" image="Search alt_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDw-SE-yhj">
+                                <rect key="frame" x="-7" y="427" width="173" height="173"/>
+                                <state key="normal" image="OS Ubuntu_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="XmA-l9-UMi" kind="showDetail" id="AVi-DN-Out"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34O-RT-akc">
+                                <rect key="frame" x="-7" y="735" width="173" height="173"/>
+                                <state key="normal" image="Configure alt 3_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Gy6-Qi-KpJ" kind="showDetail" id="5Da-j8-8Fs"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G38-BC-Ehm">
+                                <rect key="frame" x="243" y="83" width="509" height="921"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="InspectionScrollView" destination="G38-BC-Ehm" id="ZXY-3f-eZN"/>
+                        <outlet property="fullscreen" destination="Ij8-iV-huR" id="K34-8g-N39"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eim-XY-zJb" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Landing Page - Sync-->
+        <scene sceneID="gjl-ks-NBb">
+            <objects>
+                <viewController title="Landing Page - Sync" id="XmA-l9-UMi" customClass="LandingPageController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LHR-4o-Xl2"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cst-vk-7fd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bm0-kU-lg4">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home screen sync.png" translatesAutoresizingMaskIntoConstraints="NO" id="hJf-fv-08H">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smc-yE-DLs">
+                                <rect key="frame" x="-7" y="99" width="173" height="173"/>
+                                <state key="normal" image="Search alt_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cWU-iy-lBU" kind="showDetail" id="tlp-84-arT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Pu-M4-Xgr">
+                                <rect key="frame" x="-7" y="427" width="173" height="173"/>
+                                <state key="normal" image="OS Ubuntu_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRe-sH-UWJ">
+                                <rect key="frame" x="-7" y="735" width="173" height="173"/>
+                                <state key="normal" image="Configure alt 3_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Gy6-Qi-KpJ" kind="showDetail" id="Fco-Bf-LyI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jvA-Ik-x43" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Landing Page - Settings-->
+        <scene sceneID="9iM-MV-wmE">
+            <objects>
+                <viewController title="Landing Page - Settings" id="Gy6-Qi-KpJ" customClass="LandingPageController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gnG-8l-fDU"/>
+                        <viewControllerLayoutGuide type="bottom" id="pcD-Eq-nrq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3Qa-xq-CnS">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home screen settings.png" translatesAutoresizingMaskIntoConstraints="NO" id="cBO-AC-Wt0">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8u-ZT-MNE">
+                                <rect key="frame" x="-7" y="99" width="173" height="173"/>
+                                <state key="normal" image="Search alt_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cWU-iy-lBU" kind="showDetail" id="oUD-7P-yu0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2D0-78-ydU">
+                                <rect key="frame" x="-7" y="735" width="173" height="173"/>
+                                <state key="normal" image="Configure alt 3_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIg-tV-LHT">
+                                <rect key="frame" x="-7" y="425" width="173" height="173"/>
+                                <state key="normal" image="OS Ubuntu_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="XmA-l9-UMi" kind="showDetail" id="82a-Gg-V5t"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O2D-8c-u9N">
+                                <rect key="frame" x="367" y="332" width="271" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textboxServer:" destination="Gy6-Qi-KpJ" eventType="touchUpInside" id="sFR-cq-aGr"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Server Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoZ-uM-2aE">
+                                <rect key="frame" x="217" y="337" width="162" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6pF-qp-U7y">
+                                <rect key="frame" x="367" y="376" width="271" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMO-ml-ugh">
+                                <rect key="frame" x="217" y="381" width="162" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkD-l6-Llw">
+                                <rect key="frame" x="544" y="420" width="94" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="writeSettingToDevice:" destination="Gy6-Qi-KpJ" eventType="touchUpInside" id="XGx-Vr-elt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="textboxServer" destination="O2D-8c-u9N" id="0dX-xa-2U4"/>
+                        <outlet property="textboxUser" destination="6pF-qp-U7y" id="XFd-qE-EKK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nse-mF-sWB" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="200" y="1352"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Configure alt 3_mirror.png" width="640" height="640"/>
+        <image name="OS Ubuntu_mirror.png" width="640" height="640"/>
+        <image name="Search alt_mirror.png" width="640" height="640"/>
+        <image name="home screen inspection.png" width="768" height="1024"/>
+        <image name="home screen settings.png" width="768" height="1024"/>
+        <image name="home screen sync.png" width="768" height="1024"/>
+        <image name="home screen.png" width="768" height="1024"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="xky-DY-bks"/>
+        <segue reference="AVi-DN-Out"/>
+        <segue reference="5Da-j8-8Fs"/>
+    </inferredMetricsTieBreakers>
+</document>
