@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Inspection {
+class Inspection: NSObject {
     var Name: String
     var InspectionItemArray = [InspectionItem]()
     var ObjectTagArray = [Int]()
@@ -67,11 +67,13 @@ class Inspection {
         commentTextInput.delegate = delegateControl
         commentTextInput.backgroundColor = UIColor.lightGrayColor()
         commentTextInput.editable = true
+     //   commentTextInput.font = UIFont(name: commentTextInput.font.fontName, size: 22) //finds a nil
         
         //setup save button
         commentSave.frame = CGRectMake(174,270,46,30)
         commentSave.setTitle("Save", forState: UIControlState.Normal)
-        commentSave.addTarget(self,action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
+        commentSave.addTarget(self,action: "writeBackToText", forControlEvents: UIControlEvents.TouchUpInside) //update self to the landing page
+
         
              //write out to screen
             scrollView.addSubview(commentPopup)
@@ -80,10 +82,5 @@ class Inspection {
             scrollView.addSubview(commentSave)
         
     }
-    
-    
-
-    
-    
 }
     

@@ -128,7 +128,21 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
             
         }
        
-    	
+        func 	writeBackToText (sender:UIButton!)
+        {
+            var textfieldItem: UITextField
+            
+            for var i = 0; i < currentInspection.InspectionItemArray.count; i++
+            {
+                if currentInspection.InspectionItemArray[i].ItemTag == sender.tag
+                {
+                    textfieldItem = currentInspection.InspectionItemArray[i].viewControl as UITextField
+                    textfieldItem.text = "writing to text field"
+                }
+            }
+        }
+
+       
     
     }
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool
@@ -140,6 +154,7 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
     
     func textView(textView: UITextView!, shouldChangeCharactersInRange range: NSRange, replacementString text: String!) -> Bool
     {
+        //limit the textbox to 255 chars
         return countElements(textView.text) + (countElements(text) - range.length) <= 255
     }
 }
