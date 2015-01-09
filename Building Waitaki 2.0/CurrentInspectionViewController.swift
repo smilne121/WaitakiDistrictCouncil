@@ -23,8 +23,16 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
         if InspectionScrollView != nil
         {
             currentInspection = Inspection(Name: "Test Inspection")
+            currentInspection.loadDefaultItems(self, scrollview: InspectionScrollView)
+            currentInspection.loadDefaultItems(self, scrollview: InspectionScrollView)
+            currentInspection.loadDefaultItems(self, scrollview: InspectionScrollView)
+            currentInspection.loadDefaultItems(self, scrollview: InspectionScrollView)
+            currentInspection.loadDefaultItems(self, scrollview: InspectionScrollView)
             currentInspection.generateTestData(self, scrollview: InspectionScrollView)
         }
+        
+        //update the scrollview size
+        InspectionScrollView.contentSize = currentInspection.getContentSize(InspectionScrollView)
 
     }
     

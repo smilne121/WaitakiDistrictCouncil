@@ -13,12 +13,12 @@ class InspectionItem {
     
     var Item: String
     var Type: InspectionType
-    var Position: CGRect?
+    var Position: CGRect!
     let height: Int16
     let width: Int16
     var delegateControl: CurrentInspectionViewController
     let ItemTag: Int
-    var viewControl: UIControl?
+    var viewControl: UIControl!
 
     enum InspectionType {
         case YesNo

@@ -19,12 +19,47 @@ class Inspection {
         self.Name = Name
     }
     
+    func getContentSize(scrollview: UIScrollView) -> CGSize
+    {
+        var height: CGFloat = 0
+        var itemHeight: Int16 = 0
+        
+        for item in InspectionItemArray
+        {
+         if item.Position.origin.y > height
+         {
+                height = item.Position.origin.y
+                itemHeight = item.height
+          }
+        }
+        
+        height = height + CGFloat(itemHeight)
+        
+        var result: CGSize = CGSize(width: scrollview.frame.width, height: height)
+        return result
+    }
+    
+    func getNewItemTag() -> Int
+    {
+            ObjectTagArray.append(ObjectTagArray.count)
+        var result = ObjectTagArray.count - 1
+        return result
+    }
+    
+    func loadDefaultItems(controller: CurrentInspectionViewController, scrollview: UIScrollView)
+    {
+        InspectionItemArray.append(InspectionItem(Item: "Stamped consent plans checked:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag()))
+        InspectionItemArray.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag()))
+        InspectionItemArray.append(InspectionItem(Item: "Request received in writing for CCC:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag()))
+        InspectionItemArray.append(InspectionItem(Item: "Inspection records checked:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag()))
+    }
+    
     func generateTestData(controller: CurrentInspectionViewController, scrollview: UIScrollView)
     {
         //load test data
-        InspectionItemArray.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: 1))
-        InspectionItemArray.append(InspectionItem(Item: "Clean outs/solid fill:", Type: InspectionItem.InspectionType.PassFailNA,Controller: controller,ItemTag: 2))
-        InspectionItemArray.append(InspectionItem(Item: "Comments:", Type: InspectionItem.InspectionType.ShortText,Controller: controller,ItemTag: 3))
+        InspectionItemArray.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag()))
+        InspectionItemArray.append(InspectionItem(Item: "Clean outs/solid fill:", Type: InspectionItem.InspectionType.PassFailNA,Controller: controller,ItemTag: getNewItemTag()))
+        InspectionItemArray.append(InspectionItem(Item: "Comments:", Type: InspectionItem.InspectionType.ShortText,Controller: controller,ItemTag: getNewItemTag()))
        
         for var i = 0 ; i < InspectionItemArray.count; i++
         {

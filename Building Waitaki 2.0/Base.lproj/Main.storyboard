@@ -24,6 +24,9 @@
                                 <state key="normal" image="OS Ubuntu_mirror.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="XmA-l9-UMi" kind="showDetail" id="4Nv-W7-Jec"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDh-vv-0hV">
                                 <rect key="frame" x="-7" y="735" width="173" height="173"/>
@@ -40,7 +43,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cWU-iy-lBU" kind="showDetail" id="xky-DY-bks"/>
+                                    <segue destination="sHy-31-4hz" kind="showDetail" id="Sau-dg-9C5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -53,72 +56,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-        </scene>
-        <!--Landing Page - Inspection-->
-        <scene sceneID="Ov0-8l-dy2">
-            <objects>
-                <viewController title="Landing Page - Inspection" id="cWU-iy-lBU" customClass="LandingPageController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7Sk-et-41x"/>
-                        <viewControllerLayoutGuide type="bottom" id="LFk-8d-sRk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ij8-iV-huR">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home screen inspection.png" translatesAutoresizingMaskIntoConstraints="NO" id="byD-hs-2dl">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IE8-tL-GlF">
-                                <rect key="frame" x="-7" y="99" width="173" height="173"/>
-                                <state key="normal" image="Search alt_mirror.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDw-SE-yhj">
-                                <rect key="frame" x="-7" y="427" width="173" height="173"/>
-                                <state key="normal" image="OS Ubuntu_mirror.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="XmA-l9-UMi" kind="showDetail" id="AVi-DN-Out"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34O-RT-akc">
-                                <rect key="frame" x="-7" y="735" width="173" height="173"/>
-                                <state key="normal" image="Configure alt 3_mirror.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Gy6-Qi-KpJ" kind="showDetail" id="5Da-j8-8Fs"/>
-                                </connections>
-                            </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G38-BC-Ehm">
-                                <rect key="frame" x="243" y="83" width="509" height="921"/>
-                            </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47Y-XH-lXG">
-                                <rect key="frame" x="390" y="35" width="46" height="30"/>
-                                <state key="normal" title="open test inspection">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="5oy-EF-Fac" kind="showDetail" id="36l-wS-bKW"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
-                    <connections>
-                        <outlet property="InspectionScrollView" destination="G38-BC-Ehm" id="ZXY-3f-eZN"/>
-                        <outlet property="fullscreen" destination="Ij8-iV-huR" id="K34-8g-N39"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eim-XY-zJb" sceneMemberID="firstResponder"/>
-            </objects>
+            <point key="canvasLocation" x="-1361" y="599"/>
         </scene>
         <!--Current Inspection-->
         <scene sceneID="Qaz-58-OJ6">
@@ -143,15 +81,11 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Title" id="gWO-PJ-4X5">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="BIJ-j8-IVZ">
-                                            <connections>
-                                                <segue destination="cWU-iy-lBU" kind="showDetail" id="6Ds-eN-1SW"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="BIJ-j8-IVZ"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lMD-q2-hd4">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMD-q2-hd4">
                                 <rect key="frame" x="16" y="57" width="736" height="922"/>
                             </scrollView>
                         </subviews>
@@ -159,10 +93,13 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="InspectionScrollView" destination="lMD-q2-hd4" id="JdG-J7-EkN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAX-2s-vOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2125" y="372"/>
+            <point key="canvasLocation" x="1116" y="-657"/>
         </scene>
         <!--Landing Page - Sync-->
         <scene sceneID="gjl-ks-NBb">
@@ -184,9 +121,6 @@
                                 <state key="normal" image="Search alt_mirror.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="cWU-iy-lBU" kind="showDetail" id="tlp-84-arT"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Pu-M4-Xgr">
                                 <rect key="frame" x="-7" y="427" width="173" height="173"/>
@@ -213,6 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jvA-Ik-x43" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-159" y="539"/>
         </scene>
         <!--Landing Page - Settings-->
         <scene sceneID="9iM-MV-wmE">
@@ -234,9 +169,6 @@
                                 <state key="normal" image="Search alt_mirror.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="cWU-iy-lBU" kind="showDetail" id="oUD-7P-yu0"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2D0-78-ydU">
                                 <rect key="frame" x="-7" y="735" width="173" height="173"/>
@@ -303,7 +235,66 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nse-mF-sWB" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="200" y="1352"/>
+            <point key="canvasLocation" x="-159" y="1864"/>
+        </scene>
+        <!--Landing Page - Inspections-->
+        <scene sceneID="4BX-OH-kei">
+            <objects>
+                <viewController title="Landing Page - Inspections" id="sHy-31-4hz" customClass="LandingPageController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jhf-oj-csO"/>
+                        <viewControllerLayoutGuide type="bottom" id="JsG-tT-Opb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Can-ls-k1l">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home screen inspection.png" translatesAutoresizingMaskIntoConstraints="NO" id="4yx-Kn-sik">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFa-BN-50v">
+                                <rect key="frame" x="-7" y="99" width="173" height="173"/>
+                                <state key="normal" image="Search alt_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONp-JB-RzZ">
+                                <rect key="frame" x="-7" y="427" width="173" height="173"/>
+                                <state key="normal" image="OS Ubuntu_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgR-w4-UiB">
+                                <rect key="frame" x="-7" y="735" width="173" height="173"/>
+                                <state key="normal" image="Configure alt 3_mirror.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AR7-Vh-7Yv">
+                                <rect key="frame" x="307" y="48" width="359" height="899"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4A-bl-8SA">
+                                        <rect key="frame" x="268" y="93" width="46" height="30"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="5oy-EF-Fac" kind="showDetail" id="j2b-XZ-IMv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hR4-Dg-tEM" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-117" y="-641"/>
         </scene>
     </scenes>
     <resources>
@@ -316,8 +307,7 @@
         <image name="home screen.png" width="768" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5Da-j8-8Fs"/>
-        <segue reference="6Ds-eN-1SW"/>
-        <segue reference="AVi-DN-Out"/>
+        <segue reference="82a-Gg-V5t"/>
+        <segue reference="Fco-Bf-LyI"/>
     </inferredMetricsTieBreakers>
 </document>
