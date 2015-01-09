@@ -57,21 +57,30 @@ class Inspection {
         //setup view container
         commentPopup.backgroundColor = UIColor.whiteColor()
         commentPopup.tag = Int.max
+        commentPopup.layer.cornerRadius = 5.0
+        commentPopup.layer.borderWidth = 1
+        commentPopup.layer.borderColor = UIColor.lightGrayColor().CGColor
         
         //setup header
-        commentHeader.text? = "Insert Comment"
+        commentHeader.text = "Insert Comment"
         commentHeader.font = UIFont(name: commentHeader.font.fontName, size: 27)
         
+        
         //setup text input
+        commentTextInput.text = textField.text
         commentTextInput.delegate = delegateControl
-        commentTextInput.backgroundColor = UIColor.lightGrayColor()
+        commentTextInput.font = UIFont(name: commentHeader.font.fontName, size: 22)
         commentTextInput.editable = true
+        commentTextInput.layer.cornerRadius = 5.0
+        commentTextInput.layer.borderWidth = 1
+        commentTextInput.layer.borderColor = UIColor.lightGrayColor().CGColor
+        
         
          //write out to screen
         scrollView.addSubview(commentPopup)
-        scrollView.addSubview(commentHeader)
-        scrollView.addSubview(commentTextInput)
-        scrollView.addSubview(button)
+        commentPopup.addSubview(commentHeader)
+        commentPopup.addSubview(commentTextInput)
+        commentPopup.addSubview(button)
         
         return commentTextInput
     }

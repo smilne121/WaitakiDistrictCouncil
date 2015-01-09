@@ -57,7 +57,7 @@ class InspectionItem {
         labelItemName.text = self.Item
         labelItemName.textColor = UIColor.whiteColor()
         labelItemName.font = UIFont(name: labelItemName.font.fontName, size: 22)
-        
+        Container.addSubview(labelItemName)
         
         switch self.Type {
             
@@ -83,6 +83,9 @@ class InspectionItem {
             case InspectionType.ShortText:
                 var comments = UITextField(frame: CGRectMake(325,HeightPosition!,180,30))
                 comments.delegate=delegateControl
+                comments.layer.cornerRadius = 5.0
+                comments.layer.borderColor = UIColor.lightGrayColor().CGColor
+                comments.layer.borderWidth = 0.5
                 comments.tag = ItemTag
                 comments.backgroundColor = UIColor.whiteColor()
         

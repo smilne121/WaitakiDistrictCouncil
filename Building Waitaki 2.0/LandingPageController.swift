@@ -16,6 +16,7 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
     @IBOutlet weak var fullscreen: UIView!
     var currentInspection: Inspection!
     var currentInspectionItem: InspectionItem!
+    var commentPopup: UIView!
     var commentBox: UITextView!
   
     lazy var managedObjectContext : NSManagedObjectContext? = {
@@ -134,8 +135,23 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
     //Button Methods
     func saveComment(sender:UIButton!)
     {
+        //update the textfield
         var textfield = currentInspectionItem.viewControl as UITextField
         textfield.text = commentBox.text
+        
+        //remove from view
+        for view in  InspectionScrollView.subviews
+        {
+            if view.tag == Int.max
+            {
+                for subview in  view.subviews
+                {
+                    subview.removeFromSuperview()
+                }
+                view.removeFromSuperview()
+            }
+        }
+        
     }
     
     
