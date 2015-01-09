@@ -15,6 +15,8 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
     @IBOutlet weak var textboxServer: UITextField!
     @IBOutlet weak var fullscreen: UIView!
     var currentInspection: Inspection!
+    var currentInspectionItem: InspectionItem!
+    var commentBox: UITextView!
   
     lazy var managedObjectContext : NSManagedObjectContext? = {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -37,8 +39,12 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
             currentInspection.generateTestData(self, scrollview: InspectionScrollView)
         }
         
+        
         // Do any additional setup after loading the view, typically from a nib.
-    }
+        
+            }
+    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -122,37 +128,33 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
         if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Settings]{
             let server = fetchResults[0].serverAddress
             let user = fetchResults[0].user
-            
-            println(fetchResults[0].serverAddress)
-            println(fetchResults[0].user)
-            
         }
-       
-        func 	writeBackToText (sender:UIButton!)
-        {
-            var textfieldItem: UITextField
-            
-            for var i = 0; i < currentInspection.InspectionItemArray.count; i++
-            {
-                if currentInspection.InspectionItemArray[i].ItemTag == sender.tag
-                {
-                    textfieldItem = currentInspection.InspectionItemArray[i].viewControl as UITextField
-                    textfieldItem.text = "writing to text field"
-                }
-            }
-        }
-
-       
-    
     }
+    
+    //Button Methods
+    func saveComment(sender:UIButton!)
+    {
+        var textfield = currentInspectionItem.viewControl as UITextField
+        textfield.text = commentBox.text
+    }
+    
+    
+    //Delegate Methods
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool
     {
-        println(textField.tag)
-        currentInspection.loadCommentBox(textField, scrollView: InspectionScrollView, delegateControl: self, wholeScreen: self.fullscreen)
+        println("I'm here")
+        currentInspectionItem = currentInspection.getItemFromTag(textField.tag)
+        commentBox = currentInspection.loadCommentBox(textField, scrollView: InspectionScrollView, delegateControl: self, wholeScreen: self.fullscreen)
+        
         return false
     }
     
-    func textView(textView: UITextView!, shouldChangeCharactersInRange range: NSRange, replacementString text: String!) -> Bool
+    func textViewDidChange(textView: UITextView!)
+    {
+      //  println("i changed")
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
         //limit the textbox to 255 chars
         return countElements(textView.text) + (countElements(text) - range.length) <= 255

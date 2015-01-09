@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Inspection: NSObject {
+class Inspection {
     var Name: String
     var InspectionItemArray = [InspectionItem]()
     var ObjectTagArray = [Int]()
@@ -39,7 +39,7 @@ class Inspection: NSObject {
         }
     }
     
-    func loadCommentBox(textField: UITextField, scrollView: UIScrollView,delegateControl: LandingPageController, wholeScreen: UIView)
+    func loadCommentBox(textField: UITextField, scrollView: UIScrollView,delegateControl: LandingPageController, wholeScreen: UIView) -> UITextView
     {
         //create the view to hold the container to input the box
         //var newUIView = UIView(frame: UIScreen.mainScreen().bounds)
@@ -47,17 +47,16 @@ class Inspection: NSObject {
         var commentPopup = UIView(frame: CGRectMake(15,152,394,308))
         var commentHeader = UILabel(frame: CGRectMake(8,8,378,33))
         var commentTextInput = UITextView(frame: CGRectMake(16,40,362,228))
-        var commentSave = UIButton.buttonWithType(UIButtonType.System) as UIButton
-            
-      //  var visualEffectView = UIVisualEffectView(effect: blur) as UIVisualEffectView
         
-   //     visualEffectView.frame = scrollView.bounds
-        
-        //wholeScreen.addSubview(newUIView)
-        //newUIView.addSubview(visualEffectView)
+        //create save button
+        let button   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        button.frame = CGRectMake(174,270,46,30)
+        button.setTitle("Save", forState: UIControlState.Normal)
+        button.addTarget(delegateControl, action: "saveComment:", forControlEvents: UIControlEvents.TouchUpInside)
             
         //setup view container
         commentPopup.backgroundColor = UIColor.whiteColor()
+        commentPopup.tag = Int.max
         
         //setup header
         commentHeader.text? = "Insert Comment"
@@ -67,20 +66,29 @@ class Inspection: NSObject {
         commentTextInput.delegate = delegateControl
         commentTextInput.backgroundColor = UIColor.lightGrayColor()
         commentTextInput.editable = true
-     //   commentTextInput.font = UIFont(name: commentTextInput.font.fontName, size: 22) //finds a nil
         
-        //setup save button
-        commentSave.frame = CGRectMake(174,270,46,30)
-        commentSave.setTitle("Save", forState: UIControlState.Normal)
-        commentSave.addTarget(self,action: "writeBackToText", forControlEvents: UIControlEvents.TouchUpInside) //update self to the landing page
-
+         //write out to screen
+        scrollView.addSubview(commentPopup)
+        scrollView.addSubview(commentHeader)
+        scrollView.addSubview(commentTextInput)
+        scrollView.addSubview(button)
         
-             //write out to screen
-            scrollView.addSubview(commentPopup)
-            scrollView.addSubview(commentHeader)
-            scrollView.addSubview(commentTextInput)
-            scrollView.addSubview(commentSave)
-        
+        return commentTextInput
     }
+    
+    func getItemFromTag (Tag: Int) -> InspectionItem?
+    {
+        for var i = 0 ; i < InspectionItemArray.count; i++
+        {
+            if InspectionItemArray[i].ItemTag == Tag
+            {
+                    return InspectionItemArray[i]
+            }
+        }
+        return nil
+    }
+
+    
+    
 }
     

@@ -90,7 +90,7 @@ class InspectionItem {
                 self.Position = comments.frame
                 Container.addSubview(comments)
             
-        default : println("no creation avaible for that item")
+        default : println("no creation avable for that item")
         }
     }
     
