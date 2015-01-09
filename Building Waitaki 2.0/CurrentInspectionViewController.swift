@@ -8,11 +8,24 @@
 
 import UIKit
 
-class CurrentInspectionViewController: UIViewController {
-    
+class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate {
+    @IBOutlet weak var InspectionScrollView: UIScrollView!
+    var currentInspection: Inspection!
+    var currentInspectionItem: InspectionItem!
+    var commentPopup: UIView!
+    var commentBox: UITextView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //Create test inspection
+        if InspectionScrollView != nil
+        {
+            currentInspection = Inspection(Name: "Test Inspection")
+            currentInspection.generateTestData(self, scrollview: InspectionScrollView)
+        }
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -20,6 +33,48 @@ class CurrentInspectionViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //Button Methods
+    func saveComment(sender:UIButton!)
+    {
+        //update the textfield
+        var textfield = currentInspectionItem.viewControl as UITextField
+        textfield.text = commentBox.text
+        
+        //remove from view
+        for view in  InspectionScrollView.subviews
+        {
+            if view.tag == Int.max
+            {
+                for subview in  view.subviews
+                {
+                    subview.removeFromSuperview()
+                }
+                view.removeFromSuperview()
+            }
+        }
+        
+    }
     
+    
+    //Delegate Methods
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool
+    {
+        println("I'm here")
+        currentInspectionItem = currentInspection.getItemFromTag(textField.tag)
+        commentBox = currentInspection.loadCommentBox(textField, scrollView: InspectionScrollView, delegateControl: self)
+        
+        return false
+    }
+    
+    func textViewDidChange(textView: UITextView!)
+    {
+        //  println("i changed")
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    {
+        //limit the textbox to 255 chars
+        return countElements(textView.text) + (countElements(text) - range.length) <= 255
+    }
 }
 

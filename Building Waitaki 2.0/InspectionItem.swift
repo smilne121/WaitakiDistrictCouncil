@@ -16,7 +16,7 @@ class InspectionItem {
     var Position: CGRect?
     let height: Int16
     let width: Int16
-    var delegateControl: LandingPageController
+    var delegateControl: CurrentInspectionViewController
     let ItemTag: Int
     var viewControl: UIControl?
 
@@ -26,7 +26,7 @@ class InspectionItem {
         case ShortText
     }
     
-    init(Item: String, Type: InspectionType, Controller: LandingPageController, ItemTag: Int)
+    init(Item: String, Type: InspectionType, Controller: CurrentInspectionViewController, ItemTag: Int)
     {
         self.Item = Item
         self.Type = Type

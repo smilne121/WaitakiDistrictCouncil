@@ -19,7 +19,7 @@ class Inspection {
         self.Name = Name
     }
     
-    func generateTestData(controller: LandingPageController, scrollview: UIScrollView)
+    func generateTestData(controller: CurrentInspectionViewController, scrollview: UIScrollView)
     {
         //load test data
         InspectionItemArray.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: 1))
@@ -39,7 +39,7 @@ class Inspection {
         }
     }
     
-    func loadCommentBox(textField: UITextField, scrollView: UIScrollView,delegateControl: LandingPageController, wholeScreen: UIView) -> UITextView
+    func loadCommentBox(textField: UITextField, scrollView: UIScrollView,delegateControl: CurrentInspectionViewController) -> UITextView
     {
         //create the view to hold the container to input the box
         //var newUIView = UIView(frame: UIScreen.mainScreen().bounds)
