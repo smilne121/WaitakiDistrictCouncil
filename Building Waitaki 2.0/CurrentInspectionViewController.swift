@@ -16,7 +16,7 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
     var commentPopup: UIView!
     var commentBox: UITextView!
     let captureSession = AVCaptureSession()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -35,7 +35,7 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
         
         //update the scrollview size
         InspectionScrollView.contentSize = currentInspection.getContentSize(InspectionScrollView)
-
+        
     }
     
     override func didReceiveMemoryWarning() {
