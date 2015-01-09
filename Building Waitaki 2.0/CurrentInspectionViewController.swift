@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate {
     @IBOutlet weak var InspectionScrollView: UIScrollView!
@@ -14,6 +15,7 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
     var currentInspectionItem: InspectionItem!
     var commentPopup: UIView!
     var commentBox: UITextView!
+    let captureSession = AVCaptureSession()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +51,12 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
         textfield.text = commentBox.text
         
         //remove from view
-        for view in  InspectionScrollView.subviews
+        for view in  self.view.subviews
         {
+            if let obj = view as? UIVisualEffectView
+            {
+                view.removeFromSuperview()
+            }
             if view.tag == Int.max
             {
                 for subview in  view.subviews
@@ -61,6 +67,11 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
             }
         }
         
+    }
+    
+    func openCamera(sender:UIButton!)
+    {
+        println(" Open camera")
     }
     
     

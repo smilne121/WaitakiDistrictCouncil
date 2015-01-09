@@ -19,6 +19,7 @@ class InspectionItem {
     var delegateControl: CurrentInspectionViewController
     let ItemTag: Int
     var viewControl: UIControl!
+    let Camera: Bool
 
     enum InspectionType {
         case YesNo
@@ -26,7 +27,7 @@ class InspectionItem {
         case ShortText
     }
     
-    init(Item: String, Type: InspectionType, Controller: CurrentInspectionViewController, ItemTag: Int)
+    init(Item: String, Type: InspectionType, Controller: CurrentInspectionViewController, ItemTag: Int, Camera: Bool)
     {
         self.Item = Item
         self.Type = Type
@@ -35,10 +36,10 @@ class InspectionItem {
         self.Position = CGRect()
         self.delegateControl = Controller
         self.ItemTag = ItemTag
-        
+        self.Camera = Camera
     }
     
-    func generateItem(Container: UIScrollView, PreviousItemPosition: CGRect? )
+    func generateItem(Container: UIScrollView, PreviousItemPosition: CGRect?)
     {
         var HeightPosition: CGFloat? = 0
         
@@ -50,7 +51,7 @@ class InspectionItem {
 
         
         //create label for item
-        var labelItemName = UILabel(frame: CGRectMake(0,HeightPosition!,315,30))
+        var labelItemName = UILabel(frame: CGRectMake(0,HeightPosition!,380,30))
         self.Position = labelItemName.frame
         
         labelItemName.textAlignment = NSTextAlignment.Right
@@ -63,7 +64,7 @@ class InspectionItem {
             
             case InspectionType.YesNo:
                 var checkbox = UISegmentedControl(items: ["Yes","No"])
-                checkbox.frame = CGRectMake(325,HeightPosition!,180,30)
+                checkbox.frame = CGRectMake(390,HeightPosition!,180,30)
                 checkbox.tintColor = UIColor.whiteColor()
                 checkbox.tag = ItemTag
 
@@ -73,7 +74,7 @@ class InspectionItem {
             
             case InspectionType.PassFailNA:
                 var checkbox = UISegmentedControl(items: ["Pass","Fail","N/A"])
-                checkbox.frame = CGRectMake(325,HeightPosition!,180,30)
+                checkbox.frame = CGRectMake(390,HeightPosition!,180,30)
                 checkbox.tintColor = UIColor.whiteColor()
                 checkbox.tag = ItemTag
                 self.Position = checkbox.frame
@@ -81,7 +82,7 @@ class InspectionItem {
                 Container.addSubview(checkbox)
             
             case InspectionType.ShortText:
-                var comments = UITextField(frame: CGRectMake(325,HeightPosition!,180,30))
+                var comments = UITextField(frame: CGRectMake(390,HeightPosition!,180,30))
                 comments.delegate=delegateControl
                 comments.layer.cornerRadius = 5.0
                 comments.layer.borderColor = UIColor.lightGrayColor().CGColor
@@ -94,6 +95,19 @@ class InspectionItem {
                 Container.addSubview(comments)
             
         default : println("no creation avable for that item")
+        }
+        
+        //add camera icon 
+        if Camera
+        {
+            let image = UIImage(named: "camera-50") as UIImage?
+            let button   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+            button.frame = CGRectMake(590,HeightPosition!,30,30)
+            button.setTitle("Camera", forState: UIControlState.Normal)
+            button.tintColor = UIColor.whiteColor()
+            button.setImage(image, forState: .Normal)
+            button.addTarget(delegateControl, action: "openCamera:", forControlEvents: UIControlEvents.TouchUpInside)
+            Container.addSubview(button)
         }
     }
     

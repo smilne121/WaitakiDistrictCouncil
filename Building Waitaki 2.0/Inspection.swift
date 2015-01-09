@@ -33,7 +33,7 @@ class Inspection {
           }
         }
         
-        height = height + CGFloat(itemHeight)
+        height = height + CGFloat(itemHeight) + CGFloat(50)
         
         var result: CGSize = CGSize(width: scrollview.frame.width, height: height)
         return result
@@ -48,24 +48,24 @@ class Inspection {
     
     func loadDefaultItems(controller: CurrentInspectionViewController, scrollview: UIScrollView)
     {
-        InspectionItemArray.append(InspectionItem(Item: "Stamped consent plans checked:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag()))
-        InspectionItemArray.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag()))
-        InspectionItemArray.append(InspectionItem(Item: "Request received in writing for CCC:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag()))
-        InspectionItemArray.append(InspectionItem(Item: "Inspection records checked:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag()))
+        InspectionItemArray.append(InspectionItem(Item: "Stamped consent plans checked:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(), Camera: true))
+        InspectionItemArray.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(),Camera: true))
+        InspectionItemArray.append(InspectionItem(Item: "Request received in writing for CCC:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(),Camera:false))
+        InspectionItemArray.append(InspectionItem(Item: "Inspection records checked:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(), Camera: false))
     }
     
     func generateTestData(controller: CurrentInspectionViewController, scrollview: UIScrollView)
     {
         //load test data
-        InspectionItemArray.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag()))
-        InspectionItemArray.append(InspectionItem(Item: "Clean outs/solid fill:", Type: InspectionItem.InspectionType.PassFailNA,Controller: controller,ItemTag: getNewItemTag()))
-        InspectionItemArray.append(InspectionItem(Item: "Comments:", Type: InspectionItem.InspectionType.ShortText,Controller: controller,ItemTag: getNewItemTag()))
+        InspectionItemArray.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(),Camera:true))
+        InspectionItemArray.append(InspectionItem(Item: "Clean outs/solid fill:", Type: InspectionItem.InspectionType.PassFailNA,Controller: controller,ItemTag: getNewItemTag(),Camera:true))
+        InspectionItemArray.append(InspectionItem(Item: "Comments:", Type: InspectionItem.InspectionType.ShortText,Controller: controller,ItemTag: getNewItemTag(),Camera:true))
        
         for var i = 0 ; i < InspectionItemArray.count; i++
         {
             if i != 0
             {
-                InspectionItemArray[i].generateItem(scrollview, PreviousItemPosition: InspectionItemArray[i - 1].Position )
+                InspectionItemArray[i].generateItem(scrollview, PreviousItemPosition: InspectionItemArray[i - 1].Position)
             }
             else
             {
@@ -77,9 +77,19 @@ class Inspection {
     func loadCommentBox(textField: UITextField, scrollView: UIScrollView,delegateControl: CurrentInspectionViewController) -> UITextView
     {
         //create the view to hold the container to input the box
-        //var newUIView = UIView(frame: UIScreen.mainScreen().bounds)
-        //var blur = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
-        var commentPopup = UIView(frame: CGRectMake(15,152,394,308))
+        var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
+        visualEffectView.frame = delegateControl.view.bounds
+        delegateControl.view.addSubview(visualEffectView)
+        
+        
+        
+        
+        let popupWidth: CGFloat = 394
+        let popupHeight: CGFloat = 308
+        let popupX: CGFloat = (delegateControl.view.frame.width / 2) - (popupWidth / 2)
+        let popupY: CGFloat = (delegateControl.view.frame.height / 2) - (popupHeight / 2)
+        
+        var commentPopup = UIView(frame: CGRectMake(popupX,popupY,popupWidth,popupHeight))
         var commentHeader = UILabel(frame: CGRectMake(8,8,378,33))
         var commentTextInput = UITextView(frame: CGRectMake(16,40,362,228))
         
@@ -112,7 +122,7 @@ class Inspection {
         
         
          //write out to screen
-        scrollView.addSubview(commentPopup)
+        delegateControl.view.addSubview(commentPopup)
         commentPopup.addSubview(commentHeader)
         commentPopup.addSubview(commentTextInput)
         commentPopup.addSubview(button)
