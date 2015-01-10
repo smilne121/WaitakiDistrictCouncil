@@ -108,6 +108,16 @@ class InspectionItem {
             button.setImage(image, forState: .Normal)
             button.addTarget(delegateControl, action: "openCamera:", forControlEvents: UIControlEvents.TouchUpInside)
             Container.addSubview(button)
+            
+            let image2 = UIImage(named: "xlarge_icons-50") as UIImage?
+            let button2   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+            button2.frame = CGRectMake(640,HeightPosition!,30,30)
+            button2.setTitle("Camera", forState: UIControlState.Normal)
+            button2.tintColor = UIColor.whiteColor()
+            button2.setImage(image2, forState: .Normal)
+            button2.addTarget(delegateControl, action: "openGallery:", forControlEvents: UIControlEvents.TouchUpInside)
+            Container.addSubview(button2)
+
         }
     }
     

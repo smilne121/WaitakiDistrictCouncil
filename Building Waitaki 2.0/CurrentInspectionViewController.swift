@@ -74,6 +74,11 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
         println(" Open camera")
     }
     
+    func openGallery(sender:UIButton!)
+    {
+        println(" Open gallery")
+    }
+    
     
     //Delegate Methods
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool
