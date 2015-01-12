@@ -13,6 +13,8 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
     var imagePicker: UIImagePickerController!
     var newMedia: Bool?
     var imageArray: [UIImage]?
+    var delegate: CameraDelegate! = nil
+    @IBOutlet var imageScrollView: UIScrollView!
 
     
     var onDataAvailable : ((data: [UIImage]) -> ())?
@@ -25,6 +27,20 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
 
         // Do any additional setup after loading the view.
          imagePicker = UIImagePickerController()
+        imageArray = []
+        imageArray?.append(UIImage(named: "cameraBackground")!)
+         imageArray?.append(UIImage(named: "cameraBackground")!)
+         imageArray?.append(UIImage(named: "cameraBackground")!)
+        imageArray?.append(UIImage(named: "cameraBackground")!)
+        imageArray?.append(UIImage(named: "cameraBackground")!)
+        imageArray?.append(UIImage(named: "cameraBackground")!)
+        imageArray?.append(UIImage(named: "cameraBackground")!)
+        imageArray?.append(UIImage(named: "cameraBackground")!)
+        imageArray?.append(UIImage(named: "cameraBackground")!)
+        imageArray?.append(UIImage(named: "cameraBackground")!)
+        imageArray?.append(UIImage(named: "cameraBackground")!)
+        imageArray?.append(UIImage(named: "cameraBackground")!)
+        addImagesToScrollView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +67,66 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
         }
     }
     
+    func addImagesToScrollView()
+    {
+        //clear scroll view
+        for view in imageScrollView.subviews
+        {
+            view.removeFromSuperview()
+        }
+    
+        //generate scroll view
+        let x: CGFloat = 40
+        var totalWidth:CGFloat = 0;
+        for var i: Int = 0; i < imageArray!.count; i++
+        {
+            let deleteButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+            deleteButton.frame = CGRectMake(20, 170, 110, 30)
+            deleteButton.backgroundColor = UIColor.darkGrayColor()
+            deleteButton.tintColor = UIColor.whiteColor()
+            deleteButton.setTitle("Delete", forState: UIControlState.Normal)
+            deleteButton.layer.cornerRadius = 12.0
+            var imageView = UIImageView()
+            imageView.image = imageArray![i]
+            imageView.frame = CGRectMake((x + CGFloat(150)) * (CGFloat(i)),40, 150, 200)
+            totalWidth = imageView.frame.origin.x + CGFloat(200)
+            imageView.tag = i
+            deleteButton.tag = i
+            deleteButton.addTarget(self, action: "imageDeleteButton:", forControlEvents: UIControlEvents.TouchUpInside)
+            imageView.addSubview(deleteButton)
+            imageView.userInteractionEnabled = true
+            imageScrollView.addSubview(imageView)
+        }
+
+        imageScrollView.contentSize = CGSize(width: totalWidth, height: 200)
+        
+        
+    }
+    
+    func deleteFromImageArray(TagNumber: Int)
+    {
+        imageArray?.removeAtIndex(TagNumber)
+        addImagesToScrollView();
+    }
+    
+    func imageDeleteButton(sender: UIButton!)
+    {
+        println("delete image")
+        
+        var deleteAlert = UIAlertController(title: "Delete Image", message: "Image will be removed from inspection", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        deleteAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            self.deleteFromImageArray(sender.tag)
+        }))
+        
+        deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+
+        }))
+        
+        presentViewController(deleteAlert, animated: true, completion: nil)
+        
+    }
+    
     func useCameraRoll(sender: AnyObject) {
         
         if UIImagePickerController.isSourceTypeAvailable(
@@ -68,24 +144,32 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
         }
     }
     
+    @IBAction func backToInspection (sender: UIButton)
+    {
+        delegate.didFinishCamera(self)
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     
     //delagate methods
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
-        let mediaType = info[UIImagePickerControllerMediaType] as NSString
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
+        let mediaType = info[UIImagePickerControllerMediaType] as NSString        
         if mediaType.isEqualToString(kUTTypeImage as NSString) {
             let image = info[UIImagePickerControllerOriginalImage]
                 as UIImage
             
             //  imageView.image = image
+            if imageArray == nil
+            {
             imageArray = []
+            }
             imageArray!.append(image)
             imageView.image = image
             
-            sendData(imageArray!)
+            //remake imagescrollview
+            addImagesToScrollView()
+            
             
             
             if (newMedia == true) {
@@ -96,6 +180,7 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
             }
             
         }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func image(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {

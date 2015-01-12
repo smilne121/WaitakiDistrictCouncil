@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraViewController" customModule="Building_Waitaki_2_0" customModuleProvider="target">
             <connections>
+                <outlet property="imageScrollView" destination="QMl-BQ-uga" id="uUa-pb-JnN"/>
                 <outlet property="imageView" destination="vbu-HY-MLj" id="mtg-GR-mbw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -35,6 +36,9 @@
                     <state key="normal" title="Back">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="backToInspection:" destination="-1" eventType="touchUpInside" id="1nj-0z-83u"/>
+                    </connections>
                 </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QMl-BQ-uga">
                     <rect key="frame" x="22" y="542" width="731" height="355"/>

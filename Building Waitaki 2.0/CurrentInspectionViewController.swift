@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate {
+class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate, CameraDelegate {
     @IBOutlet weak var InspectionScrollView: UIScrollView!
     var currentInspection: Inspection!
     var currentInspectionItem: InspectionItem!
@@ -78,6 +78,7 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
         let vc = CameraViewController(nibName: "CameraViewController",bundle:nil)
         
         vc.imageArray = self.currentInspectionItem.imageArray
+        vc.delegate = self
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -88,14 +89,14 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
         currentInspectionItem = currentInspection.getItemFromTag(sender.tag)
     }
     
-    func doSomethingWithData(data: [UIImage]) {
-        println("data coming back")
-        currentInspectionItem.imageArray = data
-        
-    }
-    
+  
     
     //Delegate Methods
+    func didFinishCamera(controller: CameraViewController) {
+        self.currentInspectionItem.imageArray = controller.imageArray!
+        println(currentInspectionItem.imageArray.count)
+    }
+    
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool
     {
         println("I'm here")
