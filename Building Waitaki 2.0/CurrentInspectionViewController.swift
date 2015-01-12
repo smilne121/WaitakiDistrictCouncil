@@ -21,6 +21,11 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //navi setup
+       // let vc = CameraController(nibName: "CameraController", bundle:nil)
+       // navigationController!.pushViewController(vc, animated: true)
+        println(navigationController?.viewControllers.count)
+        
         //Create test inspection
         if InspectionScrollView != nil
         {
@@ -71,12 +76,23 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
     
     func openCamera(sender:UIButton!)
     {
-        println(" Open camera")
+        
+        currentInspectionItem = currentInspection.getItemFromTag(sender.tag)
+        
+        performSegueWithIdentifier("ToCamera",sender: self)
+       // performSegueWithIdentifier("ToCamera", sender: sender) //           I  Work
     }
     
     func openGallery(sender:UIButton!)
     {
         println(" Open gallery")
+        currentInspectionItem = currentInspection.getItemFromTag(sender.tag)
+    }
+    
+    func doSomethingWithData(data: [UIImage]) {
+        println("data comming back")
+        currentInspectionItem.imageArray = data
+        
     }
     
     
@@ -99,6 +115,22 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
     {
         //limit the textbox to 255 chars
         return countElements(textView.text) + (countElements(text) - range.length) <= 255
+    }
+    
+    //pass data to new segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let theDestination = (segue.destinationViewController as CameraController)
+        println(segue.identifier)
+        theDestination.onDataAvailable = {[weak self]
+            (data) in
+            if let weakSelf = self {
+                weakSelf.doSomethingWithData(data)
+            }
+        }
+        if currentInspectionItem.imageArray.count > 0
+        {
+            theDestination.imageArray = currentInspectionItem.imageArray
+        }
     }
 }
 

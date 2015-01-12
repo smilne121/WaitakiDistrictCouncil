@@ -13,10 +13,14 @@ import MobileCoreServices
 class CameraController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     var imagePicker: UIImagePickerController!
     var newMedia: Bool?
+    var imageArray: [UIImage]?
+    
+    var onDataAvailable : ((data: [UIImage]) -> ())?
     @IBOutlet var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         imagePicker = UIImagePickerController()
       //  self.useCameraRoll(self)
@@ -27,7 +31,19 @@ class CameraController: UIViewController,UIImagePickerControllerDelegate, UINavi
         // Dispose of any resources that can be recreated.
     }
     
-    
+    @IBAction func backToInspection(sender: UIButton)
+    {
+        println(navigationController?.viewControllers.count)
+        sendData(imageArray!)
+       //let myUIViewController = self.navigationController?.viewControllers[0] as CurrentInspectionViewController
+       //myUIViewController.currentInspectionItem.imageArray = imageArray!
+        
+      // self.navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewControllerAnimated(true)
+        
+        
+        //self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     
      @IBAction func useCamera(sender: AnyObject) {
@@ -77,7 +93,9 @@ class CameraController: UIViewController,UIImagePickerControllerDelegate, UINavi
             let image = info[UIImagePickerControllerOriginalImage]
                 as UIImage
             
-            imageView.image = image
+          //  imageView.image = image
+            imageArray = []
+            imageArray!.append(image)
             
             if (newMedia == true) {
                 UIImageWriteToSavedPhotosAlbum(image, self,
@@ -108,6 +126,15 @@ class CameraController: UIViewController,UIImagePickerControllerDelegate, UINavi
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    //pass data back
+    func sendData(data: [UIImage]) {		
+        // Whenever you want to send data back to viewController1, check
+        // if the closure is implemented and then call it if it is
+        self.onDataAvailable?(data: data)
+    }
+    
+
     
 }
 

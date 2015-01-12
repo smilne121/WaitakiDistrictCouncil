@@ -19,6 +19,7 @@ class InspectionItem {
     var delegateControl: CurrentInspectionViewController
     let ItemTag: Int
     var viewControl: UIControl!
+    var imageArray: [UIImage]
     let Camera: Bool
 
     enum InspectionType {
@@ -37,6 +38,7 @@ class InspectionItem {
         self.delegateControl = Controller
         self.ItemTag = ItemTag
         self.Camera = Camera
+        self.imageArray = [UIImage]()
     }
     
     func generateItem(Container: UIScrollView, PreviousItemPosition: CGRect?)
@@ -104,6 +106,7 @@ class InspectionItem {
             let button   = UIButton.buttonWithType(UIButtonType.System) as UIButton
             button.frame = CGRectMake(590,HeightPosition!,30,30)
             button.setTitle("Camera", forState: UIControlState.Normal)
+            button.tag = ItemTag
             button.tintColor = UIColor.whiteColor()
             button.setImage(image, forState: .Normal)
             button.addTarget(delegateControl, action: "openCamera:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -113,6 +116,7 @@ class InspectionItem {
             let button2   = UIButton.buttonWithType(UIButtonType.System) as UIButton
             button2.frame = CGRectMake(640,HeightPosition!,30,30)
             button2.setTitle("Camera", forState: UIControlState.Normal)
+            button2.tag = ItemTag
             button2.tintColor = UIColor.whiteColor()
             button2.setImage(image2, forState: .Normal)
             button2.addTarget(delegateControl, action: "openGallery:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -120,6 +124,8 @@ class InspectionItem {
 
         }
     }
+    
+
     
         
 }
