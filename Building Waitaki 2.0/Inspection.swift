@@ -13,10 +13,12 @@ class Inspection {
     var Name: String
     var InspectionItemArray = [InspectionItem]()
     var ObjectTagArray = [Int]()
+    var BuildingConsentOfficer: String
 
-    init (Name: String)//, InspectionItemArray: [InspectionItem]?)
+    init (Name: String, BuildingConsentOfficer: String)//, InspectionItemArray: [InspectionItem]?)
     {
         self.Name = Name
+        self.BuildingConsentOfficer = BuildingConsentOfficer
     }
     
     func getContentSize(scrollview: UIScrollView) -> CGSize

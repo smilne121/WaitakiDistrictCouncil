@@ -27,19 +27,12 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
 
         // Do any additional setup after loading the view.
          imagePicker = UIImagePickerController()
-        imageArray = []
-        imageArray?.append(UIImage(named: "cameraBackground")!)
-         imageArray?.append(UIImage(named: "cameraBackground")!)
-         imageArray?.append(UIImage(named: "cameraBackground")!)
-        imageArray?.append(UIImage(named: "cameraBackground")!)
-        imageArray?.append(UIImage(named: "cameraBackground")!)
-        imageArray?.append(UIImage(named: "cameraBackground")!)
-        imageArray?.append(UIImage(named: "cameraBackground")!)
-        imageArray?.append(UIImage(named: "cameraBackground")!)
-        imageArray?.append(UIImage(named: "cameraBackground")!)
-        imageArray?.append(UIImage(named: "cameraBackground")!)
-        imageArray?.append(UIImage(named: "cameraBackground")!)
-        imageArray?.append(UIImage(named: "cameraBackground")!)
+        if imageArray == nil
+        {
+            imageArray = []
+        }
+        
+
         addImagesToScrollView()
     }
 

@@ -26,7 +26,7 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
         //Create test inspection
         if InspectionScrollView != nil
         {
-            currentInspection = Inspection(Name: "Test Inspection")
+            currentInspection = Inspection(Name: "Test Inspection",BuildingConsentOfficer: "testuser")
             currentInspection.loadDefaultItems(self, scrollview: InspectionScrollView)
             currentInspection.loadDefaultItems(self, scrollview: InspectionScrollView)
             currentInspection.loadDefaultItems(self, scrollview: InspectionScrollView)

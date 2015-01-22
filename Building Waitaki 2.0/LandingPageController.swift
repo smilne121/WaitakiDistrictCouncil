@@ -10,13 +10,9 @@ import UIKit
 import CoreData
 
 class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDelegate {
-   // @IBOutlet weak var InspectionScrollView: UIScrollView!
     @IBOutlet weak var textboxUser: UITextField!
     @IBOutlet weak var textboxServer: UITextField!
-    //var currentInspection: Inspection!
-   // var currentInspectionItem: InspectionItem!
-   // var commentPopup: UIView!
-    //var commentBox: UITextView!
+
   
     lazy var managedObjectContext : NSManagedObjectContext? = {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -32,15 +28,8 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
         super.viewDidLoad()
         readSettingsFromDevice()
         
-        //Create test inspection
-     //   if InspectionScrollView != nil
-       // {
-       //     currentInspection = Inspection(Name: "Test Inspection")
-       //     currentInspection.generateTestData(self, scrollview: InspectionScrollView)
-     //   }
-        
-        
-        // Do any additional setup after loading the view, typically from a nib.
+        let networkController: NetworkManager = NetworkManager()
+        networkController.getConsents()
         
             }
     
@@ -50,6 +39,8 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //CORE DATA SETUP
     
     func readSettingsFromDevice()
     {
@@ -78,9 +69,9 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
                 println("no data found")
             }
         }
-        
-        
     }
+    
+    //ALERTS
     
     func showAlert(title:String,  message:String)
     {
@@ -91,8 +82,6 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
         
         presentViewController(alertController, animated: true, completion: nil)
     }
-    
-    
     
     @IBAction
     func writeSettingToDevice(sender: UIButton)
