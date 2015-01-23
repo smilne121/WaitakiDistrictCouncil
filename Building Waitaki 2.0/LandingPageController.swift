@@ -31,6 +31,8 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
         let networkController: NetworkManager = NetworkManager()
         networkController.getConsents()
         
+
+        
             }
     
 
