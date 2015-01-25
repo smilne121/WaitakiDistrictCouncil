@@ -10,15 +10,13 @@ import Foundation
 import UIKit
 
 class Inspection {
-    var Name: String
-    var InspectionItemArray = [InspectionItem]()
-    var ObjectTagArray = [Int]()
-    var BuildingConsentOfficer: String
+    var Name: String?
+    var InspectionItemArray = [InspectionItem]?()
+    var ObjectTagArray = [Int]?()
+    var BuildingConsentOfficer: String?
 
-    init (Name: String, BuildingConsentOfficer: String)//, InspectionItemArray: [InspectionItem]?)
+    init ()
     {
-        self.Name = Name
-        self.BuildingConsentOfficer = BuildingConsentOfficer
     }
     
     func getContentSize(scrollview: UIScrollView) -> CGSize
@@ -26,7 +24,7 @@ class Inspection {
         var height: CGFloat = 0
         var itemHeight: Int16 = 0
         
-        for item in InspectionItemArray
+        for item in InspectionItemArray!
         {
          if item.Position.origin.y > height
          {
@@ -43,35 +41,35 @@ class Inspection {
     
     func getNewItemTag() -> Int
     {
-            ObjectTagArray.append(ObjectTagArray.count)
-        var result = ObjectTagArray.count - 1
+            ObjectTagArray!.append(ObjectTagArray!.count)
+        var result = ObjectTagArray!.count - 1
         return result
     }
     
     func loadDefaultItems(controller: CurrentInspectionViewController, scrollview: UIScrollView)
     {
-        InspectionItemArray.append(InspectionItem(Item: "Stamped consent plans checked:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(), Camera: true))
-        InspectionItemArray.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(),Camera: true))
-        InspectionItemArray.append(InspectionItem(Item: "Request received in writing for CCC:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(),Camera:false))
-        InspectionItemArray.append(InspectionItem(Item: "Inspection records checked:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(), Camera: false))
+        InspectionItemArray!.append(InspectionItem(Item: "Stamped consent plans checked:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(), Camera: true))
+        InspectionItemArray!.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(),Camera: true))
+        InspectionItemArray!.append(InspectionItem(Item: "Request received in writing for CCC:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(),Camera:false))
+        InspectionItemArray!.append(InspectionItem(Item: "Inspection records checked:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(), Camera: false))
     }
     
     func generateTestData(controller: CurrentInspectionViewController, scrollview: UIScrollView)
     {
         //load test data
-        InspectionItemArray.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(),Camera:true))
-        InspectionItemArray.append(InspectionItem(Item: "Clean outs/solid fill:", Type: InspectionItem.InspectionType.PassFailNA,Controller: controller,ItemTag: getNewItemTag(),Camera:true))
-        InspectionItemArray.append(InspectionItem(Item: "Comments:", Type: InspectionItem.InspectionType.ShortText,Controller: controller,ItemTag: getNewItemTag(),Camera:true))
+        InspectionItemArray!.append(InspectionItem(Item: "Any amendments required:", Type: InspectionItem.InspectionType.YesNo,Controller: controller, ItemTag: getNewItemTag(),Camera:true))
+        InspectionItemArray!.append(InspectionItem(Item: "Clean outs/solid fill:", Type: InspectionItem.InspectionType.PassFailNA,Controller: controller,ItemTag: getNewItemTag(),Camera:true))
+        InspectionItemArray!.append(InspectionItem(Item: "Comments:", Type: InspectionItem.InspectionType.ShortText,Controller: controller,ItemTag: getNewItemTag(),Camera:true))
        
-        for var i = 0 ; i < InspectionItemArray.count; i++
+        for var i = 0 ; i < InspectionItemArray!.count; i++
         {
             if i != 0
             {
-                InspectionItemArray[i].generateItem(scrollview, PreviousItemPosition: InspectionItemArray[i - 1].Position)
+                InspectionItemArray![i].generateItem(scrollview, PreviousItemPosition: InspectionItemArray![i - 1].Position)
             }
             else
             {
-                InspectionItemArray[i].generateItem(scrollview, PreviousItemPosition: nil)
+                InspectionItemArray![i].generateItem(scrollview, PreviousItemPosition: nil)
             }
         }
     }
@@ -134,11 +132,11 @@ class Inspection {
     
     func getItemFromTag (Tag: Int) -> InspectionItem?
     {
-        for var i = 0 ; i < InspectionItemArray.count; i++
+        for var i = 0 ; i < InspectionItemArray!.count; i++
         {
-            if InspectionItemArray[i].ItemTag == Tag
+            if InspectionItemArray![i].ItemTag == Tag
             {
-                    return InspectionItemArray[i]
+                    return InspectionItemArray![i]
             }
         }
         return nil

@@ -18,26 +18,71 @@ class ConsentManager
 
     }
     
-    func consentManagerInitilized()
+    func JSONParseArray(jsonString: String) -> [AnyObject]
     {
-        loadConsentsFromCoreData()
-        self.user = loadUserFromCoreData()
+        if let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+        {
+            if let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: nil) as? [AnyObject]
+            {
+                return array
+            }
+        }
+        return [AnyObject]()
     }
     
-    //load the consents from local storage into memory
-    func loadConsentsFromCoreData() -> [Consent]?
+    func loadConsentsFromServer(JSONString: String)
     {
-        var result = [Consent]()
+        var error : NSError?
+        let JSONData = JSONString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         
-        return result
+        for elem:AnyObject in JSONParseArray(JSONString)
+        {
+            let consent = Consent()
+            consent.siteAddress = elem["siteAddress"] as? String
+            consent.account = elem["account"] as? String
+            consent.consentNumber = elem["consentNumber"] as? String
+            consent.workDescription = elem["description"] as? String
+            let contacts = elem["contact"] as NSArray
+            let inspections = elem["inspections"] as NSArray
+            println(inspections)
+            
+            for contact:AnyObject in contacts
+            {
+                let newContact = Contact()
+                newContact.FirstName = contact["firstName"] as? String
+                newContact.LastName = contact["lastName"] as? String
+                newContact.CellPhone = contact["cellPhone"] as? String
+                newContact.HomePhone = contact["homePhone"] as? String
+                newContact.Position = contact["position"] as? String
+                consent.contactArray?.append(newContact)
+            }
+            
+            for inspection:AnyObject in inspections
+            {
+                let newInspection = Inspection()
+                newContact.FirstName = contact["firstName"] as? String
+                newContact.LastName = contact["lastName"] as? String
+                newContact.CellPhone = contact["cellPhone"] as? String
+                newContact.HomePhone = contact["homePhone"] as? String
+                newContact.Position = contact["position"] as? String
+                consent.contactArray?.append(newContact)
+            }
+
+            
+
+            
+            
+            //add consent to array
+            consentArray?.append(consent)
+        }
+        
+        for elem:AnyObject in JSONParseArray(JSONString)
+        {
+       //     let name = elem["contact"] as NSArray
+        //    println(name)
+            //    }
+        }
+
     }
-    
-    func loadUserFromCoreData() -> String
-    {
-        var result = ""
-        return result
-    }
-    
-    
 }
 

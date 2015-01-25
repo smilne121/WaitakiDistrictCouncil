@@ -10,13 +10,18 @@ import Foundation
 
 class Contact
 {
-    var FirstName: String
+    var FirstName: String?
     var LastName: String?
-    var Phone: String?
+    var CellPhone: String?
     var Position: String?
-
-    init(FirstName: String)
+    var HomePhone: String?
+    
+    init()
     {
-        self.FirstName = FirstName
+        
     }
+    
+
+
 }
+
