@@ -18,6 +18,8 @@ class ConsentManager
 
     }
     
+    
+    //method used to parse the json string into a dictionary array
     func JSONParseArray(jsonString: String) -> [AnyObject]
     {
         if let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
@@ -30,6 +32,7 @@ class ConsentManager
         return [AnyObject]()
     }
     
+    //take the string and change it into consent objects
     func loadConsentsFromServer(JSONString: String)
     {
         var error : NSError?
@@ -44,7 +47,10 @@ class ConsentManager
             consent.workDescription = elem["description"] as? String
             let contacts = elem["contact"] as NSArray
             let inspections = elem["inspections"] as NSArray
-            println(inspections)
+            
+            //init the arrays
+            consent.inspectionArray = [Inspection]()
+            consent.contactArray = [Contact]()
             
             for contact:AnyObject in contacts
             {
@@ -54,35 +60,82 @@ class ConsentManager
                 newContact.CellPhone = contact["cellPhone"] as? String
                 newContact.HomePhone = contact["homePhone"] as? String
                 newContact.Position = contact["position"] as? String
-                consent.contactArray?.append(newContact)
+                consent.contactArray!.append(newContact)
             }
             
             for inspection:AnyObject in inspections
             {
+                let inspectionItems = inspection["inspectionItems"] as NSArray
+                let amount:Int! = removingSpacesAtTheEndOfAString((inspection["amountToDo"] as? String)!).toInt()
+                
+                for var i = 0; i < amount; i++
+                {
                 let newInspection = Inspection()
-                newContact.FirstName = contact["firstName"] as? String
-                newContact.LastName = contact["lastName"] as? String
-                newContact.CellPhone = contact["cellPhone"] as? String
-                newContact.HomePhone = contact["homePhone"] as? String
-                newContact.Position = contact["position"] as? String
-                consent.contactArray?.append(newContact)
+                    newInspection.InspectionItemArray = [InspectionItem]()
+                newInspection.Name = inspection["name"] as? String
+                newInspection.InspectionID = inspection["inspectionID"] as? String
+                    
+                    for inspectionItem:AnyObject in inspectionItems
+                    {
+                        var newInspectionItem = InspectionItem()
+                        if (inspectionItem["camera"] as? String) == "1"
+                        {
+                            newInspectionItem.Camera? = true;
+                        }
+                        else
+                        {
+                            newInspectionItem.Camera? = false;
+                        }
+                        
+                        newInspectionItem.Item? = (inspectionItem["name"] as? String)!
+                        if (inspectionItem["required"] as? String) == "Y"
+                        {
+                            newInspectionItem.required = true
+                        }
+                        else
+                        {
+                            newInspectionItem.required = false
+                        }
+                        
+                        switch removingSpacesAtTheEndOfAString((inspectionItem["type"] as? String)!)
+                        {
+                            case "F":
+                                        newInspectionItem.Type = InspectionItem.InspectionType.PassFailNA
+                            case "NR":
+                                        newInspectionItem.Type = InspectionItem.InspectionType.ShortText
+                            case "T":
+                                        newInspectionItem.Type = InspectionItem.InspectionType.ShortText
+                        default:
+                                        newInspectionItem.Type = nil
+                        }
+                        newInspection.InspectionItemArray!.append(newInspectionItem)
+                    }
+                consent.inspectionArray!.append(newInspection)
+                }
             }
 
-            
-
-            
-            
             //add consent to array
             consentArray?.append(consent)
         }
-        
-        for elem:AnyObject in JSONParseArray(JSONString)
-        {
-       //     let name = elem["contact"] as NSArray
-        //    println(name)
-            //    }
-        }
 
+
+    }
+    
+    
+    //save consents to core data for syncing later
+    func saveConsentsToCoreData()
+    {
+        
+    }
+    
+    private func removingSpacesAtTheEndOfAString(var str: String) -> String {
+        var i: Int = countElements(str) - 1, j: Int = i
+        
+        while(i >= 0 && str[advance(str.startIndex, i)] == " ") {
+            --i
+        }
+        
+        return str.substringWithRange(Range<String.Index>(start: str.startIndex, end: advance(str.endIndex, -(j - i))))
     }
 }
 

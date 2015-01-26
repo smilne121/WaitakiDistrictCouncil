@@ -24,7 +24,7 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
         println(navigationController?.viewControllers.count)
         
         //Create test inspection
-        if InspectionScrollView != nil
+     /*   if InspectionScrollView != nil
         {
             currentInspection = Inspection(Name: "Test Inspection",BuildingConsentOfficer: "testuser")
             currentInspection.loadDefaultItems(self, scrollview: InspectionScrollView)
@@ -34,7 +34,7 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
             currentInspection.loadDefaultItems(self, scrollview: InspectionScrollView)
             currentInspection.generateTestData(self, scrollview: InspectionScrollView)
         }
-        
+        */
         //update the scrollview size
         InspectionScrollView.contentSize = currentInspection.getContentSize(InspectionScrollView)
         
@@ -94,7 +94,7 @@ class CurrentInspectionViewController: UIViewController, UITextFieldDelegate,UIT
     //Delegate Methods
     func didFinishCamera(controller: CameraViewController) {
         self.currentInspectionItem.imageArray = controller.imageArray!
-        println(currentInspectionItem.imageArray.count)
+       // println(currentInspectionItem.imageArray.count)
     }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool

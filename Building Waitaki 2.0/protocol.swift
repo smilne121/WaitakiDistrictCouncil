@@ -11,3 +11,5 @@ import Foundation
 protocol CameraDelegate{
     func didFinishCamera( controller: CameraViewController)
 }
+
+

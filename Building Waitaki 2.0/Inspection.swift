@@ -11,12 +11,14 @@ import UIKit
 
 class Inspection {
     var Name: String?
+    var InspectionID: String?
     var InspectionItemArray = [InspectionItem]?()
     var ObjectTagArray = [Int]?()
     var BuildingConsentOfficer: String?
 
     init ()
     {
+        ObjectTagArray = [Int]()
     }
     
     func getContentSize(scrollview: UIScrollView) -> CGSize
@@ -26,10 +28,10 @@ class Inspection {
         
         for item in InspectionItemArray!
         {
-         if item.Position.origin.y > height
+         if item.Position!.origin.y > height
          {
-                height = item.Position.origin.y
-                itemHeight = item.height
+                height = item.Position!.origin.y
+                itemHeight = item.height!
           }
         }
         

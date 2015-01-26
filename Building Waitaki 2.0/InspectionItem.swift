@@ -11,21 +11,26 @@ import UIKit
 
 class InspectionItem {
     
-    var Item: String
-    var Type: InspectionType
-    var Position: CGRect!
-    let height: Int16
-    let width: Int16
-    var delegateControl: CurrentInspectionViewController
-    let ItemTag: Int
-    var viewControl: UIControl!
-    var imageArray: [UIImage]
-    let Camera: Bool
+    var Item: String?
+    var Type: InspectionType?
+    var Position: CGRect!?
+    var height: Int16?
+    var width: Int16?
+    var required: Bool?
+    var delegateControl: CurrentInspectionViewController?
+    var ItemTag: Int?
+    var viewControl: UIControl!?
+    var imageArray: [UIImage]?
+    var Camera: Bool?
 
     enum InspectionType {
         case YesNo
         case PassFailNA
         case ShortText
+    }
+    init()
+    {
+        
     }
     
     init(Item: String, Type: InspectionType, Controller: CurrentInspectionViewController, ItemTag: Int, Camera: Bool)
@@ -62,13 +67,13 @@ class InspectionItem {
         labelItemName.font = UIFont(name: labelItemName.font.fontName, size: 22)
         Container.addSubview(labelItemName)
         
-        switch self.Type {
+        switch self.Type! {
             
             case InspectionType.YesNo:
                 var checkbox = UISegmentedControl(items: ["Yes","No"])
                 checkbox.frame = CGRectMake(390,HeightPosition!,180,30)
                 checkbox.tintColor = UIColor.whiteColor()
-                checkbox.tag = ItemTag
+                checkbox.tag = ItemTag!
 
                 self.Position = checkbox.frame
                 viewControl = checkbox
@@ -78,7 +83,7 @@ class InspectionItem {
                 var checkbox = UISegmentedControl(items: ["Pass","Fail","N/A"])
                 checkbox.frame = CGRectMake(390,HeightPosition!,180,30)
                 checkbox.tintColor = UIColor.whiteColor()
-                checkbox.tag = ItemTag
+                checkbox.tag = ItemTag!
                 self.Position = checkbox.frame
                 viewControl = checkbox
                 Container.addSubview(checkbox)
@@ -89,7 +94,7 @@ class InspectionItem {
                 comments.layer.cornerRadius = 5.0
                 comments.layer.borderColor = UIColor.lightGrayColor().CGColor
                 comments.layer.borderWidth = 0.5
-                comments.tag = ItemTag
+                comments.tag = ItemTag!
                 comments.backgroundColor = UIColor.whiteColor()
         
                 viewControl = comments
@@ -100,13 +105,13 @@ class InspectionItem {
         }
         
         //add camera icon 
-        if Camera
+        if (Camera != nil)
         {
             let image = UIImage(named: "camera-50") as UIImage?
             let button   = UIButton.buttonWithType(UIButtonType.System) as UIButton
             button.frame = CGRectMake(590,HeightPosition!,30,30)
             button.setTitle("Camera", forState: UIControlState.Normal)
-            button.tag = ItemTag
+            button.tag = ItemTag!
             button.tintColor = UIColor.whiteColor()
             button.setImage(image, forState: .Normal)
             button.addTarget(delegateControl, action: "openCamera:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -116,7 +121,7 @@ class InspectionItem {
             let button2   = UIButton.buttonWithType(UIButtonType.System) as UIButton
             button2.frame = CGRectMake(640,HeightPosition!,30,30)
             button2.setTitle("Camera", forState: UIControlState.Normal)
-            button2.tag = ItemTag
+            button2.tag = ItemTag!
             button2.tintColor = UIColor.whiteColor()
             button2.setImage(image2, forState: .Normal)
             button2.addTarget(delegateControl, action: "openGallery:", forControlEvents: UIControlEvents.TouchUpInside)
