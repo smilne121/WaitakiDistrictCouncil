@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class ConsentManager
 {
@@ -123,8 +124,61 @@ class ConsentManager
     
     
     //save consents to core data for syncing later
-    func saveConsentsToCoreData()
+    func saveConsentsToCoreData(context: NSManagedObjectContext)
     {
+        for consent:Consent in consentArray!
+        {
+            let newConsent = NSEntityDescription.insertNewObjectForEntityForName("SavedConsent", inManagedObjectContext: context) as SavedConsent
+            newConsent.account = consent.account!
+            newConsent.consentNumber = consent.consentNumber!
+            newConsent.siteAddress = consent.siteAddress!
+            
+            for contact:Contact in consent.contactArray!
+            {
+                let newContact = NSEntityDescription.insertNewObjectForEntityForName("SavedContact", inManagedObjectContext: context) as SavedContact
+                newContact.firstName = contact.FirstName!
+                newContact.lastName = contact.LastName!
+                newContact.position = contact.Position!
+                newContact.homePhone = contact.HomePhone!
+                newContact.cellPhone = contact.CellPhone!
+                newConsent.addContactObject(newContact)
+            }
+            
+            for inspection:Inspection in consent.inspectionArray!
+            {
+                let newInspection = NSEntityDescription.insertNewObjectForEntityForName("SavedInspection", inManagedObjectContext: context) as SavedInspection
+                newInspection.id = inspection.InspectionID!
+                newInspection.name = inspection.Name!
+                newInspection.comments = inspection.Comments!
+                newInspection.officer = inspection.BuildingConsentOfficer!
+                
+                for insItem:InspectionItem in inspection.InspectionItemArray!
+                {
+                    let newInsItem = NSEntityDescription.insertNewObjectForEntityForName("SavedInspectionItem", inManagedObjectContext: context) as SavedInspectionItem
+                    newInsItem.camera = insItem.Camera!
+                    newInsItem.name = insItem.Item!
+                    newInsItem.required = insItem.required! 
+                    //newInsItem.type = insItem.Type! //need to convert to string
+                    newInsItem.value = insItem.Value!
+                }
+                
+                //add images to item?
+                
+                //add inspections items to inspection
+                
+                
+            }
+            
+        }
+        
+        //save back
+        var error: NSError?
+        context.save(&error)
+        
+        if let err = error {
+            //handle error
+            println(err)
+        }
         
     }
     

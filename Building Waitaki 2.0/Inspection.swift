@@ -15,6 +15,7 @@ class Inspection {
     var InspectionItemArray = [InspectionItem]?()
     var ObjectTagArray = [Int]?()
     var BuildingConsentOfficer: String?
+    var Comments: String?
 
     init ()
     {

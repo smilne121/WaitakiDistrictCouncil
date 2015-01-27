@@ -22,6 +22,7 @@ class InspectionItem {
     var viewControl: UIControl!?
     var imageArray: [UIImage]?
     var Camera: Bool?
+    var Value: String?
 
     enum InspectionType {
         case YesNo

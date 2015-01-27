@@ -23,19 +23,11 @@ class Consent : NSObject
     override init()
     {
         super.init()
-                
-         //Loop
-      //for (key, value) in JSONDictionary {
-         //  let keyName = key as String
-       //    let keyValue: String = value as String
-       
-       //     println(keyName)
-            
-         //   if (self.respondsToSelector(NSSelectorFromString(keyName))) {
-          //      self.setValue(keyValue, forKey: keyName)
-        //   }
-
-    //   }
     }
     
 }
+
+
+
+
+
