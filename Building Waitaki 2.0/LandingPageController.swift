@@ -29,7 +29,8 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
         readSettingsFromDevice()
         
         let networkController: NetworkManager = NetworkManager()
-        networkController.getConsents()
+        networkController.getConsents(managedObjectContext!)
+        
         
 
         

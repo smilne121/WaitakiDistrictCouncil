@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import CoreData
+
 class NetworkManager
 {
-    func getConsents() -> [Consent]?
+    func getConsents(context: NSManagedObjectContext) -> [Consent]?
     {
         var resultConsents: [Consent]? = nil
         var result: String = ""
@@ -19,7 +21,7 @@ class NetworkManager
             if response.responseObject != nil {
                 let data = response.responseObject as NSData
                 let str = NSString(data: data, encoding: NSUTF8StringEncoding)
-                self.generateTest(str!)
+                self.generateTest(str!, context: context)
             }
             },failure:  {(error: NSError, responce: HTTPResponse?) in
                 println("error: \(error)")
@@ -28,10 +30,12 @@ class NetworkManager
         return resultConsents
     }
     
-    func generateTest(json: NSString)
+    func generateTest(json: NSString, context: NSManagedObjectContext )
     {
         var consents:ConsentManager = ConsentManager()
-        consents.loadConsentsFromServer(json)
+        consents.loadConsentsFromServer(json, context: context)
+        
+        
        //var aPerson : Consent = Consent.lo(JSONString: json)
   //      println(aPerson.consentNumber) // Output is "myUser"
     }

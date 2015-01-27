@@ -16,7 +16,7 @@ class ConsentManager
     
     init()
     {
-
+        consentArray = [Consent]()
     }
     
     
@@ -34,7 +34,7 @@ class ConsentManager
     }
     
     //take the string and change it into consent objects
-    func loadConsentsFromServer(JSONString: String)
+    func loadConsentsFromServer(JSONString: String, context: NSManagedObjectContext )
     {
         var error : NSError?
         let JSONData = JSONString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
@@ -118,14 +118,16 @@ class ConsentManager
             //add consent to array
             consentArray?.append(consent)
         }
-
-
+        println(consentArray?.count)
+saveConsentsToCoreData(context)
+      
     }
     
     
     //save consents to core data for syncing later
     func saveConsentsToCoreData(context: NSManagedObjectContext)
     {
+        println(consentArray?.count)
         for consent:Consent in consentArray!
         {
             let newConsent = NSEntityDescription.insertNewObjectForEntityForName("SavedConsent", inManagedObjectContext: context) as SavedConsent
@@ -157,14 +159,26 @@ class ConsentManager
                     let newInsItem = NSEntityDescription.insertNewObjectForEntityForName("SavedInspectionItem", inManagedObjectContext: context) as SavedInspectionItem
                     newInsItem.camera = insItem.Camera!
                     newInsItem.name = insItem.Item!
-                    newInsItem.required = insItem.required! 
-                    //newInsItem.type = insItem.Type! //need to convert to string
+                    newInsItem.required = insItem.required!
+                    switch (insItem.Type!)
+                    {
+                    case (InspectionItem.InspectionType.PassFailNA):
+                            newInsItem.type = "PassFailNA"
+                    case (InspectionItem.InspectionType.ShortText):
+                        newInsItem.type = "ShortText"
+                    case (InspectionItem.InspectionType.YesNo):
+                        newInsItem.type = "YesNo"
+                    }
+                    
                     newInsItem.value = insItem.Value!
+                    
+                    //add images to item?
+                    
+                    newInspection.addInspectionItemObject(newInsItem)
                 }
                 
-                //add images to item?
                 
-                //add inspections items to inspection
+                
                 
                 
             }
