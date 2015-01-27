@@ -28,6 +28,7 @@ class InspectionItem {
         case YesNo
         case PassFailNA
         case ShortText
+        case Date
     }
     init()
     {

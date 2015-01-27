@@ -16,6 +16,6 @@ class SavedInspection: NSManagedObject {
     @NSManaged var comments: String
     @NSManaged var officer: String
     @NSManaged var consent: SavedConsent
-    @NSManaged var inspectionItem: NSSet
+    @NSManaged var inspectionItem: NSMutableSet
 
 }

@@ -17,6 +17,6 @@ class SavedInspectionItem: NSManagedObject {
     @NSManaged var type: String
     @NSManaged var value: String
     @NSManaged var inspection: SavedInspection
-    @NSManaged var image: NSSet
+    @NSManaged var image: NSMutableSet
 
 }

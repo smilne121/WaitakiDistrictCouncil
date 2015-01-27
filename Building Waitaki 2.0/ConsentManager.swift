@@ -79,6 +79,9 @@ class ConsentManager
                     for inspectionItem:AnyObject in inspectionItems
                     {
                         var newInspectionItem = InspectionItem()
+                        
+                        newInspectionItem.Item = inspection["name"] as? String
+                        
                         if (inspectionItem["camera"] as? String) == "1"
                         {
                             newInspectionItem.Camera? = true;
@@ -106,6 +109,9 @@ class ConsentManager
                                         newInspectionItem.Type = InspectionItem.InspectionType.ShortText
                             case "T":
                                         newInspectionItem.Type = InspectionItem.InspectionType.ShortText
+                            case "D":
+                                        newInspectionItem.Type = InspectionItem.InspectionType.Date
+                                    
                         default:
                                         newInspectionItem.Type = nil
                         }
@@ -143,6 +149,7 @@ saveConsentsToCoreData(context)
                 newContact.position = contact.Position!
                 newContact.homePhone = contact.HomePhone!
                 newContact.cellPhone = contact.CellPhone!
+                newContact.consent = newConsent
                 newConsent.addContactObject(newContact)
             }
             
@@ -151,13 +158,23 @@ saveConsentsToCoreData(context)
                 let newInspection = NSEntityDescription.insertNewObjectForEntityForName("SavedInspection", inManagedObjectContext: context) as SavedInspection
                 newInspection.id = inspection.InspectionID!
                 newInspection.name = inspection.Name!
+                if (inspection.Comments != nil)
+                {
                 newInspection.comments = inspection.Comments!
+                }
+                
+                if (inspection.BuildingConsentOfficer != nil)
+                {
                 newInspection.officer = inspection.BuildingConsentOfficer!
+                }
                 
                 for insItem:InspectionItem in inspection.InspectionItemArray!
                 {
                     let newInsItem = NSEntityDescription.insertNewObjectForEntityForName("SavedInspectionItem", inManagedObjectContext: context) as SavedInspectionItem
+                    if (insItem.Camera != nil)
+                    {
                     newInsItem.camera = insItem.Camera!
+                    }
                     newInsItem.name = insItem.Item!
                     newInsItem.required = insItem.required!
                     switch (insItem.Type!)
@@ -168,9 +185,14 @@ saveConsentsToCoreData(context)
                         newInsItem.type = "ShortText"
                     case (InspectionItem.InspectionType.YesNo):
                         newInsItem.type = "YesNo"
+                    case (InspectionItem.InspectionType.Date):
+                        newInsItem.type = "Date"
                     }
                     
+                    if (insItem.Value != nil)
+                    {
                     newInsItem.value = insItem.Value!
+                    }
                     
                     //add images to item?
                     
@@ -178,7 +200,7 @@ saveConsentsToCoreData(context)
                 }
                 
                 
-                
+                newConsent.addInspectionObject(newInspection)
                 
                 
             }

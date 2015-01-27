@@ -15,7 +15,7 @@ class SavedConsent: NSManagedObject {
     @NSManaged var consentNumber: String
     @NSManaged var siteAddress: String
     @NSManaged var workDescription: String
-    @NSManaged var contact: NSSet
-    @NSManaged var inspection: NSSet
+    @NSManaged var contact: NSMutableSet
+    @NSManaged var inspection: NSMutableSet
 
 }
