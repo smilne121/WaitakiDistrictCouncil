@@ -13,8 +13,8 @@ class SavedInspection: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var name: String
-    @NSManaged var comments: String
-    @NSManaged var officer: String
+    @NSManaged var comments: String?
+    @NSManaged var officer: String?
     @NSManaged var consent: SavedConsent
     @NSManaged var inspectionItem: NSMutableSet
 

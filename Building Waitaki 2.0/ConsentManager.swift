@@ -19,7 +19,6 @@ class ConsentManager
         consentArray = [Consent]()
     }
     
-    
     //method used to parse the json string into a dictionary array
     func JSONParseArray(jsonString: String) -> [AnyObject]
     {
@@ -124,22 +123,128 @@ class ConsentManager
             //add consent to array
             consentArray?.append(consent)
         }
-        println(consentArray?.count)
+        //println(consentArray?.count)
 saveConsentsToCoreData(context)
       
+    }
+    
+    func loadConsentsFromCoreData(context: NSManagedObjectContext)
+    {
+        let fetchRequest = NSFetchRequest(entityName:"SavedConsent")
+        if let fetchResults = context.executeFetchRequest(fetchRequest, error: nil) as? [SavedConsent]
+        {
+            if fetchResults.count > 0
+            {
+                for var i = 0; i < fetchResults.count; i++
+                {
+                    var newConsent: Consent = Consent()
+                    println(fetchResults[i].workDescription)
+                    newConsent.siteAddress = fetchResults[i].siteAddress
+                    newConsent.consentNumber = fetchResults[i].consentNumber
+                    newConsent.account = fetchResults[i].account
+                    newConsent.workDescription = fetchResults[i].workDescription
+                    
+                    newConsent.contactArray = [Contact]()
+                    newConsent.inspectionArray = [Inspection]()
+                    
+                    for currentContact in fetchResults[i].contact
+                    {
+                        let contact = currentContact as SavedContact
+                        var newContact: Contact = Contact()
+                        newContact.FirstName = contact.firstName
+                        newContact.LastName = contact.lastName
+                        newContact.Position = contact.position
+                        newContact.HomePhone = contact.homePhone
+                        newContact.CellPhone = contact.cellPhone
+                        //add new contact to the consent
+                        newConsent.contactArray?.append(newContact)
+                    }
+                    
+                    for currentInspection in fetchResults[i].inspection
+                    {
+                        let inspection = currentInspection as SavedInspection
+                        var newInspection: Inspection = Inspection()
+                        newInspection.Name = inspection.name;
+                        newInspection.InspectionID = inspection.id
+                        if let insp = inspection.comments
+                        {
+                        newInspection.Comments = inspection.comments
+                        }
+                        newInspection.BuildingConsentOfficer = inspection.officer
+                        for currentInspItem in inspection.inspectionItem
+                        {
+                            let inspItem = currentInspItem as SavedInspectionItem
+                            var newItem: InspectionItem = InspectionItem()
+                            newItem.Item = inspItem.name
+                            newItem.Camera = inspItem.camera
+                            newItem.required = inspItem.required
+                            switch inspItem.type
+                            {
+                            case "F" :
+                                newItem.Type = InspectionItem.InspectionType.PassFailNA
+                            case "D" :
+                                newItem.Type = InspectionItem.InspectionType.Date
+                            case "NR" :
+                                newItem.Type = InspectionItem.InspectionType.ShortText
+                            case "T" :
+                                newItem.Type = InspectionItem.InspectionType.ShortText
+                            default:
+                                newItem.Type = nil
+                            }
+                            if let val = inspItem.value
+                            {
+                            newItem.Value = inspItem.value
+                            }
+                            
+                            //for image in inspItem.image //CAMERA SAVING LOADING FROM HERE
+                           // {
+                             //   let image: SavedImages = SavedImages()
+                            //    var newImage: NSData = image.image
+                         //   }
+                            
+                            newInspection.InspectionItemArray?.append(newItem)
+                        }
+                        newConsent.inspectionArray?.append(newInspection)
+                    }
+                    consentArray?.append(newConsent)
+                }
+            }
+            else
+            {
+                println("no consent data found")
+            }
+            println(consentArray?.count)
+        }
+
     }
     
     
     //save consents to core data for syncing later
     func saveConsentsToCoreData(context: NSManagedObjectContext)
     {
-        println(consentArray?.count)
+        //remove saved data
+        let fetchRequest = NSFetchRequest(entityName:"SavedConsent")
+        if let fetchResults = context.executeFetchRequest(fetchRequest, error: nil) as? [SavedConsent]
+        {
+            if fetchResults.count > 0
+            {
+                for consent:SavedConsent in fetchResults
+                {
+                    println("removing" + consent.siteAddress)
+                    context.deleteObject(consent)
+                }
+            }
+        }
+
+        
+       // println(consentArray?.count)
         for consent:Consent in consentArray!
         {
             let newConsent = NSEntityDescription.insertNewObjectForEntityForName("SavedConsent", inManagedObjectContext: context) as SavedConsent
             newConsent.account = consent.account!
             newConsent.consentNumber = consent.consentNumber!
             newConsent.siteAddress = consent.siteAddress!
+            newConsent.workDescription = consent.workDescription!
             
             for contact:Contact in consent.contactArray!
             {
@@ -173,7 +278,7 @@ saveConsentsToCoreData(context)
                     let newInsItem = NSEntityDescription.insertNewObjectForEntityForName("SavedInspectionItem", inManagedObjectContext: context) as SavedInspectionItem
                     if (insItem.Camera != nil)
                     {
-                    newInsItem.camera = insItem.Camera!
+                        newInsItem.camera = insItem.Camera!
                     }
                     newInsItem.name = insItem.Item!
                     newInsItem.required = insItem.required!
@@ -204,9 +309,7 @@ saveConsentsToCoreData(context)
                 
                 
             }
-            
         }
-        
         //save back
         var error: NSError?
         context.save(&error)
@@ -215,6 +318,9 @@ saveConsentsToCoreData(context)
             //handle error
             println(err)
         }
+        
+        //remove after testing
+        loadConsentsFromCoreData(context)
         
     }
     

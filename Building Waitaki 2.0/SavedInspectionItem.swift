@@ -11,11 +11,11 @@ import CoreData
 
 class SavedInspectionItem: NSManagedObject {
 
-    @NSManaged var camera: NSNumber
+    @NSManaged var camera: Bool
     @NSManaged var name: String
     @NSManaged var required: Bool
     @NSManaged var type: String
-    @NSManaged var value: String
+    @NSManaged var value: String?
     @NSManaged var inspection: SavedInspection
     @NSManaged var image: NSMutableSet
 
