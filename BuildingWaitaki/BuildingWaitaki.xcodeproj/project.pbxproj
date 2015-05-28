@@ -14,6 +14,8 @@
 		D2FB40D71B16E18200474A15 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2FB40D61B16E18200474A15 /* Images.xcassets */; };
 		D2FB40DA1B16E18200474A15 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FB40D81B16E18200474A15 /* LaunchScreen.xib */; };
 		D2FB40E61B16E18200474A15 /* BuildingWaitakiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40E51B16E18200474A15 /* BuildingWaitakiTests.swift */; };
+		D2FB40FA1B16FAB300474A15 /* SettingsPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40F91B16FAB300474A15 /* SettingsPopover.swift */; };
+		D2FB40FC1B16FDFF00474A15 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40FB1B16FDFF00474A15 /* AppSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		D2FB40DF1B16E18200474A15 /* BuildingWaitakiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuildingWaitakiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2FB40E41B16E18200474A15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2FB40E51B16E18200474A15 /* BuildingWaitakiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingWaitakiTests.swift; sourceTree = "<group>"; };
+		D2FB40F91B16FAB300474A15 /* SettingsPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPopover.swift; sourceTree = "<group>"; };
+		D2FB40FB1B16FDFF00474A15 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				D2FB40D81B16E18200474A15 /* LaunchScreen.xib */,
 				D2FB40CE1B16E18200474A15 /* BuildingWaitaki.xcdatamodeld */,
 				D2FB40CA1B16E18200474A15 /* Supporting Files */,
+				D2FB40F91B16FAB300474A15 /* SettingsPopover.swift */,
+				D2FB40FB1B16FDFF00474A15 /* AppSettings.swift */,
 			);
 			path = BuildingWaitaki;
 			sourceTree = "<group>";
@@ -215,8 +221,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2FB40FA1B16FAB300474A15 /* SettingsPopover.swift in Sources */,
 				D2FB40D21B16E18200474A15 /* HomeController.swift in Sources */,
 				D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */,
+				D2FB40FC1B16FDFF00474A15 /* AppSettings.swift in Sources */,
 				D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

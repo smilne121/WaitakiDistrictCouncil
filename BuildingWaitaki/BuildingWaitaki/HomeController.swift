@@ -19,6 +19,12 @@ class HomeController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //show the popup to allow settings to be set
+    @IBAction func showPopover(sender:UIButton) {
+        let settingsPopover = SettingPopover()
+        settingsPopover.showPopover(sender, controller: self)
+    }
 
 
 }
