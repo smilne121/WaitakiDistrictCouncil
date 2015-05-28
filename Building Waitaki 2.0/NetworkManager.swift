@@ -11,6 +11,12 @@ import CoreData
 
 class NetworkManager
 {
+    let consentManager: ConsentManager
+    
+    init(consentManager: ConsentManager)
+    {
+        self.consentManager = consentManager
+    }
     func getConsents(context: NSManagedObjectContext) -> [Consent]?
     {
         var resultConsents: [Consent]? = nil
@@ -32,12 +38,9 @@ class NetworkManager
     
     func generateTest(json: NSString, context: NSManagedObjectContext )
     {
-        var consents:ConsentManager = ConsentManager()
-        consents.loadConsentsFromServer(json, context: context)
+
+        consentManager.loadConsentsFromServer(json, context: context)
         
-        
-       //var aPerson : Consent = Consent.lo(JSONString: json)
-  //      println(aPerson.consentNumber) // Output is "myUser"
     }
     
     func sendInspection(inspection: Inspection, consentNumber: String) -> (Bool)

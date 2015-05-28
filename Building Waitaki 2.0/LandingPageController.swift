@@ -12,6 +12,10 @@ import CoreData
 class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDelegate {
     @IBOutlet weak var textboxUser: UITextField!
     @IBOutlet weak var textboxServer: UITextField!
+    @IBOutlet weak var consentScrollView: UIScrollView!
+    var consentManager: ConsentManager = ConsentManager()
+    var networkManager: NetworkManager?
+    var currentY: CGFloat = 0
 
   
     lazy var managedObjectContext : NSManagedObjectContext? = {
@@ -27,16 +31,10 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         readSettingsFromDevice()
-        
-        let networkController: NetworkManager = NetworkManager()
-        networkController.getConsents(managedObjectContext!)
-        
-        
 
-        
+        let networkManager: NetworkManager = NetworkManager(consentManager: consentManager)
+        networkManager.getConsents(managedObjectContext!)
             }
-    
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -44,6 +42,12 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
     }
     
     //CORE DATA SETUP
+    
+    @IBAction func draw()
+    {
+        drawConcents()
+        drawConcents()
+    }
     
     func readSettingsFromDevice()
     {
@@ -117,5 +121,63 @@ class LandingPageController: UIViewController, UITextFieldDelegate,UITextViewDel
             let user = fetchResults[0].user
         }
     }
+    
+    func drawConcents()
+    {
+        //if let consents = consentManager.getConsentArray()
+   //     {
+        if currentY == 0
+        {
+        currentY = 14
+        }
+        for consent in consentManager.getConsentArray()
+        {
+            let containerRect: CGRect = CGRect(x: 25,y: currentY,width: 408,height: 105)
+            let container: UIView = UIView(frame: containerRect)
+            container.layer.cornerRadius = 5
+            container.backgroundColor = UIColor.whiteColor()
+            container.tintColor = UIColor.blackColor()
+            
+            let lblConsentNumber = UILabel(frame: CGRect(x: 8,y: 8,width: 71,height: 21))
+            lblConsentNumber.text = "Consent:"
+            
+            let lblSiteAddress = UILabel(frame: CGRect(x: 8,y: 47,width: 71,height: 21))
+            lblSiteAddress.text = "Address:"
+            
+            let myConsentNumber = UILabel(frame: CGRect(x: 77,y: 8,width: 323,height: 21))
+            myConsentNumber.text = consent.consentNumber
+            
+            let mySiteAddress = UILabel(frame: CGRect(x: 77,y: 47,width: 323,height: 21))
+            mySiteAddress.text = consent.siteAddress
+            
+            let btnSelect = UIButton.buttonWithType(UIButtonType.System) as UIButton
+            btnSelect.frame = CGRectMake(20, 70, 110, 30)
+            btnSelect.backgroundColor = UIColor.darkGrayColor()
+            btnSelect.tintColor = UIColor.whiteColor()
+            btnSelect.setTitle("Select", forState: UIControlState.Normal)
+            btnSelect.layer.cornerRadius = 12.0
+            
+            //update value of y
+            currentY = (container.frame.origin.y + container.frame.height + 20)
+            
+            consentScrollView.contentSize = CGSize(width: consentScrollView.frame.width, height: (currentY + container.frame.height + 50))
+            
+            //add items to parents
+            container.addSubview(lblConsentNumber)
+            container.addSubview(myConsentNumber)
+            container.addSubview(lblSiteAddress)
+            container.addSubview(mySiteAddress)
+            container.addSubview(btnSelect)
+            consentScrollView.addSubview(container)
+      //      }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     
 }

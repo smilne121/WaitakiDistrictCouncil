@@ -18,7 +18,7 @@ class Consent : NSObject
     var account: String?
     
     
-    var otherContacts: [Contact]?
+    //var otherContacts: [Contact]?
 
     override init()
     {

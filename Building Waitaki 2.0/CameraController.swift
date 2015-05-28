@@ -97,6 +97,8 @@ class CameraController: UIViewController,UIImagePickerControllerDelegate, UINavi
             imageArray = []
             imageArray!.append(image)
             
+            sendData(imageArray!)
+            
             if (newMedia == true) {
                 UIImageWriteToSavedPhotosAlbum(image, self,
                     "image:didFinishSavingWithError:contextInfo:", nil)
@@ -128,7 +130,7 @@ class CameraController: UIViewController,UIImagePickerControllerDelegate, UINavi
     }
     
     //pass data back
-    func sendData(data: [UIImage]) {		
+    func sendData(data: [UIImage]) {
         // Whenever you want to send data back to viewController1, check
         // if the closure is implemented and then call it if it is
         self.onDataAvailable?(data: data)

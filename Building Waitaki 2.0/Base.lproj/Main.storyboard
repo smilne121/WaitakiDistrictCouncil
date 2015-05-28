@@ -61,7 +61,7 @@
         <!--Current Inspection-->
         <scene sceneID="Qaz-58-OJ6">
             <objects>
-                <viewController title="Current Inspection" id="5oy-EF-Fac" customClass="CurrentInspectionViewController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CurrentInspectionView" title="Current Inspection" id="5oy-EF-Fac" customClass="CurrentInspectionViewController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X1N-Km-FFk"/>
                         <viewControllerLayoutGuide type="bottom" id="hxp-NO-gdU"/>
@@ -87,10 +87,19 @@
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMD-q2-hd4">
                                 <rect key="frame" x="16" y="57" width="736" height="922"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWD-hr-hS2">
+                                        <rect key="frame" x="592" y="121" width="46" height="30"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="GTV-b9-Igl"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
@@ -99,7 +108,64 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAX-2s-vOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1116" y="-657"/>
+            <point key="canvasLocation" x="2098" y="-701"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="K5X-dX-BUw">
+            <objects>
+                <viewController storyboardIdentifier="CameraView" title="Camera" id="z5Q-TP-hGa" customClass="CameraController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S7r-rh-aZP"/>
+                        <viewControllerLayoutGuide type="bottom" id="wIu-Ca-8ac"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RZG-bD-K6f">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mG5-7C-ohW">
+                                <rect key="frame" x="348" y="986" width="72" height="30"/>
+                                <state key="normal" title="Camera">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="useCamera:" destination="z5Q-TP-hGa" eventType="touchUpInside" id="qU0-ms-ylf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFX-4c-71Y">
+                                <rect key="frame" x="641" y="986" width="106" height="30"/>
+                                <state key="normal" title="Camera Roll">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9D6-6a-3MU">
+                                <rect key="frame" x="16" y="608" width="731" height="355"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2T-04-1jt">
+                                <rect key="frame" x="16" y="986" width="46" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToInspection:" destination="z5Q-TP-hGa" eventType="touchUpInside" id="hdr-tS-nhN"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cameraBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ez4-Of-uVK">
+                                <rect key="frame" x="129" y="28" width="505" height="507"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.23463147095959591" green="0.23463147095959591" blue="0.23463147095959591" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Dy-8p-Y9m"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="imageView" destination="Ez4-Of-uVK" id="oLc-8l-0GM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rjs-NS-fh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3627" y="-1185"/>
         </scene>
         <!--Landing Page - Sync-->
         <scene sceneID="gjl-ks-NBb">
@@ -237,10 +303,10 @@
             </objects>
             <point key="canvasLocation" x="-159" y="1864"/>
         </scene>
-        <!--Landing Page - Inspections-->
+        <!--Landing Page - Consents-->
         <scene sceneID="4BX-OH-kei">
             <objects>
-                <viewController title="Landing Page - Inspections" id="sHy-31-4hz" customClass="LandingPageController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Landing Page - Consents" id="sHy-31-4hz" customClass="LandingPageController" customModule="Building_Waitaki_2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jhf-oj-csO"/>
                         <viewControllerLayoutGuide type="bottom" id="JsG-tT-Opb"/>
@@ -270,19 +336,37 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tcD-KN-J7E">
+                                <rect key="frame" x="358" y="44" width="187" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SH-Jf-XkW">
+                                <rect key="frame" x="569" y="44" width="46" height="30"/>
+                                <state key="normal" title="Filter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4A-bl-8SA">
+                                <rect key="frame" x="204" y="43" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Zkg-kw-IIJ" kind="showDetail" id="RfY-BG-taV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fp7-ht-Dfq">
+                                <rect key="frame" x="279" y="33" width="46" height="30"/>
+                                <state key="normal" title="Draw">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="draw" destination="sHy-31-4hz" eventType="touchUpInside" id="aDd-1h-7qy"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AR7-Vh-7Yv">
-                                <rect key="frame" x="307" y="48" width="359" height="899"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4A-bl-8SA">
-                                        <rect key="frame" x="268" y="93" width="46" height="30"/>
-                                        <state key="normal" title="Button">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="5oy-EF-Fac" kind="showDetail" id="j2b-XZ-IMv"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                                <rect key="frame" x="213" y="90" width="532" height="857"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -291,23 +375,45 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="consentScrollView" destination="AR7-Vh-7Yv" id="fae-Fg-ibw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hR4-Dg-tEM" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-117" y="-641"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="k0N-hX-Xh5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zkg-kw-IIJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3qW-dl-shJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5oy-EF-Fac" kind="relationship" relationship="rootViewController" id="Iif-Zv-arX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X7J-Nh-lwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1102" y="-641"/>
         </scene>
     </scenes>
     <resources>
         <image name="Configure alt 3_mirror.png" width="640" height="640"/>
         <image name="OS Ubuntu_mirror.png" width="640" height="640"/>
         <image name="Search alt_mirror.png" width="640" height="640"/>
+        <image name="cameraBackground.png" width="918" height="1071"/>
         <image name="home screen inspection.png" width="768" height="1024"/>
         <image name="home screen settings.png" width="768" height="1024"/>
         <image name="home screen sync.png" width="768" height="1024"/>
         <image name="home screen.png" width="768" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="82a-Gg-V5t"/>
         <segue reference="Fco-Bf-LyI"/>
+        <segue reference="82a-Gg-V5t"/>
     </inferredMetricsTieBreakers>
 </document>

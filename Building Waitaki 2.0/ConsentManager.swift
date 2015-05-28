@@ -11,12 +11,12 @@ import CoreData
 
 class ConsentManager
 {
-    var consentArray: [Consent]?
+    var consentArray = [Consent]()
     var user: String?
     
     init()
     {
-        consentArray = [Consent]()
+        
     }
     
     //method used to parse the json string into a dictionary array
@@ -121,10 +121,10 @@ class ConsentManager
             }
 
             //add consent to array
-            consentArray?.append(consent)
+            consentArray.append(consent)
         }
         //println(consentArray?.count)
-saveConsentsToCoreData(context)
+        saveConsentsToCoreData(context)
       
     }
     
@@ -138,7 +138,7 @@ saveConsentsToCoreData(context)
                 for var i = 0; i < fetchResults.count; i++
                 {
                     var newConsent: Consent = Consent()
-                    println(fetchResults[i].workDescription)
+                //    println(fetchResults[i].workDescription)
                     newConsent.siteAddress = fetchResults[i].siteAddress
                     newConsent.consentNumber = fetchResults[i].consentNumber
                     newConsent.account = fetchResults[i].account
@@ -164,7 +164,7 @@ saveConsentsToCoreData(context)
                     {
                         let inspection = currentInspection as SavedInspection
                         var newInspection: Inspection = Inspection()
-                        newInspection.Name = inspection.name;
+                        newInspection.Name = inspection.name
                         newInspection.InspectionID = inspection.id
                         if let insp = inspection.comments
                         {
@@ -206,14 +206,14 @@ saveConsentsToCoreData(context)
                         }
                         newConsent.inspectionArray?.append(newInspection)
                     }
-                    consentArray?.append(newConsent)
+                    consentArray.append(newConsent)
                 }
             }
             else
             {
                 println("no consent data found")
             }
-            println(consentArray?.count)
+          //  println(consentArray?.count)
         }
 
     }
@@ -230,7 +230,8 @@ saveConsentsToCoreData(context)
             {
                 for consent:SavedConsent in fetchResults
                 {
-                    println("removing" + consent.siteAddress)
+               //     println("in array" + consentArray.count)
+                    println("removing from core data" + consent.siteAddress)
                     context.deleteObject(consent)
                 }
             }
@@ -238,7 +239,7 @@ saveConsentsToCoreData(context)
 
         
        // println(consentArray?.count)
-        for consent:Consent in consentArray!
+        for consent:Consent in consentArray
         {
             let newConsent = NSEntityDescription.insertNewObjectForEntityForName("SavedConsent", inManagedObjectContext: context) as SavedConsent
             newConsent.account = consent.account!
@@ -333,5 +334,12 @@ saveConsentsToCoreData(context)
         
         return str.substringWithRange(Range<String.Index>(start: str.startIndex, end: advance(str.endIndex, -(j - i))))
     }
+    
+    func getConsentArray() -> [Consent]
+    {
+        println(consentArray.count)
+        return consentArray
+    }
+    
 }
 
