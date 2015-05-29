@@ -13,6 +13,11 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let dataTransfer = DataTransfer()
+        dataTransfer.testReadFromCore(UIApplication.sharedApplication().delegate as! AppDelegate)
+        dataTransfer.testWriteToCore(UIApplication.sharedApplication().delegate as! AppDelegate)
+        dataTransfer.testReadFromCore(UIApplication.sharedApplication().delegate as! AppDelegate)
+        
     }
 
     override func didReceiveMemoryWarning() {

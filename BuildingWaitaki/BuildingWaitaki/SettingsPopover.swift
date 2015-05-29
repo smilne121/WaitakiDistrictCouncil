@@ -30,6 +30,7 @@ class SettingPopover{
             handler: SaveSetting))
     
         popup.addTextFieldWithConfigurationHandler(SaveText)
+
     
         controller.presentViewController(popup, animated: true, completion: nil)
     }
@@ -37,6 +38,14 @@ class SettingPopover{
     //used to save from the alert box
     private func SaveText(textfield: UITextField!)
     {
+        switch field!{
+        case "Set API Server":
+            textfield.text = appSettings.getAPIServer()
+        case "Set User":
+            textfield.text = appSettings.getUser()
+        default:
+            textfield.placeholder = "Please enter value"
+        }
         text = textfield
     }
     private func SaveSetting(alert: UIAlertAction!){
@@ -53,5 +62,6 @@ class SettingPopover{
     private func ClosePopup(alert: UIAlertAction!){
     }
 }
+
 
 
