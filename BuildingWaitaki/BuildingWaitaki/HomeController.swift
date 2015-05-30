@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeController: UIViewController {
 
@@ -18,7 +19,17 @@ class HomeController: UIViewController {
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
         let dataTransfer = DataTransfer(managedContext: managedObjectContext!)
-        dataTransfer.testReadFromCore()
+        
+        let consentManager = ConsentManager(managedContext: managedObjectContext!)
+        
+        consentManager.createConsent("102020", consentAddress: "35 Clyde Street", consentDescription: "Test consent create")
+        
+       // let consentTest = NSEntityDescription.insertNewObjectForEntityForName("Consent", inManagedObjectContext: managedObjectContext!) as! Consent
+     //   consentTest.save()
+        
+       // consentTest.deleteMe()
+        
+        //dataTransfer.testReadFromCore()
         //dataTransfer.testWriteToCore(managedObjectContext!)
         //dataTransfer.testReadFromCore(managedObjectContext!)
         
