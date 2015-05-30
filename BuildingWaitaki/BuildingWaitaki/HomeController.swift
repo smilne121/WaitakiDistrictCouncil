@@ -17,8 +17,8 @@ class HomeController: UIViewController {
         // Retreive the managedObjectContext from AppDelegate
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
-        let dataTransfer = DataTransfer()
-        dataTransfer.testReadFromCore(managedObjectContext!)
+        let dataTransfer = DataTransfer(managedContext: managedObjectContext!)
+        dataTransfer.testReadFromCore()
         //dataTransfer.testWriteToCore(managedObjectContext!)
         //dataTransfer.testReadFromCore(managedObjectContext!)
         

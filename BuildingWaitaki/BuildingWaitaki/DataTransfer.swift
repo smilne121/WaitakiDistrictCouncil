@@ -10,6 +10,14 @@ import Foundation
 import CoreData
 
 class DataTransfer{
+    let managedContext: NSManagedObjectContext
+    
+    init(managedContext: NSManagedObjectContext)
+    {
+       self.managedContext = managedContext
+    }
+    
+    
     func getInspectionTypes(){
             let url = NSURL(string: "http://wdcweb4.waitakidc.govt.nz:4242/buildingwaitaki/getinspectiontypes")
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -18,7 +26,26 @@ class DataTransfer{
             task.resume()
     }
     
-    func testWriteToCore(managedContext: NSManagedObjectContext)
+    func getInspectionsTypesFromCoreData()
+    {
+        let fetchRequest = NSFetchRequest(entityName: "InspectionType")
+        
+        var error: NSError?
+        
+        // Execute the fetch request, and cast the results to an array of LogItem objects
+        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [InspectionType]
+        {
+            // Create an Alert, and set it's message to whatever the itemText is
+            println(fetchResults[0].inspectionId)
+            println(fetchResults[0].inspectionName)
+        }
+        else
+        {
+            println("Could not fetch \(error), \(error!.userInfo)")
+        }
+    }
+    
+    func testWriteToCore()
     {
         let newInspectionType = NSEntityDescription.insertNewObjectForEntityForName("InspectionType", inManagedObjectContext: managedContext) as! InspectionType
         newInspectionType.inspectionId = "001"
@@ -31,7 +58,7 @@ class DataTransfer{
         }
     }
     
-    func testReadFromCore(managedContext: NSManagedObjectContext)
+    func testReadFromCore()
     {
             // Create a new fetch request using the LogItem entity
             let fetchRequest = NSFetchRequest(entityName: "InspectionType")
