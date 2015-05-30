@@ -18,34 +18,36 @@ class DataTransfer{
             task.resume()
     }
     
-    func testWriteToCore(appDelegate: AppDelegate)
+    func testWriteToCore(managedContext: NSManagedObjectContext)
     {
-        let managedContext = appDelegate.managedObjectContext!
-        let entity = NSEntityDescription.entityForName("InspectionType", inManagedObjectContext: managedContext)
-        let inspectionType = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        inspectionType.setValue("testinspectionid", forKey: "inspectionId")
-        inspectionType.setValue("testinspectionname", forKey: "inspectionName")
+        let newInspectionType = NSEntityDescription.insertNewObjectForEntityForName("InspectionType", inManagedObjectContext: managedContext) as! InspectionType
+        newInspectionType.inspectionId = "001"
+        newInspectionType.inspectionName = "Test inspection input"
         
         var error :NSError?
         if !managedContext.save(&error)
         {
-            println("error writing to core data")
+            println("Could not save \(error), \(error?.userInfo)")
         }
     }
     
-    func testReadFromCore(appDelegate: AppDelegate)
+    func testReadFromCore(managedContext: NSManagedObjectContext)
     {
-        let managedContext = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: "InspectionType")
-        var error: NSError?
+            // Create a new fetch request using the LogItem entity
+            let fetchRequest = NSFetchRequest(entityName: "InspectionType")
         
-        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
-        
-        if let results = fetchedResults {
-            println(results)
-        }
-        else
-        {
-        println("error")
-        }}
+            var error: NSError?
+            
+            // Execute the fetch request, and cast the results to an array of LogItem objects
+            if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [InspectionType]
+            {
+                // Create an Alert, and set it's message to whatever the itemText is
+                println(fetchResults[0].inspectionId)
+                println(fetchResults[0].inspectionName)
+            }
+            else
+            {
+                println("Could not fetch \(error), \(error!.userInfo)")
+            }
+    }
 }

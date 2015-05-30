@@ -13,10 +13,14 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Retreive the managedObjectContext from AppDelegate
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        
         let dataTransfer = DataTransfer()
-        dataTransfer.testReadFromCore(UIApplication.sharedApplication().delegate as! AppDelegate)
-        dataTransfer.testWriteToCore(UIApplication.sharedApplication().delegate as! AppDelegate)
-        dataTransfer.testReadFromCore(UIApplication.sharedApplication().delegate as! AppDelegate)
+        dataTransfer.testReadFromCore(managedObjectContext!)
+        //dataTransfer.testWriteToCore(managedObjectContext!)
+        //dataTransfer.testReadFromCore(managedObjectContext!)
         
     }
 

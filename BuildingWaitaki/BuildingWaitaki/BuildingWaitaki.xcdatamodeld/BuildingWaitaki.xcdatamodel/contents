@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Consent" syncable="YES">
+    <entity name="Consent" representedClassName="BuildingWaitaki.Consent" syncable="YES">
         <attribute name="consentAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="consentDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="consentNumber" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="ConsentInspection" syncable="YES"/>
-    <entity name="Contact" syncable="YES">
+    <entity name="ConsentInspection" representedClassName="BuildingWaitaki.ConsentInspection" syncable="YES"/>
+    <entity name="Contact" representedClassName="BuildingWaitaki.Contact" syncable="YES">
         <attribute name="cellPhone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="consentNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,11 +14,11 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="InspectionType" syncable="YES">
+    <entity name="InspectionType" representedClassName="BuildingWaitaki.InspectionType" syncable="YES">
         <attribute name="inspectionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inspectionName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="InspectionTypeItems" syncable="YES">
+    <entity name="InspectionTypeItems" representedClassName="BuildingWaitaki.InspectionTypeItems" syncable="YES">
         <attribute name="inspectionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
