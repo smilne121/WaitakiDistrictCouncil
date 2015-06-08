@@ -66,36 +66,41 @@ class OfficeTools {
        
     }
     
- /*   private func convertInspectionTypesToObjects(inspectionTypes: String)
-    {
-        let dictionaryArray: [AnyObject]
-        //method used to parse the json string into a dictionary array
-            if let data = inspectionTypes.dataUsingEncoding(NSUTF8StringEncoding)
-            {
-                if let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: nil) as? [AnyObject]
-                {
-                    dictionaryArray = array
-                    println(dictionaryArray as Array)
-                    JSONInspectionTypeToObject(<#JSONString: String#>)
-                }
-            }
-    }*/
-    
     func JSONInspectionTypeToObject(JSONString: String)
     {
+        //remove existing inspection types
+        let fetchRequest = NSFetchRequest(entityName: "InspectionType")
+        fetchRequest.includesSubentities = false
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        var error: NSError?
+        let items = managedContext.executeFetchRequest(fetchRequest, error: &error)!
+        println(items.count)
+        
+        for item in items {
+            managedContext.deleteObject(item as! NSManagedObject)
+        }
+        if !managedContext.save(&error)
+        {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
+    
+        println(items.count)
+        
+        
+        
+        
         var inspectionTypeObjectArray = [InspectionType]()
-        var error : NSError?
         //encode data string
         let JSONData = JSONString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         //convert into an array
         let array = NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions(0), error: nil) as? [AnyObject]
-        println(array)
+        //println(array)
         //loop throught the created array and create objects to store in core data
         
         
         for elem:AnyObject in array!
         {
-            println(elem)
             let inspectionType = NSEntityDescription.insertNewObjectForEntityForName("InspectionType", inManagedObjectContext: managedContext) as! InspectionType
             inspectionType.inspectionId = (elem["inspectionId"] as! String)
             inspectionType.inspectionName = (elem["inspectionName"] as! String)
