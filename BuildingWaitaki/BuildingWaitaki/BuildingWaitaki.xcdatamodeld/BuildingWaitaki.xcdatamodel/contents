@@ -23,14 +23,14 @@
         <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photosAllowed" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="required" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photosAllowed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="required" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
         <element name="Consent" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="ConsentInspection" positionX="9" positionY="99" width="128" height="45"/>
+        <element name="Contact" positionX="-9" positionY="90" width="128" height="135"/>
         <element name="InspectionType" positionX="-54" positionY="18" width="128" height="75"/>
         <element name="InspectionTypeItems" positionX="-36" positionY="36" width="128" height="135"/>
-        <element name="Contact" positionX="-9" positionY="90" width="128" height="135"/>
-        <element name="ConsentInspection" positionX="9" positionY="99" width="128" height="45"/>
     </elements>
 </model>

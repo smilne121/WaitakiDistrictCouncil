@@ -45,8 +45,8 @@ class ConsentManager
             consent.account = elem["account"] as? String
             consent.consentNumber = elem["consentNumber"] as? String
             consent.workDescription = elem["description"] as? String
-            let contacts = elem["contact"] as NSArray
-            let inspections = elem["inspections"] as NSArray
+            let contacts = elem["contact"] as! NSArray
+            let inspections = elem["inspections"] as! NSArray
             
             //init the arrays
             consent.inspectionArray = [Inspection]()

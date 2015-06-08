@@ -17,15 +17,6 @@ class DataTransfer{
        self.managedContext = managedContext
     }
     
-    
-    func getInspectionTypes(){
-            let url = NSURL(string: "http://wdcweb4.waitakidc.govt.nz:4242/buildingwaitaki/getinspectiontypes")
-            let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-                println(NSString(data: data, encoding: NSUTF8StringEncoding))
-            }
-            task.resume()
-    }
-    
     func getInspectionsTypesFromCoreData()
     {
         let fetchRequest = NSFetchRequest(entityName: "InspectionType")

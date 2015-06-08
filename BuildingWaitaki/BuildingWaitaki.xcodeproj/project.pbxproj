@@ -11,10 +11,11 @@
 		D2ACBD311B19A26500C2DC2C /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD301B19A26500C2DC2C /* Contact.swift */; };
 		D2ACBD331B19A26600C2DC2C /* ConsentInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD321B19A26600C2DC2C /* ConsentInspection.swift */; };
 		D2ACBD351B19A26600C2DC2C /* InspectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD341B19A26600C2DC2C /* InspectionType.swift */; };
-		D2ACBD371B19A26600C2DC2C /* InspectionTypeItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD361B19A26600C2DC2C /* InspectionTypeItems.swift */; };
 		D2ACBD391B19A26600C2DC2C /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD381B19A26600C2DC2C /* Consent.swift */; };
 		D2ACBD3C1B19CCE800C2DC2C /* CoreDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD3B1B19CCE800C2DC2C /* CoreDataAccess.swift */; };
 		D2ACBD3E1B19DD0E00C2DC2C /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */; };
+		D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EFF0841B25501600E60F60 /* OfficeTools.swift */; };
+		D2F0057D1B25A51E00D3B0F5 /* InspectionTypeItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F0057C1B25A51E00D3B0F5 /* InspectionTypeItems.swift */; };
 		D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40CC1B16E18200474A15 /* AppDelegate.swift */; };
 		D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40CE1B16E18200474A15 /* BuildingWaitaki.xcdatamodeld */; };
 		D2FB40D21B16E18200474A15 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40D11B16E18200474A15 /* HomeController.swift */; };
@@ -41,10 +42,11 @@
 		D2ACBD301B19A26500C2DC2C /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ../Contact.swift; sourceTree = "<group>"; };
 		D2ACBD321B19A26600C2DC2C /* ConsentInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConsentInspection.swift; path = ../ConsentInspection.swift; sourceTree = "<group>"; };
 		D2ACBD341B19A26600C2DC2C /* InspectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InspectionType.swift; path = ../InspectionType.swift; sourceTree = "<group>"; };
-		D2ACBD361B19A26600C2DC2C /* InspectionTypeItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InspectionTypeItems.swift; path = ../InspectionTypeItems.swift; sourceTree = "<group>"; };
 		D2ACBD381B19A26600C2DC2C /* Consent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Consent.swift; path = ../Consent.swift; sourceTree = "<group>"; };
 		D2ACBD3B1B19CCE800C2DC2C /* CoreDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataAccess.swift; sourceTree = "<group>"; };
 		D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentManager.swift; sourceTree = "<group>"; };
+		D2EFF0841B25501600E60F60 /* OfficeTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeTools.swift; sourceTree = "<group>"; };
+		D2F0057C1B25A51E00D3B0F5 /* InspectionTypeItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectionTypeItems.swift; sourceTree = "<group>"; };
 		D2FB40C71B16E18200474A15 /* BuildingWaitaki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildingWaitaki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2FB40CB1B16E18200474A15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2FB40CC1B16E18200474A15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				D2ACBD381B19A26600C2DC2C /* Consent.swift */,
-				D2ACBD361B19A26600C2DC2C /* InspectionTypeItems.swift */,
 				D2ACBD341B19A26600C2DC2C /* InspectionType.swift */,
 				D2ACBD321B19A26600C2DC2C /* ConsentInspection.swift */,
 				D2ACBD301B19A26500C2DC2C /* Contact.swift */,
@@ -94,6 +95,7 @@
 		D2FB40BE1B16E18200474A15 = {
 			isa = PBXGroup;
 			children = (
+				D2F0057C1B25A51E00D3B0F5 /* InspectionTypeItems.swift */,
 				D2FB40C91B16E18200474A15 /* BuildingWaitaki */,
 				D2FB40E21B16E18200474A15 /* BuildingWaitakiTests */,
 				D2FB40C81B16E18200474A15 /* Products */,
@@ -124,6 +126,7 @@
 				D2FB40FB1B16FDFF00474A15 /* AppSettings.swift */,
 				D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */,
 				D2ACBD3B1B19CCE800C2DC2C /* CoreDataAccess.swift */,
+				D2EFF0841B25501600E60F60 /* OfficeTools.swift */,
 			);
 			path = BuildingWaitaki;
 			sourceTree = "<group>";
@@ -259,13 +262,14 @@
 				D2FB40D21B16E18200474A15 /* HomeController.swift in Sources */,
 				D2ACBD391B19A26600C2DC2C /* Consent.swift in Sources */,
 				D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */,
+				D2F0057D1B25A51E00D3B0F5 /* InspectionTypeItems.swift in Sources */,
 				D2FB40FC1B16FDFF00474A15 /* AppSettings.swift in Sources */,
 				D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */,
 				D2ACBD3C1B19CCE800C2DC2C /* CoreDataAccess.swift in Sources */,
 				D2ACBD351B19A26600C2DC2C /* InspectionType.swift in Sources */,
-				D2ACBD371B19A26600C2DC2C /* InspectionTypeItems.swift in Sources */,
 				D2ACBD3E1B19DD0E00C2DC2C /* ConsentManager.swift in Sources */,
 				D2ACBD311B19A26500C2DC2C /* Contact.swift in Sources */,
+				D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

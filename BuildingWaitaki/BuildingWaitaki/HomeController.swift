@@ -10,19 +10,26 @@ import UIKit
 import CoreData
 
 class HomeController: UIViewController {
+    var officeTools :OfficeTools!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+   
+        
+        //initilize globle objects for use
         // Retreive the managedObjectContext from AppDelegate
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        officeTools = OfficeTools(managedContext: managedObjectContext!,controller: self)
+
         
-        let dataTransfer = DataTransfer(managedContext: managedObjectContext!)
         
-        let consentManager = ConsentManager(managedContext: managedObjectContext!)
         
-        consentManager.createConsent("102020", consentAddress: "35 Clyde Street", consentDescription: "Test consent create")
+  //      let consentManager = ConsentManager(managedContext: managedObjectContext!)
+        
+        //consentManager.createConsent("102020", consentAddress: "35 Clyde Street", consentDescription: "Test consent create")
         
        // let consentTest = NSEntityDescription.insertNewObjectForEntityForName("Consent", inManagedObjectContext: managedObjectContext!) as! Consent
      //   consentTest.save()
@@ -33,6 +40,10 @@ class HomeController: UIViewController {
         //dataTransfer.testWriteToCore(managedObjectContext!)
         //dataTransfer.testReadFromCore(managedObjectContext!)
         
+    }
+    
+    @IBAction func getInspectionTypes(sender: UIButton) {
+        officeTools!.getInspectionTypes()
     }
 
     override func didReceiveMemoryWarning() {
