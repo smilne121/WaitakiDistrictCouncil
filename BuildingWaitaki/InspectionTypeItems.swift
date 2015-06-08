@@ -17,5 +17,6 @@ class InspectionTypeItems: NSManagedObject {
     @NSManaged var itemType: String
     @NSManaged var photosAllowed: NSNumber
     @NSManaged var required: NSNumber
+    @NSManaged var inspectionType: InspectionType
 
 }

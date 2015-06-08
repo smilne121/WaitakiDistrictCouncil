@@ -32,7 +32,7 @@
         <element name="Consent" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="ConsentInspection" positionX="9" positionY="99" width="128" height="45"/>
         <element name="Contact" positionX="-191" positionY="171" width="128" height="135"/>
-        <element name="InspectionType" positionX="9" positionY="-144" width="128" height="90"/>
-        <element name="InspectionTypeItems" positionX="279" positionY="-96" width="128" height="150"/>
+        <element name="InspectionType" positionX="9" positionY="-144" width="128" height="88"/>
+        <element name="InspectionTypeItems" positionX="279" positionY="-96" width="128" height="148"/>
     </elements>
 </model>

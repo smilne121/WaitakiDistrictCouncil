@@ -68,14 +68,21 @@ class OfficeTools {
     
     func JSONInspectionTypeToObject(JSONString: String)
     {
+        var error: NSError?
         //remove existing inspection types
         let fetchRequest = NSFetchRequest(entityName: "InspectionType")
         fetchRequest.includesSubentities = false
         fetchRequest.returnsObjectsAsFaults = false
         
-        var error: NSError?
+        let fetchRequest2 = NSFetchRequest(entityName: "InspectionTypeItems")
+        fetchRequest2.includesSubentities = false
+        fetchRequest2.returnsObjectsAsFaults = false
+        let items2 = managedContext.executeFetchRequest(fetchRequest2, error: &error)!
+        println(items2.count)
+
+        
+        
         let items = managedContext.executeFetchRequest(fetchRequest, error: &error)!
-        println(items.count)
         
         for item in items {
             managedContext.deleteObject(item as! NSManagedObject)
@@ -84,9 +91,9 @@ class OfficeTools {
         {
             println("Could not save \(error), \(error?.userInfo)")
         }
-    
-        println(items.count)
-        
+
+        let items3 = managedContext.executeFetchRequest(fetchRequest2, error: &error)!
+        println(items3.count)
         
         
         
@@ -119,13 +126,9 @@ class OfficeTools {
                 newInspectionTypeItem.itemType = inspectionTypeItem["itemType"] as! String
                 newInspectionTypeItem.photosAllowed = inspectionTypeItem["photosAllowed"] as! NSNumber
                 newInspectionTypeItem.required = inspectionTypeItem["required"] as! NSNumber
-                inspectionItems.append(newInspectionTypeItem)
-                var error :NSError?
-                //save inspectiontypeitem
-                if !managedContext.save(&error)
-                {
-                    println("Could not save \(error), \(error?.userInfo)")
-                }
+               // inspectionItems.append(newInspectionTypeItem)
+                inspectionType.addInspectionTypeItem(newInspectionTypeItem)
+                
             }
             //add inspection type to core data
             if !managedContext.save(&error)
@@ -133,7 +136,6 @@ class OfficeTools {
                 println("Could not save \(error), \(error?.userInfo)")
             }
             }
-
         
     }
 
