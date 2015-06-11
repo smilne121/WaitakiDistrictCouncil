@@ -1,5 +1,5 @@
 //
-//  ConsentInspection.swift
+//  ConsentInspectionItem.swift
 //  BuildingWaitaki
 //
 //  Created by Scott Milne on 10/06/15.
@@ -9,12 +9,13 @@
 import Foundation
 import CoreData
 
-class ConsentInspection: NSManagedObject {
+class ConsentInspectionItem: NSManagedObject {
 
     @NSManaged var consentId: String
     @NSManaged var inspectionId: String
-    @NSManaged var needSynced: NSNumber
-    @NSManaged var consent: Consent
-    @NSManaged var inspectionItem: NSSet
+    @NSManaged var inspectionSeq: String
+    @NSManaged var itemId: String
+    @NSManaged var itemResult: String
+    @NSManaged var consentInspection: ConsentInspection
 
 }

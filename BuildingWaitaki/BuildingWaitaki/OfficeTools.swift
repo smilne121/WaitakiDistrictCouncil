@@ -32,6 +32,10 @@ class OfficeTools {
     //return back bool if items still need to be synced
     func getConsents() -> Bool
     {
+        let officeToolsGetConsents : OfficeToolsGetConsents
+        officeToolsGetConsents = OfficeToolsGetConsents(managedContext: managedContext, controller: controller)
+        officeToolsGetConsents.getConcents()
+        
         return true
     }
     

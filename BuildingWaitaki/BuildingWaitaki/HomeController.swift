@@ -42,6 +42,11 @@ class HomeController: UIViewController {
         
     }
     
+    @IBAction func getConsents(sender: UIButton)
+    {
+        officeTools!.getConsents()
+    }
+    
     @IBAction func getInspectionTypes(sender: UIButton) {
         officeTools!.getInspectionTypes()
     }

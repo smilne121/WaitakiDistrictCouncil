@@ -4,8 +4,24 @@
         <attribute name="consentAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="consentDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="consentNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="consentInspection" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ConsentInspection" inverseName="consent" inverseEntity="ConsentInspection" syncable="YES"/>
+        <relationship name="contact" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Contact" inverseName="consent" inverseEntity="Contact" syncable="YES"/>
     </entity>
-    <entity name="ConsentInspection" representedClassName="BuildingWaitaki.ConsentInspection" syncable="YES"/>
+    <entity name="ConsentInspection" representedClassName="BuildingWaitaki.ConsentInspection" syncable="YES">
+        <attribute name="consentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inspectionId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="needSynced" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="consent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Consent" inverseName="consentInspection" inverseEntity="Consent" syncable="YES"/>
+        <relationship name="inspectionItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ConsentInspectionItem" inverseName="consentInspection" inverseEntity="ConsentInspectionItem" syncable="YES"/>
+    </entity>
+    <entity name="ConsentInspectionItem" representedClassName="PRODUCT_MODULE_NAME.ConsentInspectionItem" syncable="YES">
+        <attribute name="consentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inspectionId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inspectionSeq" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemResult" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="consentInspection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConsentInspection" inverseName="inspectionItem" inverseEntity="ConsentInspection" syncable="YES"/>
+    </entity>
     <entity name="Contact" representedClassName="BuildingWaitaki.Contact" syncable="YES">
         <attribute name="cellPhone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="consentNumber" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,6 +29,7 @@
         <attribute name="homePhone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="consent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Consent" inverseName="contact" inverseEntity="Consent" syncable="YES"/>
     </entity>
     <entity name="InspectionType" representedClassName="BuildingWaitaki.InspectionType" syncable="YES">
         <attribute name="inspectionId" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,10 +46,11 @@
         <relationship name="inspectionType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InspectionType" inverseName="inspectionTypeItems" inverseEntity="InspectionType" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Consent" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="ConsentInspection" positionX="9" positionY="99" width="128" height="45"/>
-        <element name="Contact" positionX="-191" positionY="171" width="128" height="135"/>
+        <element name="Consent" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="ConsentInspection" positionX="-74" positionY="233" width="128" height="118"/>
+        <element name="Contact" positionX="-308" positionY="-33" width="128" height="150"/>
         <element name="InspectionType" positionX="9" positionY="-144" width="128" height="88"/>
-        <element name="InspectionTypeItems" positionX="279" positionY="-96" width="128" height="148"/>
+        <element name="InspectionTypeItems" positionX="234" positionY="-204" width="128" height="150"/>
+        <element name="ConsentInspectionItem" positionX="205" positionY="216" width="128" height="133"/>
     </elements>
 </model>

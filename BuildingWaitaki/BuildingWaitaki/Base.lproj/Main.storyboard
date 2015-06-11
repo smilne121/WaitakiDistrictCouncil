@@ -52,6 +52,9 @@
                                         <state key="normal" title="Receive Consents">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="getConsents:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JvM-TT-K4Y"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLK-eb-a1X">
                                         <rect key="frame" x="25" y="8" width="155" height="30"/>

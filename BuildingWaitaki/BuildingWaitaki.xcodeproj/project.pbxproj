@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */; };
-		D2ACBD311B19A26500C2DC2C /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD301B19A26500C2DC2C /* Contact.swift */; };
-		D2ACBD331B19A26600C2DC2C /* ConsentInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD321B19A26600C2DC2C /* ConsentInspection.swift */; };
 		D2ACBD391B19A26600C2DC2C /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD381B19A26600C2DC2C /* Consent.swift */; };
 		D2ACBD3C1B19CCE800C2DC2C /* CoreDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD3B1B19CCE800C2DC2C /* CoreDataAccess.swift */; };
 		D2ACBD3E1B19DD0E00C2DC2C /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */; };
 		D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523BF1B27C41800009952 /* OfficeToolsInspectionTypes.swift */; };
+		D2C523C21B27CB6E00009952 /* OfficeToolsGetConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C11B27CB6E00009952 /* OfficeToolsGetConsents.swift */; };
+		D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C31B27E0D200009952 /* ConsentInspection.swift */; };
+		D2C523C61B27E0D200009952 /* ConsentInspectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C51B27E0D200009952 /* ConsentInspectionItem.swift */; };
+		D2C523C81B27E15F00009952 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C71B27E15F00009952 /* Contact.swift */; };
 		D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EFF0841B25501600E60F60 /* OfficeTools.swift */; };
 		D2F0057F1B25B25600D3B0F5 /* InspectionTypeItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F0057E1B25B25600D3B0F5 /* InspectionTypeItems.swift */; };
 		D2F005811B25B28D00D3B0F5 /* InspectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F005801B25B28D00D3B0F5 /* InspectionType.swift */; };
@@ -40,12 +42,14 @@
 
 /* Begin PBXFileReference section */
 		D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransfer.swift; sourceTree = "<group>"; };
-		D2ACBD301B19A26500C2DC2C /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ../Contact.swift; sourceTree = "<group>"; };
-		D2ACBD321B19A26600C2DC2C /* ConsentInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConsentInspection.swift; path = ../ConsentInspection.swift; sourceTree = "<group>"; };
 		D2ACBD381B19A26600C2DC2C /* Consent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Consent.swift; path = ../Consent.swift; sourceTree = "<group>"; };
 		D2ACBD3B1B19CCE800C2DC2C /* CoreDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataAccess.swift; sourceTree = "<group>"; };
 		D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentManager.swift; sourceTree = "<group>"; };
 		D2C523BF1B27C41800009952 /* OfficeToolsInspectionTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeToolsInspectionTypes.swift; sourceTree = "<group>"; };
+		D2C523C11B27CB6E00009952 /* OfficeToolsGetConsents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeToolsGetConsents.swift; sourceTree = "<group>"; };
+		D2C523C31B27E0D200009952 /* ConsentInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConsentInspection.swift; path = ../ConsentInspection.swift; sourceTree = "<group>"; };
+		D2C523C51B27E0D200009952 /* ConsentInspectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConsentInspectionItem.swift; path = ../ConsentInspectionItem.swift; sourceTree = "<group>"; };
+		D2C523C71B27E15F00009952 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ../Contact.swift; sourceTree = "<group>"; };
 		D2EFF0841B25501600E60F60 /* OfficeTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeTools.swift; sourceTree = "<group>"; };
 		D2F0057E1B25B25600D3B0F5 /* InspectionTypeItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InspectionTypeItems.swift; path = ../InspectionTypeItems.swift; sourceTree = "<group>"; };
 		D2F005801B25B28D00D3B0F5 /* InspectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InspectionType.swift; path = ../InspectionType.swift; sourceTree = "<group>"; };
@@ -85,11 +89,12 @@
 		D2ACBD3A1B19A27300C2DC2C /* CoreDataClasses */ = {
 			isa = PBXGroup;
 			children = (
+				D2C523C71B27E15F00009952 /* Contact.swift */,
+				D2C523C51B27E0D200009952 /* ConsentInspectionItem.swift */,
+				D2C523C31B27E0D200009952 /* ConsentInspection.swift */,
 				D2F005801B25B28D00D3B0F5 /* InspectionType.swift */,
 				D2F0057E1B25B25600D3B0F5 /* InspectionTypeItems.swift */,
 				D2ACBD381B19A26600C2DC2C /* Consent.swift */,
-				D2ACBD321B19A26600C2DC2C /* ConsentInspection.swift */,
-				D2ACBD301B19A26500C2DC2C /* Contact.swift */,
 				D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */,
 			);
 			name = CoreDataClasses;
@@ -100,6 +105,7 @@
 			children = (
 				D2EFF0841B25501600E60F60 /* OfficeTools.swift */,
 				D2C523BF1B27C41800009952 /* OfficeToolsInspectionTypes.swift */,
+				D2C523C11B27CB6E00009952 /* OfficeToolsGetConsents.swift */,
 			);
 			name = OfficeTools;
 			sourceTree = "<group>";
@@ -267,20 +273,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2ACBD331B19A26600C2DC2C /* ConsentInspection.swift in Sources */,
+				D2C523C21B27CB6E00009952 /* OfficeToolsGetConsents.swift in Sources */,
 				D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */,
+				D2C523C81B27E15F00009952 /* Contact.swift in Sources */,
 				D2FB40FA1B16FAB300474A15 /* SettingsPopover.swift in Sources */,
 				D2FB40D21B16E18200474A15 /* HomeController.swift in Sources */,
+				D2C523C61B27E0D200009952 /* ConsentInspectionItem.swift in Sources */,
 				D2ACBD391B19A26600C2DC2C /* Consent.swift in Sources */,
 				D2F005811B25B28D00D3B0F5 /* InspectionType.swift in Sources */,
 				D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */,
 				D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */,
+				D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */,
 				D2F0057F1B25B25600D3B0F5 /* InspectionTypeItems.swift in Sources */,
 				D2FB40FC1B16FDFF00474A15 /* AppSettings.swift in Sources */,
 				D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */,
 				D2ACBD3C1B19CCE800C2DC2C /* CoreDataAccess.swift in Sources */,
 				D2ACBD3E1B19DD0E00C2DC2C /* ConsentManager.swift in Sources */,
-				D2ACBD311B19A26500C2DC2C /* Contact.swift in Sources */,
 				D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
