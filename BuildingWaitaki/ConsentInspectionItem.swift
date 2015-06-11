@@ -13,7 +13,7 @@ class ConsentInspectionItem: NSManagedObject {
 
     @NSManaged var consentId: String
     @NSManaged var inspectionId: String
-    @NSManaged var inspectionSeq: String
+    @NSManaged var inspectionName: String
     @NSManaged var itemId: String
     @NSManaged var itemResult: String
     @NSManaged var consentInspection: ConsentInspection

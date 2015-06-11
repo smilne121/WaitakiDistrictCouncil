@@ -2,7 +2,7 @@
 //  Consent.swift
 //  BuildingWaitaki
 //
-//  Created by Scott Milne on 30/05/15.
+//  Created by Scott Milne on 11/06/15.
 //  Copyright (c) 2015 Waitaki District Council. All rights reserved.
 //
 
@@ -11,10 +11,11 @@ import CoreData
 
 class Consent: NSManagedObject {
 
-    @NSManaged var consentNumber: String
     @NSManaged var consentAddress: String
     @NSManaged var consentDescription: String
-    
+    @NSManaged var consentNumber: String
+    @NSManaged var consentInspection: NSSet
+    @NSManaged var contact: NSSet
     
     func save()
     {
@@ -44,6 +45,16 @@ class Consent: NSManagedObject {
         {
             println("deleted: " + self.consentNumber)
         }
+    }
+    
+    func addContact(newContact: Contact)
+    {
+        self.contact.setByAddingObject(newContact)
+    }
+    
+    func addInspection(newInspection ConsentInspection)
+    {
+        self.contact.setByAddingObject(newContact)
     }
 
 }

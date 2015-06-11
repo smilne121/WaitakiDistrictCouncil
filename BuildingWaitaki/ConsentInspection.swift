@@ -12,7 +12,7 @@ import CoreData
 class ConsentInspection: NSManagedObject {
 
     @NSManaged var consentId: String
-    @NSManaged var inspectionId: String
+    @NSManaged var inspectionName: String
     @NSManaged var needSynced: NSNumber
     @NSManaged var consent: Consent
     @NSManaged var inspectionItem: NSSet

@@ -92,17 +92,12 @@ class OfficeToolsInspectionTypes {
         //println(array)
         //loop throught the created array and create objects to store in core data
         
-        
         for elem:AnyObject in array!
         {
             let inspectionType = NSEntityDescription.insertNewObjectForEntityForName("InspectionType", inManagedObjectContext: managedContext) as! InspectionType
             inspectionType.inspectionId = (elem["inspectionId"] as! String)
             inspectionType.inspectionName = (elem["inspectionName"] as! String)
             var inspectionTypeItemsArray = (elem["inspectionItems"] as! NSArray)
-            
-            
-            //init the array of items for an inspection
-            var inspectionItems = [InspectionTypeItems]()
             
             for inspectionTypeItem:AnyObject in inspectionTypeItemsArray
             {
@@ -113,7 +108,6 @@ class OfficeToolsInspectionTypes {
                 newInspectionTypeItem.itemType = inspectionTypeItem["itemType"] as! String
                 newInspectionTypeItem.photosAllowed = inspectionTypeItem["photosAllowed"] as! NSNumber
                 newInspectionTypeItem.required = inspectionTypeItem["required"] as! NSNumber
-                // inspectionItems.append(newInspectionTypeItem)
                 inspectionType.addInspectionTypeItem(newInspectionTypeItem)
                 
             }
