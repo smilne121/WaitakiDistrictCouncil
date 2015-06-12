@@ -10,6 +10,9 @@
 		D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */; };
 		D2ACBD3E1B19DD0E00C2DC2C /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */; };
 		D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */; };
+		D2B6857E1B2AF1D600C3E34A /* Speech Bubble-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B6857B1B2AF1D600C3E34A /* Speech Bubble-50.png */; };
+		D2B6857F1B2AF1D600C3E34A /* Contacts-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B6857C1B2AF1D600C3E34A /* Contacts-50.png */; };
+		D2B685801B2AF1D600C3E34A /* Map-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B6857D1B2AF1D600C3E34A /* Map-50.png */; };
 		D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523BF1B27C41800009952 /* OfficeToolsInspectionTypes.swift */; };
 		D2C523C21B27CB6E00009952 /* OfficeToolsGetConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C11B27CB6E00009952 /* OfficeToolsGetConsents.swift */; };
 		D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C31B27E0D200009952 /* ConsentInspection.swift */; };
@@ -44,6 +47,9 @@
 		D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransfer.swift; sourceTree = "<group>"; };
 		D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentManager.swift; sourceTree = "<group>"; };
 		D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayConsents.swift; sourceTree = "<group>"; };
+		D2B6857B1B2AF1D600C3E34A /* Speech Bubble-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Speech Bubble-50.png"; sourceTree = "<group>"; };
+		D2B6857C1B2AF1D600C3E34A /* Contacts-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contacts-50.png"; sourceTree = "<group>"; };
+		D2B6857D1B2AF1D600C3E34A /* Map-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Map-50.png"; sourceTree = "<group>"; };
 		D2C523BF1B27C41800009952 /* OfficeToolsInspectionTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeToolsInspectionTypes.swift; sourceTree = "<group>"; };
 		D2C523C11B27CB6E00009952 /* OfficeToolsGetConsents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeToolsGetConsents.swift; sourceTree = "<group>"; };
 		D2C523C31B27E0D200009952 /* ConsentInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConsentInspection.swift; path = ../ConsentInspection.swift; sourceTree = "<group>"; };
@@ -100,6 +106,16 @@
 			name = CoreDataClasses;
 			sourceTree = "<group>";
 		};
+		D2B6857A1B2AF19800C3E34A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D2B6857B1B2AF1D600C3E34A /* Speech Bubble-50.png */,
+				D2B6857C1B2AF1D600C3E34A /* Contacts-50.png */,
+				D2B6857D1B2AF1D600C3E34A /* Map-50.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		D2C523BE1B27C3E700009952 /* OfficeTools */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +147,7 @@
 		D2FB40C91B16E18200474A15 /* BuildingWaitaki */ = {
 			isa = PBXGroup;
 			children = (
+				D2B6857A1B2AF19800C3E34A /* Images */,
 				D2C523BE1B27C3E700009952 /* OfficeTools */,
 				D2ACBD3A1B19A27300C2DC2C /* CoreDataClasses */,
 				D2FB40CC1B16E18200474A15 /* AppDelegate.swift */,
@@ -254,8 +271,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2FB40D51B16E18200474A15 /* Main.storyboard in Resources */,
+				D2B6857F1B2AF1D600C3E34A /* Contacts-50.png in Resources */,
+				D2B6857E1B2AF1D600C3E34A /* Speech Bubble-50.png in Resources */,
 				D2FB40DA1B16E18200474A15 /* LaunchScreen.xib in Resources */,
 				D2FB40D71B16E18200474A15 /* Images.xcassets in Resources */,
+				D2B685801B2AF1D600C3E34A /* Map-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

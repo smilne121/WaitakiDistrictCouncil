@@ -13,8 +13,8 @@ import CoreData
 class DisplayConsents {
     let managedContext: NSManagedObjectContext
     let scrollView: UIScrollView
-    var currentY: Int
-    var currentX: Int
+    var currentY: CGFloat
+    var currentX: CGFloat
     
     init (scrollView: UIScrollView, managedContext: NSManagedObjectContext)
     {
@@ -47,49 +47,66 @@ class DisplayConsents {
     
     func displayConsents()
     {
-            if currentY == 0
+        //remove exsiting consents from view to repopulate
+        for view in self.scrollView.subviews
+        {
+            if (view.backgroundColor == UIColor.whiteColor())
             {
-                currentY = 14
+                view.removeFromSuperview()
             }
-            for consent in consentManager.getConsentArray()
+        }
+        
+        
+        let fontsize :CGFloat
+        fontsize = 15
+        currentY = 50
+            for consent in self.getConsentsFromCoreData() as! [Consent]
             {
-                let containerRect: CGRect = CGRect(x: 25,y: currentY,width: 408,height: 105)
+                let containerRect: CGRect = CGRect(x: 10,y: currentY,width: 475,height: 105)
                 let container: UIView = UIView(frame: containerRect)
-                container.layer.cornerRadius = 5
                 container.backgroundColor = UIColor.whiteColor()
                 container.tintColor = UIColor.blackColor()
                 
                 let lblConsentNumber = UILabel(frame: CGRect(x: 8,y: 8,width: 71,height: 21))
                 lblConsentNumber.text = "Consent:"
                 
-                let lblSiteAddress = UILabel(frame: CGRect(x: 8,y: 47,width: 71,height: 21))
-                lblSiteAddress.text = "Address:"
-                
-                let myConsentNumber = UILabel(frame: CGRect(x: 77,y: 8,width: 323,height: 21))
+                let myConsentNumber = UILabel(frame: CGRect(x: 390,y: 8,width: 100,height: 21))
+                myConsentNumber.font = UIFont(name: myConsentNumber.font.fontName, size: fontsize)
                 myConsentNumber.text = consent.consentNumber
                 
-                let mySiteAddress = UILabel(frame: CGRect(x: 77,y: 47,width: 323,height: 21))
-                mySiteAddress.text = consent.siteAddress
+                let myConsentAddress = UILabel(frame: CGRect(x: 10,y: 8,width: 323,height: 21))
+                myConsentAddress.font = UIFont(name: myConsentAddress.font.fontName, size: fontsize)
+                myConsentAddress.text = consent.consentAddress
                 
-                let btnSelect = UIButton.buttonWithType(UIButtonType.System) as UIButton
-                btnSelect.frame = CGRectMake(20, 70, 110, 30)
-                btnSelect.backgroundColor = UIColor.darkGrayColor()
-                btnSelect.tintColor = UIColor.whiteColor()
-                btnSelect.setTitle("Select", forState: UIControlState.Normal)
-                btnSelect.layer.cornerRadius = 12.0
+                let btnLocation = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+                btnLocation.frame = CGRectMake(20, 40, 60, 60)
+                let imgLocation = UIImage(named: "Map-50.png") as UIImage!
+                btnLocation.setImage(imgLocation, forState: .Normal)
+                
+                let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+                btnComments.frame = CGRectMake(container.layer.frame.width / 2 - 30, 40, 60, 60)
+                let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
+                btnComments.setImage(imgComments, forState: .Normal)
+                
+                let btnContacts = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+                btnContacts.frame = CGRectMake(container.layer.frame.width - 80, 40, 60, 60)
+                let imgContacts = UIImage(named: "Contacts-50.png") as UIImage!
+                btnContacts.setImage(imgContacts, forState: .Normal)
+                
                 
                 //update value of y
                 currentY = (container.frame.origin.y + container.frame.height + 20)
                 
-                consentScrollView.contentSize = CGSize(width: consentScrollView.frame.width, height: (currentY + container.frame.height + 50))
+                scrollView.contentSize = CGSize(width: scrollView.frame.width, height: (currentY + container.frame.height + 50))
                 
                 //add items to parents
-                container.addSubview(lblConsentNumber)
                 container.addSubview(myConsentNumber)
-                container.addSubview(lblSiteAddress)
-                container.addSubview(mySiteAddress)
-                container.addSubview(btnSelect)
-                consentScrollView.addSubview(container)
-    }
+                container.addSubview(myConsentAddress)
+                container.addSubview(btnComments)
+                container.addSubview(btnContacts)
+                container.addSubview(btnLocation)
+                scrollView.addSubview(container)
+        }
     
+}
 }

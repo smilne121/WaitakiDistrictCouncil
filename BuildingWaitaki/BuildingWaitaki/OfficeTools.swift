@@ -14,12 +14,16 @@ class OfficeTools {
     let managedContext: NSManagedObjectContext
     let dataTransfer: DataTransfer
     let controller: UIViewController
+    let displayConsents: DisplayConsents
+    let background: UIView
     
-    init(managedContext: NSManagedObjectContext, controller: UIViewController)
+    init(managedContext: NSManagedObjectContext, controller: UIViewController, displayConsents: DisplayConsents, background: UIView)
     {
         self.managedContext = managedContext
         self.dataTransfer = DataTransfer(managedContext: self.managedContext)
         self.controller = controller
+        self.displayConsents = displayConsents
+        self.background = background
     }
     
     func getInspectionTypes()
@@ -33,7 +37,7 @@ class OfficeTools {
     func getConsents() -> Bool
     {
         let officeToolsGetConsents : OfficeToolsGetConsents
-        officeToolsGetConsents = OfficeToolsGetConsents(managedContext: managedContext, controller: controller)
+        officeToolsGetConsents = OfficeToolsGetConsents(managedContext: managedContext, controller: controller,displayConsents: displayConsents,background: background)
         officeToolsGetConsents.getConcents()
         
         return true

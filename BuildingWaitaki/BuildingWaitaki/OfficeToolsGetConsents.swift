@@ -14,16 +14,25 @@ class OfficeToolsGetConsents {
     let managedContext: NSManagedObjectContext
     let dataTransfer: DataTransfer
     let controller: UIViewController
+    let displayConsents: DisplayConsents
+    let background: UIView
     
-    init(managedContext: NSManagedObjectContext, controller: UIViewController)
+    init(managedContext: NSManagedObjectContext, controller: UIViewController, displayConsents:DisplayConsents, background:UIView)
     {
+        self.displayConsents = displayConsents
         self.managedContext = managedContext
         self.dataTransfer = DataTransfer(managedContext: self.managedContext)
         self.controller = controller
+        self.background = background
     }
     
     func getConcents()
     {
+        var lightBlur = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+        var blurView = UIVisualEffectView(effect: lightBlur)
+        blurView.frame = background.bounds
+        background.addSubview(blurView)
+        
         if (self.needSynced() == 0)
         {
             let popupMessage: String
@@ -86,7 +95,7 @@ class OfficeToolsGetConsents {
     {
         var error: NSError?
         //remove existing consents contacts and inspections
-        let fetchRequest = NSFetchRequest(entityName: "Consent")
+       let fetchRequest = NSFetchRequest(entityName: "Consent")
         fetchRequest.includesSubentities = true
         fetchRequest.returnsObjectsAsFaults = false
         
@@ -123,8 +132,8 @@ class OfficeToolsGetConsents {
             managedContext.deleteObject(item as! NSManagedObject)
         }
         
-        println("Number of Consents: " + String(items.count) + " Number of Contact:" + String(items2.count))
-        println("Number of ConsentInspections:" + String(items3.count) + " Number of InspectionItems:" + String(items4.count))
+//        println("Number of Consents: " + String(items.count) + " Number of Contact:" + String(items2.count))
+  //      println("Number of ConsentInspections:" + String(items3.count) + " Number of InspectionItems:" + String(items4.count))
         
         var consentObjectArray = [Consent]()
         //encode data string
@@ -133,8 +142,6 @@ class OfficeToolsGetConsents {
         let array = NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions(0), error: nil) as? [AnyObject]
         println(array)
         //loop throught the created array and create objects to store in core data
-        
-        
         for elem:AnyObject in array!
         {
             let consent = NSEntityDescription.insertNewObjectForEntityForName("Consent", inManagedObjectContext: managedContext) as! Consent
@@ -155,7 +162,6 @@ class OfficeToolsGetConsents {
                 newConsentContact.position = consentContact["position"] as! String
                 newConsentContact.consentNumber = consent.consentNumber
                 newConsentContact.consent = consent
-              //  consent.addContact(newConsentContact)
             }
             
             
@@ -184,9 +190,7 @@ class OfficeToolsGetConsents {
                             newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as! String
                         }
                     }
-                 //   newConsentInspection.addInspectionItem(newInspectionItem)
                 }
-              //  consent.addInspection(newConsentInspection)
             }
 
             //add consent to core data
@@ -198,6 +202,15 @@ class OfficeToolsGetConsents {
     }
     
     private func ClosePopup(alert: UIAlertAction!){
+        displayConsents.displayConsents()
+    
+        for view in self.background.subviews
+        {
+            if view.isKindOfClass(UIVisualEffectView)
+            {
+                view.removeFromSuperview()
+            }
+        }
     }
     
     private func needSynced() -> Int

@@ -111,6 +111,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
+                        <outlet property="background" destination="8bC-Xf-vdC" id="at5-AK-Lqi"/>
                         <outlet property="consentScrollView" destination="GMm-vr-wE9" id="m8S-cd-zrh"/>
                     </connections>
                 </viewController>
