@@ -47,14 +47,14 @@ class Consent: NSManagedObject {
         }
     }
     
-    func addContact(newContact: Contact)
+ /* func addContact(newContact: Contact)
     {
         self.contact.setByAddingObject(newContact)
     }
     
-    func addInspection(newInspection ConsentInspection)
+    func addInspection(newInspection: ConsentInspection)
     {
-        self.contact.setByAddingObject(newContact)
-    }
+        self.consentInspection.setByAddingObject(newInspection)
+    }*/
 
 }

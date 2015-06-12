@@ -12,6 +12,9 @@ import CoreData
 class HomeController: UIViewController {
     var officeTools :OfficeTools!
     
+    
+    @IBOutlet weak var consentScrollView: UIScrollView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,23 +26,15 @@ class HomeController: UIViewController {
         // Retreive the managedObjectContext from AppDelegate
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         officeTools = OfficeTools(managedContext: managedObjectContext!,controller: self)
+        
+        //display consents in core data
+        let displayConsents = DisplayConsents(scrollView: consentScrollView,managedContext: managedObjectContext!)
+        displayConsents.getConsentsFromCoreData()
 
         
         
         
-  //      let consentManager = ConsentManager(managedContext: managedObjectContext!)
-        
-        //consentManager.createConsent("102020", consentAddress: "35 Clyde Street", consentDescription: "Test consent create")
-        
-       // let consentTest = NSEntityDescription.insertNewObjectForEntityForName("Consent", inManagedObjectContext: managedObjectContext!) as! Consent
-     //   consentTest.save()
-        
-       // consentTest.deleteMe()
-        
-        //dataTransfer.testReadFromCore()
-        //dataTransfer.testWriteToCore(managedObjectContext!)
-        //dataTransfer.testReadFromCore(managedObjectContext!)
-        
+
     }
     
     @IBAction func getConsents(sender: UIButton)

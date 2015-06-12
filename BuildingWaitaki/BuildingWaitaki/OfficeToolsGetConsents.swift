@@ -155,25 +155,41 @@ class OfficeToolsGetConsents {
                 newConsentContact.position = consentContact["position"] as! String
                 newConsentContact.consentNumber = consent.consentNumber
                 newConsentContact.consent = consent
-                consent.addContact(newConsentContact)
+              //  consent.addContact(newConsentContact)
             }
+            
             
             for consentInspection:AnyObject in consentInspectionsArray
             {
                 let newConsentInspection = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspection", inManagedObjectContext: managedContext) as! ConsentInspection
                 newConsentInspection.consentId = consent.consentNumber
                 newConsentInspection.inspectionName = consentInspection["InspectionName"] as! String
+                newConsentInspection.inspectionId = consentInspection["InspectionId"] as! String
                 newConsentInspection.needSynced = NSNumber(bool: false)
                 newConsentInspection.consent = consent
                 
-                
-                consent.addContact(newConsentContact)
+                for consentInspectionItem:AnyObject in consentInspectionsArray
+                {
+                    let newInspectionItem = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspectionItem", inManagedObjectContext: managedContext) as! ConsentInspectionItem
+                    newInspectionItem.consentId = consent.consentNumber
+                    newInspectionItem.inspectionId = newConsentInspection.inspectionId
+                    newInspectionItem.inspectionName = newConsentInspection.inspectionName
+                    newInspectionItem.itemId = consentInspectionItem["InspectionId"] as! String
+                    newInspectionItem.consentInspection = newConsentInspection
+                    
+                    for consentInspectionResults:AnyObject in consentInspectionResultsArray
+                    {
+                        if (consentInspectionResults["InspectionName"] as! String == newInspectionItem.inspectionName)
+                        {
+                            newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as! String
+                        }
+                    }
+                 //   newConsentInspection.addInspectionItem(newInspectionItem)
+                }
+              //  consent.addInspection(newConsentInspection)
             }
-            
-            
-            
-            
-            //add consent type to core data
+
+            //add consent to core data
             if !managedContext.save(&error)
             {
                 println("Could not save \(error), \(error?.userInfo)")

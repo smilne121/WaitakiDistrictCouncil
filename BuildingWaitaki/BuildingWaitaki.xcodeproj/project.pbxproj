@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */; };
-		D2ACBD3C1B19CCE800C2DC2C /* CoreDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD3B1B19CCE800C2DC2C /* CoreDataAccess.swift */; };
 		D2ACBD3E1B19DD0E00C2DC2C /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */; };
+		D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */; };
 		D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523BF1B27C41800009952 /* OfficeToolsInspectionTypes.swift */; };
 		D2C523C21B27CB6E00009952 /* OfficeToolsGetConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C11B27CB6E00009952 /* OfficeToolsGetConsents.swift */; };
 		D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C31B27E0D200009952 /* ConsentInspection.swift */; };
@@ -42,8 +42,8 @@
 
 /* Begin PBXFileReference section */
 		D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransfer.swift; sourceTree = "<group>"; };
-		D2ACBD3B1B19CCE800C2DC2C /* CoreDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataAccess.swift; sourceTree = "<group>"; };
 		D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentManager.swift; sourceTree = "<group>"; };
+		D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayConsents.swift; sourceTree = "<group>"; };
 		D2C523BF1B27C41800009952 /* OfficeToolsInspectionTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeToolsInspectionTypes.swift; sourceTree = "<group>"; };
 		D2C523C11B27CB6E00009952 /* OfficeToolsGetConsents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeToolsGetConsents.swift; sourceTree = "<group>"; };
 		D2C523C31B27E0D200009952 /* ConsentInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConsentInspection.swift; path = ../ConsentInspection.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 				D2FB40F91B16FAB300474A15 /* SettingsPopover.swift */,
 				D2FB40FB1B16FDFF00474A15 /* AppSettings.swift */,
 				D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */,
-				D2ACBD3B1B19CCE800C2DC2C /* CoreDataAccess.swift */,
+				D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */,
 			);
 			path = BuildingWaitaki;
 			sourceTree = "<group>";
@@ -286,10 +286,10 @@
 				D2F0057F1B25B25600D3B0F5 /* InspectionTypeItems.swift in Sources */,
 				D2FB40FC1B16FDFF00474A15 /* AppSettings.swift in Sources */,
 				D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */,
-				D2ACBD3C1B19CCE800C2DC2C /* CoreDataAccess.swift in Sources */,
 				D2ACBD3E1B19DD0E00C2DC2C /* ConsentManager.swift in Sources */,
 				D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */,
 				D2C523CA1B29815600009952 /* Consent.swift in Sources */,
+				D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

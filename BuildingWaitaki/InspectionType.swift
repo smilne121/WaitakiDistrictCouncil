@@ -15,9 +15,9 @@ class InspectionType: NSManagedObject {
     @NSManaged var inspectionName: String
     @NSManaged var inspectionTypeItems: NSSet
     
-    func addInspectionTypeItem(inspectionItem: InspectionTypeItems)
+   /* func addInspectionTypeItem(inspectionItem: InspectionTypeItems)
     {
         self.inspectionTypeItems.setByAddingObject(inspectionItem)
-    }
+    }*/
 
 }

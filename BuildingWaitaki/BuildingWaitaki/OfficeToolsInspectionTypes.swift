@@ -103,12 +103,13 @@ class OfficeToolsInspectionTypes {
             {
                 let newInspectionTypeItem = NSEntityDescription.insertNewObjectForEntityForName("InspectionTypeItems", inManagedObjectContext: managedContext) as! InspectionTypeItems
                 newInspectionTypeItem.inspectionId = inspectionType.inspectionId //link back to inspection
+                newInspectionTypeItem.inspectionType = inspectionType
                 newInspectionTypeItem.itemId = inspectionTypeItem["itemId"] as! String
                 newInspectionTypeItem.itemName = inspectionTypeItem["itemName"] as! String
                 newInspectionTypeItem.itemType = inspectionTypeItem["itemType"] as! String
                 newInspectionTypeItem.photosAllowed = inspectionTypeItem["photosAllowed"] as! NSNumber
                 newInspectionTypeItem.required = inspectionTypeItem["required"] as! NSNumber
-                inspectionType.addInspectionTypeItem(newInspectionTypeItem)
+           //     inspectionType.addInspectionTypeItem(newInspectionTypeItem)
                 
             }
             //add inspection type to core data
