@@ -24,7 +24,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="GMm-vr-wE9">
                                 <rect key="frame" x="28" y="137" width="496" height="857"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="prominent" placeholder="Enter address or consent number..." translatesAutoresizingMaskIntoConstraints="NO" id="ULa-wb-XWu">
+                                    <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="prominent" placeholder="Enter address or consent number..." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ULa-wb-XWu">
                                         <rect key="frame" x="0.0" y="0.0" width="496" height="44"/>
                                         <color key="barTintColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go"/>
@@ -113,6 +113,7 @@
                     <connections>
                         <outlet property="background" destination="8bC-Xf-vdC" id="at5-AK-Lqi"/>
                         <outlet property="consentScrollView" destination="GMm-vr-wE9" id="m8S-cd-zrh"/>
+                        <outlet property="searchBar" destination="ULa-wb-XWu" id="FZf-WG-wjA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

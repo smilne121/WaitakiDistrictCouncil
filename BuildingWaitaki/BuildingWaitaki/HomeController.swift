@@ -15,6 +15,9 @@ class HomeController: UIViewController {
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var consentScrollView: UIScrollView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var searchActive : Bool = false
     
 
     override func viewDidLoad() {
@@ -22,12 +25,13 @@ class HomeController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         //initilize globle objects for use
+        
 
         // Retreive the managedObjectContext from AppDelegate
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
         //display consents in core data
-        displayConsents = DisplayConsents(scrollView: consentScrollView,managedContext: managedObjectContext!)
+        displayConsents = DisplayConsents(scrollView: consentScrollView,managedContext: managedObjectContext!, searchBar: searchBar)
         displayConsents.displayConsents()
         
         officeTools = OfficeTools(managedContext: managedObjectContext!,controller: self,displayConsents: displayConsents, background: background)
@@ -36,10 +40,12 @@ class HomeController: UIViewController {
     
     @IBAction func getConsents(sender: UIButton)
     {
+        searchBar.resignFirstResponder()
         officeTools!.getConsents()
     }
     
     @IBAction func getInspectionTypes(sender: UIButton) {
+        searchBar.resignFirstResponder()
         officeTools!.getInspectionTypes()
     }
 
@@ -53,6 +59,8 @@ class HomeController: UIViewController {
         let settingsPopover = SettingPopover()
         settingsPopover.showPopover(sender, controller: self)
     }
+    
+
 
 
 }

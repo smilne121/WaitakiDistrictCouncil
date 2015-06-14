@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D22F3B9B1B2BD80900AEBE0A /* DisplayInspections.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22F3B9A1B2BD80900AEBE0A /* DisplayInspections.swift */; };
 		D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */; };
 		D2ACBD3E1B19DD0E00C2DC2C /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */; };
 		D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D22F3B9A1B2BD80900AEBE0A /* DisplayInspections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayInspections.swift; sourceTree = "<group>"; };
 		D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransfer.swift; sourceTree = "<group>"; };
 		D2ACBD3D1B19DD0E00C2DC2C /* ConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentManager.swift; sourceTree = "<group>"; };
 		D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayConsents.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				D2FB40FB1B16FDFF00474A15 /* AppSettings.swift */,
 				D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */,
 				D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */,
+				D22F3B9A1B2BD80900AEBE0A /* DisplayInspections.swift */,
 			);
 			path = BuildingWaitaki;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */,
 				D2C523C81B27E15F00009952 /* Contact.swift in Sources */,
 				D2FB40FA1B16FAB300474A15 /* SettingsPopover.swift in Sources */,
+				D22F3B9B1B2BD80900AEBE0A /* DisplayInspections.swift in Sources */,
 				D2FB40D21B16E18200474A15 /* HomeController.swift in Sources */,
 				D2C523C61B27E0D200009952 /* ConsentInspectionItem.swift in Sources */,
 				D2F005811B25B28D00D3B0F5 /* InspectionType.swift in Sources */,
