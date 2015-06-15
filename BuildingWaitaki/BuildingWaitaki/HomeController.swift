@@ -12,7 +12,6 @@ import CoreData
 class HomeController: UIViewController {
     var officeTools :OfficeTools!
     var displayConsents :DisplayConsents!
-    
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var consentScrollView: UIScrollView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -23,15 +22,12 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        //initilize globle objects for use
-        
 
         // Retreive the managedObjectContext from AppDelegate
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
         //display consents in core data
-        displayConsents = DisplayConsents(scrollView: consentScrollView,managedContext: managedObjectContext!, searchBar: searchBar)
+        displayConsents = DisplayConsents(scrollView: consentScrollView,managedContext: managedObjectContext!, searchBar: searchBar, homeController: self)
         displayConsents.displayConsents()
         
         officeTools = OfficeTools(managedContext: managedObjectContext!,controller: self,displayConsents: displayConsents, background: background)

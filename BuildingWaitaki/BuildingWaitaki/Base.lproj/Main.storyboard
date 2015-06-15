@@ -120,5 +120,24 @@
             </objects>
             <point key="canvasLocation" x="339" y="467"/>
         </scene>
+        <!--CurrentConsentViewController-->
+        <scene sceneID="JRZ-FA-ph8">
+            <objects>
+                <viewController storyboardIdentifier="CurrentConsentViewController" title="CurrentConsentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OBT-Fa-hnh" customClass="CurrentConsentViewController" customModule="BuildingWaitaki" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H6L-er-Lms"/>
+                        <viewControllerLayoutGuide type="bottom" id="o3f-Zi-gig"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q9n-fE-onf">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kC1-hR-ht5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
 </document>

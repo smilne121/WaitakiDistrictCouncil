@@ -17,9 +17,13 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
     var currentX: CGFloat
     var searchBar: UISearchBar
     var searchActive : Bool = false
+    let homeController : HomeController
+    var currentConsent : Consent?
     
-    init (scrollView: UIScrollView, managedContext: NSManagedObjectContext,searchBar:UISearchBar)
+    
+    init (scrollView: UIScrollView,managedContext: NSManagedObjectContext,searchBar:UISearchBar, homeController: HomeController)
     {
+        self.homeController = homeController
         self.scrollView = scrollView
         self.managedContext = managedContext
         self.currentX = 0
@@ -262,11 +266,31 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                     let consentNumber = (view as! UILabel).text
                     println(consentNumber)
                     
-                    let displayInspections = DisplayInspections(view: sender.view!.superview!, managedContext: managedContext)
+                    var error: NSError?
+                    //get consents inspection
+                    let fetchRequest = NSFetchRequest(entityName: "Consent")
+                    fetchRequest.includesSubentities = true
+                    fetchRequest.returnsObjectsAsFaults = false
+                    
+                    let resultPredicate = NSPredicate(format: "consentNumber = %@", consentNumber!)
+                    
+                    var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+                    fetchRequest.predicate = compound
+                    
+                    let consent = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as! Consent
+                    
+                    currentConsent = consent
+                    
+                    let currentConsentViewController = homeController.storyboard!.instantiateViewControllerWithIdentifier("CurrentConsentViewController") as! CurrentConsentViewController
+                    homeController.navigationController!.pushViewController(currentConsentViewController, animated: true)
+                    
+                    //push to new controller
+                    
+                    let displayInspections = DisplayInspections(view: sender.view!.superview!.superview!, managedContext: managedContext)
                     displayInspections.displayInspections(consentNumber!)
+
                 }
             }
         }
-        
     }
 }
