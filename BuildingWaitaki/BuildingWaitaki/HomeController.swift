@@ -12,6 +12,7 @@ import CoreData
 class HomeController: UIViewController {
     var officeTools :OfficeTools!
     var displayConsents :DisplayConsents!
+    var currentConsent: Consent?
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var consentScrollView: UIScrollView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -54,6 +55,11 @@ class HomeController: UIViewController {
     @IBAction func showPopover(sender:UIButton) {
         let settingsPopover = SettingPopover()
         settingsPopover.showPopover(sender, controller: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+            var currentConsentController = segue.destinationViewController as! CurrentConsentViewController;
+            currentConsentController.currentConsent = currentConsent!
     }
     
 

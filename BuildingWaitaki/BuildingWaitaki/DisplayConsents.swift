@@ -281,14 +281,12 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                     
                     currentConsent = consent
                     
+                    //goto new controller
                     let currentConsentViewController = homeController.storyboard!.instantiateViewControllerWithIdentifier("CurrentConsentViewController") as! CurrentConsentViewController
+                    currentConsentViewController.currentConsent = currentConsent
                     homeController.navigationController!.pushViewController(currentConsentViewController, animated: true)
                     
                     //push to new controller
-                    
-                    let displayInspections = DisplayInspections(view: sender.view!.superview!.superview!, managedContext: managedContext)
-                    displayInspections.displayInspections(consentNumber!)
-
                 }
             }
         }
