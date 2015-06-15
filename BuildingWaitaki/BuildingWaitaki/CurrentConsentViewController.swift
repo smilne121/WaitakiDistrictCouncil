@@ -54,5 +54,9 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("You selected cell #\(indexPath.row)!")
+        //goto new controller
+        let currentInspectionController = self.storyboard!.instantiateViewControllerWithIdentifier("CurrentInspectionViewController") as! CurrentInspectionViewController
+        self.navigationController!.pushViewController(currentInspectionController, animated: true)
+
     }
 }
