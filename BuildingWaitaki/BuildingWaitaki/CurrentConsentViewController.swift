@@ -75,6 +75,9 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
         let inspectionResults = managedContext.executeFetchRequest(fetchRequest2, error: nil) as! [ConsentInspectionItem]
         
+        println(inspectionResults)
+        
+        
         //loop through and match results to required fields
         for item in inspectionItems
         {
@@ -87,6 +90,12 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
                     println(item)
                     println("Result")
                     println(result)
+                    if result.itemId.isEmpty
+                    {
+                        uncomplete = uncomplete + 1
+                    }
+                    else
+                    {
                     if item.itemId == result.itemId
                     {
                         if result.itemResult.isEmpty
@@ -108,6 +117,7 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
                             }
                         }
                     }
+                }
                 }
             }
         }
