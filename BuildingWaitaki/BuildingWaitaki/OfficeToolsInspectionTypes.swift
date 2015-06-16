@@ -83,6 +83,7 @@ class OfficeToolsInspectionTypes {
         }
         
         println("Number of Inspection Types: " + String(items.count) + " Number of Inspection Type Items:" + String(items2.count))
+        println(items2)
         
         var inspectionTypeObjectArray = [InspectionType]()
         //encode data string
@@ -109,8 +110,7 @@ class OfficeToolsInspectionTypes {
                 newInspectionTypeItem.itemType = inspectionTypeItem["itemType"] as! String
                 newInspectionTypeItem.photosAllowed = inspectionTypeItem["photosAllowed"] as! NSNumber
                 newInspectionTypeItem.required = inspectionTypeItem["required"] as! NSNumber
-           //     inspectionType.addInspectionTypeItem(newInspectionTypeItem)
-                
+                println(inspectionType)
             }
             //add inspection type to core data
             if !managedContext.save(&error)

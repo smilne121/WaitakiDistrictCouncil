@@ -108,13 +108,13 @@ class OfficeToolsGetConsents {
         fetchRequest3.returnsObjectsAsFaults = false
         
         let fetchRequest4 = NSFetchRequest(entityName: "ConsentInspectionItem")
-        fetchRequest3.includesSubentities = true
-        fetchRequest3.returnsObjectsAsFaults = false
+        fetchRequest4.includesSubentities = true
+        fetchRequest4.returnsObjectsAsFaults = false
         
         let items = managedContext.executeFetchRequest(fetchRequest, error: &error)!
         let items2 = managedContext.executeFetchRequest(fetchRequest2, error: &error)!
-        let items3 = managedContext.executeFetchRequest(fetchRequest2, error: &error)!
-        let items4 = managedContext.executeFetchRequest(fetchRequest2, error: &error)!
+        let items3 = managedContext.executeFetchRequest(fetchRequest3, error: &error)!
+        let items4 = managedContext.executeFetchRequest(fetchRequest4, error: &error)!
         
         for item in items {
             managedContext.deleteObject(item as! NSManagedObject)
@@ -173,28 +173,48 @@ class OfficeToolsGetConsents {
                 newConsentInspection.inspectionId = consentInspection["InspectionId"] as! String
                 newConsentInspection.needSynced = NSNumber(bool: false)
                 newConsentInspection.consent = consent
-                for consentInspectionItem:AnyObject in consentInspectionsArray
+                
+                //loop through based on inspectionId
+                
+                //get inspection items
+                let fetchRequest = NSFetchRequest(entityName: "InspectionTypeItems")
+                fetchRequest.includesSubentities = true
+                fetchRequest.returnsObjectsAsFaults = false
+                let resultPredicate = NSPredicate(format: "inspectionId = %@", newConsentInspection.inspectionId)
+                
+                var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+                fetchRequest.predicate = compound
+                
+                let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
+                
+                println(inspectionItems)
+                for consentInspectionItem in inspectionItems
                 {
-                  
                     let newInspectionItem = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspectionItem", inManagedObjectContext: managedContext) as! ConsentInspectionItem
                     newInspectionItem.consentId = consent.consentNumber
                     newInspectionItem.inspectionId = newConsentInspection.inspectionId
+                    newInspectionItem.itemId = consentInspectionItem.itemId
                     newInspectionItem.inspectionName = newConsentInspection.inspectionName
                    
-                    newInspectionItem.consentInspection = newConsentInspection
-                    
                     for consentInspectionResults:AnyObject in consentInspectionResultsArray
                     {
+                        println(consentInspectionResults)
                         let resultName = (consentInspectionResults["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                        let inspectionName = (newInspectionItem.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))
-                        if resultName == inspectionName
+                        let inspectionName = newInspectionItem.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                        if inspectionName == resultName
                         {
-                            println(consentInspectionResults)
-                             newInspectionItem.itemId = consentInspectionResults["ItemId"] as! String
-                            newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as! String
+                            if newInspectionItem.itemId == consentInspectionResults["ItemId"] as! String
+                            {
+                             newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as! String
+                            }
+                          //  println(itemId)
+                           // println(newInspectionItem)
                         }
                     }
+                    newInspectionItem.consentInspection = newConsentInspection
+                   println(newInspectionItem)
                 }
+
             }
 
             //add consent to core data
