@@ -176,17 +176,19 @@ class OfficeToolsGetConsents {
                 
                 for consentInspectionItem:AnyObject in consentInspectionsArray
                 {
+                  //  println(consentInspectionItem)
                     let newInspectionItem = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspectionItem", inManagedObjectContext: managedContext) as! ConsentInspectionItem
                     newInspectionItem.consentId = consent.consentNumber
                     newInspectionItem.inspectionId = newConsentInspection.inspectionId
                     newInspectionItem.inspectionName = newConsentInspection.inspectionName
-                    newInspectionItem.itemId = consentInspectionItem["InspectionId"] as! String
+                   
                     newInspectionItem.consentInspection = newConsentInspection
                     
                     for consentInspectionResults:AnyObject in consentInspectionResultsArray
                     {
                         if (consentInspectionResults["InspectionName"] as! String == newInspectionItem.inspectionName)
                         {
+                             newInspectionItem.itemId = consentInspectionResults["itemId"] as! String
                             newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as! String
                         }
                     }

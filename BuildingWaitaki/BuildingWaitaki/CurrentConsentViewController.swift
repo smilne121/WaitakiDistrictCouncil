@@ -36,6 +36,9 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var passed = 0
+        var failed = 0
+        var uncomplete = 0
         // var cell:CurrentConsentTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("currentInspectionCell") as! CurrentConsentTableViewCell
         let cell = self.tableView.dequeueReusableCellWithIdentifier("currentInspectionCell", forIndexPath: indexPath) as! CurrentConsentTableViewCell
         
@@ -45,11 +48,91 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         
         let inspectionArraySorted = inspectionArray.sorted { $0.inspectionId < $1.inspectionId } //sort by item number after
         
+        
+        //check if all required fields are completed
+        
+        var error: NSError?
+        //get consents inspection
+        let fetchRequest = NSFetchRequest(entityName: "InspectionTypeItems")
+        fetchRequest.includesSubentities = true
+        fetchRequest.returnsObjectsAsFaults = false
+        let resultPredicate = NSPredicate(format: "inspectionId = %@", inspectionArraySorted[indexPath.row].inspectionId)
+        
+        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+        fetchRequest.predicate = compound
+        
+        //get inspection results
+        let fetchRequest2 = NSFetchRequest(entityName: "ConsentInspectionItem")
+        fetchRequest2.includesSubentities = true
+        fetchRequest2.returnsObjectsAsFaults = false
+        let resultPredicate2 = NSPredicate(format: "inspectionId = %@", inspectionArraySorted[indexPath.row].inspectionId)
+        
+        var compound2 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate2])
+        fetchRequest2.predicate = compound2
+
+        
+        //inspection items for selected inspection
+        let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
+        let inspectionResults = managedContext.executeFetchRequest(fetchRequest2, error: nil) as! [ConsentInspectionItem]
+        
+        //loop through and match results to required fields
+        for item in inspectionItems
+        {
+ 
+            if item.required == NSNumber(bool: true)
+            {
+                for result in inspectionResults
+                {
+                    println("Item")
+                    println(item)
+                    println("Result")
+                    println(result)
+                    if item.itemId == result.itemId
+                    {
+                        if result.itemResult.isEmpty
+                        {
+                            uncomplete = uncomplete + 1
+                        }
+                        else
+                        {
+                            if item.itemType == "F"
+                            {
+                                if result.itemResult == "Y"
+                                {
+                                    passed = passed + 1
+                                }
+                                else
+                                {
+                                    failed = failed + 1
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
         //cell.textLabel?.text = inspectionArraySorted[indexPath.row].inspectionName
         cell.inspectionName.text = inspectionArraySorted[indexPath.row].inspectionName
         cell.inspectionComments.text = "need access to this property"
-        let image = UIImage(named: "passed.png") as UIImage!
-        cell.statusImage.image = image
+        
+        //assign image if required
+        let image: UIImage
+        if uncomplete  < 1
+        {
+            if failed > 0
+            {
+                image = UIImage(named: "Failed.png") as UIImage!
+            }
+            else
+            {
+                image  = UIImage(named: "passed.png") as UIImage!
+            }
+            cell.statusImage.image = image
+        }
+        
+        
+        
         
         return cell
     }
