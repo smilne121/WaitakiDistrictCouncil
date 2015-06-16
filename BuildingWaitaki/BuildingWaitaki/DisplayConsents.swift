@@ -284,6 +284,7 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                     //goto new controller
                     let currentConsentViewController = homeController.storyboard!.instantiateViewControllerWithIdentifier("CurrentConsentViewController") as! CurrentConsentViewController
                     currentConsentViewController.currentConsent = currentConsent
+                    currentConsentViewController.managedContext = managedContext
                     homeController.navigationController!.pushViewController(currentConsentViewController, animated: true)
                     
                     //push to new controller

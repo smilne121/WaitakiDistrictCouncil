@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var currentConsent: Consent!
+    var managedContext: NSManagedObjectContext!
     @IBOutlet weak var tableView: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         println(currentConsent.consentDescription)
         self.title = currentConsent.consentAddress + "  " + currentConsent.consentNumber
@@ -23,7 +25,7 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,8 +36,8 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-       // var cell:CurrentConsentTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("currentInspectionCell") as! CurrentConsentTableViewCell
-         let cell = self.tableView.dequeueReusableCellWithIdentifier("currentInspectionCell", forIndexPath: indexPath) as! CurrentConsentTableViewCell
+        // var cell:CurrentConsentTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("currentInspectionCell") as! CurrentConsentTableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("currentInspectionCell", forIndexPath: indexPath) as! CurrentConsentTableViewCell
         
         
         //let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PlacesTableViewCell
@@ -57,6 +59,6 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         //goto new controller
         let currentInspectionController = self.storyboard!.instantiateViewControllerWithIdentifier("CurrentInspectionViewController") as! CurrentInspectionViewController
         self.navigationController!.pushViewController(currentInspectionController, animated: true)
-
+        
     }
 }
