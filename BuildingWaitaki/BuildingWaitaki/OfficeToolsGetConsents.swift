@@ -172,6 +172,7 @@ class OfficeToolsGetConsents {
                 newConsentInspection.inspectionName = consentInspection["InspectionName"] as! String
                 newConsentInspection.inspectionId = consentInspection["InspectionId"] as! String
                 newConsentInspection.needSynced = NSNumber(bool: false)
+                newConsentInspection.status = "Passed" //UPDATE THIS TO CHECK ITEMS
                 newConsentInspection.consent = consent
                 
                 //loop through based on inspectionId
@@ -187,7 +188,7 @@ class OfficeToolsGetConsents {
                 
                 let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
                 
-                println(inspectionItems)
+                //println(inspectionItems)
                 for consentInspectionItem in inspectionItems
                 {
                     let newInspectionItem = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspectionItem", inManagedObjectContext: managedContext) as! ConsentInspectionItem
@@ -198,21 +199,21 @@ class OfficeToolsGetConsents {
                    
                     for consentInspectionResults:AnyObject in consentInspectionResultsArray
                     {
-                        println(consentInspectionResults)
+                       // println(consentInspectionResults)
                         let resultName = (consentInspectionResults["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                         let inspectionName = newInspectionItem.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                         if inspectionName == resultName
                         {
                             if newInspectionItem.itemId == consentInspectionResults["ItemId"] as! String
                             {
-                             newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as! String
+                             newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as? String
                             }
                           //  println(itemId)
                            // println(newInspectionItem)
                         }
                     }
                     newInspectionItem.consentInspection = newConsentInspection
-                   println(newInspectionItem)
+                  // println(newInspectionItem)
                 }
 
             }

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Waitaki District Council. All rights reserved.
 //
 
-import Foundation
+/*import Foundation
 import UIKit
 import CoreData
 
@@ -84,4 +84,4 @@ class DisplayInspections {
     }
     */
     }
-}
+}*/

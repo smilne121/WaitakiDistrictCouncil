@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class ConsentInspection: NSManagedObject {
-
+    @NSManaged var status: String
     @NSManaged var consentId: String
     @NSManaged var inspectionName: String
     @NSManaged var inspectionId: String

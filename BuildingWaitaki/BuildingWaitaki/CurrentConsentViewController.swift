@@ -36,20 +36,17 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var passed = 0
+       /* var passed = 0
         var failed = 0
-        var uncomplete = 0
-        // var cell:CurrentConsentTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("currentInspectionCell") as! CurrentConsentTableViewCell
+        var uncomplete = 0*/
+
         let cell = self.tableView.dequeueReusableCellWithIdentifier("currentInspectionCell", forIndexPath: indexPath) as! CurrentConsentTableViewCell
         
-        
-        //let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PlacesTableViewCell
         let inspectionArray = currentConsent.consentInspection.allObjects as! [ConsentInspection]
         
         let inspectionArraySorted = inspectionArray.sorted { $0.inspectionId < $1.inspectionId } //sort by item number after
         
-        
-        //check if all required fields are completed
+        /*//check if all required fields are completed NEED TO MOVE TO BEFORE HERE TO POPULATE FIELD IN DATABASE TO CHECK STATUS
         
         var error: NSError?
         //get consents inspection
@@ -70,78 +67,62 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         var compound2 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate2])
         fetchRequest2.predicate = compound2
 
-        
         //inspection items for selected inspection
         let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
         let inspectionResults = managedContext.executeFetchRequest(fetchRequest2, error: nil) as! [ConsentInspectionItem]
         
-        println(inspectionResults)
-        
-        
         //loop through and match results to required fields
         for item in inspectionItems
         {
- 
             if item.required == NSNumber(bool: true)
             {
                 for result in inspectionResults
                 {
-                    println("Item")
-                    println(item)
-                    println("Result")
-                    println(result)
-                    if result.itemId.isEmpty
-                    {
-                        uncomplete = uncomplete + 1
-                    }
-                    else
-                    {
                     if item.itemId == result.itemId
                     {
-                        if result.itemResult.isEmpty
+                        if let currentResult = result.itemResult
                         {
-                            uncomplete = uncomplete + 1
-                        }
-                        else
-                        {
-                            if item.itemType == "F"
+                            if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "F"
                             {
-                                if result.itemResult == "Y"
+                                if result.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "Y"
                                 {
                                     passed = passed + 1
                                 }
                                 else
                                 {
+                                      println("id: " + cell.inspectionName.text!)
+                                    println(item.inspectionId)
+                                    println(item.itemId)
                                     failed = failed + 1
                                 }
                             }
                         }
+                        else
+                        {
+                             uncomplete = uncomplete + 1
+                                                    }
                     }
                 }
-                }
             }
-        }
+        }*/
         
-        //cell.textLabel?.text = inspectionArraySorted[indexPath.row].inspectionName
         cell.inspectionName.text = inspectionArraySorted[indexPath.row].inspectionName
         cell.inspectionComments.text = "need access to this property"
         
+      
+
         //assign image if required
         let image: UIImage
-        if uncomplete  < 1
-        {
-            if failed > 0
+            if inspectionArraySorted[indexPath.row].status == "Failed"
             {
                 image = UIImage(named: "Failed.png") as UIImage!
+                cell.statusImage.image = image
             }
-            else
+            else if inspectionArraySorted[indexPath.row].status == "Passed"
             {
                 image  = UIImage(named: "passed.png") as UIImage!
+                cell.statusImage.image = image
             }
-            cell.statusImage.image = image
-        }
-        
-        
         
         
         return cell
@@ -150,7 +131,12 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("You selected cell #\(indexPath.row)!")
         //goto new controller
+        let inspectionArray = currentConsent.consentInspection.allObjects as! [ConsentInspection]
+        let inspectionArraySorted = inspectionArray.sorted { $0.inspectionId < $1.inspectionId } //sort by item number after
         let currentInspectionController = self.storyboard!.instantiateViewControllerWithIdentifier("CurrentInspectionViewController") as! CurrentInspectionViewController
+        currentInspectionController.consentInspection = inspectionArraySorted[indexPath.row]
+        currentInspectionController.title = inspectionArraySorted[indexPath.row].inspectionName
+        currentInspectionController.managedContext = managedContext
         self.navigationController!.pushViewController(currentInspectionController, animated: true)
         
     }
