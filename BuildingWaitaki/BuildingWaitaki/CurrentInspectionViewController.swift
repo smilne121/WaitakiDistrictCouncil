@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class CurrentInspectionViewController: UIViewController {
+class CurrentInspectionViewController: UIViewController, UITextViewDelegate {
     var consentInspection : ConsentInspection!
     var inspectionTypeItems : [InspectionTypeItems]!
     var managedContext: NSManagedObjectContext!
@@ -129,8 +129,8 @@ class CurrentInspectionViewController: UIViewController {
         //loop though items and create containers
         for item in itemInspectionArraySorted
         {
-            println(item.order)
-            if item.itemName != "Complete" || item.itemName != "Building Officer"
+            let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            if itemName != "Complete" && itemName != "Building Officer"
             {
             let containerRect: CGRect = CGRect(x: currentX,y: currentY,width: width,height: height)
             let container: UIView = UIView(frame: containerRect)
@@ -198,6 +198,7 @@ class CurrentInspectionViewController: UIViewController {
             {
                 let datePicker = UIDatePicker(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
                 datePicker.datePickerMode = UIDatePickerMode.Date
+                datePicker.addTarget(self, action: "saveDate:", forControlEvents: .ValueChanged)
                 
                 //populate results
                 let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
@@ -223,7 +224,7 @@ class CurrentInspectionViewController: UIViewController {
                 
                 let textInput = UITextView(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
                 textInput.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-                
+                textInput.delegate = self
                 //populate results
                 let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
                 for itemResult in itemResults
@@ -286,6 +287,33 @@ class CurrentInspectionViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func saveDate(sender: UIDatePicker)
+    {
+        for view in sender.superview!.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let stringDate = dateFormatter.stringFromDate(sender.date)
+        saveData((view as! UILabel).text!, value: stringDate)
+            }
+        }
+
+    }
+    
+
+        func textViewDidChange(textView: UITextView) {
+        for view in textView.superview!.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                saveData((view as! UILabel).text!, value: textView.text)
+            }
+        }
+        
     }
     
     
