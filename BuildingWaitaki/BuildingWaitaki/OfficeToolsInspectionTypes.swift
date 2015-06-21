@@ -12,13 +12,13 @@ import UIKit
 
 class OfficeToolsInspectionTypes {
     let managedContext: NSManagedObjectContext
-    let dataTransfer: DataTransfer
+   // let dataTransfer: DataTransfer
     let controller: UIViewController
     
     init(managedContext: NSManagedObjectContext, controller: UIViewController)
     {
         self.managedContext = managedContext
-        self.dataTransfer = DataTransfer(managedContext: self.managedContext)
+      //  self.dataTransfer = DataTransfer(managedContext: self.managedContext)
         self.controller = controller
     }
     
@@ -110,6 +110,7 @@ class OfficeToolsInspectionTypes {
                 newInspectionTypeItem.itemType = inspectionTypeItem["itemType"] as! String
                 newInspectionTypeItem.photosAllowed = inspectionTypeItem["photosAllowed"] as! NSNumber
                 newInspectionTypeItem.required = inspectionTypeItem["required"] as! NSNumber
+                newInspectionTypeItem.order = inspectionTypeItem["order"] as! String
                 println(inspectionType)
             }
             //add inspection type to core data

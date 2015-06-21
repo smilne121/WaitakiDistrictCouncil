@@ -43,6 +43,7 @@
         <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photosAllowed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="required" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="inspectionType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InspectionType" inverseName="inspectionTypeItems" inverseEntity="InspectionType" syncable="YES"/>
@@ -53,6 +54,6 @@
         <element name="ConsentInspectionItem" positionX="-216" positionY="74" width="128" height="135"/>
         <element name="Contact" positionX="-218" positionY="-87" width="128" height="150"/>
         <element name="InspectionType" positionX="-189" positionY="-189" width="128" height="88"/>
-        <element name="InspectionTypeItems" positionX="36" positionY="-249" width="128" height="150"/>
+        <element name="InspectionTypeItems" positionX="36" positionY="-249" width="128" height="165"/>
     </elements>
 </model>

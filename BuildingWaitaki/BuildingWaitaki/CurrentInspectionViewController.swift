@@ -38,7 +38,7 @@ class CurrentInspectionViewController: UIViewController {
         //println(consentInspection.inspectionItem)
         for item:AnyObject in consentInspection.inspectionItem
         {
-            println((item as! ConsentInspectionItem).itemId)
+           // println((item as! ConsentInspectionItem).itemId)
         }
         
         
@@ -54,6 +54,20 @@ class CurrentInspectionViewController: UIViewController {
     
     func generateItemsOnscreen()
     {
+        //ADD TOP BAR ICONS
+        let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        btnComments.frame = CGRectMake(20, 70, 60, 60)
+        let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
+        btnComments.setImage(imgComments, forState: .Normal)
+        itemHolder.superview?.addSubview(btnComments)
+        
+        //change items into a sorted array
+       let itemInspectionArraySorted = inspectionTypeItems.sorted {$0.getOrderAsInt() < $1.getOrderAsInt()}
+        
+
+        
+        //add dynamic items
+        
         var leftSide = Bool(true)
         let fontsize = CGFloat(15)
         var currentX = 0
@@ -62,8 +76,9 @@ class CurrentInspectionViewController: UIViewController {
         let width = Int(itemHolder.frame.width / 2 )
         
         //loop though items and create containers
-        for item in inspectionTypeItems
+        for item in itemInspectionArraySorted
         {
+            println(item.order)
             if item.itemName != "Complete"
             {
             let containerRect: CGRect = CGRect(x: currentX,y: currentY,width: width,height: height)
@@ -97,6 +112,19 @@ class CurrentInspectionViewController: UIViewController {
                 container.addSubview(selector)
                 
             }
+            else if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "D"
+            {
+                let datePicker = UIDatePicker(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
+                datePicker.datePickerMode = UIDatePickerMode.Date
+                container.addSubview(datePicker)
+            }
+            else
+            {
+                let textInput = UITextField(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
+                textInput.placeholder = "Tap to enter " + item.itemName
+                container.addSubview(textInput)
+
+                }
             
             //move to next space
             if leftSide == true
@@ -118,6 +146,7 @@ class CurrentInspectionViewController: UIViewController {
         itemHolder.contentSize = contentSize
     }
     
+
 
     
 

@@ -19,7 +19,6 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        println(currentConsent.consentDescription)
         self.title = currentConsent.consentAddress + "  " + currentConsent.consentNumber
         self.tableView.rowHeight = CGFloat(150)
         
@@ -129,7 +128,6 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("You selected cell #\(indexPath.row)!")
         //goto new controller
         let inspectionArray = currentConsent.consentInspection.allObjects as! [ConsentInspection]
         let inspectionArraySorted = inspectionArray.sorted { $0.inspectionId < $1.inspectionId } //sort by item number after

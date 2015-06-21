@@ -12,7 +12,7 @@ import UIKit
 
 class OfficeTools {
     let managedContext: NSManagedObjectContext
-    let dataTransfer: DataTransfer
+  //  let dataTransfer: DataTransfer
     let controller: UIViewController
     let displayConsents: DisplayConsents
     let background: UIView
@@ -20,7 +20,7 @@ class OfficeTools {
     init(managedContext: NSManagedObjectContext, controller: UIViewController, displayConsents: DisplayConsents, background: UIView)
     {
         self.managedContext = managedContext
-        self.dataTransfer = DataTransfer(managedContext: self.managedContext)
+     //   self.dataTransfer = DataTransfer(managedContext: self.managedContext)
         self.controller = controller
         self.displayConsents = displayConsents
         self.background = background

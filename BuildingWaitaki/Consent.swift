@@ -27,11 +27,7 @@ class Consent: NSManagedObject {
         }
         else
         {
-            println("Saved consent: ")
-            
             var request = NSFetchRequest(entityName: "Consent")
-            
-            println(self.managedObjectContext!.countForFetchRequest(request, error: nil))
         }
     }
     
@@ -41,20 +37,7 @@ class Consent: NSManagedObject {
         var error: NSError? = nil
         if !managedObjectContext!.save(&error) {
             println("Failed to delete the item \(error), \(error?.userInfo)")
-        } else
-        {
-            println("deleted: " + self.consentNumber)
         }
     }
-    
- /* func addContact(newContact: Contact)
-    {
-        self.contact.setByAddingObject(newContact)
-    }
-    
-    func addInspection(newInspection: ConsentInspection)
-    {
-        self.consentInspection.setByAddingObject(newInspection)
-    }*/
 
 }

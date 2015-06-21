@@ -17,5 +17,7 @@ class ConsentInspectionItem: NSManagedObject {
     @NSManaged var itemId: String
     @NSManaged var itemResult: String?
     @NSManaged var consentInspection: ConsentInspection
+    
+
 
 }
