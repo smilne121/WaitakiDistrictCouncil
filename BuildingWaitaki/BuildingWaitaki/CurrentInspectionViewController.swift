@@ -155,6 +155,7 @@ class CurrentInspectionViewController: UIViewController {
                 let selector = UISegmentedControl(items: selectorItems)
                 selector.selectedSegmentIndex = -1
                 selector.tintColor = UIColor.darkGrayColor()
+                selector.addTarget(self, action: "saveItem:",forControlEvents: .ValueChanged)
                 
                 var attr = NSDictionary(object: UIFont(name: "HelveticaNeue-Bold", size: 16.0)!, forKey: NSFontAttributeName)
                 selector.setTitleTextAttributes(attr as [NSObject : AnyObject], forState: .Normal)
@@ -197,13 +198,44 @@ class CurrentInspectionViewController: UIViewController {
             {
                 let datePicker = UIDatePicker(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
                 datePicker.datePickerMode = UIDatePickerMode.Date
+                
+                //populate results
+                let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
+                for itemResult in itemResults
+                {
+                    if item.itemId == itemResult.itemId
+                    {
+                        if let result = itemResult.itemResult?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                        {
+                            let dateFormatter = NSDateFormatter()
+                            dateFormatter.dateFormat = "dd-MM-yyyy"
+                            datePicker.setDate(dateFormatter.dateFromString(result)!, animated: true)
+                        }
+                    }
+                }
+                
                 container.addSubview(datePicker)
+                
+                
             }
             else
             {
                 
                 let textInput = UITextView(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
                 textInput.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+                
+                //populate results
+                let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
+                for itemResult in itemResults
+                {
+                    if item.itemId == itemResult.itemId
+                    {
+                        if let result = itemResult.itemResult?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                        {
+                            textInput.text = result
+                        }
+                    }
+                }
                 
                
                 container.addSubview(textInput)
@@ -227,6 +259,54 @@ class CurrentInspectionViewController: UIViewController {
         //update content size of scrollview to match
         let contentSize = CGSize(width: itemHolder.frame.width, height: CGFloat(currentY) + CGFloat(height) + 200)
         itemHolder.contentSize = contentSize
+    }
+    
+    
+    func saveItem(sender: UISegmentedControl)
+    {
+        if(sender.selectedSegmentIndex == 0)
+        {
+            println("pass")
+            for view in sender.superview!.subviews
+            {
+                if view.isKindOfClass(UILabel)
+                {
+                    saveData((view as! UILabel).text!, value: "Y")
+                }
+            }
+        }
+        else if(sender.selectedSegmentIndex == 1)
+        {
+            println("fail")
+            for view in sender.superview!.subviews
+            {
+                if view.isKindOfClass(UILabel)
+                {
+                    saveData((view as! UILabel).text!, value: "N")
+                }
+            }
+        }
+    }
+    
+    
+    private func saveData(itemName: String, value: String) {
+        var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+        
+        let resultPredicate1 = NSPredicate(format: "inspectionName = %@", self.title!)
+        let resultPredicate2 = NSPredicate(format: "itemName = %@", itemName)
+        let resultPredicate3 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
+        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+        fetchRequest.predicate = compound
+        
+        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [NSManagedObject] {
+            if fetchResults.count != 0
+            {
+                var managedObject = fetchResults[0]
+                managedObject.setValue(value, forKey: "itemResult")
+                
+                managedContext.save(nil)
+            }
+        }
     }
     
 

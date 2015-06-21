@@ -195,6 +195,7 @@ class OfficeToolsGetConsents {
                     newInspectionItem.consentId = consent.consentNumber
                     newInspectionItem.inspectionId = newConsentInspection.inspectionId
                     newInspectionItem.itemId = consentInspectionItem.itemId
+                    newInspectionItem.itemName = consentInspectionItem.itemName
                     newInspectionItem.inspectionName = newConsentInspection.inspectionName
                    
                     for consentInspectionResults:AnyObject in consentInspectionResultsArray

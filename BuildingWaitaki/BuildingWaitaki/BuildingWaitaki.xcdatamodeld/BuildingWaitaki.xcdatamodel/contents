@@ -21,6 +21,7 @@
         <attribute name="inspectionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inspectionName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemResult" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="consentInspection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConsentInspection" inverseName="inspectionItem" inverseEntity="ConsentInspection" syncable="YES"/>
     </entity>
@@ -51,7 +52,7 @@
     <elements>
         <element name="Consent" positionX="-20" positionY="-73" width="128" height="118"/>
         <element name="ConsentInspection" positionX="-38" positionY="89" width="128" height="150"/>
-        <element name="ConsentInspectionItem" positionX="-216" positionY="74" width="128" height="135"/>
+        <element name="ConsentInspectionItem" positionX="-216" positionY="74" width="128" height="150"/>
         <element name="Contact" positionX="-218" positionY="-87" width="128" height="150"/>
         <element name="InspectionType" positionX="-189" positionY="-189" width="128" height="88"/>
         <element name="InspectionTypeItems" positionX="36" positionY="-249" width="128" height="165"/>
