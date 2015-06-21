@@ -20,6 +20,12 @@ class CurrentInspectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        itemHolder.layer.borderWidth = 1
+        itemHolder.contentInset = UIEdgeInsetsZero;
+        itemHolder.scrollIndicatorInsets = UIEdgeInsetsZero;
+        itemHolder.contentOffset = CGPointMake(0.0, 0.0);
+        
+        
         //call core data inspectiontypes to get items to display
         var error: NSError?
         //get consents inspection
@@ -55,11 +61,56 @@ class CurrentInspectionViewController: UIViewController {
     func generateItemsOnscreen()
     {
         //ADD TOP BAR ICONS
+        let btnConsentDetails = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        btnConsentDetails.frame = CGRectMake(20, 85, 120, 40)
+        btnConsentDetails.setTitle("Consent Details", forState: .Normal)
+        btnConsentDetails.layer.cornerRadius = 5.0
+        btnConsentDetails.layer.borderColor = UIColor.blackColor().CGColor
+        btnConsentDetails.layer.borderWidth = 1
+        btnConsentDetails.layer.backgroundColor = UIColor.whiteColor().CGColor
+        btnConsentDetails.tintColor = UIColor.blackColor()
+        itemHolder.superview?.addSubview(btnConsentDetails)
+        
         let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        btnComments.frame = CGRectMake(20, 70, 60, 60)
-        let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
-        btnComments.setImage(imgComments, forState: .Normal)
+        btnComments.frame = CGRectMake((itemHolder.superview!.frame.width / 2) - CGFloat(60), 85, 120, 40)
+        btnComments.setTitle("Comments", forState: .Normal)
+        btnComments.layer.cornerRadius = 5.0
+        btnComments.layer.borderColor = UIColor.blackColor().CGColor
+        btnComments.layer.borderWidth = 1
+        btnComments.tintColor = UIColor.blackColor()
+        btnComments.layer.backgroundColor = UIColor.whiteColor().CGColor
         itemHolder.superview?.addSubview(btnComments)
+        
+        let btnEmail = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        btnEmail.frame = CGRectMake(itemHolder.superview!.frame.width - CGFloat(140), 85, 120, 40)
+        btnEmail.setTitle("Email Report", forState: .Normal)
+        btnEmail.layer.cornerRadius = 5.0
+        btnEmail.layer.borderColor = UIColor.blackColor().CGColor
+        btnEmail.layer.borderWidth = 1
+        btnEmail.layer.backgroundColor = UIColor.whiteColor().CGColor
+        btnEmail.tintColor = UIColor.blackColor()
+        itemHolder.superview?.addSubview(btnEmail)
+        
+        //ADD BOTTOM BAR ICONS
+        let btnFinished = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        btnFinished.frame = CGRectMake(20, itemHolder.superview!.frame.height - 80, 150, 40)
+        btnFinished.setTitle("Finished", forState: .Normal)
+        btnFinished.layer.cornerRadius = 5.0
+        btnFinished.layer.borderColor = UIColor.blackColor().CGColor
+        btnFinished.layer.borderWidth = 1
+        btnFinished.tintColor = UIColor.blackColor()
+        btnFinished.layer.backgroundColor = UIColor.whiteColor().CGColor
+        itemHolder.superview?.addSubview(btnFinished)
+        
+        let btnNeedsReinspection = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        btnNeedsReinspection.frame = CGRectMake(itemHolder.superview!.frame.width - CGFloat(170), itemHolder.superview!.frame.height - 80, 150, 40)
+        btnNeedsReinspection.setTitle("Needs Re-inspection", forState: .Normal)
+        btnNeedsReinspection.layer.cornerRadius = 5.0
+        btnNeedsReinspection.layer.borderColor = UIColor.blackColor().CGColor
+        btnNeedsReinspection.layer.backgroundColor = UIColor.whiteColor().CGColor
+        btnNeedsReinspection.layer.borderWidth = 1
+        btnNeedsReinspection.tintColor = UIColor.blackColor()
+        itemHolder.superview?.addSubview(btnNeedsReinspection)
         
         //change items into a sorted array
        let itemInspectionArraySorted = inspectionTypeItems.sorted {$0.getOrderAsInt() < $1.getOrderAsInt()}
@@ -71,7 +122,7 @@ class CurrentInspectionViewController: UIViewController {
         var leftSide = Bool(true)
         let fontsize = CGFloat(15)
         var currentX = 0
-        var currentY = 0
+        var currentY = -63 // offset for uiscrollview
         let height = 200
         let width = Int(itemHolder.frame.width / 2 )
         
@@ -79,7 +130,7 @@ class CurrentInspectionViewController: UIViewController {
         for item in itemInspectionArraySorted
         {
             println(item.order)
-            if item.itemName != "Complete"
+            if item.itemName != "Complete" || item.itemName != "Building Officer"
             {
             let containerRect: CGRect = CGRect(x: currentX,y: currentY,width: width,height: height)
             let container: UIView = UIView(frame: containerRect)
@@ -100,7 +151,7 @@ class CurrentInspectionViewController: UIViewController {
             //check item type and add selector
             if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "F" //Flag type = bool
             {
-                let selectorItems = ["Passed" ,"Failed"]
+                let selectorItems = ["Passed","Failed"]
                 let selector = UISegmentedControl(items: selectorItems)
                 selector.selectedSegmentIndex = -1
                 selector.tintColor = UIColor.darkGrayColor()
@@ -109,7 +160,37 @@ class CurrentInspectionViewController: UIViewController {
                 selector.setTitleTextAttributes(attr as [NSObject : AnyObject], forState: .Normal)
                 
                 selector.frame = CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80)
+                
+                //search for exsiting result for inspections
+                
+                let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
+                for itemResult in itemResults
+                {
+                    if item.itemId == itemResult.itemId
+                    {
+                        if let result = itemResult.itemResult?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                        {
+                        if result == "Y"
+                        {
+                            selector.selectedSegmentIndex = 0
+                        }
+                        else if result == "N"
+                        {
+                            selector.selectedSegmentIndex = 1
+                        }
+                        }
+                    }
+                }
+                
+                //results populated
+                
+                
                 container.addSubview(selector)
+                
+                let btnCamera = UIButton(frame: CGRect(x: container.frame.width / 2 - 20 , y: 142, width: 40, height: 40))
+                let image = UIImage(named: "Camera Filled-50.png")
+                btnCamera.setImage(image, forState: .Normal)
+                container.addSubview(btnCamera)
                 
             }
             else if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "D"
@@ -120,10 +201,12 @@ class CurrentInspectionViewController: UIViewController {
             }
             else
             {
-                let textInput = UITextField(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
-                textInput.placeholder = "Tap to enter " + item.itemName
+                
+                let textInput = UITextView(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
+                textInput.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+                
+               
                 container.addSubview(textInput)
-
                 }
             
             //move to next space
@@ -142,7 +225,7 @@ class CurrentInspectionViewController: UIViewController {
         }
         
         //update content size of scrollview to match
-        let contentSize = CGSize(width: itemHolder.frame.width, height: CGFloat(currentY) + CGFloat(height) )
+        let contentSize = CGSize(width: itemHolder.frame.width, height: CGFloat(currentY) + CGFloat(height) + 200)
         itemHolder.contentSize = contentSize
     }
     

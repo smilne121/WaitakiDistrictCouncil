@@ -172,7 +172,7 @@ class OfficeToolsGetConsents {
                 newConsentInspection.inspectionName = consentInspection["InspectionName"] as! String
                 newConsentInspection.inspectionId = consentInspection["InspectionId"] as! String
                 newConsentInspection.needSynced = NSNumber(bool: false)
-                newConsentInspection.status = "Passed" //UPDATE THIS TO CHECK ITEMS
+                //newConsentInspection.status = "" //UPDATE THIS TO CHECK ITEMS
                 newConsentInspection.consent = consent
                 
                 //loop through based on inspectionId

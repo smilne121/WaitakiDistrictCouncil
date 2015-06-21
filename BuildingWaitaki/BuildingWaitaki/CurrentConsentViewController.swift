@@ -112,16 +112,19 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
 
         //assign image if required
         let image: UIImage
-            if inspectionArraySorted[indexPath.row].status == "Failed"
+        if let status = inspectionArraySorted[indexPath.row].status
+        {
+            if status == "Failed"
             {
                 image = UIImage(named: "Failed.png") as UIImage!
                 cell.statusImage.image = image
             }
-            else if inspectionArraySorted[indexPath.row].status == "Passed"
+            else if status == "Passed"
             {
                 image  = UIImage(named: "passed.png") as UIImage!
                 cell.statusImage.image = image
             }
+        }
         
         
         return cell

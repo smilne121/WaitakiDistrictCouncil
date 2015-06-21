@@ -28,6 +28,7 @@
 		D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EFF0841B25501600E60F60 /* OfficeTools.swift */; };
 		D2F005811B25B28D00D3B0F5 /* InspectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F005801B25B28D00D3B0F5 /* InspectionType.swift */; };
 		D2FACFBA1B3641FF008C0125 /* InspectionTypeItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FACFB91B3641FF008C0125 /* InspectionTypeItems.swift */; };
+		D2FACFBC1B3678EE008C0125 /* Camera Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2FACFBB1B3678EE008C0125 /* Camera Filled-50.png */; };
 		D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40CC1B16E18200474A15 /* AppDelegate.swift */; };
 		D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40CE1B16E18200474A15 /* BuildingWaitaki.xcdatamodeld */; };
 		D2FB40D21B16E18200474A15 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40D11B16E18200474A15 /* HomeController.swift */; };
@@ -71,6 +72,7 @@
 		D2EFF0841B25501600E60F60 /* OfficeTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeTools.swift; sourceTree = "<group>"; };
 		D2F005801B25B28D00D3B0F5 /* InspectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InspectionType.swift; path = ../InspectionType.swift; sourceTree = "<group>"; };
 		D2FACFB91B3641FF008C0125 /* InspectionTypeItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InspectionTypeItems.swift; path = ../InspectionTypeItems.swift; sourceTree = "<group>"; };
+		D2FACFBB1B3678EE008C0125 /* Camera Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera Filled-50.png"; sourceTree = "<group>"; };
 		D2FB40C71B16E18200474A15 /* BuildingWaitaki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildingWaitaki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2FB40CB1B16E18200474A15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2FB40CC1B16E18200474A15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		D2B6857A1B2AF19800C3E34A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D2FACFBB1B3678EE008C0125 /* Camera Filled-50.png */,
 				D2EB21821B2FBBE4008D2AC4 /* Speech Bubble-50.png */,
 				D2EB217A1B2EAC29008D2AC4 /* Failed.png */,
 				D2EB217B1B2EAC29008D2AC4 /* passed.png */,
@@ -296,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2FACFBC1B3678EE008C0125 /* Camera Filled-50.png in Resources */,
 				D2FB40D51B16E18200474A15 /* Main.storyboard in Resources */,
 				D2B6857F1B2AF1D600C3E34A /* Contacts-50.png in Resources */,
 				D2FB40DA1B16E18200474A15 /* LaunchScreen.xib in Resources */,
