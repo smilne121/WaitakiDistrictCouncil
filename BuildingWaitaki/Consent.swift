@@ -17,7 +17,7 @@ class Consent: NSManagedObject {
     @NSManaged var consentInspection: NSSet
     @NSManaged var contact: NSSet
     
-    func save()
+    /*func save()
     {
         var error :NSError?
         
@@ -38,6 +38,6 @@ class Consent: NSManagedObject {
         if !managedObjectContext!.save(&error) {
             println("Failed to delete the item \(error), \(error?.userInfo)")
         }
-    }
+    }*/
 
 }

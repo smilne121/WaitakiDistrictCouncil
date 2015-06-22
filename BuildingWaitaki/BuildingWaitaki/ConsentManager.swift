@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Waitaki District Council. All rights reserved.
 //
 
-import Foundation
+/*import Foundation
 import CoreData
 
 class ConsentManager{
@@ -17,12 +17,13 @@ class ConsentManager{
         self.managedContext = managedContext
     }
     
-    func createConsent(consentNumber: String, consentAddress: String, consentDescription: String)
-    {
-        let newConsent = NSEntityDescription.insertNewObjectForEntityForName("Consent", inManagedObjectContext: managedContext) as! Consent
-        newConsent.save()
+ //   func createConsent(consentNumber: String, consentAddress: String, consentDescription: String)
+ //   {
+    //    let newConsent = NSEntityDescription.insertNewObjectForEntityForName("Consent", inManagedObjectContext: managedContext) as! Consent
+       // newConsent.save()
         
         
     }
     
 }
+*/

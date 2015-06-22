@@ -17,11 +17,5 @@ class ConsentInspection: NSManagedObject {
     @NSManaged var needSynced: NSNumber
     @NSManaged var consent: Consent
     @NSManaged var inspectionItem: NSSet
-    
-    
-    /*func addInspectionItem(newInspectionItem: ConsentInspectionItem)
-    {
-        self.inspectionItem.setByAddingObject(newInspectionItem)
-    }*/
 }
 

@@ -15,6 +15,10 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     var managedContext: NSManagedObjectContext!
     @IBOutlet weak var tableView: UITableView!
     
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData() //update for any content changed with comments
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,93 +39,41 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-       /* var passed = 0
-        var failed = 0
-        var uncomplete = 0*/
-
         let cell = self.tableView.dequeueReusableCellWithIdentifier("currentInspectionCell", forIndexPath: indexPath) as! CurrentConsentTableViewCell
         
         let inspectionArray = currentConsent.consentInspection.allObjects as! [ConsentInspection]
         
         let inspectionArraySorted = inspectionArray.sorted { $0.inspectionId < $1.inspectionId } //sort by item number after
         
-        /*//check if all required fields are completed NEED TO MOVE TO BEFORE HERE TO POPULATE FIELD IN DATABASE TO CHECK STATUS
-        
-        var error: NSError?
-        //get consents inspection
-        let fetchRequest = NSFetchRequest(entityName: "InspectionTypeItems")
-        fetchRequest.includesSubentities = true
-        fetchRequest.returnsObjectsAsFaults = false
-        let resultPredicate = NSPredicate(format: "inspectionId = %@", inspectionArraySorted[indexPath.row].inspectionId)
-        
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
-        fetchRequest.predicate = compound
-        
-        //get inspection results
-        let fetchRequest2 = NSFetchRequest(entityName: "ConsentInspectionItem")
-        fetchRequest2.includesSubentities = true
-        fetchRequest2.returnsObjectsAsFaults = false
-        let resultPredicate2 = NSPredicate(format: "inspectionId = %@", inspectionArraySorted[indexPath.row].inspectionId)
-        
-        var compound2 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate2])
-        fetchRequest2.predicate = compound2
-
-        //inspection items for selected inspection
-        let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
-        let inspectionResults = managedContext.executeFetchRequest(fetchRequest2, error: nil) as! [ConsentInspectionItem]
-        
-        //loop through and match results to required fields
-        for item in inspectionItems
-        {
-            if item.required == NSNumber(bool: true)
-            {
-                for result in inspectionResults
-                {
-                    if item.itemId == result.itemId
-                    {
-                        if let currentResult = result.itemResult
-                        {
-                            if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "F"
-                            {
-                                if result.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "Y"
-                                {
-                                    passed = passed + 1
-                                }
-                                else
-                                {
-                                      println("id: " + cell.inspectionName.text!)
-                                    println(item.inspectionId)
-                                    println(item.itemId)
-                                    failed = failed + 1
-                                }
-                            }
-                        }
-                        else
-                        {
-                             uncomplete = uncomplete + 1
-                                                    }
-                    }
-                }
-            }
-        }*/
-        
         cell.inspectionName.text = inspectionArraySorted[indexPath.row].inspectionName
-        cell.inspectionComments.text = "need access to this property"
         
-      
-
+        for item in inspectionArraySorted[indexPath.row].inspectionItem.allObjects as! [ConsentInspectionItem]
+        {
+            if item.itemName == "Comments"
+            {
+                cell.inspectionComments.text = item.itemResult
+            }
+        }
+        
         //assign image if required
         let image: UIImage
         if let status = inspectionArraySorted[indexPath.row].status
         {
-            if status == "Failed"
+            if status == "failed"
             {
+                println(inspectionArraySorted[indexPath.row].status)
+                println(inspectionArraySorted[indexPath.row].inspectionName)
                 image = UIImage(named: "Failed.png") as UIImage!
                 cell.statusImage.image = image
             }
-            else if status == "Passed"
+            else if status == "passed"
             {
                 image  = UIImage(named: "passed.png") as UIImage!
+                cell.statusImage.image = image
+            }
+            else if status == ""
+            {
+                image  = UIImage(named: "todo.png") as UIImage!
                 cell.statusImage.image = image
             }
         }

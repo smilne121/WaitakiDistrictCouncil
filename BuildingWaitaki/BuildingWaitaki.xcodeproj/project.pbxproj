@@ -28,7 +28,10 @@
 		D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EFF0841B25501600E60F60 /* OfficeTools.swift */; };
 		D2F005811B25B28D00D3B0F5 /* InspectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F005801B25B28D00D3B0F5 /* InspectionType.swift */; };
 		D2FACFBA1B3641FF008C0125 /* InspectionTypeItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FACFB91B3641FF008C0125 /* InspectionTypeItems.swift */; };
-		D2FACFBC1B3678EE008C0125 /* Camera Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2FACFBB1B3678EE008C0125 /* Camera Filled-50.png */; };
+		D2FACFBE1B3778BF008C0125 /* InspectionCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FACFBD1B3778BF008C0125 /* InspectionCommentsViewController.swift */; };
+		D2FACFC01B379677008C0125 /* Lock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2FACFBF1B379677008C0125 /* Lock-50.png */; };
+		D2FACFC21B37969D008C0125 /* Camera-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2FACFC11B37969D008C0125 /* Camera-50.png */; };
+		D2FACFC41B37D056008C0125 /* todo.png in Resources */ = {isa = PBXBuildFile; fileRef = D2FACFC31B37D056008C0125 /* todo.png */; };
 		D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40CC1B16E18200474A15 /* AppDelegate.swift */; };
 		D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40CE1B16E18200474A15 /* BuildingWaitaki.xcdatamodeld */; };
 		D2FB40D21B16E18200474A15 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40D11B16E18200474A15 /* HomeController.swift */; };
@@ -72,7 +75,10 @@
 		D2EFF0841B25501600E60F60 /* OfficeTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeTools.swift; sourceTree = "<group>"; };
 		D2F005801B25B28D00D3B0F5 /* InspectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InspectionType.swift; path = ../InspectionType.swift; sourceTree = "<group>"; };
 		D2FACFB91B3641FF008C0125 /* InspectionTypeItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InspectionTypeItems.swift; path = ../InspectionTypeItems.swift; sourceTree = "<group>"; };
-		D2FACFBB1B3678EE008C0125 /* Camera Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera Filled-50.png"; sourceTree = "<group>"; };
+		D2FACFBD1B3778BF008C0125 /* InspectionCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectionCommentsViewController.swift; sourceTree = "<group>"; };
+		D2FACFBF1B379677008C0125 /* Lock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lock-50.png"; sourceTree = "<group>"; };
+		D2FACFC11B37969D008C0125 /* Camera-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera-50.png"; sourceTree = "<group>"; };
+		D2FACFC31B37D056008C0125 /* todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = todo.png; sourceTree = "<group>"; };
 		D2FB40C71B16E18200474A15 /* BuildingWaitaki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildingWaitaki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2FB40CB1B16E18200474A15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2FB40CC1B16E18200474A15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,7 +129,9 @@
 		D2B6857A1B2AF19800C3E34A /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				D2FACFBB1B3678EE008C0125 /* Camera Filled-50.png */,
+				D2FACFC31B37D056008C0125 /* todo.png */,
+				D2FACFBF1B379677008C0125 /* Lock-50.png */,
+				D2FACFC11B37969D008C0125 /* Camera-50.png */,
 				D2EB21821B2FBBE4008D2AC4 /* Speech Bubble-50.png */,
 				D2EB217A1B2EAC29008D2AC4 /* Failed.png */,
 				D2EB217B1B2EAC29008D2AC4 /* passed.png */,
@@ -146,9 +154,10 @@
 		D2EB21791B2E9C7D008D2AC4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D2FB40D11B16E18200474A15 /* HomeController.swift */,
 				D2EB21801B2EC8DC008D2AC4 /* CurrentInspectionViewController.swift */,
 				D2EB21841B2FBD47008D2AC4 /* CurrentConsentViewController.swift */,
+				D2FB40D11B16E18200474A15 /* HomeController.swift */,
+				D2FACFBD1B3778BF008C0125 /* InspectionCommentsViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -299,11 +308,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2FACFBC1B3678EE008C0125 /* Camera Filled-50.png in Resources */,
 				D2FB40D51B16E18200474A15 /* Main.storyboard in Resources */,
 				D2B6857F1B2AF1D600C3E34A /* Contacts-50.png in Resources */,
 				D2FB40DA1B16E18200474A15 /* LaunchScreen.xib in Resources */,
 				D2FB40D71B16E18200474A15 /* Images.xcassets in Resources */,
+				D2FACFC41B37D056008C0125 /* todo.png in Resources */,
+				D2FACFC21B37969D008C0125 /* Camera-50.png in Resources */,
+				D2FACFC01B379677008C0125 /* Lock-50.png in Resources */,
 				D2EB217D1B2EAC29008D2AC4 /* passed.png in Resources */,
 				D2EB21831B2FBBE4008D2AC4 /* Speech Bubble-50.png in Resources */,
 				D2B685801B2AF1D600C3E34A /* Map-50.png in Resources */,
@@ -327,6 +338,7 @@
 			files = (
 				D2EB217F1B2EAF16008D2AC4 /* CurrentConsentTableViewCell.swift in Sources */,
 				D2C523C21B27CB6E00009952 /* OfficeToolsGetConsents.swift in Sources */,
+				D2FACFBE1B3778BF008C0125 /* InspectionCommentsViewController.swift in Sources */,
 				D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */,
 				D2C523C81B27E15F00009952 /* Contact.swift in Sources */,
 				D2FB40FA1B16FAB300474A15 /* SettingsPopover.swift in Sources */,

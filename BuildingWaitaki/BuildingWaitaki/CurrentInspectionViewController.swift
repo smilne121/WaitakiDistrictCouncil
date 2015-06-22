@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class CurrentInspectionViewController: UIViewController, UITextViewDelegate {
+class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIPopoverPresentationControllerDelegate {
     var consentInspection : ConsentInspection!
     var inspectionTypeItems : [InspectionTypeItems]!
     var managedContext: NSManagedObjectContext!
@@ -76,6 +76,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate {
         btnComments.setTitle("Comments", forState: .Normal)
         btnComments.layer.cornerRadius = 5.0
         btnComments.layer.borderColor = UIColor.blackColor().CGColor
+        btnComments.addTarget(self, action: "loadCommentsView:", forControlEvents: UIControlEvents.TouchUpInside)
         btnComments.layer.borderWidth = 1
         btnComments.tintColor = UIColor.blackColor()
         btnComments.layer.backgroundColor = UIColor.whiteColor().CGColor
@@ -189,7 +190,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate {
                 container.addSubview(selector)
                 
                 let btnCamera = UIButton(frame: CGRect(x: container.frame.width / 2 - 20 , y: 142, width: 40, height: 40))
-                let image = UIImage(named: "Camera Filled-50.png")
+                let image = UIImage(named: "Camera-50.png")
                 btnCamera.setImage(image, forState: .Normal)
                 container.addSubview(btnCamera)
                 
@@ -326,17 +327,42 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate {
         var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
         fetchRequest.predicate = compound
         
-        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [NSManagedObject] {
+        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem] {
             if fetchResults.count != 0
             {
                 var managedObject = fetchResults[0]
-                managedObject.setValue(value, forKey: "itemResult")
+                managedObject.itemResult = value
+                //managedObject.setValue(value, forKey: "itemResult")
                 
+                managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
+
                 managedContext.save(nil)
             }
         }
     }
     
+    func loadCommentsView(sender: UIButton)
+    {
+        let storyboard : UIStoryboard = UIStoryboard(
+            name: "Main",
+            bundle: nil)
+        var commentsViewController: InspectionCommentsViewController = storyboard.instantiateViewControllerWithIdentifier("InspectionComments") as! InspectionCommentsViewController
+        
+        commentsViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+        commentsViewController.preferredContentSize = CGSizeMake(400, 300)
+        
+        let popoverMenuViewController = commentsViewController.popoverPresentationController
+        popoverMenuViewController?.permittedArrowDirections = .Any
+        popoverMenuViewController?.delegate = self
+        popoverMenuViewController?.sourceView = sender
+        popoverMenuViewController?.sourceRect = CGRectMake(60,40,0,0)
+        presentViewController(
+            commentsViewController,
+            animated: true,
+            completion: nil)
+        
+        
+    }
 
 
     
