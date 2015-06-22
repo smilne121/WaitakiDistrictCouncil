@@ -182,7 +182,6 @@ class OfficeToolsGetConsents {
                 
                 let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
                 
-                //println(inspectionItems)
                 for consentInspectionItem in inspectionItems
                 {
                     let newInspectionItem = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspectionItem", inManagedObjectContext: managedContext) as! ConsentInspectionItem
@@ -194,7 +193,6 @@ class OfficeToolsGetConsents {
                    
                     for consentInspectionResults:AnyObject in consentInspectionResultsArray
                     {
-                       // println(consentInspectionResults)
                         let resultName = (consentInspectionResults["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                         let inspectionName = newInspectionItem.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                         if inspectionName == resultName
@@ -203,18 +201,22 @@ class OfficeToolsGetConsents {
                             {
                              newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as? String
                             }
-                          //  println(itemId)
-                           // println(newInspectionItem)
                         }
                     }
                     
-                    
                     newInspectionItem.consentInspection = newConsentInspection
-                    
-                  // println(newInspectionItem)
                 }
                 let checkInspectionStatus = OfficeToolsCheckInspection()
                 newConsentInspection.status = checkInspectionStatus.checkInspectionStatus(newConsentInspection, managedContext: managedContext)
+                println(newConsentInspection.status)
+                if newConsentInspection.status != ""
+                {
+                    newConsentInspection.locked = NSNumber(bool: true)
+                }
+                else
+                {
+                    newConsentInspection.locked = NSNumber(bool: false)
+                }
             }
 
             //add consent to core data

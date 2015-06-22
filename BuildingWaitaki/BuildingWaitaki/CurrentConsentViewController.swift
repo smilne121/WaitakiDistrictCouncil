@@ -98,6 +98,17 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
                 cell.statusImage.image = image
             }
         }
+        if inspectionArraySorted[indexPath.row].locked == NSNumber(bool: true)
+        {
+            let lockImage  = UIImage(named: "Lock-50.png") as UIImage!
+            cell.lockImage.image = lockImage
+            
+        }
+        else
+        {
+            let lockImage  = UIImage(named: "todo.png") as UIImage!
+            cell.lockImage.image = lockImage
+        }
         
         
         return cell

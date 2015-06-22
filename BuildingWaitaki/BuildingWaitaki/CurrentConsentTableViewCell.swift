@@ -11,6 +11,7 @@ import UIKit
 class CurrentConsentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var statusImage: UIImageView!
+    @IBOutlet weak var lockImage: UIImageView!
     @IBOutlet weak var inspectionName: UILabel!
     @IBOutlet weak var inspectionComments: UILabel!
     override func awakeFromNib() {
