@@ -213,7 +213,8 @@ class OfficeToolsGetConsents {
                     
                   // println(newInspectionItem)
                 }
-newConsentInspection.status = checkInspectionStatus(newConsentInspection)
+                let checkInspectionStatus = OfficeToolsCheckInspection()
+                newConsentInspection.status = checkInspectionStatus.checkInspectionStatus(newConsentInspection, managedContext: managedContext)
             }
 
             //add consent to core data
@@ -252,92 +253,6 @@ newConsentInspection.status = checkInspectionStatus(newConsentInspection)
         return results.count
     }
     
-    func checkInspectionStatus(consentInspection: ConsentInspection) -> String
-    {
-        var passed = 0
-        var failed = 0
-        var uncomplete = 0
         
-        //check if all required fields are completed
-        var error: NSError?
-        //get consents inspection
-        let fetchRequest = NSFetchRequest(entityName: "InspectionTypeItems")
-        fetchRequest.includesSubentities = true
-        fetchRequest.returnsObjectsAsFaults = false
-        let resultPredicate = NSPredicate(format: "inspectionId = %@", consentInspection.inspectionId)
-        
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
-        fetchRequest.predicate = compound
-        
-        //inspection items for selected inspection
-        let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
-        let inspectionResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
-        
-        var requiredItemsCount = 0
-        
-        //loop through and match results to required fields
-        for item in inspectionItems
-        {
-            if item.required == NSNumber(bool: true)
-            {
-                requiredItemsCount = requiredItemsCount + 1
-                for result in inspectionResults
-                {
-                    if item.itemId == result.itemId
-                    {
-                        if let currentResult = result.itemResult
-                        {
-                            if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "F"
-                            {
-                                if result.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "Y"
-                                {
-                                    passed = passed + 1
-                                }
-                                else
-                                {
-                                    failed = failed + 1
-                                }
-                            }
-                            else if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "T" || item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "D"
-                            {
-                                if let test = result.itemResult
-                                {
-                                    passed = passed + 1
-                                }
-                                else
-                                {
-                                    uncomplete = uncomplete + 1
-                                }
-                            }
-                        }
-                        else
-                        {
-                            uncomplete = uncomplete + 1
-                        }
-                    }
-                }
-            }
-        }
-    //    println("required" + String(requiredItemsCount))
-    //    println("passed:" + String(passed))
-    //    println("Failed:" + String(failed))
-    //    println("Uncomplete:" + String(uncomplete))
-        if passed == requiredItemsCount
-        {
-            println(consentInspection.inspectionId + " Passed")
-            return "passed"
-        }
-        else if (passed + failed) == requiredItemsCount
-        {
-            println(consentInspection.inspectionId + " Failed")
-            return "failed"
-        }
-        else
-        {
-            println(consentInspection.inspectionId + " todo")
-            return ""
-        }
-    }
-    
     
 }

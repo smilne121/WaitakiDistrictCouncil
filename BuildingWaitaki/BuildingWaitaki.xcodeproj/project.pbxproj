@@ -32,6 +32,7 @@
 		D2FACFC01B379677008C0125 /* Lock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2FACFBF1B379677008C0125 /* Lock-50.png */; };
 		D2FACFC21B37969D008C0125 /* Camera-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2FACFC11B37969D008C0125 /* Camera-50.png */; };
 		D2FACFC41B37D056008C0125 /* todo.png in Resources */ = {isa = PBXBuildFile; fileRef = D2FACFC31B37D056008C0125 /* todo.png */; };
+		D2FACFC61B37F1C0008C0125 /* OfficeToolsCheckInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FACFC51B37F1C0008C0125 /* OfficeToolsCheckInspection.swift */; };
 		D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40CC1B16E18200474A15 /* AppDelegate.swift */; };
 		D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40CE1B16E18200474A15 /* BuildingWaitaki.xcdatamodeld */; };
 		D2FB40D21B16E18200474A15 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB40D11B16E18200474A15 /* HomeController.swift */; };
@@ -79,6 +80,7 @@
 		D2FACFBF1B379677008C0125 /* Lock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lock-50.png"; sourceTree = "<group>"; };
 		D2FACFC11B37969D008C0125 /* Camera-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera-50.png"; sourceTree = "<group>"; };
 		D2FACFC31B37D056008C0125 /* todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = todo.png; sourceTree = "<group>"; };
+		D2FACFC51B37F1C0008C0125 /* OfficeToolsCheckInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeToolsCheckInspection.swift; sourceTree = "<group>"; };
 		D2FB40C71B16E18200474A15 /* BuildingWaitaki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildingWaitaki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2FB40CB1B16E18200474A15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2FB40CC1B16E18200474A15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				D2EFF0841B25501600E60F60 /* OfficeTools.swift */,
 				D2C523BF1B27C41800009952 /* OfficeToolsInspectionTypes.swift */,
 				D2C523C11B27CB6E00009952 /* OfficeToolsGetConsents.swift */,
+				D2FACFC51B37F1C0008C0125 /* OfficeToolsCheckInspection.swift */,
 			);
 			name = OfficeTools;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */,
 				D2C523CA1B29815600009952 /* Consent.swift in Sources */,
 				D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */,
+				D2FACFC61B37F1C0008C0125 /* OfficeToolsCheckInspection.swift in Sources */,
 				D2EB21811B2EC8DC008D2AC4 /* CurrentInspectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

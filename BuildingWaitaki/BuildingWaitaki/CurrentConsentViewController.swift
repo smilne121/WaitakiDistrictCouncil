@@ -13,10 +13,31 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     
     var currentConsent: Consent!
     var managedContext: NSManagedObjectContext!
+    var officeTools: OfficeTools!
     @IBOutlet weak var tableView: UITableView!
     
+    
     override func viewWillAppear(animated: Bool) {
+         //check and update items status
+        let inspections = (currentConsent.consentInspection.allObjects) as! [ConsentInspection]
+
+        for inspection in inspections
+        {
+            let chkins = OfficeToolsCheckInspection()
+            inspection.status = (chkins.checkInspectionStatus(inspection,managedContext: managedContext))
+        }
+        
+        //add consent to core data
+        if !managedContext.save(nil)
+        {
+            println("Could not save")
+        }
+        
+        
+        //reload data on table
         self.tableView.reloadData() //update for any content changed with comments
+        
+       
     }
     
     override func viewDidLoad() {

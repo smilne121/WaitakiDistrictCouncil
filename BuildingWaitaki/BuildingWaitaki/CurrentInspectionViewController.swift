@@ -131,7 +131,24 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         for item in itemInspectionArraySorted
         {
             let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            if itemName != "Complete" && itemName != "Building Officer"
+            if itemName == "Inspection Officer"
+            {
+                let settings = AppSettings()
+                
+                let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
+                for itemResult in itemResults
+                {
+                    if itemResult.itemName == itemName
+                    {
+                        itemResult.itemResult = settings.getUser()
+                        managedContext.save(nil)
+                    }
+                }
+                
+            }
+
+            
+            if itemName != "Complete" && itemName != "Inspection Officer"
             {
             let containerRect: CGRect = CGRect(x: currentX,y: currentY,width: width,height: height)
             let container: UIView = UIView(frame: containerRect)
@@ -213,6 +230,29 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                             dateFormatter.dateFormat = "dd-MM-yyyy"
                             datePicker.setDate(dateFormatter.dateFromString(result)!, animated: true)
                         }
+                    }
+                }
+                
+                //save date back to consent 
+                for item in itemInspectionArraySorted
+                {
+                    let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                    if itemName == "Date"
+                    {
+                        let settings = AppSettings()
+                        
+                        let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
+                        for itemResult in itemResults
+                        {
+                            if itemResult.itemName == itemName
+                            {
+                                let dateFormatter = NSDateFormatter()
+                                dateFormatter.dateFormat = "dd-MM-yyyy"
+                                itemResult.itemResult = dateFormatter.stringFromDate(datePicker.date)
+                                managedContext.save(nil)
+                            }
+                        }
+                        
                     }
                 }
                 

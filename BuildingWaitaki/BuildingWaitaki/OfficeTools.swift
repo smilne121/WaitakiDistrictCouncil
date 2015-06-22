@@ -43,6 +43,13 @@ class OfficeTools {
         return true
     }
     
+    func checkInspectionStatus(consentInspection: ConsentInspection) -> String
+    {
+        let officeToolsGetConsents = OfficeToolsCheckInspection()
+        let result =  officeToolsGetConsents.checkInspectionStatus(consentInspection, managedContext: managedContext)
+        return result
+    }
+    
 
     
 

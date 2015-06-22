@@ -27,11 +27,15 @@ class HomeController: UIViewController {
         // Retreive the managedObjectContext from AppDelegate
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
+        
+        
         //display consents in core data
         displayConsents = DisplayConsents(scrollView: consentScrollView,managedContext: managedObjectContext!, searchBar: searchBar, homeController: self)
         displayConsents.displayConsents()
         
         officeTools = OfficeTools(managedContext: managedObjectContext!,controller: self,displayConsents: displayConsents, background: background)
+        
+        
         
     }
     
@@ -57,10 +61,7 @@ class HomeController: UIViewController {
         settingsPopover.showPopover(sender, controller: self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-            var currentConsentController = segue.destinationViewController as! CurrentConsentViewController;
-            currentConsentController.currentConsent = currentConsent!
-    }
+
     
 
 
