@@ -83,7 +83,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnDeleteInspection.tintColor = UIColor.blackColor()
         btnDeleteInspection.layer.backgroundColor = UIColor.whiteColor().CGColor
         println(consentInspection.userCreated)
-        if consentInspection.userCreated != NSNumber(bool: true)
+        if (consentInspection.userCreated != NSNumber(bool: true)) || (consentInspection.locked == true)
         {
             btnDeleteInspection.enabled = false
         }
@@ -109,6 +109,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnFinished.layer.borderWidth = 1
         btnFinished.tintColor = UIColor.blackColor()
         btnFinished.layer.backgroundColor = UIColor.whiteColor().CGColor
+        if consentInspection.locked == true
+        {
+            btnFinished.enabled = false
+        }
         itemHolder.superview?.addSubview(btnFinished)
         
         let btnClearInspection = UIButton.buttonWithType(UIButtonType.System) as! UIButton
@@ -120,6 +124,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnClearInspection.layer.borderWidth = 1
         btnClearInspection.addTarget(self, action: "clearInspectionResults:", forControlEvents: UIControlEvents.TouchUpInside)
         btnClearInspection.tintColor = UIColor.blackColor()
+        if consentInspection.locked == true
+        {
+            btnClearInspection.enabled = false
+        }
         itemHolder.superview?.addSubview(btnClearInspection)
         
         let btnNeedsReinspection = UIButton.buttonWithType(UIButtonType.System) as! UIButton
@@ -131,6 +139,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnNeedsReinspection.layer.borderWidth = 1
         btnNeedsReinspection.addTarget(self, action: "finishNeedReinspection:", forControlEvents: UIControlEvents.TouchUpInside)
         btnNeedsReinspection.tintColor = UIColor.blackColor()
+        if consentInspection.locked == true
+        {
+            btnNeedsReinspection.enabled = false
+        }
         itemHolder.superview?.addSubview(btnNeedsReinspection)
         
         //change items into a sorted array
@@ -168,7 +180,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             }
 
             
-            if itemName != "Complete" && itemName != "Inspection Officer"
+            if itemName != "Comments" && itemName != "Inspection Officer"
             {
             let containerRect: CGRect = CGRect(x: currentX,y: currentY,width: width,height: height)
             let container: UIView = UIView(frame: containerRect)
@@ -287,8 +299,9 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 {
                     let dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "dd-MM-yyyy"
-                    let textDate = UITextField(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
+                    let textDate = UITextField(frame: CGRect(x: 120, y: 50, width: container.frame.width - 50, height: 80))
                     textDate.text = dateFormatter.stringFromDate(datePicker.date)
+                    textDate.font = UIFont(name: textDate.font.fontName, size: CGFloat(22))
                     textDate.enabled = false
                     container.addSubview(textDate)
                 }
@@ -434,13 +447,19 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         var commentsViewController: InspectionCommentsViewController = storyboard.instantiateViewControllerWithIdentifier("InspectionComments") as! InspectionCommentsViewController
         
         commentsViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-        commentsViewController.preferredContentSize = CGSizeMake(400, 300)
+        commentsViewController.preferredContentSize = CGSizeMake(500, 450)
+        
+        commentsViewController.consentInspection = consentInspection
+        commentsViewController.managedContext = managedContext
         
         let popoverMenuViewController = commentsViewController.popoverPresentationController
         popoverMenuViewController?.permittedArrowDirections = .Any
         popoverMenuViewController?.delegate = self
         popoverMenuViewController?.sourceView = sender
-        popoverMenuViewController?.sourceRect = CGRectMake(60,40,0,0)
+        popoverMenuViewController?.sourceRect = CGRectMake(80,40,0,0)
+        
+  
+        
         presentViewController(
             commentsViewController,
             animated: true,
@@ -535,6 +554,27 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             }
         }
         return requiredDone
+    }
+    
+    func clearInspectionResults(sender: UIButton)
+    {
+        var resultRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+        let itemPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
+        let itemPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
+        
+        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([itemPredicate1, itemPredicate2])
+        resultRequest.predicate = compound1
+        
+        let inspectionItems = managedContext.executeFetchRequest(resultRequest, error: nil) as? [ConsentInspectionItem]
+        
+        for item in inspectionItems!
+        {
+            item.itemResult = nil
+        }
+        managedContext.save(nil)
+        
+        navigationController!.popViewControllerAnimated(true)
+
     }
     
     func deleteThisInspection(sender: UIButton)
@@ -642,15 +682,19 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         var resultRequest2 = NSFetchRequest(entityName: "ConsentInspection")
         
         var compound2 = NSCompoundPredicate.andPredicateWithSubpredicates([itemPredicate1, itemPredicate2])
-        resultRequest.predicate = compound2
+        resultRequest2.predicate = compound2
         
-        if let inspection = managedContext.executeFetchRequest(resultRequest, error: nil)?.first as? ConsentInspection
+        let inspection = managedContext.executeFetchRequest(resultRequest2, error: nil) as! [ConsentInspection]
+        
+        if inspection.count == 1
         {
-            managedContext.deleteObject(inspection as NSManagedObject)
+            let inspectionToDelete = inspection[0]
+            managedContext.deleteObject(inspectionToDelete as NSManagedObject)
             managedContext.save(nil)
         }
         else
         {
+            println(inspection.count)
             println("Conflicting inspections found: " + consentInspection.consentId)
         }
         navigationController!.popViewControllerAnimated(true)
