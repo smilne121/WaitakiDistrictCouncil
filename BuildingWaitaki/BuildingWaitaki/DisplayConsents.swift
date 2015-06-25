@@ -264,7 +264,6 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                 {
                     //create a display inspections here.
                     let consentNumber = (view as! UILabel).text
-                    println(consentNumber)
                     
                     var error: NSError?
                     //get consents inspection

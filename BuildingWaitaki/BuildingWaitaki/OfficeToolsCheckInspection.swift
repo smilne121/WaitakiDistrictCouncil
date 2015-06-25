@@ -78,23 +78,16 @@ class OfficeToolsCheckInspection
             }
         }
     }
-       println("required" + String(requiredItemsCount))
-       println("passed:" + String(passed))
-       println("Failed:" + String(failed))
-    println("Uncomplete:" + String(uncomplete))
     if passed == requiredItemsCount
     {
-        println(consentInspection.inspectionId + " Passed")
         return "passed"
     }
     else if (passed + failed) == requiredItemsCount
     {
-        println(consentInspection.inspectionId + " Failed")
         return "failed"
     }
     else
     {
-        println(consentInspection.inspectionId + " todo")
         return ""
     }
     }}

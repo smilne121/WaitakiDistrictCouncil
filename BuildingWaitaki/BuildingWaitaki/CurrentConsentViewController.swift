@@ -82,8 +82,6 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         {
             if status == "failed"
             {
-                println(inspectionArraySorted[indexPath.row].status)
-                println(inspectionArraySorted[indexPath.row].inspectionName)
                 image = UIImage(named: "Failed.png") as UIImage!
                 cell.statusImage.image = image
             }

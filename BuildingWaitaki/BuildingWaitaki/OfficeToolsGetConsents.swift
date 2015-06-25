@@ -164,9 +164,10 @@ class OfficeToolsGetConsents {
             {
                 let newConsentInspection = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspection", inManagedObjectContext: managedContext) as! ConsentInspection
                 newConsentInspection.consentId = consent.consentNumber
-                newConsentInspection.inspectionName = consentInspection["InspectionName"] as! String
+                newConsentInspection.inspectionName = (consentInspection["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) 
                 newConsentInspection.inspectionId = consentInspection["InspectionId"] as! String
                 newConsentInspection.needSynced = NSNumber(bool: false)
+                newConsentInspection.userCreated = NSNumber(bool: false)
                 newConsentInspection.consent = consent
                 
                 //loop through based on inspectionId
@@ -208,7 +209,6 @@ class OfficeToolsGetConsents {
                 }
                 let checkInspectionStatus = OfficeToolsCheckInspection()
                 newConsentInspection.status = checkInspectionStatus.checkInspectionStatus(newConsentInspection, managedContext: managedContext)
-                println(newConsentInspection.status)
                 if newConsentInspection.status != ""
                 {
                     newConsentInspection.locked = NSNumber(bool: true)

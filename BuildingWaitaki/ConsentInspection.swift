@@ -15,6 +15,7 @@ class ConsentInspection: NSManagedObject {
     @NSManaged var inspectionName: String
     @NSManaged var inspectionId: String
     @NSManaged var needSynced: NSNumber
+    @NSManaged var userCreated: NSNumber
     @NSManaged var locked: NSNumber
     @NSManaged var consent: Consent
     @NSManaged var inspectionItem: NSSet
