@@ -43,16 +43,33 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addInspectionClicked:"), animated: true)
+        
+        
         // Do any additional setup after loading the view.
         self.title = currentConsent.consentAddress + "  " + currentConsent.consentNumber
         self.tableView.rowHeight = CGFloat(150)
         
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func addInspectionClicked(sender: UIBarButtonItem)
+    {
+        let viewController = AddInspectionViewController()
+        viewController.currentConsent = currentConsent
+        viewController.managedContext = managedContext
+        
+        var resultRequest = NSFetchRequest(entityName: "InspectionType")
+        let inspectionItems = managedContext.executeFetchRequest(resultRequest, error: nil) as? [InspectionType]
+        
+        viewController.inspectionItems = inspectionItems
+        navigationController!.pushViewController(viewController, animated: true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

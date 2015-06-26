@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */; };
+		D21BF6861B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */; };
 		D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */; };
 		D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */; };
 		D2B6857F1B2AF1D600C3E34A /* Contacts-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B6857C1B2AF1D600C3E34A /* Contacts-50.png */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInspectionViewController.swift; sourceTree = "<group>"; };
+		D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInspectionTableViewCell.swift; sourceTree = "<group>"; };
 		D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransfer.swift; sourceTree = "<group>"; };
 		D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayConsents.swift; sourceTree = "<group>"; };
 		D2B6857C1B2AF1D600C3E34A /* Contacts-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contacts-50.png"; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 		D2EB21791B2E9C7D008D2AC4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */,
 				D2EB21801B2EC8DC008D2AC4 /* CurrentInspectionViewController.swift */,
 				D2EB21841B2FBD47008D2AC4 /* CurrentConsentViewController.swift */,
 				D2FB40D11B16E18200474A15 /* HomeController.swift */,
@@ -196,6 +201,7 @@
 				D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */,
 				D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */,
 				D2EB217E1B2EAF16008D2AC4 /* CurrentConsentTableViewCell.swift */,
+				D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */,
 			);
 			path = BuildingWaitaki;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 				D2F005811B25B28D00D3B0F5 /* InspectionType.swift in Sources */,
 				D2EB21851B2FBD47008D2AC4 /* CurrentConsentViewController.swift in Sources */,
 				D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */,
+				D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */,
 				D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */,
 				D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */,
 				D2FACFBA1B3641FF008C0125 /* InspectionTypeItems.swift in Sources */,
@@ -353,6 +360,7 @@
 				D2C523CA1B29815600009952 /* Consent.swift in Sources */,
 				D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */,
 				D2FACFC61B37F1C0008C0125 /* OfficeToolsCheckInspection.swift in Sources */,
+				D21BF6861B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift in Sources */,
 				D2EB21811B2EC8DC008D2AC4 /* CurrentInspectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

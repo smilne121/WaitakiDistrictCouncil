@@ -187,7 +187,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kC1-hR-ht5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1058" y="1728"/>
+            <point key="canvasLocation" x="1292" y="1594"/>
+        </scene>
+        <!--Add Inspection View Controller-->
+        <scene sceneID="EG6-PM-WLe">
+            <objects>
+                <tableViewController storyboardIdentifier="AddInspectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lfC-cH-hmj" customClass="AddInspectionViewController" customModule="BuildingWaitaki" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="25J-jp-X2N">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="addInspectionCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="addInspectionCell" id="DMf-OJ-tYD" customClass="AddInspectionTableViewCell" customModule="BuildingWaitaki" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DMf-OJ-tYD" id="VSv-He-QBx">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lfC-cH-hmj" id="8z6-h3-kUe"/>
+                            <outlet property="delegate" destination="lfC-cH-hmj" id="gaA-Yj-awe"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vMq-RB-fko" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2048" y="1309"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iaI-eD-kaC">
