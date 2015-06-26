@@ -14,6 +14,7 @@ class AddInspectionViewController: UITableViewController {
     var currentConsent : Consent!
     var managedContext : NSManagedObjectContext!
     var inspectionItems : [InspectionType]!
+    var inspectionId : String?
 
     
 
@@ -26,8 +27,6 @@ class AddInspectionViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,50 +58,87 @@ class AddInspectionViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let sorted = inspectionItems.sorted {$0.inspectionName < $1.inspectionName}
+        
+        inspectionId = sorted[indexPath.row].inspectionId
+        createInspection(nil)
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+        /*for inspection in currentConsent.consentInspection.allObjects as! [ConsentInspection]
+        {
+            if inspection.inspectionId == sorted[indexPath.row].inspectionId
+            {
+                inspectionId = inspection.inspectionId
+                let popup = UIAlertController(title: "This inspection already exists",
+                    message: "Do you wish to create another " + sorted[indexPath.row].inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " inspection",
+                    preferredStyle: .Alert)
+                
+                popup.addAction(UIAlertAction(title: "OK",
+                    style: UIAlertActionStyle.Default,
+                    handler: self.createInspection))
+                
+                popup.addAction(UIAlertAction(title: "Cancel",
+                    style: UIAlertActionStyle.Cancel,
+                    handler: nil))
+                
+                self.presentViewController(popup, animated: true, completion: nil)
+            }
+            else
+            {
+                inspectionId = inspection.inspectionId
+                createInspection(nil)
+            }
+        }*/
     }
-    */
+    
+    func createInspection (alert: UIAlertAction?)
+    {
+        var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
+        let resultPredicate1 = NSPredicate(format: "inspectionId = %@", inspectionId!)
+        let resultPredicate2 = NSPredicate(format: "consentId = %@", currentConsent.consentNumber)
+        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2])
+        existingRequest.predicate = compound1
+        
+        let inspectionItemsArray = managedContext.executeFetchRequest(existingRequest, error: nil) as? [ConsentInspection]
+        
+        var fetchRequest = NSFetchRequest(entityName: "InspectionType")
+        let resultPredicate = NSPredicate(format: "inspectionId = %@", inspectionId!)
+        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+        fetchRequest.predicate = compound
+        
+        if let fetchResult = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as? InspectionType
+        {
+            let inspection = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspection", inManagedObjectContext: managedContext) as! ConsentInspection
+            inspection.inspectionId = fetchResult.inspectionId
+            let inspectionName = fetchResult.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())  + " " + String(inspectionItemsArray!.count + 1)
+            inspection.inspectionName = inspectionName
+            
+            inspection.consent = currentConsent
+            inspection.consentId = currentConsent.consentNumber
+            inspection.locked = false
+            inspection.userCreated = NSNumber(bool: true)
+            inspection.needSynced = NSNumber(bool: false)
+            inspection.status = ""
+            
+            for item in fetchResult.inspectionTypeItems.allObjects as! [InspectionTypeItems]
+            {
+                let inspectionItem = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspectionItem", inManagedObjectContext: managedContext) as! ConsentInspectionItem
+                inspectionItem.inspectionId = fetchResult.inspectionId
+                inspectionItem.inspectionName = inspectionName
+                inspectionItem.consentId = currentConsent.consentNumber
+                inspectionItem.itemId = item.itemId
+                inspectionItem.itemName = item.itemName
+                inspectionItem.consentInspection = inspection
+            }
+            managedContext.save(nil)
+            
+            navigationController?.popViewControllerAnimated(true)
+        }
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
     }
-    */
+    
+    
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+    
 
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
+   }

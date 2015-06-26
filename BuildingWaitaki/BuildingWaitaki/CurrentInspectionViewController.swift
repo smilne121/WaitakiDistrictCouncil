@@ -492,6 +492,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             inspection.consentId = consentInspection.consentId
             inspection.locked = false
             inspection.userCreated = NSNumber(bool: true)
+            inspection.needSynced = NSNumber(bool: false)
             inspection.status = ""
             
             for item in fetchResult.inspectionTypeItems.allObjects as! [InspectionTypeItems]
