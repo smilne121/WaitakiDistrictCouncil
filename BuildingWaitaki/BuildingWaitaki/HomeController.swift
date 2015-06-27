@@ -9,10 +9,11 @@
 import UIKit
 import CoreData
 
-class HomeController: UIViewController {
+class HomeController: UIViewController, UIGestureRecognizerDelegate {
     var officeTools :OfficeTools!
     var displayConsents :DisplayConsents!
     var currentConsent: Consent?
+    var managedObjectContext: NSManagedObjectContext?
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var consentScrollView: UIScrollView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -21,6 +22,12 @@ class HomeController: UIViewController {
     var searchActive : Bool = false
     
     override func viewWillAppear(animated: Bool) {
+        //clear unfinished inspections list
+        for view in unfinishedInspectionsScrollview.subviews
+        {
+            view.removeFromSuperview()
+        }
+        
         var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
         let resultPredicate1 = NSPredicate(format: "needSynced = %@", NSNumber(bool: true))
         let resultPredicate2 = NSPredicate(format: "locked = %@", NSNumber(bool: false))
@@ -28,17 +35,21 @@ class HomeController: UIViewController {
         var currentY = CGFloat(5)
         var height = CGFloat(50)
         
-        let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        //let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
         existingRequest.predicate = compound1
         
-        let unfinishedInspections = managedContext!.executeFetchRequest(existingRequest, error: nil) as? [ConsentInspection]
+        let unfinishedInspections = managedObjectContext!.executeFetchRequest(existingRequest, error: nil) as? [ConsentInspection]
         
         for inspection in unfinishedInspections!
         {
             let container = UIView(frame: CGRect(x: CGFloat(5), y: currentY, width: unfinishedInspectionsScrollview.frame.width - 10, height: height))
             container.backgroundColor = UIColor.whiteColor()
             container.layer.cornerRadius = 5.0
+            
+            let tap = UITapGestureRecognizer(target: self, action:Selector("handleTap:"))
+            tap.delegate = self
+            container.addGestureRecognizer(tap)
             
             
             let consentNumber = UILabel(frame: CGRect(x: 5, y: 5, width: container.frame.width, height: (height / 2) - 5))
@@ -47,10 +58,31 @@ class HomeController: UIViewController {
             let inspectionName = UILabel(frame: CGRect(x: 5, y: height / 2, width: container.frame.width , height: (height / 2) - 5))
             inspectionName.text = inspection.inspectionName
             
+            let image: UIImage
+            if inspection.status == "failed"
+            {
+                image = UIImage(named: "red.png") as UIImage!
+            }
+            else if inspection.status == "passed"
+            {
+                image  = UIImage(named: "green.png") as UIImage!
+            }
+            else
+            {
+                image  = UIImage(named: "todo.png") as UIImage!
+            }
+            
+            let statusImage = UIImageView(frame: CGRect(x: CGFloat(container.frame.width - 25), y: CGFloat(5), width: CGFloat(20), height: CGFloat(20)))
+            statusImage.image = image
+            
+            
+
+            
             currentY = currentY + height
             
             container.addSubview(consentNumber)
             container.addSubview(inspectionName)
+            container.addSubview(statusImage)
             unfinishedInspectionsScrollview.addSubview(container)
             
             
@@ -64,7 +96,7 @@ class HomeController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
         // Retreive the managedObjectContext from AppDelegate
-        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
         
         
@@ -76,6 +108,27 @@ class HomeController: UIViewController {
         
         
         
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer) {
+        let consentNumber = (sender.view?.subviews[0] as! UILabel).text
+        let inspectionName = (sender.view?.subviews[1] as! UILabel).text
+        
+        //get the consent inspection Required
+        var consentInspectionRequest = NSFetchRequest(entityName: "ConsentInspection")
+        let resultPredicate1 = NSPredicate(format: "consentId = %@", consentNumber!)
+        let resultPredicate2 = NSPredicate(format: "inspectionName = %@", inspectionName!)
+        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2])
+        consentInspectionRequest.predicate = compound1
+        
+        let currentInspection = managedObjectContext!.executeFetchRequest(consentInspectionRequest, error: nil)?.first as! ConsentInspection
+
+        
+        let currentInspectionController = self.storyboard!.instantiateViewControllerWithIdentifier("CurrentInspectionViewController") as! CurrentInspectionViewController
+        currentInspectionController.consentInspection = currentInspection
+        currentInspectionController.title = currentInspection.inspectionName
+        currentInspectionController.managedContext = managedObjectContext
+        self.navigationController!.pushViewController(currentInspectionController, animated: true)
     }
     
     @IBAction func getConsents(sender: UIButton)

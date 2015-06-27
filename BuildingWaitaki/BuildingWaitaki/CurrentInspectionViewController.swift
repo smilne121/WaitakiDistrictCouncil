@@ -559,6 +559,8 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     
     func clearInspectionResults(sender: UIButton)
     {
+        consentInspection.status = ""
+        consentInspection.needSynced = NSNumber(bool: false)
         var resultRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
         let itemPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
         let itemPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
@@ -706,18 +708,35 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
 
     func finish(alert: UIAlertAction!)
     {
-       
-        consentInspection.locked = NSNumber(bool: true)
-        consentInspection.needSynced = true
+saveFinished()
         navigationController?.popViewControllerAnimated(true)
+        managedContext.save(nil)
     }
     
     func finishAddNew(alert:UIAlertAction!)
     {
          generateNewInspection()
-        consentInspection.locked = NSNumber(bool: true)
-        consentInspection.needSynced = true
+saveFinished()
         navigationController?.popViewControllerAnimated(true)
+        managedContext.save(nil)
+    }
+    
+    private func saveFinished()
+    {
+        var fetchRequest = NSFetchRequest(entityName: "ConsentInspection")
+        
+        let resultPredicate1 = NSPredicate(format: "inspectionName = %@", self.title!)
+        let resultPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
+        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2])
+        fetchRequest.predicate = compound
+        
+        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as? ConsentInspection {
+                var managedObject = fetchResults
+                managedObject.locked = NSNumber(bool: true)
+                managedObject.needSynced = true
+                managedContext.save(nil)
+        }
+
     }
 
 }
