@@ -33,6 +33,12 @@ class OfficeTools {
         inspectionTypes.getInspectionTypes()
     }
     
+    func sendResults()
+    {
+        let sendInspections = OfficeToolsSendInspections(managedContext: managedContext)
+        sendInspections.getResults()
+    }
+    
     //return back bool if items still need to be synced
     func getConsents() -> Bool
     {

@@ -131,6 +131,11 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController!.pushViewController(currentInspectionController, animated: true)
     }
     
+    @IBAction func sendInspections(sender: UIButton)
+    {
+        officeTools!.sendResults()
+    }
+    
     @IBAction func getConsents(sender: UIButton)
     {
         searchBar.resignFirstResponder()

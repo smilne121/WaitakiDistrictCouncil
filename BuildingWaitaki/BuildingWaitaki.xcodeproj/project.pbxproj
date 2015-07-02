@@ -12,6 +12,11 @@
 		D2198D391B3E259900D89FDE /* bwicon.png in Resources */ = {isa = PBXBuildFile; fileRef = D2198D381B3E259900D89FDE /* bwicon.png */; };
 		D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */; };
 		D21BF6861B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */; };
+		D28C419A1B4336A100C69EAB /* OfficeToolsSendInspections.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C41991B4336A100C69EAB /* OfficeToolsSendInspections.swift */; };
+		D28C419C1B43BDF900C69EAB /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C419B1B43BDF900C69EAB /* Serializable.swift */; };
+		D28C419F1B44CEFA00C69EAB /* ResultTransferInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */; };
+		D28C41A11B44CF3200C69EAB /* ResultTransferItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C41A01B44CF3200C69EAB /* ResultTransferItem.swift */; };
+		D28C41A31B44CF6E00C69EAB /* ResultTransferConsent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C41A21B44CF6E00C69EAB /* ResultTransferConsent.swift */; };
 		D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */; };
 		D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */; };
 		D2B6857F1B2AF1D600C3E34A /* Contacts-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B6857C1B2AF1D600C3E34A /* Contacts-50.png */; };
@@ -63,6 +68,11 @@
 		D2198D381B3E259900D89FDE /* bwicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bwicon.png; sourceTree = "<group>"; };
 		D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInspectionViewController.swift; sourceTree = "<group>"; };
 		D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInspectionTableViewCell.swift; sourceTree = "<group>"; };
+		D28C41991B4336A100C69EAB /* OfficeToolsSendInspections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeToolsSendInspections.swift; sourceTree = "<group>"; };
+		D28C419B1B43BDF900C69EAB /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
+		D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferInspection.swift; sourceTree = "<group>"; };
+		D28C41A01B44CF3200C69EAB /* ResultTransferItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferItem.swift; sourceTree = "<group>"; };
+		D28C41A21B44CF6E00C69EAB /* ResultTransferConsent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferConsent.swift; sourceTree = "<group>"; };
 		D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransfer.swift; sourceTree = "<group>"; };
 		D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayConsents.swift; sourceTree = "<group>"; };
 		D2B6857C1B2AF1D600C3E34A /* Contacts-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contacts-50.png"; sourceTree = "<group>"; };
@@ -120,6 +130,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D28C419D1B44CEC200C69EAB /* Transfer Result Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */,
+				D28C41A01B44CF3200C69EAB /* ResultTransferItem.swift */,
+				D28C41A21B44CF6E00C69EAB /* ResultTransferConsent.swift */,
+			);
+			name = "Transfer Result Classes";
+			sourceTree = "<group>";
+		};
 		D2ACBD3A1B19A27300C2DC2C /* CoreDataClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +178,8 @@
 				D2C523BF1B27C41800009952 /* OfficeToolsInspectionTypes.swift */,
 				D2C523C11B27CB6E00009952 /* OfficeToolsGetConsents.swift */,
 				D2FACFC51B37F1C0008C0125 /* OfficeToolsCheckInspection.swift */,
+				D28C41991B4336A100C69EAB /* OfficeToolsSendInspections.swift */,
+				D28C419B1B43BDF900C69EAB /* Serializable.swift */,
 			);
 			name = OfficeTools;
 			sourceTree = "<group>";
@@ -195,6 +217,7 @@
 		D2FB40C91B16E18200474A15 /* BuildingWaitaki */ = {
 			isa = PBXGroup;
 			children = (
+				D28C419D1B44CEC200C69EAB /* Transfer Result Classes */,
 				D2B6857A1B2AF19800C3E34A /* Images */,
 				D2C523BE1B27C3E700009952 /* OfficeTools */,
 				D2ACBD3A1B19A27300C2DC2C /* CoreDataClasses */,
@@ -353,6 +376,7 @@
 			files = (
 				D2EB217F1B2EAF16008D2AC4 /* CurrentConsentTableViewCell.swift in Sources */,
 				D2C523C21B27CB6E00009952 /* OfficeToolsGetConsents.swift in Sources */,
+				D28C419A1B4336A100C69EAB /* OfficeToolsSendInspections.swift in Sources */,
 				D2FACFBE1B3778BF008C0125 /* InspectionCommentsViewController.swift in Sources */,
 				D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */,
 				D2C523C81B27E15F00009952 /* Contact.swift in Sources */,
@@ -361,6 +385,8 @@
 				D2C523C61B27E0D200009952 /* ConsentInspectionItem.swift in Sources */,
 				D2F005811B25B28D00D3B0F5 /* InspectionType.swift in Sources */,
 				D2EB21851B2FBD47008D2AC4 /* CurrentConsentViewController.swift in Sources */,
+				D28C41A11B44CF3200C69EAB /* ResultTransferItem.swift in Sources */,
+				D28C41A31B44CF6E00C69EAB /* ResultTransferConsent.swift in Sources */,
 				D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */,
 				D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */,
 				D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */,
@@ -371,6 +397,8 @@
 				D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */,
 				D2C523CA1B29815600009952 /* Consent.swift in Sources */,
 				D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */,
+				D28C419F1B44CEFA00C69EAB /* ResultTransferInspection.swift in Sources */,
+				D28C419C1B43BDF900C69EAB /* Serializable.swift in Sources */,
 				D2FACFC61B37F1C0008C0125 /* OfficeToolsCheckInspection.swift in Sources */,
 				D21BF6861B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift in Sources */,
 				D2EB21811B2EC8DC008D2AC4 /* CurrentInspectionViewController.swift in Sources */,

@@ -21,3 +21,4 @@ class ConsentInspection: NSManagedObject {
     @NSManaged var inspectionItem: NSSet
 }
 
+
