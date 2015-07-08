@@ -8,21 +8,30 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class OfficeToolsSendInspections
 {
     let managedContext : NSManagedObjectContext
+    let controller: HomeController
     
-    init(managedContext: NSManagedObjectContext)
+    init(managedContext: NSManagedObjectContext, controller: HomeController)
     {
         self.managedContext = managedContext
+        self.controller = controller
     }
     
     func getResults()
     {
+        var lightBlur = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+        var blurView = UIVisualEffectView(effect: lightBlur)
+        blurView.frame = controller.view.bounds
+        controller.view.addSubview(blurView)
+        
+        
         var error: NSError?
         let fetchRequest = NSFetchRequest(entityName: "ConsentInspection")
-        let resultPredicate = NSPredicate(format: "needSynced %@", NSNumber(bool: true))
+        let resultPredicate = NSPredicate(format: "needSynced = %@", NSNumber(bool: true))
         fetchRequest.includesSubentities = true
         fetchRequest.returnsObjectsAsFaults = false
         
@@ -30,33 +39,19 @@ class OfficeToolsSendInspections
         
         let items = managedContext.executeFetchRequest(fetchRequest, error: &error)! as! [ConsentInspection]
         
-        var transferItems = ResultTransferItemArray()
+        let resultConsents = ResultTransferArray(consents: items)
         
-        
-        for item in items
-        {
-            if item.itemResult != nil
-            {
-                transferItems.append(item.toJSONItem())
-            }
-        }
-        
-        if items.count > 0
-        {
-            resultsToJson(transferItems)
-        }
-
+        resultsToJson(resultConsents)
     }
     
-    func resultsToJson(consentInspectionItems:ResultTransferItemArray)
+    func resultsToJson(consentInspectionItems:ResultTransferArray)
     {
-     //   println(consentInspectionItems.toJsonString())
-        post(consentInspectionItems.toJson(), url: "http://wdcit02:31700/buildingwaitaki/ReceiveResults")
-        
+        post(consentInspectionItems.toJson(), url: "http://wdcweb4.waitakidc.govt.nz:4242/buildingwaitaki/ReceiveResults")
     }
     
     func post(params : NSData, url : String)
     {
+        var result = ""
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         request.HTTPMethod = "POST"
         request.HTTPBody = params
@@ -67,11 +62,17 @@ class OfficeToolsSendInspections
                 println("error=\(error)")
                 return
             }
-            
-            println("response = \(response)")
+        
             
             let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("responseString = \(responseString)")
+            for curView in self.controller.view.subviews
+            {
+                if curView.isKindOfClass(UIVisualEffectView)
+                {
+                    curView.removeFromSuperview()
+                }
+            }
+            self.controller.sendInspectionsComplete(responseString as! String);
         }
         task.resume()
     }

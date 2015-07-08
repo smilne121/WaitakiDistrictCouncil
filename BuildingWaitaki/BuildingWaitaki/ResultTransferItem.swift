@@ -10,23 +10,15 @@ import Foundation
 
 class ResultTransferItem : Serializable
 {
-    var consentId: NSString
-    var inspectionId: NSString
-    var inspectionName: NSString
     var itemId: NSString
-    var itemName: NSString
     var itemResult: NSString?
     
-    init(consentId: NSString, inspectionId : NSString,inspectionName : NSString, itemId : NSString, itemName : NSString, itemResult : NSString?)
+    init(item : ConsentInspectionItem)
     {
-        self.consentId = consentId
-        self.inspectionId = inspectionId
-        self.inspectionName = inspectionName
-        self.itemId = itemId
-        self.itemName = itemName
-        if let result = itemResult
+        self.itemId = item.itemId
+        if let result = item.itemResult
         {
-            self.itemResult = itemResult
+            self.itemResult = item.itemResult
         }
         else
         {

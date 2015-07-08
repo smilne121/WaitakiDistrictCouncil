@@ -19,12 +19,12 @@ class ConsentInspectionItem: NSManagedObject {
     @NSManaged var itemResult: String?
     @NSManaged var consentInspection: ConsentInspection
     
-    func toJSONItem() -> ResultTransferItem
+   /* func toJSONItem() -> ResultTransferItem
     {
         let item = ResultTransferItem(consentId: self.consentId,inspectionId: self.inspectionId,inspectionName: self.inspectionName,itemId: self.itemId, itemName: self.itemName,itemResult: self.itemResult)
         
         return item
-    }
+    }*/
     
 
 

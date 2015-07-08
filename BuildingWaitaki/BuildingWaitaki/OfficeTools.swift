@@ -35,16 +35,16 @@ class OfficeTools {
     
     func sendResults()
     {
-        let sendInspections = OfficeToolsSendInspections(managedContext: managedContext)
+        let sendInspections = OfficeToolsSendInspections(managedContext: managedContext,controller: controller as! HomeController)
         sendInspections.getResults()
     }
     
     //return back bool if items still need to be synced
-    func getConsents() -> Bool
+    func getConsents(uploaded: Bool) -> Bool
     {
         let officeToolsGetConsents : OfficeToolsGetConsents
         officeToolsGetConsents = OfficeToolsGetConsents(managedContext: managedContext, controller: controller,displayConsents: displayConsents,background: background)
-        officeToolsGetConsents.getConcents()
+        officeToolsGetConsents.getConcents(uploaded)
         
         return true
     }

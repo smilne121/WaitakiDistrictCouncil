@@ -133,13 +133,48 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func sendInspections(sender: UIButton)
     {
+      
         officeTools!.sendResults()
+    }
+    
+    func sendInspectionsComplete(result: String)
+    {
+        var message = ""
+        //println(result)
+        if (result != "")
+        {
+            var data = result.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: false)
+            var localError: NSError?
+            var json: AnyObject! = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &localError)
+            if let jsonDictionary = json as? Dictionary<String,String>
+            {
+                if (jsonDictionary["result"]  == "success")
+                {
+                    message = jsonDictionary["result"]!
+                    officeTools!.getConsents(true)
+                }
+                else
+                {
+                   message = jsonDictionary["error"]!
+                }
+            }
+        }
+        let popup = UIAlertController(title: "Sending Inspections Complete",
+            message: "Syncing finished with result: " + message,
+            preferredStyle: .Alert)
+        
+        popup.addAction(UIAlertAction(title: "Ok",
+            style: UIAlertActionStyle.Cancel,
+            handler: nil))
+        
+        self.presentViewController(popup, animated: true, completion: nil)
+        
     }
     
     @IBAction func getConsents(sender: UIButton)
     {
         searchBar.resignFirstResponder()
-        officeTools!.getConsents()
+        officeTools!.getConsents(false)
     }
     
     @IBAction func getInspectionTypes(sender: UIButton) {

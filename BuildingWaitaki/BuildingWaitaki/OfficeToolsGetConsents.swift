@@ -24,14 +24,22 @@ class OfficeToolsGetConsents {
         self.background = background
     }
     
-    func getConcents()
+    func getConcents(uploaded: Bool)
     {
+        var needSynced = self.needSynced()
+        if uploaded == false
+        {
         var lightBlur = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
         var blurView = UIVisualEffectView(effect: lightBlur)
         blurView.frame = background.bounds
         background.addSubview(blurView)
+        }
+        else
+        {
+            needSynced = 0
+        }
         
-        if (self.needSynced() == 0)
+        if (needSynced == 0)
         {
             let popupMessage: String
             //var to hold the json string from server
@@ -62,8 +70,10 @@ class OfficeToolsGetConsents {
                 popup.addAction(UIAlertAction(title: "OK",
                     style: .Cancel,
                     handler: self.ClosePopup))
-                
+                if uploaded == false
+                {
                 self.controller.presentViewController(popup, animated: true, completion: nil)
+                }
                 
             }
             task.resume()
