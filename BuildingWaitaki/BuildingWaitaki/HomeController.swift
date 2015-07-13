@@ -140,7 +140,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
     func sendInspectionsComplete(result: String)
     {
         var message = ""
-        //println(result)
+        
         if (result != "")
         {
             var data = result.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: false)
@@ -151,7 +151,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
                 if (jsonDictionary["result"]  == "success")
                 {
                     message = jsonDictionary["result"]!
-                    officeTools!.getConsents(true)
+                   // officeTools!.getConsents(true)
                 }
                 else
                 {
@@ -159,9 +159,21 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
                 }
             }
         }
-        let popup = UIAlertController(title: "Sending Inspections Complete",
-            message: "Syncing finished with result: " + message,
+        
+        var popup:UIAlertController
+        if message == "success"
+        {
+            popup = UIAlertController(title: "Sending Inspections Complete",
+            message: "Syncing finished with result: " + message + ". Please remember to Receive inspections to get upto date consents",
             preferredStyle: .Alert)
+        }
+        else
+        {
+                popup = UIAlertController(title: "Sending Inspections FAILED",
+                message: "Syncing failed. Please show your IT administrator: " + message,
+                preferredStyle: .Alert)
+        }
+        
         
         popup.addAction(UIAlertAction(title: "Ok",
             style: UIAlertActionStyle.Cancel,
@@ -174,7 +186,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func getConsents(sender: UIButton)
     {
         searchBar.resignFirstResponder()
-        officeTools!.getConsents(false)
+        officeTools!.getConsents()
     }
     
     @IBAction func getInspectionTypes(sender: UIButton) {

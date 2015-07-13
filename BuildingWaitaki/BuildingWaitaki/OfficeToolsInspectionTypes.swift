@@ -61,6 +61,7 @@ class OfficeToolsInspectionTypes {
     
     func JSONInspectionTypeToObject(JSONString: String)
     {
+        println(JSONString)
         var error: NSError?
         //remove existing inspection types
         let fetchRequest = NSFetchRequest(entityName: "InspectionType")

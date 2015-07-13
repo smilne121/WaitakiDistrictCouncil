@@ -46,7 +46,7 @@ class OfficeToolsSendInspections
     
     func resultsToJson(consentInspectionItems:ResultTransferArray)
     {
-        post(consentInspectionItems.toJson(), url: "http://wdcweb4.waitakidc.govt.nz:4242/buildingwaitaki/ReceiveResults")
+        post(consentInspectionItems.toJson(), url: "http://wdcit02.waitakidc.govt.nz:31700/buildingwaitaki/ReceiveResults")
     }
     
     func post(params : NSData, url : String)
@@ -72,6 +72,20 @@ class OfficeToolsSendInspections
                     curView.removeFromSuperview()
                 }
             }
+            //println(responseString)
+            if responseString as! String == "{\"result\": \"success\"}"
+            {
+                var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
+                let resultPredicate1 = NSPredicate(format: "needSynced = %@", NSNumber(bool: true))
+                existingRequest.predicate = resultPredicate1
+                let inspectionArray = self.managedContext.executeFetchRequest(existingRequest, error: nil) as? [ConsentInspection]
+                for inspection: ConsentInspection in inspectionArray!
+                {
+                    inspection.needSynced = NSNumber(bool: false)
+                }
+                self.managedContext.save(nil)
+            }
+            
             self.controller.sendInspectionsComplete(responseString as! String);
         }
         task.resume()

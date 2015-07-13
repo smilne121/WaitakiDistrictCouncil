@@ -24,20 +24,14 @@ class OfficeToolsGetConsents {
         self.background = background
     }
     
-    func getConcents(uploaded: Bool)
+    func getConcents()
     {
         var needSynced = self.needSynced()
-        if uploaded == false
-        {
-        var lightBlur = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
-        var blurView = UIVisualEffectView(effect: lightBlur)
-        blurView.frame = background.bounds
-        background.addSubview(blurView)
-        }
-        else
-        {
-            needSynced = 0
-        }
+       
+            var lightBlur = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+            var blurView = UIVisualEffectView(effect: lightBlur)
+            blurView.frame = background.bounds
+            background.addSubview(blurView)
         
         if (needSynced == 0)
         {
@@ -53,7 +47,7 @@ class OfficeToolsGetConsents {
                 
                 if (consents != "")
                 {
-                    //if inspection types downloaded process them
+                    //if consents downloaded process them
                     self.JSONConsentToObject(consents!)
                     popupMessage = "Consent Sync Completed"
                 }
@@ -70,11 +64,8 @@ class OfficeToolsGetConsents {
                 popup.addAction(UIAlertAction(title: "OK",
                     style: .Cancel,
                     handler: self.ClosePopup))
-                if uploaded == false
-                {
+        
                 self.controller.presentViewController(popup, animated: true, completion: nil)
-                }
-                
             }
             task.resume()
         }
@@ -101,6 +92,7 @@ class OfficeToolsGetConsents {
     
     func JSONConsentToObject(JSONString: String)
     {
+        println(JSONString)
         var error: NSError?
         //remove existing consents contacts and inspections
        let fetchRequest = NSFetchRequest(entityName: "Consent")
@@ -146,6 +138,8 @@ class OfficeToolsGetConsents {
         //convert into an array
         let array = NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions(0), error: nil) as? [AnyObject]
         
+        println(array)
+        
         //loop throught the created array and create objects to store in core data
         for elem:AnyObject in array!
         {
@@ -172,13 +166,15 @@ class OfficeToolsGetConsents {
             
             for consentInspection:AnyObject in consentInspectionsArray
             {
-                let newConsentInspection = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspection", inManagedObjectContext: managedContext) as! ConsentInspection
-                newConsentInspection.consentId = consent.consentNumber
-                newConsentInspection.inspectionName = (consentInspection["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) 
-                newConsentInspection.inspectionId = consentInspection["InspectionId"] as! String
-                newConsentInspection.needSynced = NSNumber(bool: false)
-                newConsentInspection.userCreated = NSNumber(bool: false)
-                newConsentInspection.consent = consent
+                    let newConsentInspection = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspection", inManagedObjectContext: managedContext) as! ConsentInspection
+                    newConsentInspection.consentId = consent.consentNumber
+
+                        newConsentInspection.inspectionName = (consentInspection["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                
+                    newConsentInspection.inspectionId = consentInspection["InspectionId"] as! String
+                    newConsentInspection.needSynced = NSNumber(bool: false)
+                    newConsentInspection.userCreated = NSNumber(bool: false)
+                    newConsentInspection.consent = consent
                 
                 //loop through based on inspectionId
                 
@@ -202,6 +198,7 @@ class OfficeToolsGetConsents {
                     newInspectionItem.itemName = consentInspectionItem.itemName
                     newInspectionItem.inspectionName = newConsentInspection.inspectionName
                    
+                    println(consentInspectionResultsArray)
                     for consentInspectionResults:AnyObject in consentInspectionResultsArray
                     {
                         let resultName = (consentInspectionResults["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())

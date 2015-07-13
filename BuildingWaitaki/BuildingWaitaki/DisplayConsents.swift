@@ -68,14 +68,7 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         fetchRequest.relationshipKeyPathsForPrefetching = ["contact","consentInspection"]
         
         let consents = managedContext.executeFetchRequest(fetchRequest, error: &error)!
-        /* for consent in consents as! [Consent]
-        {
-        for contact in consent.contact.allObjects
-        {
-        let contact2 = contact as! Contact
-        println(contact2.firstName)
-        }
-        }*/
+
         return consents
     }
     
