@@ -14,17 +14,11 @@ class ConsentInspectionItem: NSManagedObject {
     @NSManaged var consentId: String
     @NSManaged var inspectionId: String
     @NSManaged var inspectionName: String
+     @NSManaged var itemComment: String
     @NSManaged var itemId: String
     @NSManaged var itemName: String
     @NSManaged var itemResult: String?
     @NSManaged var consentInspection: ConsentInspection
-    
-   /* func toJSONItem() -> ResultTransferItem
-    {
-        let item = ResultTransferItem(consentId: self.consentId,inspectionId: self.inspectionId,inspectionName: self.inspectionName,itemId: self.itemId, itemName: self.itemName,itemResult: self.itemResult)
-        
-        return item
-    }*/
     
 
 

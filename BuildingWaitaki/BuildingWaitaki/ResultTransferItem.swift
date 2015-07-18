@@ -12,10 +12,12 @@ class ResultTransferItem : Serializable
 {
     var itemId: NSString
     var itemResult: NSString?
+    var itemComment: NSString?
     
     init(item : ConsentInspectionItem)
     {
         self.itemId = item.itemId
+        self.itemComment = item.itemComment
         if let result = item.itemResult
         {
             self.itemResult = item.itemResult

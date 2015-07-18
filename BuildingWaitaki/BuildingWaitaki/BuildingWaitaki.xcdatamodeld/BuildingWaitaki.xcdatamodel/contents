@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Consent" representedClassName="BuildingWaitaki.Consent" syncable="YES">
         <attribute name="consentAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="consentDescription" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,6 +22,7 @@
         <attribute name="consentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inspectionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inspectionName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemComment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemResult" optional="YES" attributeType="String" syncable="YES"/>
@@ -54,7 +55,7 @@
     <elements>
         <element name="Consent" positionX="-20" positionY="-73" width="128" height="118"/>
         <element name="ConsentInspection" positionX="-38" positionY="89" width="128" height="180"/>
-        <element name="ConsentInspectionItem" positionX="-216" positionY="74" width="128" height="150"/>
+        <element name="ConsentInspectionItem" positionX="-216" positionY="74" width="128" height="165"/>
         <element name="Contact" positionX="-218" positionY="-87" width="128" height="150"/>
         <element name="InspectionType" positionX="-189" positionY="-189" width="128" height="88"/>
         <element name="InspectionTypeItems" positionX="36" positionY="-249" width="128" height="165"/>

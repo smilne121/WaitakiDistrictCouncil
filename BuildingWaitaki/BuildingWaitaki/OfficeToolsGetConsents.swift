@@ -204,7 +204,10 @@ class OfficeToolsGetConsents {
                                 if newInspectionItem.itemId == consentInspectionResults["ItemId"] as! String
                                 {
                                     newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as? String
-                                    //    println(newInspectionItem)
+                                    if let comment = consentInspectionResults["ItemComment"] as? String
+                                    {
+                                        newInspectionItem.itemComment =  (consentInspectionResults["ItemComment"] as? String)!
+                                    }
                                 }
                             }
                         }
