@@ -39,16 +39,14 @@ class OfficeToolsGetConsents {
             //var to hold the json string from server
             var consents: String?
             let settings = AppSettings()
-            let url = NSURL(string: (settings.getAPIServer()! + "/buildingwaitaki/getconsents")) 
+            let url = NSURL(string: (settings.getAPIServer()! + "/buildingwaitaki/getconsents"))
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-                
                 consents = String(NSString(data: data, encoding: NSUTF8StringEncoding)!)
                 let popupMessage: String
                 var popupExtra = ""
                 
-                if (consents != "")
+                if consents != ""
                 {
-                    
                     //if consents downloaded process them
                     self.JSONConsentToObject(consents!)
                     popupMessage = "Consent Sync Completed"
