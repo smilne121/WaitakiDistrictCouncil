@@ -46,7 +46,8 @@ class OfficeToolsSendInspections
     
     func resultsToJson(consentInspectionItems:ResultTransferArray)
     {
-        post(consentInspectionItems.toJson(), url: "http://wdcit02.waitakidc.govt.nz:31700/buildingwaitaki/ReceiveResults")
+       let settings = AppSettings()
+        post(consentInspectionItems.toJson(), url: settings.getAPIServer()! + "/buildingwaitaki/ReceiveResults")
     }
     
     func post(params : NSData, url : String)
@@ -60,8 +61,11 @@ class OfficeToolsSendInspections
             
             if error != nil {
                 println("error=\(error)")
+                self.controller.sendInspectionsComplete("\"result\": \"failed\",\"error\", '\"\(error)\"");
                 return
             }
+            else
+            {
         
             
             let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
@@ -88,7 +92,9 @@ class OfficeToolsSendInspections
             
             self.controller.sendInspectionsComplete(responseString as! String);
         }
+        }
         task.resume()
+            
     }
 }
 

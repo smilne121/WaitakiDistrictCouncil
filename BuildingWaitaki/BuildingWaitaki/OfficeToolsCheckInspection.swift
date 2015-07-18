@@ -49,7 +49,7 @@ class OfficeToolsCheckInspection
                     {
                         if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "F"
                         {
-                            if result.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "Y"
+                            if result.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "Y" || result.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "N/A"
                             {
                                 passed = passed + 1
                             }
@@ -58,7 +58,7 @@ class OfficeToolsCheckInspection
                                 failed = failed + 1
                             }
                         }
-                        else if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "T" || item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "D"
+                        else if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "T" || item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "D" || item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "N"
                         {
                             if let test = result.itemResult
                             {

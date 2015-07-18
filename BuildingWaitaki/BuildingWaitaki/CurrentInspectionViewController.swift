@@ -201,7 +201,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             //check item type and add selector
             if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "F" //Flag type = bool
             {
-                let selectorItems = ["Passed","Failed"]
+                let selectorItems = ["Passed","N/A","Failed"]
                 let selector = UISegmentedControl(items: selectorItems)
                 selector.selectedSegmentIndex = -1
                 selector.tintColor = UIColor.darkGrayColor()
@@ -225,9 +225,13 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                         {
                             selector.selectedSegmentIndex = 0
                         }
-                        else if result == "N"
+                        else if result == "N/A"
                         {
                             selector.selectedSegmentIndex = 1
+                        }
+                        else if result == "N"
+                        {
+                            selector.selectedSegmentIndex = 2
                         }
                         }
                     }
@@ -364,7 +368,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     {
         if(sender.selectedSegmentIndex == 0)
         {
-            println("pass")
+          //  println("pass")
             for view in sender.superview!.subviews
             {
                 if view.isKindOfClass(UILabel)
@@ -375,7 +379,19 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         }
         else if(sender.selectedSegmentIndex == 1)
         {
-            println("fail")
+           // println("N/A")
+            for view in sender.superview!.subviews
+            {
+                if view.isKindOfClass(UILabel)
+                {
+                    saveData((view as! UILabel).text!, value: "N/A")
+                }
+            }
+        }
+
+        else if(sender.selectedSegmentIndex == 2)
+        {
+       //     println("fail")
             for view in sender.superview!.subviews
             {
                 if view.isKindOfClass(UILabel)

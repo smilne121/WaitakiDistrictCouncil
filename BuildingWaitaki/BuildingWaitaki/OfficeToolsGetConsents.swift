@@ -38,7 +38,8 @@ class OfficeToolsGetConsents {
             let popupMessage: String
             //var to hold the json string from server
             var consents: String?
-            let url = NSURL(string: "http://wdcweb4.waitakidc.govt.nz:4242/buildingwaitaki/getconsents") //update to use stored property
+            let settings = AppSettings()
+            let url = NSURL(string: (settings.getAPIServer()! + "/buildingwaitaki/getconsents")) 
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
                 
                 consents = String(NSString(data: data, encoding: NSUTF8StringEncoding)!)
@@ -47,6 +48,7 @@ class OfficeToolsGetConsents {
                 
                 if (consents != "")
                 {
+                    
                     //if consents downloaded process them
                     self.JSONConsentToObject(consents!)
                     popupMessage = "Consent Sync Completed"
@@ -92,7 +94,7 @@ class OfficeToolsGetConsents {
     
     func JSONConsentToObject(JSONString: String)
     {
-        println(JSONString)
+     //   println(JSONString)
         var error: NSError?
         //remove existing consents contacts and inspections
        let fetchRequest = NSFetchRequest(entityName: "Consent")
@@ -135,101 +137,98 @@ class OfficeToolsGetConsents {
         var consentObjectArray = [Consent]()
         //encode data string
         let JSONData = JSONString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        println(JSONString) //show result from server
         //convert into an array
-        let array = NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions(0), error: nil) as? [AnyObject]
-        
-        println(array)
         
         //loop throught the created array and create objects to store in core data
-        for elem:AnyObject in array!
+        if let array = NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions(0), error: nil) as? [AnyObject]
         {
-            let consent = NSEntityDescription.insertNewObjectForEntityForName("Consent", inManagedObjectContext: managedContext) as! Consent
-            consent.consentAddress = (elem["consentAddress"] as! String)
-            consent.consentDescription = (elem["consentDescription"] as! String)
-            consent.consentNumber = (elem["consentNumber"] as! String)
-            var consentContactsArray = (elem["contacts"] as! NSArray)
-            var consentInspectionResultsArray = (elem["InspectionResults"] as! NSArray)
-            var consentInspectionsArray = (elem["Inspections"] as! NSArray)
-            
-            for consentContact:AnyObject in consentContactsArray
+            for elem:AnyObject in array
             {
-                let newConsentContact = NSEntityDescription.insertNewObjectForEntityForName("Contact", inManagedObjectContext: managedContext) as! Contact
-                newConsentContact.firstName = consentContact["firstName"] as! String
-                newConsentContact.lastName = consentContact["lastName"] as! String
-                newConsentContact.homePhone = consentContact["homePhone"] as! String
-                newConsentContact.cellPhone = consentContact["cellPhone"] as! String
-                newConsentContact.position = consentContact["position"] as! String
-                newConsentContact.consentNumber = consent.consentNumber
-                newConsentContact.consent = consent
-            }
+                let consent = NSEntityDescription.insertNewObjectForEntityForName("Consent", inManagedObjectContext: managedContext) as! Consent
+                consent.consentAddress = (elem["consentAddress"] as! String)
+                consent.consentDescription = (elem["consentDescription"] as! String)
+                consent.consentNumber = (elem["consentNumber"] as! String)
+                var consentContactsArray = (elem["contacts"] as! NSArray)
+                var consentInspectionResultsArray = (elem["InspectionResults"] as! NSArray)
+                var consentInspectionsArray = (elem["Inspections"] as! NSArray)
             
+                for consentContact:AnyObject in consentContactsArray
+                {
+                    let newConsentContact = NSEntityDescription.insertNewObjectForEntityForName("Contact", inManagedObjectContext: managedContext) as! Contact
+                    newConsentContact.firstName = consentContact["firstName"] as! String
+                    newConsentContact.lastName = consentContact["lastName"] as! String
+                    newConsentContact.homePhone = consentContact["homePhone"] as! String
+                    newConsentContact.cellPhone = consentContact["cellPhone"] as! String
+                    newConsentContact.position = consentContact["position"] as! String
+                    newConsentContact.consentNumber = consent.consentNumber
+                    newConsentContact.consent = consent
+                }
             
-            for consentInspection:AnyObject in consentInspectionsArray
-            {
+                for consentInspection:AnyObject in consentInspectionsArray
+                {
                     let newConsentInspection = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspection", inManagedObjectContext: managedContext) as! ConsentInspection
                     newConsentInspection.consentId = consent.consentNumber
-
-                        newConsentInspection.inspectionName = (consentInspection["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                
+                    newConsentInspection.inspectionName = (consentInspection["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                     newConsentInspection.inspectionId = consentInspection["InspectionId"] as! String
                     newConsentInspection.needSynced = NSNumber(bool: false)
                     newConsentInspection.userCreated = NSNumber(bool: false)
                     newConsentInspection.consent = consent
                 
-                //loop through based on inspectionId
+                    //loop through based on inspectionId
+                    //get inspection items
+                    let fetchRequest = NSFetchRequest(entityName: "InspectionTypeItems")
+                    fetchRequest.includesSubentities = true
+                    fetchRequest.returnsObjectsAsFaults = false
+                    let resultPredicate = NSPredicate(format: "inspectionId = %@", newConsentInspection.inspectionId)
                 
-                //get inspection items
-                let fetchRequest = NSFetchRequest(entityName: "InspectionTypeItems")
-                fetchRequest.includesSubentities = true
-                fetchRequest.returnsObjectsAsFaults = false
-                let resultPredicate = NSPredicate(format: "inspectionId = %@", newConsentInspection.inspectionId)
+                    var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+                    fetchRequest.predicate = compound
                 
-                var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
-                fetchRequest.predicate = compound
+                    let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
                 
-                let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
-                
-                for consentInspectionItem in inspectionItems
-                {
-                    let newInspectionItem = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspectionItem", inManagedObjectContext: managedContext) as! ConsentInspectionItem
-                    newInspectionItem.consentId = consent.consentNumber
-                    newInspectionItem.inspectionId = newConsentInspection.inspectionId
-                    newInspectionItem.itemId = consentInspectionItem.itemId
-                    newInspectionItem.itemName = consentInspectionItem.itemName
-                    newInspectionItem.inspectionName = newConsentInspection.inspectionName
-                   
-                    println(consentInspectionResultsArray)
-                    for consentInspectionResults:AnyObject in consentInspectionResultsArray
+                    for consentInspectionItem in inspectionItems
                     {
-                        let resultName = (consentInspectionResults["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                        let inspectionName = newInspectionItem.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                        if inspectionName == resultName
+                        let newInspectionItem = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspectionItem", inManagedObjectContext: managedContext) as! ConsentInspectionItem
+                        newInspectionItem.consentId = consent.consentNumber
+                        newInspectionItem.inspectionId = newConsentInspection.inspectionId
+                        newInspectionItem.itemId = consentInspectionItem.itemId
+                        newInspectionItem.itemName = consentInspectionItem.itemName
+                        newInspectionItem.inspectionName = newConsentInspection.inspectionName
+                   
+                        //println(consentInspectionResultsArray)
+                        for consentInspectionResults:AnyObject in consentInspectionResultsArray
                         {
-                            if newInspectionItem.itemId == consentInspectionResults["ItemId"] as! String
+                            let resultName = (consentInspectionResults["InspectionName"] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                            let inspectionName = newInspectionItem.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                            if inspectionName == resultName
                             {
-                             newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as? String
+                                if newInspectionItem.itemId == consentInspectionResults["ItemId"] as! String
+                                {
+                                    newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as? String
+                                    //    println(newInspectionItem)
+                                }
                             }
                         }
+                        newInspectionItem.consentInspection = newConsentInspection
                     }
-                    
-                    newInspectionItem.consentInspection = newConsentInspection
+                    let checkInspectionStatus = OfficeToolsCheckInspection()
+                    newConsentInspection.status = checkInspectionStatus.checkInspectionStatus(newConsentInspection, managedContext: managedContext)
+                    if newConsentInspection.status != ""
+                    {
+                        newConsentInspection.locked = NSNumber(bool: true)
+                    }
+                    else
+                    {
+                        newConsentInspection.locked = NSNumber(bool: false)
+                    }
                 }
-                let checkInspectionStatus = OfficeToolsCheckInspection()
-                newConsentInspection.status = checkInspectionStatus.checkInspectionStatus(newConsentInspection, managedContext: managedContext)
-                if newConsentInspection.status != ""
-                {
-                    newConsentInspection.locked = NSNumber(bool: true)
-                }
-                else
-                {
-                    newConsentInspection.locked = NSNumber(bool: false)
-                }
-            }
 
-            //add consent to core data
-            if !managedContext.save(&error)
-            {
-                println("Could not save \(error), \(error?.userInfo)")
+                //add consent to core data
+                if !managedContext.save(&error)
+                {
+                    println("Could not save \(error), \(error?.userInfo)")
+                }
             }
         }
     }

@@ -26,7 +26,8 @@ class OfficeToolsInspectionTypes {
     {
         //var to hold the json string from server
         var inspectionTypes: String?
-        let url = NSURL(string: "http://wdcweb4.waitakidc.govt.nz:4242/buildingwaitaki/getinspectiontypes") //update to use stored property
+        let settings = AppSettings()
+        let url = NSURL(string: settings.getAPIServer()! + "/buildingwaitaki/getinspectiontypes") //update to use stored property
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             
             inspectionTypes = String(NSString(data: data, encoding: NSUTF8StringEncoding)!)

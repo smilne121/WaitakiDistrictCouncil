@@ -10,7 +10,7 @@ import Foundation
 
 //Handles the saving and loading of the application defaults
 
-class AppSettings{
+ class AppSettings{
     let defaults = NSUserDefaults.standardUserDefaults()
     
     func setUser(user: String){
