@@ -172,7 +172,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comments:" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GX3-FB-oN9">
-                                                    <rect key="frame" x="20" y="35" width="478" height="97.5"/>
+                                                    <rect key="frame" x="20" y="35" width="478" height="78.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -180,11 +180,25 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Fa-te-3pS">
                                                     <rect key="frame" x="722" y="103" width="38" height="38"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Updated By:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvu-np-5wL">
+                                                    <rect key="frame" x="20" y="120" width="235" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Updated:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FU-bW-4gb">
+                                                    <rect key="frame" x="411" y="120" width="170" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="inspectionComments" destination="GX3-FB-oN9" id="WUc-Ga-09o"/>
                                             <outlet property="inspectionName" destination="UbD-pE-LoF" id="cG4-R9-hp3"/>
+                                            <outlet property="inspectionUpdatedBy" destination="dvu-np-5wL" id="6bk-SC-7yx"/>
+                                            <outlet property="inspectionUpdatedDate" destination="1FU-bW-4gb" id="3q0-Fn-1gv"/>
                                             <outlet property="lockImage" destination="2Fa-te-3pS" id="mzg-D6-6IU"/>
                                             <outlet property="statusImage" destination="LZ8-hr-vwD" id="1to-JG-LdJ"/>
                                         </connections>

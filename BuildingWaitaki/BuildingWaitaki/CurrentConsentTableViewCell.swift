@@ -14,6 +14,8 @@ class CurrentConsentTableViewCell: UITableViewCell {
     @IBOutlet weak var lockImage: UIImageView!
     @IBOutlet weak var inspectionName: UILabel!
     @IBOutlet weak var inspectionComments: UILabel!
+    @IBOutlet weak var inspectionUpdatedBy: UILabel!
+    @IBOutlet weak var inspectionUpdatedDate: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         

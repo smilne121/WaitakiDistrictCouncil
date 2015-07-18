@@ -91,7 +91,16 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
             {
                 cell.inspectionComments.text = item.itemResult
             }
+            if item.itemName == "Inspection Officer"
+            {
+                cell.inspectionUpdatedBy.text = item.itemResult
+            }
+            if item.itemName == "Date"
+            {
+                cell.inspectionUpdatedDate.text = item.itemResult
+            }
         }
+        
         
         //assign image if required
         let image: UIImage

@@ -2033,5 +2033,98 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuildingWaitaki/CurrentConsentTableViewCell.swift"
+            timestampString = "458885196.53364"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "CurrentConsentTableViewCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.CurrentConsentTableViewCell.inspectionUpdatedBy.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UILabel&gt;"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/CurrentConsentTableViewCell.swift"
+                  timestampString = "458885292.191571"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.CurrentConsentTableViewCell.inspectionUpdatedBy.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UILabel&gt;"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/CurrentConsentTableViewCell.swift"
+                  timestampString = "458885292.19178"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.CurrentConsentTableViewCell.inspectionUpdatedBy.materializeForSet : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UILabel&gt;"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/CurrentConsentTableViewCell.swift"
+                  timestampString = "458885292.192018"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.CurrentConsentTableViewCell.init (BuildingWaitaki.CurrentConsentTableViewCell.Type)(style : C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; BuildingWaitaki.CurrentConsentTableViewCell"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/CurrentConsentTableViewCell.swift"
+                  timestampString = "458885292.192224"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "328">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.CurrentConsentTableViewCell.init (BuildingWaitaki.CurrentConsentTableViewCell.Type)(coder : ObjectiveC.NSCoder) -&gt; BuildingWaitaki.CurrentConsentTableViewCell"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/CurrentConsentTableViewCell.swift"
+                  timestampString = "458885292.192459"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "242">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
