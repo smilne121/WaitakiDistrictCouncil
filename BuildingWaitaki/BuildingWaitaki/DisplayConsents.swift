@@ -176,11 +176,6 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                 tap.delegate = self
                 container.addGestureRecognizer(tap)
                 
-                
-                
-              //  let lblConsentNumber = UILabel(frame: CGRect(x: 8,y: 8,width: 71,height: 21))
-              //  lblConsentNumber.text = "Consent:"
-                
                 let myConsentNumber = UILabel(frame: CGRect(x: 390,y: 8,width: 100,height: 21))
                 myConsentNumber.font = UIFont(name: myConsentNumber.font.fontName, size: fontsize)
                 myConsentNumber.text = consent.consentNumber
@@ -189,7 +184,6 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                 myConsentAddress.font = UIFont(name: myConsentAddress.font.fontName, size: fontsize)
                 myConsentAddress.text = consent.consentAddress
 
-                
                 let btnLocation = UIButton.buttonWithType(UIButtonType.System) as! UIButton
                 btnLocation.frame = CGRectMake(20, 40, 60, 60)
                 let imgLocation = UIImage(named: "Map-50.png") as UIImage!

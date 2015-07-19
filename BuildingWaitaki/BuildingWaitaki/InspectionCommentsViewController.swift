@@ -36,7 +36,11 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         {
             if item.itemName == "Comments"
             {
-                textView.text = item.itemResult
+                println(item)
+                if let comment = item.itemComment
+                {
+                    textView.text = comment
+                }
             }
         }
         
@@ -85,7 +89,8 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
                         if fetchResults.count != 0
                         {
                             var managedObject = fetchResults[0]
-                            managedObject.itemResult = textView.text
+                            managedObject.itemResult = "See comments box..."
+                            managedObject.itemComment = textView.text
                             
                             managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
                             

@@ -89,7 +89,7 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         {
             if item.itemName == "Comments"
             {
-                cell.inspectionComments.text = item.itemResult
+                cell.inspectionComments.text = item.itemComment
             }
             if item.itemName == "Inspection Officer"
             {
