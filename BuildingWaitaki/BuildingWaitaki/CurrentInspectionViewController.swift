@@ -139,10 +139,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnNeedsReinspection.layer.borderWidth = 1
         btnNeedsReinspection.addTarget(self, action: "finishNeedReinspection:", forControlEvents: UIControlEvents.TouchUpInside)
         btnNeedsReinspection.tintColor = UIColor.blackColor()
-        if consentInspection.locked == true
-        {
-            btnNeedsReinspection.enabled = false
-        }
+      //  if consentInspection.locked == true
+      //  {
+        //    btnNeedsReinspection.enabled = false
+      //  }
         itemHolder.superview?.addSubview(btnNeedsReinspection)
         
         //change items into a sorted array
@@ -199,7 +199,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             itemHolder.addSubview(container)
             
             //check item type and add selector
-            if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "F" //Flag type = bool
+            if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "L" //Lookup type = bool
             {
                 let selectorItems = ["Passed","N/A","Failed"]
                 let selector = UISegmentedControl(items: selectorItems)
@@ -221,7 +221,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                     {
                         if let result = itemResult.itemResult?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                         {
-                        if result == "Y"
+                        if result == "PASS"
                         {
                             selector.selectedSegmentIndex = 0
                         }
@@ -229,7 +229,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                         {
                             selector.selectedSegmentIndex = 1
                         }
-                        else if result == "N"
+                        else if result == "FAIL"
                         {
                             selector.selectedSegmentIndex = 2
                         }
@@ -248,10 +248,16 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 
                 container.addSubview(selector)
                 
-                let btnCamera = UIButton(frame: CGRect(x: container.frame.width / 2 - 20 , y: 142, width: 40, height: 40))
+                let btnCamera = UIButton(frame: CGRect(x: 20 , y: 142, width: 40, height: 40))
                 let image = UIImage(named: "Camera-50.png")
                 btnCamera.setImage(image, forState: .Normal)
                 container.addSubview(btnCamera)
+                
+                let btnNotes = UIButton(frame: CGRect(x: container.frame.width - 60 , y: 142, width: 40, height: 40))
+                let commentimage = UIImage(named: "Speech Bubble-50.png")
+                btnNotes.addTarget(self, action: "loadNotes:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnNotes.setImage(commentimage, forState: .Normal)
+                container.addSubview(btnNotes)
                 
             }
             else if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "D"
@@ -366,6 +372,8 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     
     func saveItem(sender: UISegmentedControl)
     {
+        //bool to hold if n/a selected 
+        var NASelected = NSNumber(bool: false)
         if(sender.selectedSegmentIndex == 0)
         {
           //  println("pass")
@@ -373,7 +381,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             {
                 if view.isKindOfClass(UILabel)
                 {
-                    saveData((view as! UILabel).text!, value: "Y")
+                    saveData((view as! UILabel).text!, value: "PASS")
                 }
             }
         }
@@ -384,6 +392,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             {
                 if view.isKindOfClass(UILabel)
                 {
+                    NASelected = NSNumber(bool: true)
                     saveData((view as! UILabel).text!, value: "N/A")
                 }
             }
@@ -396,10 +405,26 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             {
                 if view.isKindOfClass(UILabel)
                 {
-                    saveData((view as! UILabel).text!, value: "N")
+                    saveData((view as! UILabel).text!, value: "FAIL")
                 }
             }
         }
+        
+        if NASelected == NSNumber(bool: false)
+        {
+            var button = UIButton()
+            for view in sender.superview!.subviews
+            {
+                if view.isKindOfClass(UIButton)
+                {
+                    button = view as! UIButton
+                }
+            }
+            loadNotes(button)
+        }
+        
+        
+        
     }
     
     func saveDate(sender: UIDatePicker)
@@ -441,7 +466,8 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
             fetchRequest.predicate = compound
         
-            if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem] {
+            if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
+            {
                 if fetchResults.count != 0
                 {
                     var managedObject = fetchResults[0]
@@ -452,7 +478,46 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                     managedContext.save(nil)
                 }
             }
+        
+        
         }
+    }
+
+    func loadNotes(sender: UIButton)
+    {
+        let storyboard : UIStoryboard = UIStoryboard(
+            name: "Main",
+            bundle: nil)
+        var commentsViewController: InspectionCommentsViewController = storyboard.instantiateViewControllerWithIdentifier("InspectionComments") as! InspectionCommentsViewController
+        
+        commentsViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+        commentsViewController.preferredContentSize = CGSizeMake(500, 450)
+        
+        commentsViewController.consentInspection = consentInspection
+        commentsViewController.managedContext = managedContext
+        var itemName = ""
+        for view in sender.superview!.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                itemName = (view as! UILabel).text!
+            }
+        }
+        commentsViewController.itemName = itemName
+        
+        let popoverMenuViewController = commentsViewController.popoverPresentationController
+        popoverMenuViewController?.permittedArrowDirections = .Any
+        popoverMenuViewController?.delegate = self
+        popoverMenuViewController?.sourceView = view
+        popoverMenuViewController?.sourceRect = CGRectMake(view.frame.width / 2, view.frame.height / 2, 0,0)
+        popoverMenuViewController?.permittedArrowDirections = UIPopoverArrowDirection.allZeros
+        
+        
+        
+        presentViewController(
+            commentsViewController,
+            animated: true,
+            completion: nil)
     }
     
     func loadCommentsView(sender: UIButton)
@@ -467,12 +532,13 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         
         commentsViewController.consentInspection = consentInspection
         commentsViewController.managedContext = managedContext
+        commentsViewController.itemName = "Comments"
         
         let popoverMenuViewController = commentsViewController.popoverPresentationController
         popoverMenuViewController?.permittedArrowDirections = .Any
         popoverMenuViewController?.delegate = self
         popoverMenuViewController?.sourceView = sender
-        popoverMenuViewController?.sourceRect = CGRectMake(80,40,0,0)
+    //    popoverMenuViewController?.sourceRect = CGRectMake(80,40,0,0)
         
   
         
@@ -501,7 +567,17 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         {
             let inspection = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspection", inManagedObjectContext: managedContext) as! ConsentInspection
             inspection.inspectionId = fetchResult.inspectionId
-            let inspectionName = fetchResult.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())  + " " + String(inspectionItemsArray!.count + 1)
+            
+            var inspectionName : String
+            if inspectionItemsArray!.count > 0
+            {
+            inspectionName = fetchResult.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())  + " " + String(inspectionItemsArray!.count + 1)
+            }
+            else
+            {
+                inspectionName = fetchResult.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            }
+            
             inspection.inspectionName = inspectionName
             
             inspection.consent = consentInspection.consent
@@ -510,6 +586,38 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             inspection.userCreated = NSNumber(bool: true)
             inspection.needSynced = NSNumber(bool: false)
             inspection.status = ""
+            
+            //populate passes and N/A's from previous inspection and fail comments
+            for item:AnyObject in consentInspection.inspectionItem
+            {
+                let currentItem = item as! ConsentInspectionItem
+                var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+                
+                let resultPredicate1 = NSPredicate(format: "inspectionName = %@", inspection.inspectionName)
+                let resultPredicate2 = NSPredicate(format: "itemName = %@", currentItem.itemName)
+                let resultPredicate3 = NSPredicate(format: "consentId = %@", inspection.consentId)
+                var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+                fetchRequest.predicate = compound
+                
+                if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
+                {
+                    if fetchResults.count != 0
+                    {
+                        var managedObject = fetchResults[0]
+                        managedObject.itemResult = currentItem.itemResult
+                        if let itemcomment = currentItem.itemComment
+                        {
+                            managedObject.itemComment? = itemcomment
+                        }
+                        
+                        managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
+                        
+                        managedContext.save(nil)
+                    }
+                }
+
+            }
+            
             
             for item in fetchResult.inspectionTypeItems.allObjects as! [InspectionTypeItems]
             {

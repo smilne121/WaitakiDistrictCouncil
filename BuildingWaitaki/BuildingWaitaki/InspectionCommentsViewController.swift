@@ -13,9 +13,11 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
 
     var consentInspection: ConsentInspection!
     var managedContext: NSManagedObjectContext!
+    var itemName: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        println(itemName)
         
         
 
@@ -26,6 +28,7 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         textView.layer.cornerRadius = CGFloat(5)
         textView.font = UIFont(name: "HelveticaNeue", size: 18)
         textView.delegate = self
+        textView.becomeFirstResponder()
         
         if consentInspection.locked == true
         {
@@ -34,7 +37,7 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         
         for item in consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
         {
-            if item.itemName == "Comments"
+            if item.itemName == itemName
             {
                 println(item)
                 if let comment = item.itemComment
@@ -80,7 +83,7 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
             var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
                     
                     let resultPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
-                    let resultPredicate2 = NSPredicate(format: "itemName = %@", "Comments")
+                    let resultPredicate2 = NSPredicate(format: "itemName = %@", itemName)
                     let resultPredicate3 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
                     var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
                     fetchRequest.predicate = compound
@@ -89,7 +92,11 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
                         if fetchResults.count != 0
                         {
                             var managedObject = fetchResults[0]
+                            //check if comments item
+                            if itemName == "Comments"
+                            {
                             managedObject.itemResult = "See comments box..."
+                            }
                             managedObject.itemComment = textView.text
                             
                             managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced

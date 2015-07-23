@@ -110,7 +110,16 @@ class AddInspectionViewController: UITableViewController {
         {
             let inspection = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspection", inManagedObjectContext: managedContext) as! ConsentInspection
             inspection.inspectionId = fetchResult.inspectionId
-            let inspectionName = fetchResult.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())  + " " + String(inspectionItemsArray!.count + 1)
+            var inspectionName : String
+            if inspectionItemsArray!.count > 0
+            {
+                inspectionName = fetchResult.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())  + " " + String(inspectionItemsArray!.count + 1)
+            }
+            else
+            {
+                inspectionName = fetchResult.inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            }
+
             inspection.inspectionName = inspectionName
             
             inspection.consent = currentConsent
