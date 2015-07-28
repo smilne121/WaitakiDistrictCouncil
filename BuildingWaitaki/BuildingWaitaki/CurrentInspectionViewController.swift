@@ -160,26 +160,30 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         let width = Int(itemHolder.frame.width / 2 )
         
         //loop though items and create containers
-        for item in itemInspectionArraySorted
-        {
-            let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            if itemName == "Inspection Officer"
-            {
-                let settings = AppSettings()
-                
-                let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
-                for itemResult in itemResults
-                {
-                    if itemResult.itemName == itemName
-                    {
-                        itemResult.itemResult = settings.getUser()
-                        managedContext.save(nil)
-                    }
-                }
-                
-            }
 
+            for item in itemInspectionArraySorted
+            {
+                let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                if consentInspection.locked != NSNumber(bool: true)
+                {
+                if itemName == "Inspection Officer"
+                {
+                    let settings = AppSettings()
+                
+                    let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
+                    for itemResult in itemResults
+                    {
+                        if itemResult.itemName == itemName
+                        {
+                            itemResult.itemResult = settings.getUser()
+                            managedContext.save(nil)
+                        }
+                    }
+                    }}
             
+        
+
+        
             if itemName != "Comments" && itemName != "Inspection Officer"
             {
             let containerRect: CGRect = CGRect(x: currentX,y: currentY,width: width,height: height)
@@ -206,6 +210,8 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 selector.selectedSegmentIndex = -1
                 selector.tintColor = UIColor.darkGrayColor()
                 selector.addTarget(self, action: "saveItem:",forControlEvents: .ValueChanged)
+                
+                
                 
                 var attr = NSDictionary(object: UIFont(name: "HelveticaNeue-Bold", size: 16.0)!, forKey: NSFontAttributeName)
                 selector.setTitleTextAttributes(attr as [NSObject : AnyObject], forState: .Normal)
@@ -234,6 +240,12 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                             selector.selectedSegmentIndex = 2
                         }
                         }
+                        else if itemResult.itemComment != ""
+                        {
+                            container.backgroundColor = UIColor.redColor()
+                        }
+                        
+                       
                     }
                 }
                 
@@ -587,38 +599,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             inspection.needSynced = NSNumber(bool: false)
             inspection.status = ""
             
-            //populate passes and N/A's from previous inspection and fail comments
-            for item:AnyObject in consentInspection.inspectionItem
-            {
-                let currentItem = item as! ConsentInspectionItem
-                var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
-                
-                let resultPredicate1 = NSPredicate(format: "inspectionName = %@", inspection.inspectionName)
-                let resultPredicate2 = NSPredicate(format: "itemName = %@", currentItem.itemName)
-                let resultPredicate3 = NSPredicate(format: "consentId = %@", inspection.consentId)
-                var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
-                fetchRequest.predicate = compound
-                
-                if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
-                {
-                    if fetchResults.count != 0
-                    {
-                        var managedObject = fetchResults[0]
-                        managedObject.itemResult = currentItem.itemResult
-                        if let itemcomment = currentItem.itemComment
-                        {
-                            managedObject.itemComment? = itemcomment
-                        }
-                        
-                        managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
-                        
-                        managedContext.save(nil)
-                    }
-                }
+            managedContext.save(nil)
+            
 
-            }
-            
-            
+            //populate items into coredata
             for item in fetchResult.inspectionTypeItems.allObjects as! [InspectionTypeItems]
             {
                 let inspectionItem = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspectionItem", inManagedObjectContext: managedContext) as! ConsentInspectionItem
@@ -631,7 +615,54 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             }
             managedContext.save(nil)
             
-            println(inspection)
+            
+            //populate passes and N/A's from previous inspection and fail comments
+            for item:AnyObject in consentInspection.inspectionItem
+            {
+                let currentItem = item as! ConsentInspectionItem
+                var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+                
+                let resultPredicate1 = NSPredicate(format: "inspectionName = %@", inspection.inspectionName)
+                let resultPredicate2 = NSPredicate(format: "itemName = %@", currentItem.itemName)
+                let resultPredicate3 = NSPredicate(format: "consentId = %@", inspection.consentId)
+                var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+                fetchRequest.predicate = compound
+                
+                managedContext.save(nil) // see if saves
+                
+                if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
+                {
+                    if fetchResults.count != 0
+                    {
+                        var managedObject = fetchResults[0]
+                        println(currentItem.itemResult)
+                        if currentItem.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "FAIL"
+                        {
+                                                       managedObject.itemResult = currentItem.itemResult
+                        }
+                        
+                        if let itemcomment = currentItem.itemComment
+                        {
+                            if currentItem.itemName == "Comments"
+                            {
+                                managedObject.itemComment = "Inspection generated from: " + consentInspection.inspectionName + ". Previous Notes: " + itemcomment
+                            }
+                            else
+                            {
+                                 managedObject.itemComment = "Notes from " + consentInspection.inspectionName + ": " + itemcomment
+                            }
+                        }
+                        
+                        managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
+                        
+                        managedContext.save(nil)
+                    }
+                }
+                
+            }
+            
+            
+         //   println(inspection)
         }
     }
     
