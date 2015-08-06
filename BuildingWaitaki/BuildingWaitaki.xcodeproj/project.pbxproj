@@ -17,6 +17,7 @@
 		D28C419C1B43BDF900C69EAB /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C419B1B43BDF900C69EAB /* Serializable.swift */; };
 		D28C419F1B44CEFA00C69EAB /* ResultTransferInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */; };
 		D28C41A11B44CF3200C69EAB /* ResultTransferItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C41A01B44CF3200C69EAB /* ResultTransferItem.swift */; };
+		D2948AE41B730FD6003CD950 /* InspectionCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2948AE31B730FD6003CD950 /* InspectionCameraViewController.swift */; };
 		D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */; };
 		D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */; };
 		D2B6857F1B2AF1D600C3E34A /* Contacts-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B6857C1B2AF1D600C3E34A /* Contacts-50.png */; };
@@ -73,6 +74,7 @@
 		D28C419B1B43BDF900C69EAB /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
 		D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferInspection.swift; sourceTree = "<group>"; };
 		D28C41A01B44CF3200C69EAB /* ResultTransferItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferItem.swift; sourceTree = "<group>"; };
+		D2948AE31B730FD6003CD950 /* InspectionCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InspectionCameraViewController.swift; path = ../InspectionCameraViewController.swift; sourceTree = "<group>"; };
 		D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransfer.swift; sourceTree = "<group>"; };
 		D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayConsents.swift; sourceTree = "<group>"; };
 		D2B6857C1B2AF1D600C3E34A /* Contacts-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contacts-50.png"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 		D2EB21791B2E9C7D008D2AC4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D2948AE31B730FD6003CD950 /* InspectionCameraViewController.swift */,
 				D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */,
 				D2EB21801B2EC8DC008D2AC4 /* CurrentInspectionViewController.swift */,
 				D2EB21841B2FBD47008D2AC4 /* CurrentConsentViewController.swift */,
@@ -312,6 +315,7 @@
 				TargetAttributes = {
 					D2FB40C61B16E18200474A15 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = J5A9FVQX5N;
 					};
 					D2FB40DE1B16E18200474A15 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -389,6 +393,7 @@
 				D28C41A11B44CF3200C69EAB /* ResultTransferItem.swift in Sources */,
 				D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */,
 				D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */,
+				D2948AE41B730FD6003CD950 /* InspectionCameraViewController.swift in Sources */,
 				D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */,
 				D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */,
 				D2FACFBA1B3641FF008C0125 /* InspectionTypeItems.swift in Sources */,
@@ -530,9 +535,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BuildingWaitaki/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -540,9 +548,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BuildingWaitaki/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -140,6 +140,17 @@
             </objects>
             <point key="canvasLocation" x="1151" y="467"/>
         </scene>
+        <!--Inspection Camera-->
+        <scene sceneID="2WL-as-Jxe">
+            <objects>
+                <viewController storyboardIdentifier="InspectionCameraViewController" title="Inspection Camera" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qld-vC-3gQ" customClass="InspectionCameraViewController" customModule="BuildingWaitaki" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3fG-LZ-hU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2089" y="365"/>
+        </scene>
         <!--Current Consent View Controller-->
         <scene sceneID="JRZ-FA-ph8">
             <objects>

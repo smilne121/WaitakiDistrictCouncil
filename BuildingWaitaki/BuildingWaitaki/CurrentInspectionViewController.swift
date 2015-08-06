@@ -240,9 +240,12 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                             selector.selectedSegmentIndex = 2
                         }
                         }
-                        else if itemResult.itemComment != ""
+                        else if let comment = itemResult.itemComment
                         {
+                            if comment != ""
+                            {
                             container.backgroundColor = UIColor.redColor()
+                            }
                         }
                         
                        
@@ -263,6 +266,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 let btnCamera = UIButton(frame: CGRect(x: 20 , y: 142, width: 40, height: 40))
                 let image = UIImage(named: "Camera-50.png")
                 btnCamera.setImage(image, forState: .Normal)
+                btnCamera.addTarget(self, action: "openCamera:", forControlEvents: UIControlEvents.TouchUpInside)
                 container.addSubview(btnCamera)
                 
                 let btnNotes = UIButton(frame: CGRect(x: container.frame.width - 60 , y: 142, width: 40, height: 40))
@@ -636,9 +640,12 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                     {
                         var managedObject = fetchResults[0]
                         println(currentItem.itemResult)
-                        if currentItem.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "FAIL"
+                        if let result = currentItem.itemResult
                         {
-                                                       managedObject.itemResult = currentItem.itemResult
+                            if result.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "FAIL"
+                            {
+                                managedObject.itemResult = result
+                            }
                         }
                         
                         if let itemcomment = currentItem.itemComment
@@ -893,5 +900,12 @@ saveFinished()
         }
 
     }
-
-}
+    
+    func openCamera(sender: UIButton)
+    {
+            //goto new controller
+            let cameraController = self.storyboard!.instantiateViewControllerWithIdentifier("InspectionCameraViewController") as! InspectionCameraViewController
+           // cameraController.managedContext = managedContext
+            self.navigationController!.pushViewController(cameraController, animated: true)
+        }
+    }
