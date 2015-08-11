@@ -14,6 +14,7 @@
 		D21BF6861B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */; };
 		D26C78461B461D5F009D995E /* ResultTransferArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C78451B461D5F009D995E /* ResultTransferArray.swift */; };
 		D279D9121B79A1C9001B8F68 /* PhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */; };
+		D279D9181B79A860001B8F68 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9171B79A860001B8F68 /* Photo.swift */; };
 		D28C419A1B4336A100C69EAB /* OfficeToolsSendInspections.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C41991B4336A100C69EAB /* OfficeToolsSendInspections.swift */; };
 		D28C419C1B43BDF900C69EAB /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C419B1B43BDF900C69EAB /* Serializable.swift */; };
 		D28C419F1B44CEFA00C69EAB /* ResultTransferInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */; };
@@ -72,6 +73,7 @@
 		D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInspectionTableViewCell.swift; sourceTree = "<group>"; };
 		D26C78451B461D5F009D995E /* ResultTransferArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferArray.swift; sourceTree = "<group>"; };
 		D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHandler.swift; sourceTree = "<group>"; };
+		D279D9171B79A860001B8F68 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		D28C41991B4336A100C69EAB /* OfficeToolsSendInspections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeToolsSendInspections.swift; sourceTree = "<group>"; };
 		D28C419B1B43BDF900C69EAB /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
 		D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferInspection.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		D2ACBD3A1B19A27300C2DC2C /* CoreDataClasses */ = {
 			isa = PBXGroup;
 			children = (
+				D279D9171B79A860001B8F68 /* Photo.swift */,
 				D2FACFB91B3641FF008C0125 /* InspectionTypeItems.swift */,
 				D2C523C91B29815600009952 /* Consent.swift */,
 				D2C523C71B27E15F00009952 /* Contact.swift */,
@@ -398,6 +401,7 @@
 				D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */,
 				D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */,
 				D2948AE41B730FD6003CD950 /* InspectionCameraViewController.swift in Sources */,
+				D279D9181B79A860001B8F68 /* Photo.swift in Sources */,
 				D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */,
 				D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */,
 				D2FACFBA1B3641FF008C0125 /* InspectionTypeItems.swift in Sources */,
