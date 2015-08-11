@@ -45,10 +45,15 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
     
     func saveImageToAlbum(image: UIImage)
     {
-        library.writeImageToSavedPhotosAlbum(image.CGImage, orientation: ALAssetOrientation(rawValue: image.imageOrientation.rawValue)!, completionBlock:saveDone)
+        var identifier:String?
+        let photo = PhotoHandler()
+        photo.saveImageAsAsset(image, completion: { (localIdentifier) -> Void in
+            identifier = localIdentifier
+        })
+        //library.writeImageToSavedPhotosAlbum(image.CGImage, orientation: ALAssetOrientation(rawValue: image.imageOrientation.rawValue)!, completionBlock:saveDone)
     }
     
-    func saveDone(assetURL:NSURL!, error:NSError!)
+   /* func saveDone(assetURL:NSURL!, error:NSError!)
     {
         println("saveDone")
         library.assetForURL(assetURL, resultBlock: self.saveToAlbum, failureBlock: nil)
@@ -70,6 +75,6 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
             }, failureBlock:
             { error in println("NOOOOOOO")
         })
-    }
+    }*/
 
 }
