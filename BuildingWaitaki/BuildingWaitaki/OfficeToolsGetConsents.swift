@@ -45,8 +45,8 @@ class OfficeToolsGetConsents {
                 let popupMessage: String
                 var popupExtra = ""
                 
-                if consents != ""
-                {
+                if consents != "" && (consents!.rangeOfString("Error 404") == nil)
+               {
                     //if consents downloaded process them
                     self.JSONConsentToObject(consents!)
                     popupMessage = "Consent Sync Completed"

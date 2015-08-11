@@ -13,15 +13,18 @@ import Foundation
  class AppSettings{
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    func setUser(user: String){
+    func setUser(user: String)
+    {
         defaults.setObject(user, forKey: "User")
     }
     
-    func setAPIServer(APIServer: String){
+    func setAPIServer(APIServer: String)
+    {
         defaults.setObject(APIServer, forKey: "APIServer")
     }
     
-    func getUser() -> String?{
+    func getUser() -> String?
+    {
         if let user = defaults.stringForKey("User")
         {
         return user
@@ -32,7 +35,8 @@ import Foundation
         }
     }
     
-    func getAPIServer() -> String?{
+    func getAPIServer() -> String?
+    {
         if let APIServer =  defaults.stringForKey("APIServer")
         {
             return APIServer

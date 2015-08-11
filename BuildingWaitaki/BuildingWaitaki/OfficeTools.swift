@@ -20,7 +20,6 @@ class OfficeTools {
     init(managedContext: NSManagedObjectContext, controller: UIViewController, displayConsents: DisplayConsents, background: UIView)
     {
         self.managedContext = managedContext
-     //   self.dataTransfer = DataTransfer(managedContext: self.managedContext)
         self.controller = controller
         self.displayConsents = displayConsents
         self.background = background
@@ -28,25 +27,38 @@ class OfficeTools {
     
     func getInspectionTypes()
     {
-        let inspectionTypes :OfficeToolsInspectionTypes
-        inspectionTypes = OfficeToolsInspectionTypes(managedContext: managedContext, controller: controller)
-        inspectionTypes.getInspectionTypes()
+        let settings = AppSettings()
+        if verifyUrl(settings.getAPIServer())
+        {
+            let inspectionTypes :OfficeToolsInspectionTypes
+            inspectionTypes = OfficeToolsInspectionTypes(managedContext: managedContext, controller: controller)
+            inspectionTypes.getInspectionTypes()
+        }
     }
     
     func sendResults()
     {
-        let sendInspections = OfficeToolsSendInspections(managedContext: managedContext,controller: controller as! HomeController)
-        sendInspections.getResults()
+        let settings = AppSettings()
+        if verifyUrl(settings.getAPIServer())
+        {
+            let sendInspections = OfficeToolsSendInspections(managedContext: managedContext,controller: controller as! HomeController)
+            sendInspections.getResults()
+        }
     }
     
     //return back bool if items still need to be synced
     func getConsents() -> Bool
     {
-        let officeToolsGetConsents : OfficeToolsGetConsents
-        officeToolsGetConsents = OfficeToolsGetConsents(managedContext: managedContext, controller: controller,displayConsents: displayConsents,background: background)
-        officeToolsGetConsents.getConcents()
+        let settings = AppSettings()
+        if verifyUrl(settings.getAPIServer())
+        {
+            let officeToolsGetConsents : OfficeToolsGetConsents
+            officeToolsGetConsents = OfficeToolsGetConsents(managedContext: managedContext, controller: controller,displayConsents: displayConsents,background: background)
+            officeToolsGetConsents.getConcents()
         
-        return true
+            return true
+        }
+        return false
     }
     
     func checkInspectionStatus(consentInspection: ConsentInspection) -> String
@@ -54,6 +66,33 @@ class OfficeTools {
         let officeToolsGetConsents = OfficeToolsCheckInspection()
         let result =  officeToolsGetConsents.checkInspectionStatus(consentInspection, managedContext: managedContext)
         return result
+    }
+    
+    func verifyUrl (urlString: String?) -> Bool {
+        //Check for nil
+        if let urlString = urlString {
+            // create NSURL instance
+            if let url = NSURL(string: urlString) {
+                // check if your application can open the NSURL instance
+                
+                if UIApplication.sharedApplication().canOpenURL(url) == false
+                {
+                    var popup:UIAlertController
+                    popup = UIAlertController(title: "Api server not vaild",
+                        message: "Please enter a valid api server",
+                        preferredStyle: .Alert)
+                    
+                    popup.addAction(UIAlertAction(title: "Ok",
+                        style: UIAlertActionStyle.Cancel,
+                        handler: nil))
+                    
+                    controller.presentViewController(popup, animated: true, completion: nil)
+
+                }
+                return UIApplication.sharedApplication().canOpenURL(url)
+            }
+        }
+               return false
     }
     
 

@@ -106,7 +106,37 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         
         officeTools = OfficeTools(managedContext: managedObjectContext!,controller: self,displayConsents: displayConsents, background: background)
         
+        let settings = AppSettings()
+        if settings.getAPIServer() == ""
+        {
+            var popup:UIAlertController
+            popup = UIAlertController(title: "No Api Server Set",
+                message: "Please ask your IT Administrator for the Api Server",
+                preferredStyle: .Alert)
+            
+            popup.addAction(UIAlertAction(title: "Ok",
+                style: UIAlertActionStyle.Cancel,
+                handler: nil))
+            
+            self.presentViewController(popup, animated: true, completion: nil)
+        }
         
+        if settings.getUser() == ""
+        {
+            var popup:UIAlertController
+            popup = UIAlertController(title: "No User Set",
+                message: "Please enter your NAR number",
+                preferredStyle: .Alert)
+            
+            popup.addAction(UIAlertAction(title: "Ok",
+                style: UIAlertActionStyle.Cancel,
+                handler: nil))
+            
+            self.presentViewController(popup, animated: true, completion: nil)
+        }
+        
+        
+
         
     }
     
@@ -145,7 +175,9 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         {
             var data = result.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: false)
             var localError: NSError?
-            var json: AnyObject! = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &localError)
+            if let mydata = data
+            {
+            var json: AnyObject! = NSJSONSerialization.JSONObjectWithData(mydata, options: NSJSONReadingOptions.MutableContainers, error: &localError)
             if let jsonDictionary = json as? Dictionary<String,String>
             {
                 if (jsonDictionary["result"]  == "success")
@@ -157,6 +189,11 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
                 {
                    message = jsonDictionary["error"]!
                 }
+                }
+            }
+            else
+            {
+                message = "error passing data from api"
             }
         }
         

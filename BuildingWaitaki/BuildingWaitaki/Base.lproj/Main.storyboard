@@ -144,12 +144,41 @@
         <scene sceneID="2WL-as-Jxe">
             <objects>
                 <viewController storyboardIdentifier="InspectionCameraViewController" title="Inspection Camera" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qld-vC-3gQ" customClass="InspectionCameraViewController" customModule="BuildingWaitaki" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NQY-3q-q0o"/>
+                        <viewControllerLayoutGuide type="bottom" id="21j-qx-hcy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XiT-B9-Gn4">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ViR-Dz-Ejv">
+                                <rect key="frame" x="0.0" y="701" width="768" height="261"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDS-8E-c0c">
+                                <rect key="frame" x="338" y="572" width="93" height="30"/>
+                                <state key="normal" title="Take Photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="qld-vC-3gQ" eventType="touchUpInside" id="hCa-jI-oj5"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1dN-xP-fne">
+                                <rect key="frame" x="109" y="28" width="550" height="536"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="CameraViewer" destination="1dN-xP-fne" id="Eir-L9-mWg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fG-LZ-hU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2089" y="365"/>
+            <point key="canvasLocation" x="2095" y="467"/>
         </scene>
         <!--Current Consent View Controller-->
         <scene sceneID="JRZ-FA-ph8">

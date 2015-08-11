@@ -34,7 +34,7 @@ class OfficeToolsInspectionTypes {
             let popupMessage: String
             var popupExtra = ""
             
-            if (inspectionTypes != "")
+            if (inspectionTypes != "" && (inspectionTypes!.rangeOfString("Error 404") == nil))
             {
                 //if inspection types downloaded process them
                 self.JSONInspectionTypeToObject(inspectionTypes!)
@@ -95,7 +95,9 @@ class OfficeToolsInspectionTypes {
         //println(array)
         //loop throught the created array and create objects to store in core data
         
-        for elem:AnyObject in array!
+        if let myarray = array
+        {
+        for elem:AnyObject in myarray
         {
             let inspectionType = NSEntityDescription.insertNewObjectForEntityForName("InspectionType", inManagedObjectContext: managedContext) as! InspectionType
             inspectionType.inspectionId = (elem["inspectionId"] as! String)
@@ -120,6 +122,7 @@ class OfficeToolsInspectionTypes {
             {
                 println("Could not save \(error), \(error?.userInfo)")
             }
+        }
         }
     }
         private func ClosePopup(alert: UIAlertAction!){

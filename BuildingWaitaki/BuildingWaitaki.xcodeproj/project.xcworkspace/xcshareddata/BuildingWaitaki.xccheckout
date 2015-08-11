@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>9A7ECBCD-88EA-4420-A069-B97B44482046</string>
 	<key>IDESourceControlProjectName</key>
-	<string>BuildingWaitaki</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>9E8AB578E4D228A0EC438C6EBCC0E3BA6587F837</key>
 		<string>https://github.com/smilne121/WaitakiDistrictCouncil.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>BuildingWaitaki/BuildingWaitaki.xcodeproj</string>
+	<string>BuildingWaitaki/BuildingWaitaki.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>9E8AB578E4D228A0EC438C6EBCC0E3BA6587F837</key>
