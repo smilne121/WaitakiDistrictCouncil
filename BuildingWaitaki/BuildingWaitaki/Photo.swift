@@ -14,7 +14,9 @@ class Photo: NSManagedObject {
     @NSManaged var consentNumber: String
     @NSManaged var inspectionName: String
     @NSManaged var itemId: String
+    @NSManaged var encodedString: String
     @NSManaged var photoIdentifier: String
+    @NSManaged var dateTaken: NSDate
     @NSManaged var consentInspectionItem: ConsentInspectionItem
 
 }

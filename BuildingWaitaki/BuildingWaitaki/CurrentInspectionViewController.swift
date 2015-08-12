@@ -903,9 +903,54 @@ saveFinished()
     
     func openCamera(sender: UIButton)
     {
+        //get current item name
+        var currentItem : ConsentInspectionItem?
+        var itemName = ""
+        
+        let superview = sender.superview!
+        for view in superview.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                let label = view as! UILabel
+                itemName = label.text!
+            }
+        }
+        
+        
+        //get current inspection item
+        var resultRequest = NSFetchRequest(entityName: "ConsentInspection")
+        let itemPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
+        let itemPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
+        
+        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([itemPredicate1,itemPredicate2])
+        resultRequest.predicate = compound
+        
+        if let fetchResult = managedContext.executeFetchRequest(resultRequest, error: nil)?.first as? ConsentInspection
+        {
+            for item in fetchResult.inspectionItem
+            {
+                if let inspectionItem = item as? ConsentInspectionItem
+                {
+                    if inspectionItem.itemName == itemName
+                    {
+                        currentItem = inspectionItem
+                    }
+                }
+            }
+        }
+        
+        if let myItem = currentItem
+        {
             //goto new controller
             let cameraController = self.storyboard!.instantiateViewControllerWithIdentifier("InspectionCameraViewController") as! InspectionCameraViewController
-           // cameraController.managedContext = managedContext
+            cameraController.managedContext = managedContext
+            cameraController.inspectionItem = myItem
             self.navigationController!.pushViewController(cameraController, animated: true)
+        }
+        else
+        {
+            //warning to show no inspection item could be found
+        }
         }
     }

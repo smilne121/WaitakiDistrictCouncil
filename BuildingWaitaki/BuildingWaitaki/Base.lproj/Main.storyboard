@@ -174,6 +174,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="CameraViewer" destination="1dN-xP-fne" id="Eir-L9-mWg"/>
+                        <outlet property="pictureScroller" destination="ViR-Dz-Ejv" id="tgC-Cv-7iX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fG-LZ-hU2" userLabel="First Responder" sceneMemberID="firstResponder"/>

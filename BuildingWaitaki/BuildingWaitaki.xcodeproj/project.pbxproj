@@ -15,6 +15,7 @@
 		D26C78461B461D5F009D995E /* ResultTransferArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C78451B461D5F009D995E /* ResultTransferArray.swift */; };
 		D279D9121B79A1C9001B8F68 /* PhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */; };
 		D279D9181B79A860001B8F68 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9171B79A860001B8F68 /* Photo.swift */; };
+		D279D91A1B7AD25C001B8F68 /* ResultsTransferImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9191B7AD25C001B8F68 /* ResultsTransferImage.swift */; };
 		D28C419A1B4336A100C69EAB /* OfficeToolsSendInspections.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C41991B4336A100C69EAB /* OfficeToolsSendInspections.swift */; };
 		D28C419C1B43BDF900C69EAB /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C419B1B43BDF900C69EAB /* Serializable.swift */; };
 		D28C419F1B44CEFA00C69EAB /* ResultTransferInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */; };
@@ -74,6 +75,7 @@
 		D26C78451B461D5F009D995E /* ResultTransferArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferArray.swift; sourceTree = "<group>"; };
 		D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHandler.swift; sourceTree = "<group>"; };
 		D279D9171B79A860001B8F68 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		D279D9191B7AD25C001B8F68 /* ResultsTransferImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTransferImage.swift; sourceTree = "<group>"; };
 		D28C41991B4336A100C69EAB /* OfficeToolsSendInspections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeToolsSendInspections.swift; sourceTree = "<group>"; };
 		D28C419B1B43BDF900C69EAB /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
 		D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferInspection.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */,
 				D28C41A01B44CF3200C69EAB /* ResultTransferItem.swift */,
 				D26C78451B461D5F009D995E /* ResultTransferArray.swift */,
+				D279D9191B7AD25C001B8F68 /* ResultsTransferImage.swift */,
 			);
 			name = "Transfer Result Classes";
 			sourceTree = "<group>";
@@ -153,8 +156,8 @@
 				D2FACFB91B3641FF008C0125 /* InspectionTypeItems.swift */,
 				D2C523C91B29815600009952 /* Consent.swift */,
 				D2C523C71B27E15F00009952 /* Contact.swift */,
-				D2C523C51B27E0D200009952 /* ConsentInspectionItem.swift */,
 				D2C523C31B27E0D200009952 /* ConsentInspection.swift */,
+				D2C523C51B27E0D200009952 /* ConsentInspectionItem.swift */,
 				D2F005801B25B28D00D3B0F5 /* InspectionType.swift */,
 			);
 			name = CoreDataClasses;
@@ -399,6 +402,7 @@
 				D2EB21851B2FBD47008D2AC4 /* CurrentConsentViewController.swift in Sources */,
 				D28C41A11B44CF3200C69EAB /* ResultTransferItem.swift in Sources */,
 				D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */,
+				D279D91A1B7AD25C001B8F68 /* ResultsTransferImage.swift in Sources */,
 				D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */,
 				D2948AE41B730FD6003CD950 /* InspectionCameraViewController.swift in Sources */,
 				D279D9181B79A860001B8F68 /* Photo.swift in Sources */,

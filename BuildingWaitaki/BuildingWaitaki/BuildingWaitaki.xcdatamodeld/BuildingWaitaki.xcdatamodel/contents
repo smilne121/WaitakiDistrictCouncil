@@ -55,6 +55,8 @@
     </entity>
     <entity name="Photo" representedClassName="BuildingWaitaki.Photo" syncable="YES">
         <attribute name="consentNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateTaken" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="encodedString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inspectionName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoIdentifier" optional="YES" attributeType="String" syncable="YES"/>
@@ -67,6 +69,6 @@
         <element name="Contact" positionX="-218" positionY="-87" width="128" height="150"/>
         <element name="InspectionType" positionX="-189" positionY="-189" width="128" height="88"/>
         <element name="InspectionTypeItems" positionX="36" positionY="-249" width="128" height="165"/>
-        <element name="Photo" positionX="-306" positionY="384" width="128" height="120"/>
+        <element name="Photo" positionX="-306" positionY="384" width="128" height="148"/>
     </elements>
 </model>

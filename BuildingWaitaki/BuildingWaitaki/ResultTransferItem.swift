@@ -7,17 +7,23 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
 class ResultTransferItem : Serializable
 {
     var itemId: NSString
     var itemResult: NSString?
     var itemComment: NSString?
+    var inspectionItemPhoto: [ResultTransferImage]
+    var managedContext: NSManagedObjectContext!
     
     init(item : ConsentInspectionItem)
     {
         self.itemId = item.itemId
         self.itemComment = item.itemComment
+        self.inspectionItemPhoto = [ResultTransferImage]()
+        
         if let result = item.itemResult
         {
             self.itemResult = item.itemResult
@@ -25,6 +31,13 @@ class ResultTransferItem : Serializable
         else
         {
             self.itemResult = ""
+        }
+        
+        for photo in item.photo
+        {
+            let image = photo as! Photo
+            let newPhoto = ResultTransferImage(image: image.encodedString, dateTime: image.dateTaken)
+            inspectionItemPhoto.append(newPhoto)
         }
     }
 }
