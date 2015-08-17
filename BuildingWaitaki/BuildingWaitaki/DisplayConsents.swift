@@ -115,6 +115,7 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
             let btnLocation = UIButton.buttonWithType(UIButtonType.System) as! UIButton
             btnLocation.frame = CGRectMake(20, 40, 60, 60)
             let imgLocation = UIImage(named: "Map-50.png") as UIImage!
+            btnLocation.addTarget(self, action: "openMap:", forControlEvents: UIControlEvents.TouchUpInside)
             btnLocation.setImage(imgLocation, forState: .Normal)
             
             let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
@@ -187,6 +188,7 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                 let btnLocation = UIButton.buttonWithType(UIButtonType.System) as! UIButton
                 btnLocation.frame = CGRectMake(20, 40, 60, 60)
                 let imgLocation = UIImage(named: "Map-50.png") as UIImage!
+                btnLocation.addTarget(self, action: "openMap:", forControlEvents: UIControlEvents.TouchUpInside)
                 btnLocation.setImage(imgLocation, forState: .Normal)
                 
                 let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
@@ -275,6 +277,23 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                     
                     //push to new controller
                 }
+            }
+        }
+    }
+    func openMap (sender: UIButton)
+    {
+        for view in sender.superview!.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                if view.frame == CGRect(x: 10,y: 8,width: 323,height: 21)
+                {
+                    if let address = (view as! UILabel).text
+                    {let mapViewController = homeController.storyboard!.instantiateViewControllerWithIdentifier("MapViewController") as! MapViewController
+                    mapViewController.title = address
+                    mapViewController.searchText = address + " Waitaki New Zealand"
+                    homeController.navigationController!.pushViewController(mapViewController, animated: true)
+                    }}
             }
         }
     }

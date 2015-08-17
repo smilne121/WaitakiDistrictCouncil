@@ -12,6 +12,7 @@
 		D2198D391B3E259900D89FDE /* bwicon.png in Resources */ = {isa = PBXBuildFile; fileRef = D2198D381B3E259900D89FDE /* bwicon.png */; };
 		D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */; };
 		D21BF6861B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */; };
+		D226D38F1B815A3D00FF2007 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D226D38E1B815A3D00FF2007 /* MapViewController.swift */; };
 		D26C78461B461D5F009D995E /* ResultTransferArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C78451B461D5F009D995E /* ResultTransferArray.swift */; };
 		D279D9121B79A1C9001B8F68 /* PhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */; };
 		D279D9181B79A860001B8F68 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9171B79A860001B8F68 /* Photo.swift */; };
@@ -72,6 +73,7 @@
 		D2198D381B3E259900D89FDE /* bwicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bwicon.png; sourceTree = "<group>"; };
 		D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInspectionViewController.swift; sourceTree = "<group>"; };
 		D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInspectionTableViewCell.swift; sourceTree = "<group>"; };
+		D226D38E1B815A3D00FF2007 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D26C78451B461D5F009D995E /* ResultTransferArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferArray.swift; sourceTree = "<group>"; };
 		D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHandler.swift; sourceTree = "<group>"; };
 		D279D9171B79A860001B8F68 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				D2EB21841B2FBD47008D2AC4 /* CurrentConsentViewController.swift */,
 				D2FB40D11B16E18200474A15 /* HomeController.swift */,
 				D2FACFBD1B3778BF008C0125 /* InspectionCommentsViewController.swift */,
+				D226D38E1B815A3D00FF2007 /* MapViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */,
 				D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */,
 				D2FACFBA1B3641FF008C0125 /* InspectionTypeItems.swift in Sources */,
+				D226D38F1B815A3D00FF2007 /* MapViewController.swift in Sources */,
 				D2FB40FC1B16FDFF00474A15 /* AppSettings.swift in Sources */,
 				D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */,
 				D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */,

@@ -47,6 +47,7 @@ class OfficeToolsSendInspections
     func resultsToJson(consentInspectionItems:ResultTransferArray)
     {
        let settings = AppSettings()
+        println(consentInspectionItems.toJson())
         post(consentInspectionItems.toJson(), url: settings.getAPIServer()! + "/buildingwaitaki/ReceiveResults")
     }
     
@@ -60,36 +61,41 @@ class OfficeToolsSendInspections
             data, response, error in
             
             if error != nil {
+                //remove blur effect
+                for curView in self.controller.view.subviews
+                {
+                    if curView.isKindOfClass(UIVisualEffectView)
+                    {
+                        curView.removeFromSuperview()
+                    }
+                }
                 println("error=\(error)")
                 self.controller.sendInspectionsComplete("\"result\": \"failed\",\"error\", '\"\(error)\"");
                 return
             }
             else
             {
-        
-            
-            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-            for curView in self.controller.view.subviews
-            {
-                if curView.isKindOfClass(UIVisualEffectView)
+                let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                //remove blur effect
+                for curView in self.controller.view.subviews
                 {
-                    curView.removeFromSuperview()
+                    if curView.isKindOfClass(UIVisualEffectView)
+                    {
+                        curView.removeFromSuperview()
+                    }
                 }
-            }
-            //println(responseString)
-            if responseString as! String == "{\"result\": \"success\"}"
-            {
-                var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
-                let resultPredicate1 = NSPredicate(format: "needSynced = %@", NSNumber(bool: true))
-                existingRequest.predicate = resultPredicate1
-                let inspectionArray = self.managedContext.executeFetchRequest(existingRequest, error: nil) as? [ConsentInspection]
-                for inspection: ConsentInspection in inspectionArray!
+                if responseString as! String == "{\"result\": \"success\"}"
                 {
-                    inspection.needSynced = NSNumber(bool: false)
+                    var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
+                    let resultPredicate1 = NSPredicate(format: "needSynced = %@", NSNumber(bool: true))
+                    existingRequest.predicate = resultPredicate1
+                    let inspectionArray = self.managedContext.executeFetchRequest(existingRequest, error: nil) as? [ConsentInspection]
+                    for inspection: ConsentInspection in inspectionArray!
+                    {
+                        inspection.needSynced = NSNumber(bool: false)
+                    }
+                    self.managedContext.save(nil)
                 }
-                self.managedContext.save(nil)
-            }
-            
             self.controller.sendInspectionsComplete(responseString as! String);
         }
         }

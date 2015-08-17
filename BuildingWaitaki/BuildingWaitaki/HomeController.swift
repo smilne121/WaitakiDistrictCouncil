@@ -169,6 +169,14 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
     
     func sendInspectionsComplete(result: String)
     {
+        for curView in self.view.subviews
+        {
+            if curView.isKindOfClass(UIVisualEffectView)
+            {
+                curView.removeFromSuperview()
+            }
+        }
+
         var message = ""
         
         if (result != "")
@@ -241,6 +249,8 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         let settingsPopover = SettingPopover()
         settingsPopover.showPopover(sender, controller: self)
     }
+    
+
     
 
     

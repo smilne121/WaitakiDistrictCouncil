@@ -181,6 +181,34 @@
             </objects>
             <point key="canvasLocation" x="2095" y="467"/>
         </scene>
+        <!--MapViewController-->
+        <scene sceneID="dqP-UV-xha">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" title="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ac0-RN-4E9" customClass="MapViewController" customModule="BuildingWaitaki" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="chK-f2-KJt"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lz8-zB-KFa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cbj-3I-6Wm">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UnW-gG-lc8">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="mapView" destination="UnW-gG-lc8" id="3E2-Yk-qZD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwI-k8-GWP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2869" y="177"/>
+        </scene>
         <!--Current Consent View Controller-->
         <scene sceneID="JRZ-FA-ph8">
             <objects>

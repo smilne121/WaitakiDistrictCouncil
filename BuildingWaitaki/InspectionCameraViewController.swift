@@ -42,7 +42,6 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .Camera
-        
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
