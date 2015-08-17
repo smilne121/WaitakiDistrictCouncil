@@ -13,6 +13,8 @@
 		D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */; };
 		D21BF6861B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */; };
 		D226D38F1B815A3D00FF2007 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D226D38E1B815A3D00FF2007 /* MapViewController.swift */; };
+		D226D3911B816CA500FF2007 /* GeneratePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D226D3901B816CA500FF2007 /* GeneratePDF.swift */; };
+		D226D3931B81A98F00FF2007 /* wdc-main-logo-300x80.png in Resources */ = {isa = PBXBuildFile; fileRef = D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */; };
 		D26C78461B461D5F009D995E /* ResultTransferArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C78451B461D5F009D995E /* ResultTransferArray.swift */; };
 		D279D9121B79A1C9001B8F68 /* PhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */; };
 		D279D9181B79A860001B8F68 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9171B79A860001B8F68 /* Photo.swift */; };
@@ -74,6 +76,8 @@
 		D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInspectionViewController.swift; sourceTree = "<group>"; };
 		D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInspectionTableViewCell.swift; sourceTree = "<group>"; };
 		D226D38E1B815A3D00FF2007 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D226D3901B816CA500FF2007 /* GeneratePDF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratePDF.swift; sourceTree = "<group>"; };
+		D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdc-main-logo-300x80.png"; sourceTree = "<group>"; };
 		D26C78451B461D5F009D995E /* ResultTransferArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferArray.swift; sourceTree = "<group>"; };
 		D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHandler.swift; sourceTree = "<group>"; };
 		D279D9171B79A860001B8F68 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 		D2B6857A1B2AF19800C3E34A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */,
 				D2198D341B3E166B00D89FDE /* red.png */,
 				D2FACFC31B37D056008C0125 /* todo.png */,
 				D2198D381B3E259900D89FDE /* bwicon.png */,
@@ -193,6 +198,7 @@
 				D28C41991B4336A100C69EAB /* OfficeToolsSendInspections.swift */,
 				D28C419B1B43BDF900C69EAB /* Serializable.swift */,
 				D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */,
+				D226D3901B816CA500FF2007 /* GeneratePDF.swift */,
 			);
 			name = OfficeTools;
 			sourceTree = "<group>";
@@ -370,6 +376,7 @@
 				D2EB21831B2FBBE4008D2AC4 /* Speech Bubble-50.png in Resources */,
 				D2198D391B3E259900D89FDE /* bwicon.png in Resources */,
 				D2198D371B3E166F00D89FDE /* green.png in Resources */,
+				D226D3931B81A98F00FF2007 /* wdc-main-logo-300x80.png in Resources */,
 				D2198D351B3E166B00D89FDE /* red.png in Resources */,
 				D2B685801B2AF1D600C3E34A /* Map-50.png in Resources */,
 				D2EB217C1B2EAC29008D2AC4 /* Failed.png in Resources */,
@@ -417,6 +424,7 @@
 				D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */,
 				D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */,
 				D2C523CA1B29815600009952 /* Consent.swift in Sources */,
+				D226D3911B816CA500FF2007 /* GeneratePDF.swift in Sources */,
 				D2B685791B2A8F0700C3E34A /* DisplayConsents.swift in Sources */,
 				D28C419F1B44CEFA00C69EAB /* ResultTransferInspection.swift in Sources */,
 				D28C419C1B43BDF900C69EAB /* Serializable.swift in Sources */,

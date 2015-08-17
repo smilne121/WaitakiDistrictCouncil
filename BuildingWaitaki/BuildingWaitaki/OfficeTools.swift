@@ -95,6 +95,11 @@ class OfficeTools {
                return false
     }
     
+    func generateReport(name: String, inspection: ConsentInspection)
+    {    
+        let genPDF = GeneratePDF(name: name, width: CGFloat(595), height: CGFloat(842), inspection: inspection)
+    }
+    
 
     
 
