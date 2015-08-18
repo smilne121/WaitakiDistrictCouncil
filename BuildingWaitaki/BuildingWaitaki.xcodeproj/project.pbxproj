@@ -15,6 +15,7 @@
 		D226D38F1B815A3D00FF2007 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D226D38E1B815A3D00FF2007 /* MapViewController.swift */; };
 		D226D3911B816CA500FF2007 /* GeneratePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D226D3901B816CA500FF2007 /* GeneratePDF.swift */; };
 		D226D3931B81A98F00FF2007 /* wdc-main-logo-300x80.png in Resources */ = {isa = PBXBuildFile; fileRef = D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */; };
+		D226D3951B82BC4500FF2007 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D226D3941B82BC4500FF2007 /* EmailViewController.swift */; };
 		D26C78461B461D5F009D995E /* ResultTransferArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C78451B461D5F009D995E /* ResultTransferArray.swift */; };
 		D279D9121B79A1C9001B8F68 /* PhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */; };
 		D279D9181B79A860001B8F68 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9171B79A860001B8F68 /* Photo.swift */; };
@@ -78,6 +79,7 @@
 		D226D38E1B815A3D00FF2007 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D226D3901B816CA500FF2007 /* GeneratePDF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratePDF.swift; sourceTree = "<group>"; };
 		D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdc-main-logo-300x80.png"; sourceTree = "<group>"; };
+		D226D3941B82BC4500FF2007 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		D26C78451B461D5F009D995E /* ResultTransferArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferArray.swift; sourceTree = "<group>"; };
 		D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHandler.swift; sourceTree = "<group>"; };
 		D279D9171B79A860001B8F68 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				D2FB40D11B16E18200474A15 /* HomeController.swift */,
 				D2FACFBD1B3778BF008C0125 /* InspectionCommentsViewController.swift */,
 				D226D38E1B815A3D00FF2007 /* MapViewController.swift */,
+				D226D3941B82BC4500FF2007 /* EmailViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */,
 				D2948AE41B730FD6003CD950 /* InspectionCameraViewController.swift in Sources */,
 				D279D9181B79A860001B8F68 /* Photo.swift in Sources */,
+				D226D3951B82BC4500FF2007 /* EmailViewController.swift in Sources */,
 				D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */,
 				D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */,
 				D2FACFBA1B3641FF008C0125 /* InspectionTypeItems.swift in Sources */,

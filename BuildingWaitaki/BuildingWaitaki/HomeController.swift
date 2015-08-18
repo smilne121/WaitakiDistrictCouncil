@@ -249,23 +249,5 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         let settingsPopover = SettingPopover()
         settingsPopover.showPopover(sender, controller: self)
     }
-    
-
-    
-    @IBAction func testPDF(sender: AnyObject) {
-        var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
-        let resultPredicate1 = NSPredicate(format: "inspectionId = %@", "101002")
-        let resultPredicate2 = NSPredicate(format: "consentId = %@", "2015/2623      ")
-        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2])
-        existingRequest.predicate = compound1
-        
-        let inspectionItemsArray = managedObjectContext!.executeFetchRequest(existingRequest, error: nil)?.first as! ConsentInspection
-        officeTools.generateReport("test",inspection: inspectionItemsArray)
-    }
-
-    
-
-
-
 }
 

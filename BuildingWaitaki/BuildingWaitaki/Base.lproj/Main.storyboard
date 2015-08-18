@@ -123,15 +123,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAQ-oR-rmu">
-                                <rect key="frame" x="639" y="80" width="94" height="30"/>
-                                <state key="normal" title="Test PDF">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="testPDF:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bTg-LV-djr"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -217,6 +208,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwI-k8-GWP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2869" y="177"/>
+        </scene>
+        <!--Email Report-->
+        <scene sceneID="qIo-vW-ICZ">
+            <objects>
+                <viewController storyboardIdentifier="EmailViewController" title="Email Report" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lgW-eQ-fal" customClass="EmailViewController" customModule="BuildingWaitaki" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BAZ-3s-FK0"/>
+                        <viewControllerLayoutGuide type="bottom" id="HY9-eO-BhM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lxC-oA-OU1">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vCv-Lv-Y8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3684" y="177"/>
         </scene>
         <!--Current Consent View Controller-->
         <scene sceneID="JRZ-FA-ph8">

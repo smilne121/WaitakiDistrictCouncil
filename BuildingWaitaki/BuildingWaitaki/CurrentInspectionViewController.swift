@@ -92,6 +92,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         let btnEmail = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         btnEmail.frame = CGRectMake(itemHolder.superview!.frame.width - CGFloat(140), 85, 120, 40)
         btnEmail.setTitle("Email Report", forState: .Normal)
+        btnEmail.addTarget(self, action: "emailReport:", forControlEvents: UIControlEvents.TouchUpInside)
         btnEmail.layer.cornerRadius = 5.0
         btnEmail.layer.borderColor = UIColor.blackColor().CGColor
         btnEmail.layer.borderWidth = 1
@@ -953,4 +954,14 @@ saveFinished()
             //warning to show no inspection item could be found
         }
         }
+    
+    func emailReport(sender: UIButton)
+    {
+        //goto new controller
+        let emailController = self.storyboard!.instantiateViewControllerWithIdentifier("EmailViewController") as! EmailViewController
+        emailController.consentInspection = consentInspection
+        self.navigationController!.pushViewController(emailController, animated: true)
+
+    }
+    
     }

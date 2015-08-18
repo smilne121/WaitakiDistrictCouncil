@@ -12,73 +12,87 @@ import UIKit
 class GeneratePDF
 {
     var pageSize : CGSize
+    var totalPages: Int
     let consentInspection : ConsentInspection
+    var pdfPath: String
     
     init (name: String, width:CGFloat,height:CGFloat, inspection : ConsentInspection)
     {
+        totalPages = 0
         self.consentInspection = inspection
         pageSize = CGSize(width: width, height: height)
         let newPdfName = name + ".pdf"
         let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentationDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
-        let pdfPath = documentsDirectory.stringByAppendingPathComponent(newPdfName)
-        println(pdfPath)
+        pdfPath = documentsDirectory.stringByAppendingPathComponent(newPdfName)
         
-        UIGraphicsBeginPDFContextToFile(pdfPath, CGRectZero, nil)
-        
-        startDrawing()
+        startDrawing(pdfPath)
         
     }
     
-    func startDrawing()
+    func getPDFPath() -> String
     {
+        return pdfPath
+    }
+    
+    func startDrawing(pdfPath: String)
+    {
+        for var i = 0; i < 2; i++
+        {
+             UIGraphicsBeginPDFContextToFile(pdfPath, CGRectZero, nil)
+            
+            var currentPage = 0;
         var currentY = CGFloat(0);
         
-        let title = "Site and Footings"
-        let dateGenerated = "14 August 2015"
-        let consentNumber = "2015.2639"
-        let address = "20 Thames Street Oamaru"
-        let descriptionOfWork = "Installing a new fire with wetback.Installing a new fire with wetback.Installing a new fire with wetback.Installing a new fire with wetback.Installing a new fire with wetback.Installing a new fire with wetback.Installing a new fire with wetback"
-        let inspectionOfficer = "246"
-        let inspectionComments = "General comments about this inspection"
+        let title = consentInspection.inspectionName
+        let consentNumber = consentInspection.consent.consentNumber
+        let address = consentInspection.consent.consentAddress
+        let descriptionOfWork = consentInspection.consent.consentDescription
         
-        let width = 595
+        let  width = 595
         let height = 842
         
         
         
         self.beginPDFPage()
-        
+            currentPage = currentPage + 1
+        if i == 0
+        {
+            totalPages = totalPages + 1
+            }
+            
         var position = CGRectMake(0,0,0,0)
         
         //create header
         let image  = UIImage(named: "wdc-main-logo-300x80.png") as UIImage!
         self.addImage(image, rect: CGRect(x: 36, y: 36,width: 240,height: 64))
+            
+            
+       
         
-        self.addText(title, frame: CGRect(x: pageSize.width - 320, y: 40, width: pageSize.width - 276 - 36, height: 24), fontSize: 20, textAlignment: NSTextAlignment.Center, backgroundColour: UIColor.whiteColor())
+        self.addText(title, frame: CGRect(x: pageSize.width - 320, y: 40, width: pageSize.width - 276 - 36, height: 24), fontSize: 20, textAlignment: NSTextAlignment.Center, backgroundColour: UIColor.whiteColor(),fixedHeight:false)
         
-        position = self.addText("Consent Number: " + consentNumber, frame: CGRect(x: 32, y: 120, width: 200, height: 24), fontSize: 10, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.whiteColor())
+        position = self.addText("Consent Number: " + consentNumber, frame: CGRect(x: 32, y: 120, width: 200, height: 24), fontSize: 10, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.whiteColor(),fixedHeight:false)
         currentY = position.origin.y
         
-        position = self.addText("Address: " + address, frame: CGRect(x: 240, y: currentY, width: 300, height: 48), fontSize: 10, textAlignment: NSTextAlignment.Right, backgroundColour: UIColor.whiteColor())
+        position = self.addText("Address: " + address, frame: CGRect(x: 240, y: currentY, width: 300, height: 48), fontSize: 10, textAlignment: NSTextAlignment.Right, backgroundColour: UIColor.whiteColor(),fixedHeight:false)
         currentY = position.origin.y + position.height + 10
         
-        position = self.addText("Description: " + descriptionOfWork, frame: CGRect(x: 32, y: currentY, width: 531, height: 48), fontSize: 10, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.whiteColor())
+        position = self.addText("Description: " + descriptionOfWork, frame: CGRect(x: 32, y: currentY, width: 531, height: 48), fontSize: 10, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.whiteColor(),fixedHeight:false)
         
      
-        currentY = position.origin.y + position.height + 10
-        
-        position = self.addText("Comments: " + inspectionComments, frame: CGRect(x: 32, y: currentY, width: 531, height: 48), fontSize: 10, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.whiteColor())
-        
         currentY = position.origin.y + position.height + 10
         
         addLineWithFrame(CGRectMake(CGFloat(0), CGFloat(currentY), pageSize.width, CGFloat(1)), colour: UIColor.grayColor())
         
         currentY = currentY + 1 + 30
     
-        position = self.addText("Item" , frame: CGRect(x: 32, y: currentY, width: 100, height: 48), fontSize: 12, textAlignment: NSTextAlignment.Right, backgroundColour: UIColor.lightGrayColor())
+        position = self.addText("Item" , frame: CGRect(x: 32, y: currentY, width: 150, height: 48), fontSize: 12, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.lightGrayColor(),fixedHeight:false)
         
-        self.addText("Result" , frame: CGRect(x: 132, y: currentY, width: CGFloat(pageSize.width - 164), height: 48), fontSize: 12, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.lightGrayColor())
+        self.addText("Result" , frame: CGRect(x: 182, y: currentY, width: 150, height: 48), fontSize: 12, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.lightGrayColor(),fixedHeight:false)
+        //currentY = position.origin.y + position.height + 10
+        
+        self.addText("Comments" , frame: CGRect(x: 332, y: currentY, width: pageSize.width - 332 - 32, height: 48), fontSize: 12, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.lightGrayColor(),fixedHeight:false)
         currentY = position.origin.y + position.height + 10
         
         var odd = false;
@@ -98,24 +112,118 @@ class GeneratePDF
             }
             
             let currentItem = item as! ConsentInspectionItem
-            position = self.addText(currentItem.itemName , frame: CGRect(x: 32, y: currentY, width: 100, height: 48), fontSize: 10, textAlignment: NSTextAlignment.Right, backgroundColour: colour)
             
+            var text3 = " "
+            if let myText = currentItem.itemComment
+            {
+                text3 = myText
+            }
+            
+            var itemHeight = CGFloat(0)
             if let result = currentItem.itemResult
             {
-            self.addText(result , frame: CGRect(x: 132, y: currentY, width: CGFloat(pageSize.width - 164), height: position.height), fontSize: 10, textAlignment: NSTextAlignment.Left, backgroundColour: colour)
-            currentY = position.origin.y + position.height
+                let myHeight = getTableRowHeight(currentItem.itemName, text2: result, text3: text3, frame1: CGRect(x: 32, y: currentY, width: 150, height: 48), frame2:CGRect(x: 182, y: currentY, width: 150, height: 48),frame3: CGRect(x: 332, y: currentY, width: pageSize.width - 332 - 32, height: 48), fontSize: 10)
+                
+                itemHeight = myHeight
             }
             else
             {
-                self.addText("" , frame: CGRect(x: 132, y: currentY, width: CGFloat(pageSize.width - 164), height: position.height), fontSize: 10, textAlignment: NSTextAlignment.Left, backgroundColour: colour)
-                currentY = position.origin.y + position.height
+                let myHeight = getTableRowHeight(currentItem.itemName, text2: " ", text3: text3, frame1: CGRect(x: 32, y: currentY, width: 150, height: 48), frame2:CGRect(x: 182, y: currentY, width: 150, height: 48), frame3:CGRect(x: 332, y: currentY, width: pageSize.width - 332 - 32, height: 48), fontSize: 10)
+                
+                itemHeight = myHeight
             }
             
-        }
+            //add item name
+            //check y postion to page
+            if (currentY + itemHeight) > (pageSize.height - 32)
+            {
+                beginPDFPage()
+                currentPage = currentPage + 1
+                if i == 0
+                {
+                    totalPages = totalPages + 1
+                }
+                currentY = 32
+            }
+            
+            
+            
+            
+            var result = " "
+            if let myresult = currentItem.itemResult
+            {
+                result = myresult
+            }
+            
+            position =  self.addText(currentItem.itemName , frame: CGRect(x: 32, y: currentY, width: 150, height: itemHeight), fontSize: 10, textAlignment: NSTextAlignment.Left, backgroundColour: colour,fixedHeight:true)
+            
+
+            self.addText(result , frame: CGRect(x: 182, y: currentY, width: 150, height: itemHeight), fontSize: 10, textAlignment: NSTextAlignment.Left, backgroundColour: colour,fixedHeight:true)
+                
+                
+            self.addText(text3, frame: CGRect(x: 332, y: currentY, width: pageSize.width - 332 - 32, height: itemHeight), fontSize: 10, textAlignment: NSTextAlignment.Left, backgroundColour: colour, fixedHeight: true)
+            
+            
+            //currentY = position.origin.y + position.height
+            currentY = currentY + itemHeight
+            
+            
+            
+            let pageNumberText = String(currentPage) + " of " + String(totalPages)
+            self.addText(pageNumberText, frame: CGRect(x: 32, y: pageSize.height - 30, width: pageSize.width, height: 24), fontSize: 8, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.whiteColor(), fixedHeight: false)
+            
+            
+            
+            
+            
+            
+            
+            }
+            
+            
+            currentY = currentY + 20
+            var curX = CGFloat(32)
+            for inspectionItem in consentInspection.inspectionItem
+            {
+                let item = inspectionItem as! ConsentInspectionItem
+                for photo in item.photo
+                {
+                    if curX + 200 > (pageSize.width - 64)
+                    {
+                        curX = 32
+                        currentY = currentY + 280
+                        if currentY + 266 > (pageSize.height - 64)
+                        {
+                            beginPDFPage()
+                            currentPage = currentPage + 1
+                            if i == 0
+                            {
+                                totalPages = totalPages + 1
+                            }
+                            
+                            currentY = 32;
+                        }
+                    }
+
+                    let image = photo as! Photo
+                    let photoHandler = PhotoHandler()
+                    
+                    let imageData = NSData(base64EncodedString: image.encodedString, options: .allZeros)
+                    let imageDecoded = UIImage(data: imageData!)
+                    self.addImage(imageDecoded!, rect: CGRect(x: curX,y: currentY, width: 200,height: 266))
+                    curX = curX + 220
+                    let pageNumberText = String(currentPage) + " of " + String(totalPages)
+                    self.addText(pageNumberText, frame: CGRect(x: 32, y: pageSize.height - 30, width: pageSize.width, height: 24), fontSize: 8, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.whiteColor(), fixedHeight: false)
+                                    }
+                
+                
+            }
         
+           
         
         
         self.finishPDF()
+        }
     }
     
     func beginPDFPage ()
@@ -128,17 +236,20 @@ class GeneratePDF
         UIGraphicsEndPDFContext()
     }
     
-    func addText(text: String,var frame: CGRect, fontSize: CGFloat, textAlignment: NSTextAlignment, backgroundColour: UIColor) -> CGRect
+    func addText(text: String,var frame: CGRect, fontSize: CGFloat, textAlignment: NSTextAlignment, backgroundColour: UIColor, fixedHeight:Bool) -> CGRect
     {
-        //get height set width here
-        let label = UILabel()
-        label.text = text
-        label.textAlignment = textAlignment
-        label.frame = frame
-        label.font = UIFont(name: "Arial", size: fontSize)
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        if fixedHeight != true
+        {
+            //get height set width here
+            let label = UILabel()
+            label.text = text
+            label.textAlignment = textAlignment
+            label.frame = frame
+            label.font = UIFont(name: "Arial", size: fontSize)
+            label.lineBreakMode = NSLineBreakMode.ByWordWrapping
         
-        frame = CGRectMake(frame.origin.x, frame.origin.y, frame.width, label.requiredHeight())
+            frame = CGRectMake(frame.origin.x, frame.origin.y, frame.width, label.requiredHeight())
+        }
         
         
         
@@ -162,41 +273,59 @@ class GeneratePDF
         text.drawInRect(rectText, withAttributes: textFontAttributes)
 
         return rectText
-        
-        
-        
-       /* let font =  UIFont.systemFontOfSize(fontSize)
-        let constrainedToSize = CGSizeMake(pageSize.width - 2*20-2*20, pageSize.height - 2*20 - 2*20)
-        
-        let label = UILabel()
-        label.text = text
-        label.textAlignment = textAlignment
-        label.font = UIFont(name: label.font.fontName, size: fontSize)
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        let stringSize = label.sizeThatFits(constrainedToSize)
-        
-        var textWidth = frame.size.width;
-        
-        if (textWidth < stringSize.width)
-        {
-            textWidth = stringSize.width;
-        }
-        if (textWidth > pageSize.width)
-        {
-            textWidth = pageSize.width - frame.origin.x;
-        }
-        
-        /*let renderingRect = CGRectMake(frame.origin.x, frame.origin.y + 300, textWidth, stringSize.height)
-        label.drawTextInRect(renderingRect)*/
-        
-       // frame = CGRectMake(frame.origin.x, frame.origin.y, stringSize.width, stringSize.height);
-        
-        /*return frame*/
-        
-        //  let imageFrame = CGRectMake(point.x,point.y,image.size.width,image.size.height)
-        label.drawTextInRect(frame)
-        return frame*/
     }
+    
+    func getTableRowHeight(text: String,text2:String,text3:String,var frame1: CGRect,var frame2: CGRect,frame3: CGRect, fontSize: CGFloat) -> CGFloat
+    {
+        //get height set width here
+        let label1 = UILabel()
+        label1.text = text
+        label1.textAlignment = NSTextAlignment.Left
+        label1.frame = frame1
+        label1.font = UIFont(name: "Arial", size: fontSize)
+        label1.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        
+        let label2 = UILabel()
+        label2.text = text2
+        label2.textAlignment = NSTextAlignment.Left
+        label2.frame = frame2
+        label2.font = UIFont(name: "Arial", size: fontSize)
+        label2.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        
+        let label3 = UILabel()
+        label3.text = text3
+        label3.textAlignment = NSTextAlignment.Left
+        label3.frame = frame3
+        label3.font = UIFont(name: "Arial", size: fontSize)
+        label3.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        
+        
+        
+        if label1.requiredHeight() > label2.requiredHeight()
+        {
+            if label1.requiredHeight() > label3.requiredHeight()
+            {
+                return label1.requiredHeight()
+            }
+            else
+            {
+                return label3.requiredHeight()
+            }
+            
+        }
+        else
+        {
+            if label2.requiredHeight() > label3.requiredHeight()
+            {
+            return label2.requiredHeight()
+            }
+            else
+            {
+                return label3.requiredHeight()
+            }
+        }
+    }
+
     
     func addLineWithFrame(frame: CGRect, colour: UIColor) -> CGRect
     {
