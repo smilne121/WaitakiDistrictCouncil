@@ -50,8 +50,15 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
         //add pdf
         let fileData = NSData(contentsOfURL: NSURL(fileURLWithPath: genPDF.getPDFPath())!)
         picker.addAttachmentData(fileData, mimeType: "application/pdf", fileName: "Inspection Report.pdf")
+        if MFMailComposeViewController .canSendMail() == true
+        {
+       presentViewController(picker, animated: true, completion: nil)
+        }
+        else
+        {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
         
-        presentViewController(picker, animated: true, completion: nil)
     }
 
     /*

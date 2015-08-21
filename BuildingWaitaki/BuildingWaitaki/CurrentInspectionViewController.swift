@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIPopoverPresentationControllerDelegate {
+class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIPopoverPresentationControllerDelegate, UIPopoverControllerDelegate {
     var consentInspection : ConsentInspection!
     var inspectionTypeItems : [InspectionTypeItems]!
     var managedContext: NSManagedObjectContext!
@@ -162,11 +162,12 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         
         //loop though items and create containers
 
-            for item in itemInspectionArraySorted
+        // moved to better area
+        for item in itemInspectionArraySorted
+        {
+            let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            /*if consentInspection.locked != NSNumber(bool: true)
             {
-                let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                if consentInspection.locked != NSNumber(bool: true)
-                {
                 if itemName == "Inspection Officer"
                 {
                     let settings = AppSettings()
@@ -180,9 +181,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                             managedContext.save(nil)
                         }
                     }
-                    }}
+                }
+            }*/
             
-        
+
 
         
             if itemName != "Comments" && itemName != "Inspection Officer"
@@ -272,7 +274,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 
                 let btnNotes = UIButton(frame: CGRect(x: container.frame.width - 60 , y: 142, width: 40, height: 40))
                 let commentimage = UIImage(named: "Speech Bubble-50.png")
-                btnNotes.addTarget(self, action: "loadNotes:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnNotes.addTarget(self, action: "loadNotesBtn:", forControlEvents: UIControlEvents.TouchUpInside)
                 btnNotes.setImage(commentimage, forState: .Normal)
                 container.addSubview(btnNotes)
                 
@@ -299,6 +301,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 }
                 
                 //save date back to consent 
+               /*move to save data method
                 for item in itemInspectionArraySorted
                 {
                     let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
@@ -319,7 +322,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                         }
                         
                     }
-                }
+                }*/
                 
                 //disable if locked
                 if consentInspection.locked == NSNumber(bool: true)
@@ -391,6 +394,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     {
         //bool to hold if n/a selected 
         var NASelected = NSNumber(bool: false)
+        var failSelected = NSNumber(bool: false)
         if(sender.selectedSegmentIndex == 0)
         {
           //  println("pass")
@@ -423,6 +427,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 if view.isKindOfClass(UILabel)
                 {
                     saveData((view as! UILabel).text!, value: "FAIL")
+                    failSelected = NSNumber(bool: true)
                 }
             }
         }
@@ -437,8 +442,16 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                     button = view as! UIButton
                 }
             }
-            loadNotes(button)
+            if failSelected == NSNumber(bool:true)
+            {
+                loadNotes(button,needsInfo: NSNumber(bool: true))
+            }
+            else
+            {
+                loadNotes(button,needsInfo: NSNumber(bool: false))
+            }
         }
+        
         
         
         
@@ -473,6 +486,78 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     
     
     private func saveData(itemName: String, value: String) {
+        //on saving an item update officer and date
+         let itemInspectionArraySorted = inspectionTypeItems.sorted {$0.getOrderAsInt() < $1.getOrderAsInt()}
+        for item in itemInspectionArraySorted
+        {
+            let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            if consentInspection.locked != NSNumber(bool: true)
+            {
+                if itemName == "Inspection Officer"
+                {
+                    let settings = AppSettings()
+            
+                    let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
+                    for itemResult in itemResults
+                    {
+                        if itemResult.itemName == itemName
+                        {
+                            itemResult.itemResult = settings.getUser()
+                            managedContext.save(nil)
+                        }
+                    }
+                }
+            
+                else if itemName == "Date"
+                {
+                    let settings = AppSettings()
+                    
+                    let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
+                    for itemResult in itemResults
+                    {
+                        if itemResult.itemName == itemName
+                        {
+                            for view in itemHolder.subviews
+                            {
+                            if view.isKindOfClass(UIView)
+                            {
+                                for subview1 in view.subviews
+                                {
+                                    if subview1.isKindOfClass(UILabel)
+                                    {
+                                        let label = subview1 as! UILabel
+                                        if label.text == "Date"
+                                        {
+                                            for datePickerview in view.subviews
+                                            {
+                                                if datePickerview.isKindOfClass(UIDatePicker)
+                                                {
+                                                    let datePicker = datePickerview as! UIDatePicker
+                                                    let dateFormatter = NSDateFormatter()
+                                                    dateFormatter.dateFormat = "dd-MM-yyyy"
+                                                    itemResult.itemResult = dateFormatter.stringFromDate(datePicker.date)
+                                                    managedContext.save(nil)
+
+                                                }
+                                            }
+                                            
+                                                                                   }
+                                    }
+                                }
+                            }
+                            }
+                            
+      
+                            }
+                        }
+                    }
+                    
+            }
+        }
+
+        
+        
+        
         if consentInspection.locked != NSNumber(bool: true)
         {
             var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
@@ -499,8 +584,13 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         
         }
     }
-
-    func loadNotes(sender: UIButton)
+    
+    func loadNotesBtn(sender: UIButton)
+    {
+        loadNotes(sender, needsInfo: NSNumber(bool: false))
+    }
+    
+    func loadNotes(sender: UIButton,needsInfo: NSNumber?)
     {
         let storyboard : UIStoryboard = UIStoryboard(
             name: "Main",
@@ -509,6 +599,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         
         commentsViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
         commentsViewController.preferredContentSize = CGSizeMake(500, 450)
+    
         
         commentsViewController.consentInspection = consentInspection
         commentsViewController.managedContext = managedContext
@@ -530,12 +621,17 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         popoverMenuViewController?.permittedArrowDirections = UIPopoverArrowDirection.allZeros
         
         
-        
+        commentsViewController.needsInfo = needsInfo
+        commentsViewController.modalInPopover = true
+        commentsViewController.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+                
         presentViewController(
             commentsViewController,
             animated: true,
             completion: nil)
     }
+    
+    
     
     func loadCommentsView(sender: UIButton)
     {
@@ -919,6 +1015,7 @@ saveFinished()
         }
         
         
+        
         //get current inspection item
         var resultRequest = NSFetchRequest(entityName: "ConsentInspection")
         let itemPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
@@ -962,6 +1059,10 @@ saveFinished()
         emailController.consentInspection = consentInspection
         self.navigationController!.pushViewController(emailController, animated: true)
 
+    }
+    
+    func popoverControllerShouldDismissPopover(popoverController: UIPopoverController) -> Bool {
+        return false
     }
     
     }

@@ -60,6 +60,45 @@ class PhotoHandler {
        
     }
     
+    func deleteAppImages(identifiers: [String])
+    {
+        if identifiers.count > 0
+        {
+        println(identifiers.count)
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.Image.rawValue)
+        let fetchResults = PHAsset.fetchAssetsWithLocalIdentifiers(identifiers, options: fetchOptions)
+        
+        println(fetchResults.count)
+        
+        let total = fetchResults.count
+        var assetArray : [PHAsset]
+        assetArray = []
+        for i in 1...total
+        {
+            assetArray.append(fetchResults.objectAtIndex(i-1) as! PHAsset)
+        }
+        
+        if fetchResults.count > 0
+        {
+           // if let imageAssets = fetchResults as? [PHAsset]
+           // {
+                PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+                    
+                    // Delete asset
+                    PHAssetChangeRequest.deleteAssets(assetArray)
+                    }, completionHandler: { (success, error) -> Void in
+                        if success {
+                            println("Pictures deleted")
+                        }else{
+                            
+                        }
+                })
+            }
+        }
+    }
+    
     func retrieveImageWithIdentifer(localIdentifier:String, completion: (image:UIImage?) -> Void) {
         let fetchOptions = PHFetchOptions()
         fetchOptions.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.Image.rawValue)

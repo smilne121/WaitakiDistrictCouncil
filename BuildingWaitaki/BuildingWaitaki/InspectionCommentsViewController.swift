@@ -13,6 +13,8 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
 
     var consentInspection: ConsentInspection!
     var managedContext: NSManagedObjectContext!
+    var needsInfo: NSNumber!
+    var textView: UITextView?
     var itemName: String!
     
     override func viewDidLoad() {
@@ -22,17 +24,17 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         
 
         // Do any additional setup after loading the view.
-        let textView = UITextView(frame: CGRect(x: 10, y: 10, width: 480, height: 350))
+        textView = UITextView(frame: CGRect(x: 10, y: 10, width: 480, height: 350))
         
-        textView.layer.borderWidth = CGFloat(1)
-        textView.layer.cornerRadius = CGFloat(5)
-        textView.font = UIFont(name: "HelveticaNeue", size: 18)
-        textView.delegate = self
-        textView.becomeFirstResponder()
+        textView!.layer.borderWidth = CGFloat(1)
+        textView!.layer.cornerRadius = CGFloat(5)
+        textView!.font = UIFont(name: "HelveticaNeue", size: 18)
+        textView!.delegate = self
+        textView!.becomeFirstResponder()
         
         if consentInspection.locked == true
         {
-            textView.editable = false
+            textView!.editable = false
         }
         
         for item in consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
@@ -42,7 +44,7 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
                 println(item)
                 if let comment = item.itemComment
                 {
-                    textView.text = comment
+                    textView!.text = comment
                 }
             }
         }
@@ -62,7 +64,7 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         
         
         //textView.font = UIFont(name: textView.font.fontName, size: 18)
-        self.view.addSubview(textView)
+        self.view.addSubview(textView!)
         self.view.addSubview(btnClose)
     }
 
@@ -73,7 +75,30 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
     
     func close (sender: UIButton)
     {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if needsInfo == NSNumber(bool: true)
+        {
+            if self.textView?.text != ""
+            {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            else
+            {
+                let popup = UIAlertController(title: "You must enter a reason",
+                    message: "Write a comment and press done",
+                    preferredStyle: .Alert)
+            
+                popup.addAction(UIAlertAction(title: "OK",
+                    style: UIAlertActionStyle.Default,
+                    handler:nil))
+            
+                self.presentViewController(popup, animated: true, completion: nil)
+            }
+        }
+        else
+        {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
     }
     
     func textViewDidChange(textView: UITextView)

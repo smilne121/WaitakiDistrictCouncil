@@ -111,10 +111,16 @@ class OfficeToolsGetConsents {
         fetchRequest4.includesSubentities = true
         fetchRequest4.returnsObjectsAsFaults = false
         
+        let fetchRequest5 = NSFetchRequest(entityName: "Photo")
+        fetchRequest5.includesSubentities = true
+        fetchRequest5.returnsObjectsAsFaults = false
+        
+        
         let items = managedContext.executeFetchRequest(fetchRequest, error: &error)!
         let items2 = managedContext.executeFetchRequest(fetchRequest2, error: &error)!
         let items3 = managedContext.executeFetchRequest(fetchRequest3, error: &error)!
         let items4 = managedContext.executeFetchRequest(fetchRequest4, error: &error)!
+        let items5 = managedContext.executeFetchRequest(fetchRequest5, error: &error)!
         
         for item in items {
             managedContext.deleteObject(item as! NSManagedObject)
@@ -129,6 +135,20 @@ class OfficeToolsGetConsents {
         }
         
         for item in items4 {
+            managedContext.deleteObject(item as! NSManagedObject)
+        }
+        
+        //remove images from device
+        var arrayOfIdent =  [String]()
+        for item in items5 {
+            let image = item as! Photo
+            arrayOfIdent.append(image.photoIdentifier)
+            
+        }
+        let ph = PhotoHandler()
+        ph.deleteAppImages(arrayOfIdent)
+        
+        for item in items5 {
             managedContext.deleteObject(item as! NSManagedObject)
         }
         

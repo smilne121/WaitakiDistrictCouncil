@@ -30,6 +30,11 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         self.automaticallyAdjustsScrollViewInsets = false
             loadImages()
         
+        if inspectionItem.consentInspection.locked == NSNumber(bool: true)
+        {
+            takePicBtn.enabled = false
+        }
+        
     }
     
     override func didReceiveMemoryWarning()
@@ -39,10 +44,17 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
     }
     
     @IBAction func takePhoto(sender: UIButton) {
-        imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
+        if inspectionItem.consentInspection.locked == NSNumber(bool: false)
+        {
+            if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera))
+            {
+                imagePicker =  UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .Camera
+                presentViewController(imagePicker, animated: true, completion: nil)
+            }
+        }
+        
     }
     
     func loadImages()

@@ -180,6 +180,8 @@ class GeneratePDF
             
             }
             
+            let imageWidth = CGFloat(163)
+            let imageHeight = CGFloat(217)
             
             currentY = currentY + 20
             var curX = CGFloat(32)
@@ -188,11 +190,11 @@ class GeneratePDF
                 let item = inspectionItem as! ConsentInspectionItem
                 for photo in item.photo
                 {
-                    if curX + 200 > (pageSize.width - 64)
+                    if curX + imageWidth > (pageSize.width - 32 + 3)
                     {
                         curX = 32
-                        currentY = currentY + 280
-                        if currentY + 266 > (pageSize.height - 64)
+                        currentY = currentY + imageHeight + 20
+                        if currentY + imageHeight > (pageSize.height - 64)
                         {
                             beginPDFPage()
                             currentPage = currentPage + 1
@@ -210,8 +212,8 @@ class GeneratePDF
                     
                     let imageData = NSData(base64EncodedString: image.encodedString, options: .allZeros)
                     let imageDecoded = UIImage(data: imageData!)
-                    self.addImage(imageDecoded!, rect: CGRect(x: curX,y: currentY, width: 200,height: 266))
-                    curX = curX + 220
+                    self.addImage(imageDecoded!, rect: CGRect(x: curX,y: currentY, width: imageWidth,height: imageHeight))
+                    curX = curX + imageWidth + 20
                     let pageNumberText = String(currentPage) + " of " + String(totalPages)
                     self.addText(pageNumberText, frame: CGRect(x: 32, y: pageSize.height - 30, width: pageSize.width, height: 24), fontSize: 8, textAlignment: NSTextAlignment.Left, backgroundColour: UIColor.whiteColor(), fixedHeight: false)
                                     }
