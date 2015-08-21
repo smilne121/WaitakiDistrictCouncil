@@ -17,6 +17,8 @@
 		D226D3931B81A98F00FF2007 /* wdc-main-logo-300x80.png in Resources */ = {isa = PBXBuildFile; fileRef = D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */; };
 		D226D3951B82BC4500FF2007 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D226D3941B82BC4500FF2007 /* EmailViewController.swift */; };
 		D26C78461B461D5F009D995E /* ResultTransferArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C78451B461D5F009D995E /* ResultTransferArray.swift */; };
+		D271FB371B87159900A47925 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271FB361B87159900A47925 /* DrawingViewController.swift */; };
+		D271FB391B871B8800A47925 /* example_image.png in Resources */ = {isa = PBXBuildFile; fileRef = D271FB381B871B8800A47925 /* example_image.png */; };
 		D279D9121B79A1C9001B8F68 /* PhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */; };
 		D279D9181B79A860001B8F68 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9171B79A860001B8F68 /* Photo.swift */; };
 		D279D91A1B7AD25C001B8F68 /* ResultsTransferImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9191B7AD25C001B8F68 /* ResultsTransferImage.swift */; };
@@ -81,6 +83,8 @@
 		D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdc-main-logo-300x80.png"; sourceTree = "<group>"; };
 		D226D3941B82BC4500FF2007 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		D26C78451B461D5F009D995E /* ResultTransferArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferArray.swift; sourceTree = "<group>"; };
+		D271FB361B87159900A47925 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
+		D271FB381B871B8800A47925 /* example_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_image.png; sourceTree = "<group>"; };
 		D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHandler.swift; sourceTree = "<group>"; };
 		D279D9171B79A860001B8F68 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		D279D9191B7AD25C001B8F68 /* ResultsTransferImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTransferImage.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 				D2EB21821B2FBBE4008D2AC4 /* Speech Bubble-50.png */,
 				D2EB217A1B2EAC29008D2AC4 /* Failed.png */,
 				D2EB217B1B2EAC29008D2AC4 /* passed.png */,
+				D271FB381B871B8800A47925 /* example_image.png */,
 				D2B6857C1B2AF1D600C3E34A /* Contacts-50.png */,
 				D2B6857D1B2AF1D600C3E34A /* Map-50.png */,
 			);
@@ -216,6 +221,7 @@
 				D2FACFBD1B3778BF008C0125 /* InspectionCommentsViewController.swift */,
 				D226D38E1B815A3D00FF2007 /* MapViewController.swift */,
 				D226D3941B82BC4500FF2007 /* EmailViewController.swift */,
+				D271FB361B87159900A47925 /* DrawingViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -370,6 +376,7 @@
 			files = (
 				D2FB40D51B16E18200474A15 /* Main.storyboard in Resources */,
 				D2B6857F1B2AF1D600C3E34A /* Contacts-50.png in Resources */,
+				D271FB391B871B8800A47925 /* example_image.png in Resources */,
 				D2FB40DA1B16E18200474A15 /* LaunchScreen.xib in Resources */,
 				D2FB40D71B16E18200474A15 /* Images.xcassets in Resources */,
 				D2FACFC41B37D056008C0125 /* todo.png in Resources */,
@@ -413,6 +420,7 @@
 				D2C523C61B27E0D200009952 /* ConsentInspectionItem.swift in Sources */,
 				D2F005811B25B28D00D3B0F5 /* InspectionType.swift in Sources */,
 				D2EB21851B2FBD47008D2AC4 /* CurrentConsentViewController.swift in Sources */,
+				D271FB371B87159900A47925 /* DrawingViewController.swift in Sources */,
 				D28C41A11B44CF3200C69EAB /* ResultTransferItem.swift in Sources */,
 				D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */,
 				D279D91A1B7AD25C001B8F68 /* ResultsTransferImage.swift in Sources */,
