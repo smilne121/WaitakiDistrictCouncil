@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class DrawingViewController: UIViewController {
+class DrawingViewController: UIViewController, PhotoCompletionDelegate{
     
     var lastPoint = CGPoint.zeroPoint
     var red: CGFloat = 0.0
@@ -17,7 +18,10 @@ class DrawingViewController: UIViewController {
     var brushWidth: CGFloat = 10.0
     var opacity: CGFloat = 1.0
     var swiped = false
-    var imageToEdit: UIImage?
+    var managedContext: NSManagedObjectContext!
+    var imageToEdit: UIImage!
+    var inspectionItem: ConsentInspectionItem!
+    var localIdentifier: String!
     var arrayUIImageViews: [UIImageView]?
     
     let colors: [(CGFloat, CGFloat, CGFloat)] = [
@@ -143,6 +147,9 @@ class DrawingViewController: UIViewController {
                 }
             }
         }
+        
+        
+        //saveToCoreDataAndPhotoRoll
 
         
     }
@@ -159,6 +166,24 @@ class DrawingViewController: UIViewController {
         if let touch = touches.first as? UITouch {
             lastPoint = touch.locationInView(self.view)
         }
+    }
+    
+    func photoSaveCompleted(identifier: String, image : UIImage)
+    {
+        let data = UIImageJPEGRepresentation(image as UIImage, 1)
+        let encodedImage = data.base64EncodedStringWithOptions(.allZeros)
+        
+        // add photo details to database
+        let currentImage = NSEntityDescription.insertNewObjectForEntityForName("Photo", inManagedObjectContext: managedContext) as! Photo
+        currentImage.consentNumber = inspectionItem.consentId
+        currentImage.inspectionName = inspectionItem.inspectionName
+        currentImage.itemId = inspectionItem.itemId
+        currentImage.consentInspectionItem = inspectionItem
+        currentImage.encodedString = encodedImage
+        currentImage.dateTaken = NSDate()
+        currentImage.photoIdentifier = identifier
+        managedContext.save(nil)
+        
     }
     
     func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
@@ -204,11 +229,7 @@ class DrawingViewController: UIViewController {
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
-        
-        
-        
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {        
         if !swiped {
             // draw a single point
             drawLineFrom(lastPoint, toPoint: lastPoint)
@@ -217,24 +238,13 @@ class DrawingViewController: UIViewController {
         
     }
     
-   /* override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let settingsViewController = segue.destinationViewController as! SettingsViewController
-        settingsViewController.delegate = self
-        settingsViewController.brush = brushWidth
-        settingsViewController.opacity = opacity
-        settingsViewController.red = red
-        settingsViewController.green = green
-        settingsViewController.blue = blue
+    func loadImages()
+    {
+        
     }
-    
+    func photoLoaded(image: UIImage, imageIdentity: String)
+    {
+        
+    }
 }
 
-extension ViewController: SettingsViewControllerDelegate {
-    func settingsViewControllerFinished(settingsViewController: SettingsViewController) {
-        self.brushWidth = settingsViewController.brush
-        self.opacity = settingsViewController.opacity
-        self.red = settingsViewController.red
-        self.green = settingsViewController.green
-        self.blue = settingsViewController.blue
-    }*/
-}

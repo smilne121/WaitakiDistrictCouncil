@@ -11,11 +11,12 @@ import AVFoundation
 import AssetsLibrary
 import CoreData
 
-class InspectionCameraViewController:  UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIGestureRecognizerDelegate
+class InspectionCameraViewController:  UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIGestureRecognizerDelegate, PhotoCompletionDelegate
 {
     @IBOutlet weak var cameraViewer : UIImageView!
     @IBOutlet weak var takePicBtn : UIButton!
     @IBOutlet weak var pictureScroller : UIScrollView!
+    var currentImageIdentifer : String?
     var inspectionItem : ConsentInspectionItem!
     var managedContext : NSManagedObjectContext!
     var imagePicker: UIImagePickerController!
@@ -34,6 +35,11 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         {
             takePicBtn.enabled = false
         }
+        
+        let swipeEdit = UISwipeGestureRecognizer(target: self, action:Selector("handleImageEditSwipeUp:"))
+        swipeEdit.direction = UISwipeGestureRecognizerDirection.Up
+        swipeEdit.delegate = self
+        cameraViewer.addGestureRecognizer(swipeEdit)
         
     }
     
@@ -81,7 +87,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
                 {
                     println(photoInfo.photoIdentifier)
                     let photo = PhotoHandler()
-                    photo.sender = self
+                    photo.delegate = self
                     photo.retrieveImageWithIdentifer(photoInfo.photoIdentifier, completion: { (image) -> Void in
                         let retrievedImage = image
                     })
@@ -102,10 +108,9 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
     {
         var identifier:String?
         let photo = PhotoHandler()
-        photo.sender = self
-        photo.saveImageAsAsset(image, completion: { (localIdentifier) -> Void in
-            identifier = localIdentifier
-        })
+        photo.delegate = self
+        photo.saveImageAsAsset(image, completion: { (localIdentifier) -> Void in identifier = localIdentifier})
+        
     }
     
     func photoLoaded(image : UIImage,imageIdentity: String)
@@ -135,7 +140,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         
     }
     
-    func completedSave(identifier: String, image : UIImage)
+    func photoSaveCompleted(identifier: String, image : UIImage)
     {
         let data = UIImageJPEGRepresentation(image as UIImage, 1)
         let encodedImage = data.base64EncodedStringWithOptions(.allZeros)
@@ -195,6 +200,41 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         deleteBtn.addTarget(self, action: "deleteImage:", forControlEvents: UIControlEvents.TouchUpInside)
         imageview.addSubview(deleteBtn)
     }
+    
+    func handleImageEditSwipeUp(sender: UITapGestureRecognizer)
+    {
+        
+        let imageview = sender.view! as! UIImageView
+        
+        let deleteBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        deleteBtn.frame = CGRectMake(0, 150, 550, 50)
+        deleteBtn.setTitle("Edit", forState: .Normal)
+        deleteBtn.layer.backgroundColor = UIColor.greenColor().CGColor
+        deleteBtn.tintColor = UIColor.whiteColor()
+        deleteBtn.addTarget(self, action: "editImage:", forControlEvents: UIControlEvents.TouchUpInside)
+        imageview.addSubview(deleteBtn)
+    }
+    
+    func editImage (sender: UIButton)
+    {
+        var managedContext: NSManagedObjectContext!
+        var imageToEdit: UIImage!
+        var inspectionItem: ConsentInspectionItem!
+        var localIdentifier: String!
+        var arrayUIImageViews: [UIImageView]?
+        
+        
+        let viewController = DrawingViewController()
+        viewController.managedContext = self.managedContext
+        viewController.inspectionItem = inspectionItem
+        viewController.localIdentifier = currentImageIdentifer
+        viewController.imageToEdit = (sender.superview as! UIImageView).image
+        
+        navigationController!.pushViewController(viewController, animated: true)
+
+    }
+
+    
     func handleSwipeDown(sender: UITapGestureRecognizer)
     {
         let imageview = sender.view! as! UIImageView
@@ -232,7 +272,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
                 {
                      managedContext.deleteObject(image as NSManagedObject)
                     let photo = PhotoHandler()
-                    photo.sender = self
+                    photo.delegate = self
                     photo.deleteImage(idnt)
                 }
             }

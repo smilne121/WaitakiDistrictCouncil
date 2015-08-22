@@ -13,7 +13,8 @@ import Photos
 class PhotoHandler {
     
     var manager = PHImageManager.defaultManager()
-    var sender : InspectionCameraViewController!
+    //var sender : InspectionCameraViewController!
+    var delegate: PhotoCompletionDelegate?
 
     
     func saveImageAsAsset(image: UIImage, completion: (localIdentifier:String?) -> Void) {
@@ -27,7 +28,7 @@ class PhotoHandler {
             }, completionHandler: { (success, error) -> Void in
                 if success {
                     completion(localIdentifier: imageIdentifier)
-                    self.sender.completedSave(imageIdentifier!, image: image)
+                    self.delegate!.photoSaveCompleted(imageIdentifier!, image: image)
                 } else {
                     completion(localIdentifier: nil)
                 }
@@ -50,7 +51,7 @@ class PhotoHandler {
                     PHAssetChangeRequest.deleteAssets([imageAsset])
                     }, completionHandler: { (success, error) -> Void in
                         if success {
-                        self.sender.loadImages()
+                        self.delegate!.loadImages()
                         }else{
                             
                         }
@@ -110,7 +111,7 @@ class PhotoHandler {
                 requestOptions.deliveryMode = .HighQualityFormat
                 manager.requestImageForAsset(imageAsset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFill, options: requestOptions, resultHandler: { (image, info) -> Void in
                     completion(image: image)
-                    self.sender.photoLoaded(image, imageIdentity: localIdentifier)
+                    self.delegate!.photoLoaded(image, imageIdentity: localIdentifier)
                 })
             } else {
                 completion(image: nil)
@@ -120,3 +121,13 @@ class PhotoHandler {
         }
     }
 }
+
+import CoreData
+
+protocol PhotoCompletionDelegate {
+    func photoSaveCompleted(identifier: String, image: UIImage)
+    func loadImages()
+    func photoLoaded(image: UIImage, imageIdentity: String)
+}
+
+
