@@ -173,7 +173,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
-                        <outlet property="CameraViewer" destination="1dN-xP-fne" id="Eir-L9-mWg"/>
+                        <outlet property="cameraViewer" destination="1dN-xP-fne" id="BJr-On-RR8"/>
                         <outlet property="pictureScroller" destination="ViR-Dz-Ejv" id="tgC-Cv-7iX"/>
                         <outlet property="takePicBtn" destination="pDS-8E-c0c" id="nFu-Ac-yQH"/>
                     </connections>
@@ -415,9 +415,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="example_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="FHj-R3-RJD" userLabel="MainImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                            </imageView>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WNf-sq-g21">
                                 <rect key="frame" x="24" y="894" width="46" height="30"/>
                                 <state key="normal" title="Green">
@@ -503,7 +500,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
-                        <outlet property="mainImageView" destination="FHj-R3-RJD" id="y8J-T6-ESQ"/>
+                        <outlet property="grnBtn" destination="WNf-sq-g21" id="YM0-iI-pvv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RrQ-Us-zuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -511,7 +508,4 @@
             <point key="canvasLocation" x="1322" y="-383"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="example_image.png" width="475" height="360"/>
-    </resources>
 </document>

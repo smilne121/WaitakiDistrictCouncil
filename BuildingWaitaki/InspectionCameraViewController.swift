@@ -29,7 +29,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
             super.viewDidLoad()
         self.title = inspectionItem.inspectionName + " - " + inspectionItem.itemName
         self.automaticallyAdjustsScrollViewInsets = false
-            loadImages()
+           // loadImages()
         
         if inspectionItem.consentInspection.locked == NSNumber(bool: true)
         {
@@ -40,7 +40,12 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         swipeEdit.direction = UISwipeGestureRecognizerDirection.Up
         swipeEdit.delegate = self
         cameraViewer.addGestureRecognizer(swipeEdit)
+        cameraViewer.userInteractionEnabled = true
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        loadImages()
     }
     
     override func didReceiveMemoryWarning()
@@ -138,6 +143,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         pictureScroller.contentSize = CGSize(width: CGFloat(curX + 300), height: pictureScroller.frame.height)
         cameraViewer.image = image
         
+        currentImageIdentifer = imageIdentity
     }
     
     func photoSaveCompleted(identifier: String, image : UIImage)
@@ -169,8 +175,24 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
     
      func handleTap(sender: UITapGestureRecognizer)
      {
+        for view in cameraViewer.subviews
+        {
+            view.removeFromSuperview()
+        }
+        
+        
         let imageview = sender.view! as! UIImageView
         cameraViewer.image = imageview.image
+        
+        for view in sender.view!.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                let label = view as! UILabel
+                currentImageIdentifer = label.text!
+            }
+        }
+
         
     }
     func handleSwipeUp(sender: UITapGestureRecognizer)
@@ -203,11 +225,10 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
     
     func handleImageEditSwipeUp(sender: UITapGestureRecognizer)
     {
-        
         let imageview = sender.view! as! UIImageView
         
         let deleteBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        deleteBtn.frame = CGRectMake(0, 150, 550, 50)
+        deleteBtn.frame = CGRectMake(0, 536 - 50, 550, 50)
         deleteBtn.setTitle("Edit", forState: .Normal)
         deleteBtn.layer.backgroundColor = UIColor.greenColor().CGColor
         deleteBtn.tintColor = UIColor.whiteColor()
@@ -217,19 +238,15 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
     
     func editImage (sender: UIButton)
     {
-        var managedContext: NSManagedObjectContext!
-        var imageToEdit: UIImage!
-        var inspectionItem: ConsentInspectionItem!
-        var localIdentifier: String!
-        var arrayUIImageViews: [UIImageView]?
-        
-        
+       
         let viewController = DrawingViewController()
         viewController.managedContext = self.managedContext
         viewController.inspectionItem = inspectionItem
         viewController.localIdentifier = currentImageIdentifer
         viewController.imageToEdit = (sender.superview as! UIImageView).image
         
+        
+         sender.removeFromSuperview()
         navigationController!.pushViewController(viewController, animated: true)
 
     }

@@ -35,6 +35,7 @@ class PhotoHandler {
         })
     }
     
+    
     func deleteImage(localIdentifier:String)
     {
         let fetchOptions = PHFetchOptions()
