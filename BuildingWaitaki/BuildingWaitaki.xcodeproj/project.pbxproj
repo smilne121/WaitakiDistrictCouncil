@@ -16,6 +16,8 @@
 		D226D3911B816CA500FF2007 /* GeneratePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D226D3901B816CA500FF2007 /* GeneratePDF.swift */; };
 		D226D3931B81A98F00FF2007 /* wdc-main-logo-300x80.png in Resources */ = {isa = PBXBuildFile; fileRef = D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */; };
 		D226D3951B82BC4500FF2007 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D226D3941B82BC4500FF2007 /* EmailViewController.swift */; };
+		D242F8E91B8ADFC800B83942 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D242F8E81B8ADFC800B83942 /* ContactsViewController.swift */; };
+		D242F8EB1B8B066900B83942 /* DescriptionOfWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D242F8EA1B8B066900B83942 /* DescriptionOfWorkViewController.swift */; };
 		D26C78461B461D5F009D995E /* ResultTransferArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C78451B461D5F009D995E /* ResultTransferArray.swift */; };
 		D271FB371B87159900A47925 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271FB361B87159900A47925 /* DrawingViewController.swift */; };
 		D271FB391B871B8800A47925 /* example_image.png in Resources */ = {isa = PBXBuildFile; fileRef = D271FB381B871B8800A47925 /* example_image.png */; };
@@ -82,6 +84,8 @@
 		D226D3901B816CA500FF2007 /* GeneratePDF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratePDF.swift; sourceTree = "<group>"; };
 		D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdc-main-logo-300x80.png"; sourceTree = "<group>"; };
 		D226D3941B82BC4500FF2007 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		D242F8E81B8ADFC800B83942 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		D242F8EA1B8B066900B83942 /* DescriptionOfWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionOfWorkViewController.swift; sourceTree = "<group>"; };
 		D26C78451B461D5F009D995E /* ResultTransferArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferArray.swift; sourceTree = "<group>"; };
 		D271FB361B87159900A47925 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		D271FB381B871B8800A47925 /* example_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_image.png; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 				D226D38E1B815A3D00FF2007 /* MapViewController.swift */,
 				D226D3941B82BC4500FF2007 /* EmailViewController.swift */,
 				D271FB361B87159900A47925 /* DrawingViewController.swift */,
+				D242F8E81B8ADFC800B83942 /* ContactsViewController.swift */,
+				D242F8EA1B8B066900B83942 /* DescriptionOfWorkViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -427,8 +433,10 @@
 				D21BF6841B3D108C00DD4AF3 /* AddInspectionViewController.swift in Sources */,
 				D2948AE41B730FD6003CD950 /* InspectionCameraViewController.swift in Sources */,
 				D279D9181B79A860001B8F68 /* Photo.swift in Sources */,
+				D242F8E91B8ADFC800B83942 /* ContactsViewController.swift in Sources */,
 				D226D3951B82BC4500FF2007 /* EmailViewController.swift in Sources */,
 				D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */,
+				D242F8EB1B8B066900B83942 /* DescriptionOfWorkViewController.swift in Sources */,
 				D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */,
 				D2FACFBA1B3641FF008C0125 /* InspectionTypeItems.swift in Sources */,
 				D226D38F1B815A3D00FF2007 /* MapViewController.swift in Sources */,

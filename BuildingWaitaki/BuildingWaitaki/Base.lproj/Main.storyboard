@@ -403,6 +403,79 @@
             </objects>
             <point key="canvasLocation" x="179" y="608"/>
         </scene>
+        <!--Description Of Work View Controller-->
+        <scene sceneID="Knh-7x-Pph">
+            <objects>
+                <viewController storyboardIdentifier="DescriptionOfWorkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rLi-wr-0Qe" customClass="DescriptionOfWorkViewController" customModule="BuildingWaitaki" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Am-zY-Qav"/>
+                        <viewControllerLayoutGuide type="bottom" id="8m5-9q-GzR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5rB-1n-VQJ">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="350"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description Of Work:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEx-M0-0gB">
+                                <rect key="frame" x="16" y="73" width="183" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H61-Tq-9Fr">
+                                <rect key="frame" x="16" y="102" width="468" height="178"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Consent Number: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4H-gG-JeT">
+                                <rect key="frame" x="16" y="15" width="468" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W83-fH-kkA">
+                                <rect key="frame" x="227" y="320" width="46" height="30"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeClicked:" destination="rLi-wr-0Qe" eventType="touchUpInside" id="ZEO-vq-gum"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="500" height="350"/>
+                    <connections>
+                        <outlet property="DescriptionOfWorkText" destination="H61-Tq-9Fr" id="ipr-w3-s02"/>
+                        <outlet property="consentTitle" destination="A4H-gG-JeT" id="LYD-lc-rBf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h6g-OZ-slz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="894" y="-1238"/>
+        </scene>
+        <!--Contacts View Controller-->
+        <scene sceneID="B6u-Ia-hwf">
+            <objects>
+                <viewController storyboardIdentifier="ContactsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dz6-8f-eTD" customClass="ContactsViewController" customModule="BuildingWaitaki" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dxe-pW-mkk"/>
+                        <viewControllerLayoutGuide type="bottom" id="SOa-W3-9qH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wKL-gg-NhR">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="450"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="500" height="450"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xSE-Rk-6jt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1415" y="-1238"/>
+        </scene>
         <!--Drawing-->
         <scene sceneID="Or5-I3-hDB">
             <objects>

@@ -35,7 +35,6 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         var currentY = CGFloat(5)
         var height = CGFloat(50)
         
-        //let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
         existingRequest.predicate = compound1
         

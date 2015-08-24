@@ -75,6 +75,8 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
     
     func close (sender: UIButton)
     {
+        if let mustEnter = needsInfo
+        {
         if needsInfo == NSNumber(bool: true)
         {
             if self.textView?.text != ""
@@ -93,6 +95,11 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
             
                 self.presentViewController(popup, animated: true, completion: nil)
             }
+        }
+        else
+        {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
         }
         else
         {

@@ -52,18 +52,8 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     func generateItemsOnscreen()
     {
         //ADD TOP BAR ICONS
-        let btnConsentDetails = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        btnConsentDetails.frame = CGRectMake(20, 85, 120, 40)
-        btnConsentDetails.setTitle("Consent Details", forState: .Normal)
-        btnConsentDetails.layer.cornerRadius = 5.0
-        btnConsentDetails.layer.borderColor = UIColor.blackColor().CGColor
-        btnConsentDetails.layer.borderWidth = 1
-        btnConsentDetails.layer.backgroundColor = UIColor.whiteColor().CGColor
-        btnConsentDetails.tintColor = UIColor.blackColor()
-        itemHolder.superview?.addSubview(btnConsentDetails)
-        
         let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        btnComments.frame = CGRectMake(200, 85, 150, 40)
+        btnComments.frame = CGRectMake(20, 85, 150, 40)
         btnComments.setTitle("Comments", forState: .Normal)
         btnComments.layer.cornerRadius = 5.0
         btnComments.layer.borderColor = UIColor.blackColor().CGColor
@@ -74,7 +64,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         itemHolder.superview?.addSubview(btnComments)
         
         let btnDeleteInspection = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        btnDeleteInspection.frame = CGRectMake(itemHolder.frame.width - 350, 85, 150, 40)
+        btnDeleteInspection.frame = CGRectMake(itemHolder.frame.width / 2 - 75, 85, 150, 40)
         btnDeleteInspection.setTitle("Delete Inspection", forState: .Normal)
         btnDeleteInspection.layer.cornerRadius = 5.0
         btnDeleteInspection.layer.borderColor = UIColor.blackColor().CGColor

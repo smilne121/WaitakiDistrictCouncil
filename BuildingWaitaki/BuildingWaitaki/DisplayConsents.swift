@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelegate{
+class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelegate,UIPopoverPresentationControllerDelegate{
     let managedContext: NSManagedObjectContext
     let scrollView: UIScrollView
     var currentY: CGFloat
@@ -52,6 +52,10 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
             }
         }*/
         return consents
+    }
+    
+    func popoverControllerShouldDismissPopover(popoverController: UIPopoverController) -> Bool {
+        return true
     }
     
     func getConsentsFromCoreData(searchString: String) -> [AnyObject]
@@ -121,11 +125,14 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
             let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
             btnComments.frame = CGRectMake(container.layer.frame.width / 2 - 30, 40, 60, 60)
             let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
+            btnComments.addTarget(self, action: "displayDescription:", forControlEvents: UIControlEvents.TouchUpInside)
             btnComments.setImage(imgComments, forState: .Normal)
+
             
             let btnContacts = UIButton.buttonWithType(UIButtonType.System) as! UIButton
             btnContacts.frame = CGRectMake(container.layer.frame.width - 80, 40, 60, 60)
             let imgContacts = UIImage(named: "Contacts-50.png") as UIImage!
+            btnContacts.addTarget(self, action: "showContacts:", forControlEvents: UIControlEvents.TouchUpInside)
             btnContacts.setImage(imgContacts, forState: .Normal)
             
             
@@ -146,6 +153,69 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
 
         
     }
+    
+    func displayDescription(sender: UIButton)
+    {
+        var consentNumber = ""
+        
+        for view in sender.superview!.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                if view.frame == CGRect(x: 390,y: 8,width: 100,height: 21)
+                {
+                    //create a display inspections here.
+                    consentNumber = (view as! UILabel).text!
+                }
+            }
+        }
+        
+        //get consent
+        var error: NSError?
+        //get consents inspection
+        let fetchRequest = NSFetchRequest(entityName: "Consent")
+        fetchRequest.includesSubentities = true
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        let resultPredicate = NSPredicate(format: "consentNumber = %@", consentNumber)
+        
+        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+        fetchRequest.predicate = compound
+        
+        let consent = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as! Consent
+        
+        let storyboard : UIStoryboard = UIStoryboard(
+            name: "Main",
+            bundle: nil)
+        var descViewController: DescriptionOfWorkViewController = storyboard.instantiateViewControllerWithIdentifier("DescriptionOfWorkViewController") as! DescriptionOfWorkViewController
+
+        
+        descViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+        descViewController.preferredContentSize = CGSizeMake(CGFloat(500), CGFloat(350))
+        
+        descViewController.consent = consent
+        
+        let popoverMenuViewController = descViewController.popoverPresentationController
+        popoverMenuViewController?.permittedArrowDirections = .Any
+        popoverMenuViewController?.delegate = self
+        popoverMenuViewController?.sourceView = homeController.view
+        popoverMenuViewController?.sourceRect = CGRectMake(homeController.view.frame.width / 2, homeController.view.frame.height / 2, 0,0)
+        popoverMenuViewController?.permittedArrowDirections = UIPopoverArrowDirection.allZeros
+        
+        
+        descViewController.modalInPopover = true
+        descViewController.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+        
+        homeController.presentViewController(
+            descViewController,
+            animated: true,
+            completion: nil)
+        
+
+        
+    }
+    
+    
     
     func displayConsents()
     {
@@ -194,11 +264,13 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                 let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
                 btnComments.frame = CGRectMake(container.layer.frame.width / 2 - 30, 40, 60, 60)
                 let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
+                btnComments.addTarget(self, action: "displayDescription:", forControlEvents: UIControlEvents.TouchUpInside)
                 btnComments.setImage(imgComments, forState: .Normal)
                 
                 let btnContacts = UIButton.buttonWithType(UIButtonType.System) as! UIButton
                 btnContacts.frame = CGRectMake(container.layer.frame.width - 80, 40, 60, 60)
                 let imgContacts = UIImage(named: "Contacts-50.png") as UIImage!
+                 btnContacts.addTarget(self, action: "showContacts:", forControlEvents: UIControlEvents.TouchUpInside)
                 btnContacts.setImage(imgContacts, forState: .Normal)
                 
                 
@@ -280,6 +352,79 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
             }
         }
     }
+    
+    func showContacts (sender: UIButton)
+    {
+        var consentNumber = ""
+        
+        for view in sender.superview!.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                if view.frame == CGRect(x: 390,y: 8,width: 100,height: 21)
+                {
+                    //create a display inspections here.
+                     consentNumber = (view as! UILabel).text!
+                }
+            }
+        }
+        
+        //get consent
+        var error: NSError?
+        //get consents inspection
+        let fetchRequest = NSFetchRequest(entityName: "Consent")
+        fetchRequest.includesSubentities = true
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        let resultPredicate = NSPredicate(format: "consentNumber = %@", consentNumber)
+        
+        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+        fetchRequest.predicate = compound
+        
+        let consent = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as! Consent
+        
+        
+        let storyboard : UIStoryboard = UIStoryboard(
+            name: "Main",
+            bundle: nil)
+        var contactViewController: ContactsViewController = storyboard.instantiateViewControllerWithIdentifier("ContactsViewController") as! ContactsViewController
+        
+        
+        //get height
+        let height = (consent.contact.count * 50 + 70)
+        
+        contactViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+        contactViewController.preferredContentSize = CGSizeMake(CGFloat(500), CGFloat(height))
+        contactViewController.viewHeight = CGFloat(height)
+        
+        contactViewController.consent = consent
+        var itemName = ""
+        for view in sender.superview!.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                itemName = (view as! UILabel).text!
+            }
+        }
+        
+        let popoverMenuViewController = contactViewController.popoverPresentationController
+        popoverMenuViewController?.permittedArrowDirections = .Any
+        popoverMenuViewController?.delegate = self
+        popoverMenuViewController?.sourceView = homeController.view
+        popoverMenuViewController?.sourceRect = CGRectMake(homeController.view.frame.width / 2, homeController.view.frame.height / 2, 0,0)
+        popoverMenuViewController?.permittedArrowDirections = UIPopoverArrowDirection.allZeros
+        
+        
+        contactViewController.modalInPopover = true
+        contactViewController.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+        
+        homeController.presentViewController(
+            contactViewController,
+            animated: true,
+            completion: nil)
+
+    }
+    
     func openMap (sender: UIButton)
     {
         for view in sender.superview!.subviews
