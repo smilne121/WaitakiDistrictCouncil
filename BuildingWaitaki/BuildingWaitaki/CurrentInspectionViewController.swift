@@ -20,6 +20,17 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = AppSettings().getViewBackground()
+        
+        for scrollview in self.view.subviews
+        {
+            if scrollview.isKindOfClass(UIScrollView)
+            {
+                (scrollview as! UIScrollView).backgroundColor = UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0.4)
+                (scrollview as! UIScrollView).tintColor = AppSettings().getTintColour()
+            }
+        }
+        
         itemHolder.layer.borderWidth = 1
         itemHolder.contentInset = UIEdgeInsetsZero;
         itemHolder.scrollIndicatorInsets = UIEdgeInsetsZero;
@@ -55,23 +66,23 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         btnComments.frame = CGRectMake(20, 85, 150, 40)
         btnComments.setTitle("Comments", forState: .Normal)
-        btnComments.layer.cornerRadius = 5.0
         btnComments.layer.borderColor = UIColor.blackColor().CGColor
         btnComments.addTarget(self, action: "loadCommentsView:", forControlEvents: UIControlEvents.TouchUpInside)
         btnComments.layer.borderWidth = 1
-        btnComments.tintColor = UIColor.blackColor()
-        btnComments.layer.backgroundColor = UIColor.whiteColor().CGColor
+        btnComments.titleLabel!.font = AppSettings().getTextFont()
+        btnComments.tintColor = AppSettings().getTintColour()
+        btnComments.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
         itemHolder.superview?.addSubview(btnComments)
         
         let btnDeleteInspection = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         btnDeleteInspection.frame = CGRectMake(itemHolder.frame.width / 2 - 75, 85, 150, 40)
         btnDeleteInspection.setTitle("Delete Inspection", forState: .Normal)
-        btnDeleteInspection.layer.cornerRadius = 5.0
         btnDeleteInspection.layer.borderColor = UIColor.blackColor().CGColor
         btnDeleteInspection.addTarget(self, action: "deleteThisInspection:", forControlEvents: UIControlEvents.TouchUpInside)
         btnDeleteInspection.layer.borderWidth = 1
-        btnDeleteInspection.tintColor = UIColor.blackColor()
-        btnDeleteInspection.layer.backgroundColor = UIColor.whiteColor().CGColor
+        btnDeleteInspection.titleLabel!.font = AppSettings().getTextFont()
+        btnDeleteInspection.tintColor = AppSettings().getTintColour()
+        btnDeleteInspection.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
         println(consentInspection.userCreated)
         if (consentInspection.userCreated != NSNumber(bool: true)) || (consentInspection.locked == true)
         {
@@ -83,23 +94,23 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnEmail.frame = CGRectMake(itemHolder.superview!.frame.width - CGFloat(140), 85, 120, 40)
         btnEmail.setTitle("Email Report", forState: .Normal)
         btnEmail.addTarget(self, action: "emailReport:", forControlEvents: UIControlEvents.TouchUpInside)
-        btnEmail.layer.cornerRadius = 5.0
         btnEmail.layer.borderColor = UIColor.blackColor().CGColor
         btnEmail.layer.borderWidth = 1
-        btnEmail.layer.backgroundColor = UIColor.whiteColor().CGColor
-        btnEmail.tintColor = UIColor.blackColor()
+        btnEmail.titleLabel!.font = AppSettings().getTextFont()
+        btnEmail.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
+        btnEmail.tintColor = AppSettings().getTintColour()
         itemHolder.superview?.addSubview(btnEmail)
         
         //ADD BOTTOM BAR ICONS
         let btnFinished = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        btnFinished.frame = CGRectMake(20, itemHolder.superview!.frame.height - 80, 150, 40)
+        btnFinished.frame = CGRectMake(20, itemHolder.superview!.frame.height - 70, 150, 40)
         btnFinished.setTitle("Finished", forState: .Normal)
         btnFinished.addTarget(self, action: "finishInspection:", forControlEvents: UIControlEvents.TouchUpInside)
-        btnFinished.layer.cornerRadius = 5.0
         btnFinished.layer.borderColor = UIColor.blackColor().CGColor
         btnFinished.layer.borderWidth = 1
-        btnFinished.tintColor = UIColor.blackColor()
-        btnFinished.layer.backgroundColor = UIColor.whiteColor().CGColor
+        btnFinished.titleLabel!.font = AppSettings().getTextFont()
+        btnFinished.tintColor = AppSettings().getTintColour()
+        btnFinished.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
         if consentInspection.locked == true
         {
             btnFinished.enabled = false
@@ -107,14 +118,14 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         itemHolder.superview?.addSubview(btnFinished)
         
         let btnClearInspection = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        btnClearInspection.frame = CGRectMake(itemHolder.superview!.frame.width / 2 - 75, itemHolder.superview!.frame.height - 80, 150, 40)
+        btnClearInspection.frame = CGRectMake(itemHolder.superview!.frame.width / 2 - 75, itemHolder.superview!.frame.height - 70, 150, 40)
         btnClearInspection.setTitle("Clear inspection", forState: .Normal)
-        btnClearInspection.layer.cornerRadius = 5.0
         btnClearInspection.layer.borderColor = UIColor.blackColor().CGColor
-        btnClearInspection.layer.backgroundColor = UIColor.whiteColor().CGColor
+        btnClearInspection.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
         btnClearInspection.layer.borderWidth = 1
+        btnClearInspection.titleLabel!.font = AppSettings().getTextFont()
         btnClearInspection.addTarget(self, action: "clearInspectionResults:", forControlEvents: UIControlEvents.TouchUpInside)
-        btnClearInspection.tintColor = UIColor.blackColor()
+        btnClearInspection.tintColor = AppSettings().getTintColour()
         if consentInspection.locked == true
         {
             btnClearInspection.enabled = false
@@ -122,14 +133,14 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         itemHolder.superview?.addSubview(btnClearInspection)
         
         let btnNeedsReinspection = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        btnNeedsReinspection.frame = CGRectMake(itemHolder.superview!.frame.width - CGFloat(170), itemHolder.superview!.frame.height - 80, 150, 40)
-        btnNeedsReinspection.setTitle("Needs Re-inspection", forState: .Normal)
-        btnNeedsReinspection.layer.cornerRadius = 5.0
+        btnNeedsReinspection.frame = CGRectMake(itemHolder.superview!.frame.width - CGFloat(170), itemHolder.superview!.frame.height - 70, 150, 40)
+        btnNeedsReinspection.setTitle("Reinspect", forState: .Normal)
         btnNeedsReinspection.layer.borderColor = UIColor.blackColor().CGColor
-        btnNeedsReinspection.layer.backgroundColor = UIColor.whiteColor().CGColor
+        btnNeedsReinspection.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
         btnNeedsReinspection.layer.borderWidth = 1
+        btnNeedsReinspection.titleLabel!.font = AppSettings().getTextFont()
         btnNeedsReinspection.addTarget(self, action: "finishNeedReinspection:", forControlEvents: UIControlEvents.TouchUpInside)
-        btnNeedsReinspection.tintColor = UIColor.blackColor()
+        btnNeedsReinspection.tintColor = AppSettings().getTintColour()
       //  if consentInspection.locked == true
       //  {
         //    btnNeedsReinspection.enabled = false
@@ -149,49 +160,28 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         var currentY = -63 // offset for uiscrollview
         let height = 200
         let width = Int(itemHolder.frame.width / 2 )
+        let background = UIColor.clearColor()
         
         //loop though items and create containers
 
-        // moved to better area
         for item in itemInspectionArraySorted
         {
             let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            /*if consentInspection.locked != NSNumber(bool: true)
-            {
-                if itemName == "Inspection Officer"
-                {
-                    let settings = AppSettings()
-                
-                    let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
-                    for itemResult in itemResults
-                    {
-                        if itemResult.itemName == itemName
-                        {
-                            itemResult.itemResult = settings.getUser()
-                            managedContext.save(nil)
-                        }
-                    }
-                }
-            }*/
-            
-
-
         
             if itemName != "Comments" && itemName != "Inspection Officer"
             {
             let containerRect: CGRect = CGRect(x: currentX,y: currentY,width: width,height: height)
             let container: UIView = UIView(frame: containerRect)
-            container.layer.borderColor = UIColor .blackColor().CGColor
+            container.layer.borderColor = UIColor .grayColor().CGColor
             container.layer.borderWidth = 1.0
-            container.backgroundColor = UIColor.whiteColor()
-            container.tintColor = UIColor.blackColor()
-            
+            container.backgroundColor = background
+            container.tintColor = AppSettings().getTintColour()
             
             // add label to item
             let itemName = UILabel(frame: CGRect(x: 5, y: 5, width: container.frame.width, height: 30))
             itemName.text = item.itemName
-            let font = UIFont(name: itemName.font.fontName, size: CGFloat(20))
-            itemName.font = font
+            itemName.font = AppSettings().getTitleFont()
+            itemName.textColor = AppSettings().getTintColour()
             container.addSubview(itemName)
             itemHolder.addSubview(container)
             
@@ -201,12 +191,12 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 let selectorItems = ["Passed","N/A","Failed"]
                 let selector = UISegmentedControl(items: selectorItems)
                 selector.selectedSegmentIndex = -1
-                selector.tintColor = UIColor.darkGrayColor()
+                selector.tintColor = AppSettings().getTintColour()
                 selector.addTarget(self, action: "saveItem:",forControlEvents: .ValueChanged)
                 
                 
                 
-                var attr = NSDictionary(object: UIFont(name: "HelveticaNeue-Bold", size: 16.0)!, forKey: NSFontAttributeName)
+                var attr = NSDictionary(object: AppSettings().getTextFont(), forKey: NSFontAttributeName)
                 selector.setTitleTextAttributes(attr as [NSObject : AnyObject], forState: .Normal)
                 
                 selector.frame = CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80)
@@ -252,20 +242,24 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 }
                 
                 //results populated
-                
-                
                 container.addSubview(selector)
                 
-                let btnCamera = UIButton(frame: CGRect(x: 20 , y: 142, width: 40, height: 40))
+                let btnCamera = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+                btnCamera.frame = CGRect(x: 20 , y: 142, width: 40, height: 40)
                 let image = UIImage(named: "Camera-50.png")
                 btnCamera.setImage(image, forState: .Normal)
+                btnCamera.imageView!.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
                 btnCamera.addTarget(self, action: "openCamera:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnCamera.imageView?.tintColor = AppSettings().getTintColour()
                 container.addSubview(btnCamera)
                 
-                let btnNotes = UIButton(frame: CGRect(x: container.frame.width - 60 , y: 142, width: 40, height: 40))
+                let btnNotes = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+                btnNotes.frame = CGRect(x: container.frame.width - 60 , y: 142, width: 40, height: 40)
                 let commentimage = UIImage(named: "Speech Bubble-50.png")
                 btnNotes.addTarget(self, action: "loadNotesBtn:", forControlEvents: UIControlEvents.TouchUpInside)
                 btnNotes.setImage(commentimage, forState: .Normal)
+                btnNotes.imageView!.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                btnNotes.imageView!.tintColor = AppSettings().getTintColour()
                 container.addSubview(btnNotes)
                 
             }
@@ -286,33 +280,11 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                             let dateFormatter = NSDateFormatter()
                             dateFormatter.dateFormat = "dd-MM-yyyy"
                             datePicker.setDate(dateFormatter.dateFromString(result)!, animated: true)
+                            datePicker.tintColor = UIColor.whiteColor()
                         }
                     }
                 }
                 
-                //save date back to consent 
-               /*move to save data method
-                for item in itemInspectionArraySorted
-                {
-                    let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                    if itemName == "Date"
-                    {
-                        let settings = AppSettings()
-                        
-                        let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
-                        for itemResult in itemResults
-                        {
-                            if itemResult.itemName == itemName
-                            {
-                                let dateFormatter = NSDateFormatter()
-                                dateFormatter.dateFormat = "dd-MM-yyyy"
-                                itemResult.itemResult = dateFormatter.stringFromDate(datePicker.date)
-                                managedContext.save(nil)
-                            }
-                        }
-                        
-                    }
-                }*/
                 
                 //disable if locked
                 if consentInspection.locked == NSNumber(bool: true)
@@ -321,7 +293,8 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                     dateFormatter.dateFormat = "dd-MM-yyyy"
                     let textDate = UITextField(frame: CGRect(x: 120, y: 50, width: container.frame.width - 50, height: 80))
                     textDate.text = dateFormatter.stringFromDate(datePicker.date)
-                    textDate.font = UIFont(name: textDate.font.fontName, size: CGFloat(22))
+                    textDate.font = AppSettings().getTextFont()
+                    textDate.textColor = UIColor.whiteColor()
                     textDate.enabled = false
                     container.addSubview(textDate)
                 }
@@ -335,7 +308,9 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             {
                 
                 let textInput = UITextView(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
-                textInput.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+                textInput.font = AppSettings().getTextFont()
+                textInput.backgroundColor = AppSettings().getBackgroundColour()
+                textInput.textColor = AppSettings().getTextColour()
                 textInput.delegate = self
                 //populate results
                 let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
@@ -833,9 +808,12 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     {
         if consentInspection.userCreated == NSNumber(bool: true)
         {
-            let popup = UIAlertController(title: "This will delete this inspection",
+            var popup = UIAlertController(title: "This will delete this inspection",
                 message: "Pressing OK will permanently delete this inspection",
                 preferredStyle: .Alert)
+            
+            let settings = AppSettings()
+            
             
             popup.addAction(UIAlertAction(title: "OK",
                 style: UIAlertActionStyle.Default,
@@ -844,7 +822,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             popup.addAction(UIAlertAction(title: "Cancel",
                 style: UIAlertActionStyle.Cancel,
                 handler: nil))
-            
+            popup = settings.getPopupStyle(popup)
             self.presentViewController(popup, animated: true, completion: nil)
         }
     }
@@ -853,9 +831,11 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     {
         if checkRequiredDone() == true
         {
-        let popup = UIAlertController(title: "Finishing will lock this inspection",
+        var popup = UIAlertController(title: "Finishing will lock this inspection",
             message: "Make sure all items are correct. A new inspection will be generated to complete",
             preferredStyle: .Alert)
+            
+            
         
         popup.addAction(UIAlertAction(title: "OK",
             style: UIAlertActionStyle.Default,
@@ -864,18 +844,22 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         popup.addAction(UIAlertAction(title: "Cancel",
             style: UIAlertActionStyle.Cancel,
             handler: nil))
-        
+        popup = AppSettings().getPopupStyle(popup)
         self.presentViewController(popup, animated: true, completion: nil)
         }
         else
         {
-            let popup = UIAlertController(title: "Inspection not complete",
+            var popup = UIAlertController(title: "Inspection not complete",
                 message: "Make sure all items are completed before finishing",
                 preferredStyle: .Alert)
+            
+            
             
             popup.addAction(UIAlertAction(title: "Ok",
                 style: UIAlertActionStyle.Cancel,
                 handler: nil))
+            
+            popup = AppSettings().getPopupStyle(popup)
             self.presentViewController(popup, animated: true, completion: nil)
         }
     }
@@ -885,9 +869,11 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     {
         if checkRequiredDone() == true
         {
-        let popup = UIAlertController(title: "Finishing will lock this inspection",
+        var popup = UIAlertController(title: "Finishing will lock this inspection",
             message: "Make sure all items are correct",
             preferredStyle: .Alert)
+            
+            
         
         popup.addAction(UIAlertAction(title: "OK",
             style: UIAlertActionStyle.Default,
@@ -896,18 +882,22 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         popup.addAction(UIAlertAction(title: "Cancel",
             style: UIAlertActionStyle.Cancel,
             handler: nil))
-        
+        popup = AppSettings().getPopupStyle(popup)
         self.presentViewController(popup, animated: true, completion: nil)
         }
         else
         {
-            let popup = UIAlertController(title: "Inspection not complete",
+            var popup = UIAlertController(title: "Inspection not complete",
                 message: "Make sure all items are completed before finishing",
                 preferredStyle: .Alert)
+            
+           
             
             popup.addAction(UIAlertAction(title: "Ok",
                 style: UIAlertActionStyle.Cancel,
                 handler: nil))
+            
+             popup = AppSettings().getPopupStyle(popup)
             self.presentViewController(popup, animated: true, completion: nil)
         }
 

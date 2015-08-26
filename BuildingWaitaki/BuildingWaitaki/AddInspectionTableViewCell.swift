@@ -16,6 +16,26 @@ class AddInspectionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.backgroundColor = AppSettings().getViewBackground()
+        self.tintColor = AppSettings().getTintColour()
+        
+        for curview in self.subviews
+        {
+            if curview.isKindOfClass(UILabel)
+            {
+                (curview as! UILabel).textColor = AppSettings().getTintColour()
+                (curview as! UILabel).font = AppSettings().getTitleFont()
+            }
+        }
+        
+       
+        
+        let border = CALayer()
+        border.backgroundColor = AppSettings().getTintColour().CGColor
+        border.frame = CGRect(x: CGFloat(((self.frame.width - (self.frame.width - 50)) / 2)) , y: CGFloat(149), width: CGFloat(self.frame.width - 50), height: CGFloat(1))
+        
+        self.layer.addSublayer(border)
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

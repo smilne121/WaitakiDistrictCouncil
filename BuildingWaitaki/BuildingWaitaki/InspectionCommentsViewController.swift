@@ -28,9 +28,16 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         
         textView!.layer.borderWidth = CGFloat(1)
         textView!.layer.cornerRadius = CGFloat(5)
-        textView!.font = UIFont(name: "HelveticaNeue", size: 18)
+        textView!.font = AppSettings().getTextFont()
         textView!.delegate = self
         textView!.becomeFirstResponder()
+        textView!.keyboardAppearance = UIKeyboardAppearance.Dark
+        textView!.backgroundColor = AppSettings().getBackgroundColour()
+        textView!.textColor = AppSettings().getTextColour()
+        
+        
+        view.backgroundColor = AppSettings().getBackgroundColour()
+        
         
         if consentInspection.locked == true
         {
@@ -54,11 +61,11 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         btnClose.frame = CGRect(x: 175, y: 370, width: 150, height: 50)
         btnClose.setTitle("Done", forState: .Normal)
         btnClose.addTarget(self, action: "close:", forControlEvents: UIControlEvents.TouchUpInside)
-        btnClose.layer.cornerRadius = 5.0
         btnClose.layer.borderColor = UIColor.blackColor().CGColor
         btnClose.layer.borderWidth = 1
-        btnClose.layer.backgroundColor = UIColor.whiteColor().CGColor
-        btnClose.tintColor = UIColor.blackColor()
+        btnClose.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
+        btnClose.tintColor = AppSettings().getTintColour()
+        btnClose.titleLabel?.font = AppSettings().getTextFont()
 
         
         
@@ -85,13 +92,17 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
             }
             else
             {
-                let popup = UIAlertController(title: "You must enter a reason",
+                var popup = UIAlertController(title: "You must enter a reason",
                     message: "Write a comment and press done",
                     preferredStyle: .Alert)
+                
+                
             
                 popup.addAction(UIAlertAction(title: "OK",
                     style: UIAlertActionStyle.Default,
                     handler:nil))
+                
+                popup = AppSettings().getPopupStyle(popup)
             
                 self.presentViewController(popup, animated: true, completion: nil)
             }

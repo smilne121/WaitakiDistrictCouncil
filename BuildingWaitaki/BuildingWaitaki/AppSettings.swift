@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //Handles the saving and loading of the application defaults
 
@@ -47,5 +48,82 @@ import Foundation
         }
     }
     
+    func getBlurEffect(frame: CGRect) -> UIVisualEffectView
+    {
+        var blur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        var blurView = UIVisualEffectView(effect: blur)
+        blurView.frame = frame
+        
+        return blurView
+    }
+    
+    func getBackgroundColour() -> UIColor
+    {
+        return UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 0.8)
+    }
+    
+    func getPopupStyle(popup: UIAlertController) -> UIAlertController
+    {
+        for view in popup.view.subviews
+        {
+            if view.isKindOfClass(UIView)
+            {
+                (view as! UIView).backgroundColor = self.getBackgroundColour()
+                (view as! UIView).tintColor = self.getTintColour()
+                for subview in view.subviews
+                {
+                    if subview.isKindOfClass(UIView)
+                    {
+                        (subview as! UIView).backgroundColor = self.getBackgroundColour()
+                        (subview as! UIView).tintColor = self.getTintColour()
+                    }
+                }
+            }
+            else if view.isKindOfClass(UIButton)
+            {
+                (view as! UIButton).tintColor = self.getTintColour()
+                (view as! UIButton).titleLabel?.font = AppSettings().getTextFont()
+            }
+        }
+        return popup
+    }
+    
+    func getBackgroundImage() -> UIImage
+    {
+        return UIImage(named: "blur-background10.jpg") as UIImage!
+    }
+    func getTintColour() -> UIColor
+    {
+        return UIColor.yellowColor()
+    }
+    func getTextColour() -> UIColor
+    {
+        return UIColor.whiteColor()
+    }
+    
+    func getContainerBackground() -> UIColor
+    {
+        return UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0.8)
+    }
+    
+    func getViewBackground() -> UIColor
+    {
+        return UIColor(patternImage: UIImage(named: "background.png")!)
+    }
+    
+    func getTitleFont() -> UIFont
+    {
+        return UIFont(name: "HelveticaNeue-Medium", size: 20)!
+    }
+    
+    func getHeadingFont() -> UIFont
+    {
+        return UIFont (name: "HelveticaNeue-Medium", size: 20)!
+    }
+    
+    func getTextFont() -> UIFont
+    {
+        return UIFont (name: "HelveticaNeue-Medium", size: 16)!
+    }
     
 }

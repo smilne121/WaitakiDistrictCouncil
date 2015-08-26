@@ -46,7 +46,7 @@ class OfficeToolsInspectionTypes {
                 popupExtra = "Please make sure you are connected to the network via Wifi or VPN"
             }
             
-            let popup = UIAlertController(title: popupMessage,
+            var popup = UIAlertController(title: popupMessage,
                 message: popupExtra,
                 preferredStyle: .Alert)
             
@@ -54,6 +54,8 @@ class OfficeToolsInspectionTypes {
                 style: .Cancel,
                 handler: self.ClosePopup))
             
+            popup = AppSettings().getPopupStyle(popup)
+
             self.controller.presentViewController(popup, animated: true, completion: nil)
             
         }

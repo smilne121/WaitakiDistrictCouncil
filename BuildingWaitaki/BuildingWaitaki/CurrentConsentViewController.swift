@@ -43,6 +43,17 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //style view
+        view.backgroundColor = AppSettings().getViewBackground()
+        for curView in view.subviews
+        {
+            if curView.isKindOfClass(UIScrollView)
+            {
+                (curView as! UIScrollView).backgroundColor = UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0.2)
+            }
+        }
+        
+        
         
         self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addInspectionClicked:"), animated: true)
         
@@ -108,13 +119,17 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         {
             if status == "failed"
             {
-                image = UIImage(named: "Failed.png") as UIImage!
-                cell.statusImage.image = image
+                image = UIImage(named: "fail.png") as UIImage!
+                let tintedimage = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                cell.statusImage.image = tintedimage
+                cell.statusImage.tintColor = UIColor(red: 235/255.0, green: 5/255.0, blue: 5/255.0, alpha: 1.0)
             }
             else if status == "passed"
             {
-                image  = UIImage(named: "passed.png") as UIImage!
-                cell.statusImage.image = image
+                image  = UIImage(named: "pass.png") as UIImage!
+                let tintedimage = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                cell.statusImage.image = tintedimage
+                cell.statusImage.tintColor = AppSettings().getTintColour()
             }
             else if status == ""
             {
@@ -125,7 +140,10 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         if inspectionArraySorted[indexPath.row].locked == NSNumber(bool: true)
         {
             let lockImage  = UIImage(named: "Lock-50.png") as UIImage!
-            cell.lockImage.image = lockImage
+            let tintedimage = lockImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            cell.lockImage.image = tintedimage
+            cell.lockImage.tintColor = AppSettings().getTintColour()
+            cell.lockImage.image = tintedimage
             
         }
         else

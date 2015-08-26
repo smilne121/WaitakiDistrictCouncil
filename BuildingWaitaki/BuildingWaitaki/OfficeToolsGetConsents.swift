@@ -26,12 +26,9 @@ class OfficeToolsGetConsents {
     
     func getConcents()
     {
+        let settings = AppSettings()
         var needSynced = self.needSynced()
-       
-            var lightBlur = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
-            var blurView = UIVisualEffectView(effect: lightBlur)
-            blurView.frame = background.bounds
-            background.addSubview(blurView)
+        background.addSubview(settings.getBlurEffect(background.bounds))
         
         if (needSynced == 0)
         {
@@ -57,14 +54,18 @@ class OfficeToolsGetConsents {
                     popupExtra = "Please make sure you are connected to the network via Wifi or VPN"
                 }
                 
-                let popup = UIAlertController(title: popupMessage,
+                var popup = UIAlertController(title: popupMessage,
                     message: popupExtra,
                     preferredStyle: .Alert)
+                
+                popup = settings.getPopupStyle(popup)
                 
                 popup.addAction(UIAlertAction(title: "OK",
                     style: .Cancel,
                     handler: self.ClosePopup))
-        
+                
+                popup.view.backgroundColor = UIColor.redColor()
+                
                 self.controller.presentViewController(popup, animated: true, completion: nil)
             }
             task.resume()
@@ -74,13 +75,16 @@ class OfficeToolsGetConsents {
             let popupMessage: String
             popupMessage = "Unsynced Inspections"
             var popupExtra = "Inspections need synced before downloading new consents"
-            let popup = UIAlertController(title: popupMessage,
+            var popup = UIAlertController(title: popupMessage,
                 message: popupExtra,
                 preferredStyle: .Alert)
             
+                        
             popup.addAction(UIAlertAction(title: "OK",
                 style: .Cancel,
                 handler: self.ClosePopup))
+            
+            popup = settings.getPopupStyle(popup)
             
             self.controller.presentViewController(popup, animated: true, completion: nil)
         }
@@ -255,7 +259,7 @@ class OfficeToolsGetConsents {
     }
     
     private func ClosePopup(alert: UIAlertAction!){
-        displayConsents.displayConsents()
+        displayConsents.displayConsents(nil)
     
         for view in self.background.subviews
         {

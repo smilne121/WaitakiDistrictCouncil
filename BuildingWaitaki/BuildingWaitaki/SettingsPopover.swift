@@ -17,9 +17,12 @@ class SettingPopover{
     func showPopover (sender:UIButton, controller:UIViewController) {
         field = sender.titleLabel!.text!
     
-        let popup = UIAlertController(title: sender.titleLabel?.text,
+        var popup = UIAlertController(title: sender.titleLabel?.text,
             message: "",
             preferredStyle: .Alert)
+        
+        let settings = AppSettings()
+        //popup = settings.getPopupStyle(popup)
         
         popup.addAction(UIAlertAction(title: "Cancel",
             style: .Cancel,
@@ -30,7 +33,7 @@ class SettingPopover{
             handler: SaveSetting))
     
         popup.addTextFieldWithConfigurationHandler(SaveText)
-
+popup = settings.getPopupStyle(popup)
     
         controller.presentViewController(popup, animated: true, completion: nil)
     }

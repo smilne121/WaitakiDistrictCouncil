@@ -21,9 +21,19 @@ class AddInspectionViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for curview in view.subviews
+        {
+            if curview.isKindOfClass(UITableView)
+            {
+                (curview as! UITableView).backgroundColor = AppSettings().getViewBackground()
+            }
+        }
+        
+        self.title = "Pick inspection to add"
+        
         self.tableView.registerClass(AddInspectionTableViewCell.self, forCellReuseIdentifier: "addInspectionCell")
         
-
+        self.tableView.backgroundColor = AppSettings().getViewBackground()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -52,6 +62,12 @@ class AddInspectionViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("addInspectionCell", forIndexPath: indexPath) as! AddInspectionTableViewCell
         cell.textLabel?.text = sorted[indexPath.row].inspectionName
+        cell.textLabel?.textColor = AppSettings().getTintColour()
+        cell.textLabel?.font = AppSettings().getTextFont()
+        cell.textLabel!.superview!.backgroundColor = UIColor.clearColor()
+        cell.textLabel!.superview!.superview!.superview!.backgroundColor = UIColor.clearColor()
+        cell.textLabel!.superview!.superview!.backgroundColor = UIColor.clearColor()//AppSettings().getViewBackground()
+        cell.textLabel?.backgroundColor = UIColor.clearColor() //AppSettings().getViewBackground()
 
         // Configure the cell...
 
@@ -63,32 +79,6 @@ class AddInspectionViewController: UITableViewController {
         
         inspectionId = sorted[indexPath.row].inspectionId
         createInspection(nil)
-
-        /*for inspection in currentConsent.consentInspection.allObjects as! [ConsentInspection]
-        {
-            if inspection.inspectionId == sorted[indexPath.row].inspectionId
-            {
-                inspectionId = inspection.inspectionId
-                let popup = UIAlertController(title: "This inspection already exists",
-                    message: "Do you wish to create another " + sorted[indexPath.row].inspectionName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " inspection",
-                    preferredStyle: .Alert)
-                
-                popup.addAction(UIAlertAction(title: "OK",
-                    style: UIAlertActionStyle.Default,
-                    handler: self.createInspection))
-                
-                popup.addAction(UIAlertAction(title: "Cancel",
-                    style: UIAlertActionStyle.Cancel,
-                    handler: nil))
-                
-                self.presentViewController(popup, animated: true, completion: nil)
-            }
-            else
-            {
-                inspectionId = inspection.inspectionId
-                createInspection(nil)
-            }
-        }*/
     }
     
     func createInspection (alert: UIAlertAction?)

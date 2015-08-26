@@ -22,7 +22,83 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
     var searchActive : Bool = false
     
     override func viewWillAppear(animated: Bool) {
-        //clear unfinished inspections list
+        let settings = AppSettings()
+        
+        for view in self.view.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                if let label = view as? UILabel
+                {
+                    label.font = settings.getTitleFont()
+                    label.textColor = settings.getTintColour()
+                }
+            }
+            else if view.isKindOfClass(UIView)
+            {
+                for subview in view.subviews
+                {
+                    if subview.isKindOfClass(UIButton)
+                    {
+                        if let btn = subview as? UIButton
+                        {
+                            btn.titleLabel?.font = settings.getTextFont()
+                            btn.titleLabel?.textColor = settings.getTextColour()
+                        }
+                        
+                    }
+                }
+            }
+        }
+        
+        //set image for background
+        view.backgroundColor = settings.getViewBackground()
+        
+        //change nav bar
+        var nav = self.navigationController?.navigationBar
+        // 2
+        nav?.translucent = true
+        nav?.barTintColor = settings.getViewBackground()
+        // 3
+        
+        
+        var titleView : UIImageView
+        // set the dimensions you want here
+        titleView = UIImageView(frame:CGRectMake(0, 0, 30, 30))
+        // Set how do you want to maintain the aspect
+        titleView.contentMode = .ScaleAspectFit
+        titleView.image = UIImage(named: "BuildingWaitakiLogoTextYellow.png")
+        
+        self.navigationItem.titleView = titleView
+        
+        nav?.titleTextAttributes = [NSFontAttributeName: settings.getTitleFont(),NSForegroundColorAttributeName: settings.getTintColour()]
+        
+        
+        //searchbar
+        searchBar.backgroundColor = UIColor.clearColor()
+        searchBar.backgroundImage = UIImage()
+        searchBar.keyboardAppearance = UIKeyboardAppearance.Dark
+
+        
+        var textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
+        textFieldInsideSearchBar?.font = settings.getTextFont()
+        textFieldInsideSearchBar?.textColor = settings.getTextColour()
+        
+        for btn in searchBar.subviews
+        {
+            if btn.isKindOfClass(UIButton)
+            {
+                btn.setTitleColor(settings.getTintColour(), forState: UIControlState.Normal)
+            }
+   
+            
+        }
+        
+        //end style setup
+        
+        
+        
+        //clear unsynced inspections list
         for view in unfinishedInspectionsScrollview.subviews
         {
             view.removeFromSuperview()
@@ -30,8 +106,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         
         var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
         let resultPredicate1 = NSPredicate(format: "needSynced = %@", NSNumber(bool: true))
-        let resultPredicate2 = NSPredicate(format: "locked = %@", NSNumber(bool: false))
-        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2])
+        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1])
         var currentY = CGFloat(5)
         var height = CGFloat(50)
         
@@ -43,8 +118,13 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         for inspection in unfinishedInspections!
         {
             let container = UIView(frame: CGRect(x: CGFloat(5), y: currentY, width: unfinishedInspectionsScrollview.frame.width - 10, height: height))
-            container.backgroundColor = UIColor.whiteColor()
-            container.layer.cornerRadius = 5.0
+            container.backgroundColor = settings.getContainerBackground()
+            
+            let border = CALayer()
+            border.backgroundColor = UIColor.grayColor().CGColor
+            border.frame = CGRect(x: CGFloat(((container.frame.width - (container.frame.width - 20)) / 2)) , y: CGFloat(container.frame.height - 1), width: CGFloat(container.frame.width - 20), height: CGFloat(1))
+            container.layer.addSublayer(border)
+            
             
             let tap = UITapGestureRecognizer(target: self, action:Selector("handleTap:"))
             tap.delegate = self
@@ -53,9 +133,13 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
             
             let consentNumber = UILabel(frame: CGRect(x: 5, y: 5, width: container.frame.width, height: (height / 2) - 5))
             consentNumber.text = inspection.consentId
+            consentNumber.font = settings.getTextFont()
+            consentNumber.textColor = settings.getTextColour()
             
             let inspectionName = UILabel(frame: CGRect(x: 5, y: height / 2, width: container.frame.width , height: (height / 2) - 5))
             inspectionName.text = inspection.inspectionName
+            inspectionName.font = settings.getTextFont()
+            inspectionName.textColor = settings.getTextColour()
             
             let image: UIImage
             if inspection.status == "failed"
@@ -101,7 +185,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         
         //display consents in core data
         displayConsents = DisplayConsents(scrollView: consentScrollView,managedContext: managedObjectContext!, searchBar: searchBar, homeController: self)
-        displayConsents.displayConsents()
+        displayConsents.displayConsents(nil)
         
         officeTools = OfficeTools(managedContext: managedObjectContext!,controller: self,displayConsents: displayConsents, background: background)
         

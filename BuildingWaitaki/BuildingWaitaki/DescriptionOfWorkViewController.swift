@@ -17,6 +17,27 @@ class DescriptionOfWorkViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = AppSettings().getContainerBackground()
+        
+        for view in self.view.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                (view as! UILabel).textColor = AppSettings().getTintColour()
+                (view as! UILabel).font = AppSettings().getTitleFont()
+            }
+            else if view.isKindOfClass(UIButton)
+            {
+                (view as! UIButton).tintColor = AppSettings().getTintColour()
+                (view as! UIButton).titleLabel?.font = AppSettings().getTextFont()
+            }
+        }
+        
+        DescriptionOfWorkText.textColor = AppSettings().getTextColour()
+        DescriptionOfWorkText.font = AppSettings().getTextFont()
+        DescriptionOfWorkText.backgroundColor = UIColor.clearColor()
+        
 consentTitle.text = (consentTitle.text! + consent.consentNumber)
         DescriptionOfWorkText.text = consent.consentDescription
         

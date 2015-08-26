@@ -47,7 +47,7 @@ class OfficeToolsSendInspections
     func resultsToJson(consentInspectionItems:ResultTransferArray)
     {
        let settings = AppSettings()
-        println(consentInspectionItems.toJson())
+      //  println(consentInspectionItems.toJson())
         post(consentInspectionItems.toJson(), url: settings.getAPIServer()! + "/buildingwaitaki/ReceiveResults")
     }
     
