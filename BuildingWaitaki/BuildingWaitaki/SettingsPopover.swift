@@ -22,8 +22,7 @@ class SettingPopover{
             preferredStyle: .Alert)
         
         let settings = AppSettings()
-        //popup = settings.getPopupStyle(popup)
-        
+     
         popup.addAction(UIAlertAction(title: "Cancel",
             style: .Cancel,
             handler: ClosePopup))
@@ -41,6 +40,7 @@ popup = settings.getPopupStyle(popup)
     //used to save from the alert box
     private func SaveText(textfield: UITextField!)
     {
+        textfield.keyboardAppearance = .Dark
         switch field!{
         case "Set API Server":
             textfield.text = appSettings.getAPIServer()

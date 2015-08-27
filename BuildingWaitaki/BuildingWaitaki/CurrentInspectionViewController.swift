@@ -13,6 +13,8 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     var consentInspection : ConsentInspection!
     var inspectionTypeItems : [InspectionTypeItems]!
     var managedContext: NSManagedObjectContext!
+    var supervisor: UITextField?
+    var supervisorControl : UITextView?
     
     @IBOutlet weak var itemHolder: UIScrollView!
     
@@ -227,7 +229,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                         {
                             if comment != ""
                             {
-                            container.backgroundColor = UIColor.redColor()
+                                //container.backgroundColor = UIColor.redColor()
+                                itemName.textColor = UIColor(red: 235/255.0, green: 5/255.0, blue: 5/255.0, alpha: 1.0)
+                                selector.tintColor = UIColor(red: 235/255.0, green: 5/255.0, blue: 5/255.0, alpha: 1.0)
+                                
                             }
                         }
                         
@@ -266,6 +271,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             else if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "D"
             {
                 let datePicker = UIDatePicker(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
+                datePicker.setValue(AppSettings().getTintColour(), forKey: "textColor")
                 datePicker.datePickerMode = UIDatePickerMode.Date
                 datePicker.addTarget(self, action: "saveDate:", forControlEvents: .ValueChanged)
                 
@@ -306,11 +312,72 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             }
             else
             {
-                
+                if (item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())) == "Supervisor"
+                {
+                    let selectorItems = ["Supervised","Unsupervised"]
+                    let selector = UISegmentedControl(items: selectorItems)
+                    selector.selectedSegmentIndex = -1
+                    selector.tintColor = AppSettings().getTintColour()
+                    var attr = NSDictionary(object: AppSettings().getTextFont(), forKey: NSFontAttributeName)
+                    selector.setTitleTextAttributes(attr as [NSObject : AnyObject], forState: .Normal)
+                    selector.addTarget(self, action: "addSupervisor:",forControlEvents: .ValueChanged)
+                    selector.frame = CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80)
+                    
+                    
+                    supervisorControl = UITextView(frame: CGRect(x: 10, y: container.frame.height - 44, width: container.frame.width - 20, height: 34))
+                    supervisorControl!.font = AppSettings().getTextFont()
+                    supervisorControl!.textAlignment = .Center
+                    supervisorControl!.editable = false
+                    supervisorControl!.backgroundColor = AppSettings().getBackgroundColour()
+                    supervisorControl!.textColor = AppSettings().getTintColour()
+                    supervisorControl!.keyboardAppearance = UIKeyboardAppearance.Dark
+                    supervisorControl!.delegate = self
+                    
+                    
+                    //populate results
+                    let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
+                    for itemResult in itemResults
+                    {
+                        if item.itemId == itemResult.itemId
+                        {
+                            println(itemResult.itemResult)
+                            if let result = itemResult.itemResult?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                            {
+                                if result == "N/A"
+                                {
+                                    selector.selectedSegmentIndex = 1
+                                }
+                                else if result == ""
+                                {
+                                    selector.selectedSegmentIndex = -1
+                                    supervisorControl!.text = ""
+                                }
+                                else
+                                {
+                                    supervisorControl!.text = result
+                                    selector.selectedSegmentIndex = 0
+
+                                }
+                            }
+                        }
+                    }
+                    
+                    
+                    //disable if locked
+                    if consentInspection.locked == NSNumber(bool: true)
+                    {
+                        selector.enabled = false
+                    }
+                    container.addSubview(supervisorControl!)
+                    container.addSubview(selector)
+                }
+                else
+                {
                 let textInput = UITextView(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
                 textInput.font = AppSettings().getTextFont()
                 textInput.backgroundColor = AppSettings().getBackgroundColour()
                 textInput.textColor = AppSettings().getTextColour()
+                textInput.keyboardAppearance = UIKeyboardAppearance.Dark
                 textInput.delegate = self
                 //populate results
                 let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
@@ -333,6 +400,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                
                 container.addSubview(textInput)
                 }
+            }
             
             //move to next space
             if leftSide == true
@@ -346,6 +414,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 currentY = height + currentY
                 leftSide = true
             }
+                
             }
         }
         
@@ -354,7 +423,101 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         itemHolder.contentSize = contentSize
     }
     
+    func addSupervisor(sender: UISegmentedControl?)
+    {
+        if sender?.selectedSegmentIndex == 0 || sender == nil
+        {
+        var popup = UIAlertController(title: "Supervisor",
+            message: "Please enter your supervisor",
+            preferredStyle: .Alert)
+        
+        popup.addAction(UIAlertAction(title: "Save",
+            style: .Default,
+            handler: SaveSupervisor))
+        
+        popup.addTextFieldWithConfigurationHandler(SaveText)
+        popup = AppSettings().getPopupStyle(popup)
+        
+            self.presentViewController(popup, animated: true, completion: nil)
+            
+            
+        }
+        else
+        {
+            
+            self.supervisorControl!.text = ""
+            var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+            
+            let resultPredicate1 = NSPredicate(format: "inspectionName = %@", self.title!)
+            let resultPredicate2 = NSPredicate(format: "itemName = %@", "Supervisor")
+            let resultPredicate3 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
+            var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+            fetchRequest.predicate = compound
+            
+            if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
+            {
+                if fetchResults.count != 0
+                {
+                    var managedObject = fetchResults[0]
+                    managedObject.itemResult = "N/A"
+                    managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
+                    
+                    managedContext.save(nil)
+                }
+            }
+
+        }
+        
+  
+
+    }
     
+    func SaveSupervisor(alert: UIAlertAction!)
+    {
+        self.supervisorControl!.text = self.supervisor!.text
+        //code to save to core data
+        
+        
+        var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+        
+        let resultPredicate1 = NSPredicate(format: "inspectionName = %@", self.title!)
+        let resultPredicate2 = NSPredicate(format: "itemName = %@", "Supervisor")
+        let resultPredicate3 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
+        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+        fetchRequest.predicate = compound
+        
+        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
+        {
+            println(fetchResults.count)
+            if fetchResults.count != 0
+            {
+                var managedObject = fetchResults[0]
+                managedObject.itemResult = (self.supervisor!.text)
+                
+                managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
+                
+                managedContext.save(nil)
+            }
+        }
+        
+        if supervisor?.text == ""
+        {
+            addSupervisor(nil)
+        }
+
+        
+        
+    }
+    
+        //used to save from the alert box
+    func SaveText(textfield: UITextField!)
+        {
+            textfield.placeholder = "Supervisors name"
+            textfield.keyboardAppearance = .Dark
+            self.supervisor = textfield
+            
+        }
+
     func saveItem(sender: UISegmentedControl)
     {
         //bool to hold if n/a selected 

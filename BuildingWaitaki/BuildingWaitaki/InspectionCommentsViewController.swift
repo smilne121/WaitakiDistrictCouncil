@@ -19,7 +19,17 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(itemName)
+        
+        self.view.layer.cornerRadius = 10
+        for subview in self.view.subviews
+        {
+            subview.layer.cornerRadius = 10
+        }
+        self.view.layer.shadowColor = UIColor.blackColor().CGColor
+        self.view.layer.shadowOpacity = 0.7
+        self.view.layer.shadowOffset = CGSize(width: CGFloat(10), height: CGFloat(10))
+        self.view.layer.shadowRadius = 5.0
+        self.view.layer.masksToBounds = false
         
         
 
@@ -36,7 +46,7 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         textView!.textColor = AppSettings().getTextColour()
         
         
-        view.backgroundColor = AppSettings().getBackgroundColour()
+        self.view.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.8)
         
         
         if consentInspection.locked == true
@@ -67,10 +77,6 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         btnClose.tintColor = AppSettings().getTintColour()
         btnClose.titleLabel?.font = AppSettings().getTextFont()
 
-        
-        
-        
-        //textView.font = UIFont(name: textView.font.fontName, size: 18)
         self.view.addSubview(textView!)
         self.view.addSubview(btnClose)
     }

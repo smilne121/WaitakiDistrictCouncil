@@ -18,6 +18,12 @@ class DescriptionOfWorkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.layer.shadowColor = UIColor.blackColor().CGColor
+        self.view.layer.shadowOpacity = 0.7
+        self.view.layer.shadowOffset = CGSize(width: CGFloat(10), height: CGFloat(10))
+        self.view.layer.shadowRadius = 5.0
+        self.view.layer.masksToBounds = false
+        
         self.view.backgroundColor = AppSettings().getContainerBackground()
         
         for view in self.view.subviews

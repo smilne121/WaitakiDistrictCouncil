@@ -64,7 +64,9 @@ class OfficeToolsGetConsents {
                     style: .Cancel,
                     handler: self.ClosePopup))
                 
-                popup.view.backgroundColor = UIColor.redColor()
+                popup = AppSettings().getPopupStyle(popup)
+                
+                //popup.view.backgroundColor = UIColor.blackColor()
                 
                 self.controller.presentViewController(popup, animated: true, completion: nil)
             }

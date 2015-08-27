@@ -67,7 +67,11 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         titleView = UIImageView(frame:CGRectMake(0, 0, 30, 30))
         // Set how do you want to maintain the aspect
         titleView.contentMode = .ScaleAspectFit
-        titleView.image = UIImage(named: "BuildingWaitakiLogoTextYellow.png")
+        let image = UIImage(named: "BuildingWaitakiLogoText.png")
+        let tintedImage = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        titleView.tintColor = AppSettings().getTintColour()
+        
+        titleView.image = tintedImage
         
         self.navigationItem.titleView = titleView
         
@@ -82,6 +86,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         
         var textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
         textFieldInsideSearchBar?.font = settings.getTextFont()
+        textFieldInsideSearchBar?.keyboardAppearance = .Dark
         textFieldInsideSearchBar?.textColor = settings.getTextColour()
         
         for btn in searchBar.subviews
@@ -201,6 +206,8 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
                 style: UIAlertActionStyle.Cancel,
                 handler: nil))
             
+            popup = AppSettings().getPopupStyle(popup)
+            
             self.presentViewController(popup, animated: true, completion: nil)
         }
         
@@ -214,6 +221,8 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
             popup.addAction(UIAlertAction(title: "Ok",
                 style: UIAlertActionStyle.Cancel,
                 handler: nil))
+            
+            popup = AppSettings().getPopupStyle(popup)
             
             self.presentViewController(popup, animated: true, completion: nil)
         }
@@ -303,10 +312,12 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         
+        
         popup.addAction(UIAlertAction(title: "Ok",
             style: UIAlertActionStyle.Cancel,
             handler: nil))
         
+        popup = AppSettings().getPopupStyle(popup)
         self.presentViewController(popup, animated: true, completion: nil)
         
     }

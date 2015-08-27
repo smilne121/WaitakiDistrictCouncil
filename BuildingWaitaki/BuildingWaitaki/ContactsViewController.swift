@@ -18,6 +18,18 @@ class ContactsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.layer.cornerRadius = 10
+        for subview in self.view.subviews
+        {
+            subview.layer.cornerRadius = 10
+        }
+        self.view.layer.shadowColor = UIColor.blackColor().CGColor
+        self.view.layer.shadowOpacity = 0.7
+        self.view.layer.shadowOffset = CGSize(width: CGFloat(10), height: CGFloat(10))
+        self.view.layer.shadowRadius = 5.0
+        self.view.layer.masksToBounds = false
+        
+        
         scrollView = UIScrollView(frame: CGRect(x: CGFloat(0), y: CGFloat(5), width: CGFloat(500), height: CGFloat(viewHeight! - 50)))
         
         currentY = CGFloat(0)

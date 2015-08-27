@@ -64,6 +64,7 @@ import UIKit
     
     func getPopupStyle(popup: UIAlertController) -> UIAlertController
     {
+
         for view in popup.view.subviews
         {
             if view.isKindOfClass(UIView)
