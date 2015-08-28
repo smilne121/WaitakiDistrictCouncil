@@ -848,7 +848,35 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             //populate passes and N/A's from previous inspection and fail comments
             for item:AnyObject in consentInspection.inspectionItem
             {
+                managedContext.save(nil) // make sure everything is saved
+                var inspectionDoneDate : String?
+                inspectionDoneDate = nil
+                
                 let currentItem = item as! ConsentInspectionItem
+                
+                //get date field
+                var dateRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+                
+                let datePredicate1 = NSPredicate(format: "inspectionName = %@", currentItem.inspectionName)
+                let datePredicate3 = NSPredicate(format: "consentId = %@", currentItem.consentId)
+                let datePredicate4 = NSPredicate(format: "itemName = %@", "Date")
+                var datecompound = NSCompoundPredicate.andPredicateWithSubpredicates([datePredicate1,datePredicate3,datePredicate4])
+                dateRequest.predicate = datecompound
+                
+                
+                
+                if let dateResults = managedContext.executeFetchRequest(dateRequest, error: nil)?.first as? ConsentInspectionItem
+                {
+                    println(dateResults.itemName)
+                    println(dateResults.itemResult!)
+                    inspectionDoneDate = dateResults.itemResult!
+                }
+                
+                println(inspectionDoneDate)
+                
+                
+                //get inspection item
+                
                 var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
                 
                 let resultPredicate1 = NSPredicate(format: "inspectionName = %@", inspection.inspectionName)
@@ -857,7 +885,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
                 fetchRequest.predicate = compound
                 
-                managedContext.save(nil) // see if saves
+                //managedContext.save(nil) // see if saves
                 
                 if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
                 {
@@ -877,11 +905,52 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                         {
                             if currentItem.itemName == "Comments"
                             {
-                                managedObject.itemComment = "Inspection generated from: " + consentInspection.inspectionName + ". Previous Notes: " + itemcomment
+                                if let datedone = inspectionDoneDate
+                                {
+                                    let genFrom = "Inspection generated from: " + consentInspection.inspectionName + "."+"\r\n"
+                                    let dateFrom =  ("\tDate: " + datedone + ".\r\n") as String
+                                    let commFrom = "\tPrevious Notes: " + itemcomment + ".\r\n\r\n"
+                                    let addToCommentString = genFrom + dateFrom + commFrom
+                                    managedObject.itemComment = "(" + addToCommentString + ")\r\n\r\n"
+                                }
+                                else
+                                {
+                                    let genFrom = "Inspection generated from: " + consentInspection.inspectionName  + ".\r\n"
+                                    let commFrom = "\tPrevious Notes: " + itemcomment + ".\r\n\r\n"
+                                    let addToCommentString = genFrom + commFrom
+                                    managedObject.itemComment = "(" + addToCommentString + ")\r\n\r\n"
+                                }
+                                
+                                
                             }
                             else
                             {
-                                 managedObject.itemComment = "Notes from " + consentInspection.inspectionName + ": " + itemcomment
+                                
+                                var resultFrom = ""
+                                
+                                if let myResult = currentItem.itemResult
+                                {
+                                    resultFrom = "\tPrevious Result: " + myResult
+                                }
+                                
+                                
+                                if let datedone = inspectionDoneDate
+                                {
+                                    let notesfrom = "Notes from " + consentInspection.inspectionName + " inspection." + "\r\n"
+                                    let doneon = "\tDone on " + datedone + ".\r\n"
+                                    let withresult = resultFrom + "\r\n"
+                                    let comment = notesfrom + doneon + withresult + "\t" + itemcomment
+                                    managedObject.itemComment = "(" + comment + ")\r\n\r\n"
+                                }
+                                else
+                                {
+                                    let notesfrom = "Notes from " + consentInspection.inspectionName + " inspection.\r\n"
+                                    let withresult = resultFrom +  "\r\n\r\n"
+                                    let comment = notesfrom + withresult + "\t" + itemcomment
+                                    managedObject.itemComment =  "(" + comment + ")\r\n\r\n"
+                                }
+                                
+                                
                             }
                         }
                         
