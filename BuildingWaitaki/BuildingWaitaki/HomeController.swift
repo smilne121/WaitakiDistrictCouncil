@@ -19,6 +19,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var unfinishedInspectionsScrollview: UIScrollView!
     @IBOutlet weak var daynightlabel: UILabel!
+    @IBOutlet weak var nightSwitch: UISwitch!
     
     var searchActive : Bool = false
     
@@ -41,6 +42,17 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
     override func viewWillAppear(animated: Bool) {
         daynightlabel.font = AppSettings().getTextFont()
         daynightlabel.textColor = AppSettings().getTextColour()
+        
+        if AppSettings().getTheme() == "dark"
+        {
+            nightSwitch.on = true
+        }
+        else
+        {
+            nightSwitch.on = false
+            
+        }
+         nightSwitch.tintColor = AppSettings().getTintColour()
         
         let settings = AppSettings()
         
@@ -75,7 +87,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         view.backgroundColor = settings.getViewBackground()
         
         //change nav bar
-        var nav = self.navigationController?.navigationBar
+        let nav = self.navigationController?.navigationBar
         // 2
         nav?.translucent = true
         nav?.barTintColor = settings.getViewBackground()
@@ -104,7 +116,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         searchBar.keyboardAppearance = UIKeyboardAppearance.Dark
 
         
-        var textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
+        let textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
         textFieldInsideSearchBar?.font = settings.getTextFont()
         textFieldInsideSearchBar?.keyboardAppearance = .Dark
         textFieldInsideSearchBar?.textColor = settings.getTextColour()
@@ -113,7 +125,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         {
             if btn.isKindOfClass(UIButton)
             {
-                btn.setTitleColor(settings.getTintColour(), forState: UIControlState.Normal)
+                (btn as! UIButton).setTitleColor(settings.getTintColour(), forState: UIControlState.Normal)
             }
    
             
@@ -129,16 +141,16 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
             view.removeFromSuperview()
         }
         
-        var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
+        let existingRequest = NSFetchRequest(entityName: "ConsentInspection")
         let resultPredicate1 = NSPredicate(format: "needSynced = %@", NSNumber(bool: true))
-        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1])
+        let compound1 = NSCompoundPredicate(andPredicateWithSubpredicates: [resultPredicate1])
         var currentY = CGFloat(5)
-        var height = CGFloat(50)
+        let height = CGFloat(50)
         
         
         existingRequest.predicate = compound1
         
-        let unfinishedInspections = managedObjectContext!.executeFetchRequest(existingRequest, error: nil) as? [ConsentInspection]
+        let unfinishedInspections = (try? managedObjectContext!.executeFetchRequest(existingRequest)) as? [ConsentInspection]
         
         for inspection in unfinishedInspections!
         {
@@ -257,13 +269,13 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         let inspectionName = (sender.view?.subviews[1] as! UILabel).text
         
         //get the consent inspection Required
-        var consentInspectionRequest = NSFetchRequest(entityName: "ConsentInspection")
+        let consentInspectionRequest = NSFetchRequest(entityName: "ConsentInspection")
         let resultPredicate1 = NSPredicate(format: "consentId = %@", consentNumber!)
         let resultPredicate2 = NSPredicate(format: "inspectionName = %@", inspectionName!)
-        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2])
+        let compound1 = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1,resultPredicate2])
         consentInspectionRequest.predicate = compound1
         
-        let currentInspection = managedObjectContext!.executeFetchRequest(consentInspectionRequest, error: nil)?.first as! ConsentInspection
+        let currentInspection = (try? managedObjectContext!.executeFetchRequest(consentInspectionRequest))?.first as! ConsentInspection
 
         
         let currentInspectionController = self.storyboard!.instantiateViewControllerWithIdentifier("CurrentInspectionViewController") as! CurrentInspectionViewController
@@ -293,11 +305,17 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         
         if (result != "")
         {
-            var data = result.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: false)
-            var localError: NSError?
+            let data = result.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: false)
+           // var localError: NSError?
             if let mydata = data
             {
-            var json: AnyObject! = NSJSONSerialization.JSONObjectWithData(mydata, options: NSJSONReadingOptions.MutableContainers, error: &localError)
+                var json: AnyObject!
+                do {
+                    json = try NSJSONSerialization.JSONObjectWithData(mydata, options: NSJSONReadingOptions.MutableContainers)
+                } catch let error as NSError {
+                  print(error)
+                    json = nil
+                }
             if let jsonDictionary = json as? Dictionary<String,String>
             {
                 if (jsonDictionary["result"]  == "success")

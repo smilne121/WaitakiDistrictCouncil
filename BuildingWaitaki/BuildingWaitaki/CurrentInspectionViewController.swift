@@ -40,15 +40,15 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         
         
         //call core data inspectiontypes to get items to display
-        var error: NSError?
+       // var error: NSError?
         //get consents inspection
         let fetchRequest = NSFetchRequest(entityName: "InspectionTypeItems")
         fetchRequest.includesSubentities = true
         fetchRequest.returnsObjectsAsFaults = false
         let resultPredicate = NSPredicate(format: "inspectionId = %@", consentInspection.inspectionId)
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate])
         fetchRequest.predicate = compound
-        inspectionTypeItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
+        inspectionTypeItems = (try! managedContext.executeFetchRequest(fetchRequest)) as! [InspectionTypeItems]
         
         generateItemsOnscreen()
         
@@ -65,7 +65,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     func generateItemsOnscreen()
     {
         //ADD TOP BAR ICONS
-        let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let btnComments = UIButton(type: UIButtonType.System)
         btnComments.frame = CGRectMake(20, 85, 150, 40)
         btnComments.setTitle("Comments", forState: .Normal)
         btnComments.layer.borderColor = UIColor.blackColor().CGColor
@@ -76,7 +76,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnComments.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
         itemHolder.superview?.addSubview(btnComments)
         
-        let btnDeleteInspection = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let btnDeleteInspection = UIButton(type: UIButtonType.System)
         btnDeleteInspection.frame = CGRectMake(itemHolder.frame.width / 2 - 75, 85, 150, 40)
         btnDeleteInspection.setTitle("Delete Inspection", forState: .Normal)
         btnDeleteInspection.layer.borderColor = UIColor.blackColor().CGColor
@@ -85,14 +85,14 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnDeleteInspection.titleLabel!.font = AppSettings().getTextFont()
         btnDeleteInspection.tintColor = AppSettings().getTintColour()
         btnDeleteInspection.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
-        println(consentInspection.userCreated)
+        print(consentInspection.userCreated)
         if (consentInspection.userCreated != NSNumber(bool: true)) || (consentInspection.locked == true)
         {
             btnDeleteInspection.enabled = false
         }
         itemHolder.superview!.addSubview(btnDeleteInspection)
         
-        let btnEmail = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let btnEmail = UIButton(type: UIButtonType.System)
         btnEmail.frame = CGRectMake(itemHolder.superview!.frame.width - CGFloat(140), 85, 120, 40)
         btnEmail.setTitle("Email Report", forState: .Normal)
         btnEmail.addTarget(self, action: "emailReport:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -104,7 +104,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         itemHolder.superview?.addSubview(btnEmail)
         
         //ADD BOTTOM BAR ICONS
-        let btnFinished = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let btnFinished = UIButton(type: UIButtonType.System)
         btnFinished.frame = CGRectMake(20, itemHolder.superview!.frame.height - 70, 150, 40)
         btnFinished.setTitle("Finished", forState: .Normal)
         btnFinished.addTarget(self, action: "finishInspection:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -119,7 +119,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         }
         itemHolder.superview?.addSubview(btnFinished)
         
-        let btnClearInspection = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let btnClearInspection = UIButton(type: UIButtonType.System)
         btnClearInspection.frame = CGRectMake(itemHolder.superview!.frame.width / 2 - 75, itemHolder.superview!.frame.height - 70, 150, 40)
         btnClearInspection.setTitle("Clear inspection", forState: .Normal)
         btnClearInspection.layer.borderColor = UIColor.blackColor().CGColor
@@ -134,7 +134,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         }
         itemHolder.superview?.addSubview(btnClearInspection)
         
-        let btnNeedsReinspection = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let btnNeedsReinspection = UIButton(type: UIButtonType.System)
         btnNeedsReinspection.frame = CGRectMake(itemHolder.superview!.frame.width - CGFloat(170), itemHolder.superview!.frame.height - 70, 150, 40)
         btnNeedsReinspection.setTitle("Reinspect", forState: .Normal)
         btnNeedsReinspection.layer.borderColor = UIColor.blackColor().CGColor
@@ -150,14 +150,14 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         itemHolder.superview?.addSubview(btnNeedsReinspection)
         
         //change items into a sorted array
-       let itemInspectionArraySorted = inspectionTypeItems.sorted {$0.getOrderAsInt() < $1.getOrderAsInt()}
+       let itemInspectionArraySorted = inspectionTypeItems.sort {$0.getOrderAsInt() < $1.getOrderAsInt()}
         
 
         
         //add dynamic items
         
         var leftSide = Bool(true)
-        let fontsize = CGFloat(15)
+        //let fontsize = CGFloat(15)
         var currentX = 0
         var currentY = -63 // offset for uiscrollview
         let height = 200
@@ -198,7 +198,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 
                 
                 
-                var attr = NSDictionary(object: AppSettings().getTextFont(), forKey: NSFontAttributeName)
+                let attr = NSDictionary(object: AppSettings().getTextFont(), forKey: NSFontAttributeName)
                 selector.setTitleTextAttributes(attr as [NSObject : AnyObject], forState: .Normal)
                 
                 selector.frame = CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80)
@@ -249,7 +249,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 //results populated
                 container.addSubview(selector)
                 
-                let btnCamera = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+                let btnCamera = UIButton(type: UIButtonType.System)
                 btnCamera.frame = CGRect(x: 20 , y: 142, width: 40, height: 40)
                 let image = UIImage(named: "Camera-50.png")
                 btnCamera.setImage(image, forState: .Normal)
@@ -258,7 +258,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 btnCamera.imageView?.tintColor = AppSettings().getTintColour()
                 container.addSubview(btnCamera)
                 
-                let btnNotes = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+                let btnNotes = UIButton(type: UIButtonType.System)
                 btnNotes.frame = CGRect(x: container.frame.width - 60 , y: 142, width: 40, height: 40)
                 let commentimage = UIImage(named: "Speech Bubble-50.png")
                 btnNotes.addTarget(self, action: "loadNotesBtn:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -318,7 +318,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                     let selector = UISegmentedControl(items: selectorItems)
                     selector.selectedSegmentIndex = -1
                     selector.tintColor = AppSettings().getTintColour()
-                    var attr = NSDictionary(object: AppSettings().getTextFont(), forKey: NSFontAttributeName)
+                    let attr = NSDictionary(object: AppSettings().getTextFont(), forKey: NSFontAttributeName)
                     selector.setTitleTextAttributes(attr as [NSObject : AnyObject], forState: .Normal)
                     selector.addTarget(self, action: "addSupervisor:",forControlEvents: .ValueChanged)
                     selector.frame = CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80)
@@ -340,7 +340,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                     {
                         if item.itemId == itemResult.itemId
                         {
-                            println(itemResult.itemResult)
+                            print(itemResult.itemResult)
                             if let result = itemResult.itemResult?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                             {
                                 if result == "N/A"
@@ -446,23 +446,26 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         {
             
             self.supervisorControl!.text = ""
-            var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+            let fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
             
             let resultPredicate1 = NSPredicate(format: "inspectionName = %@", self.title!)
             let resultPredicate2 = NSPredicate(format: "itemName = %@", "Supervisor")
             let resultPredicate3 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
-            var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+            let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1,resultPredicate2,resultPredicate3])
             fetchRequest.predicate = compound
             
-            if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
+            if let fetchResults = (try? managedContext.executeFetchRequest(fetchRequest)) as? [ConsentInspectionItem]
             {
                 if fetchResults.count != 0
                 {
-                    var managedObject = fetchResults[0]
+                    let managedObject = fetchResults[0]
                     managedObject.itemResult = "N/A"
                     managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
                     
-                    managedContext.save(nil)
+                    do {
+                        try managedContext.save()
+                    } catch _ {
+                    }
                 }
             }
 
@@ -478,25 +481,28 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         //code to save to core data
         
         
-        var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+        let fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
         
         let resultPredicate1 = NSPredicate(format: "inspectionName = %@", self.title!)
         let resultPredicate2 = NSPredicate(format: "itemName = %@", "Supervisor")
         let resultPredicate3 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1,resultPredicate2,resultPredicate3])
         fetchRequest.predicate = compound
         
-        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
+        if let fetchResults = (try? managedContext.executeFetchRequest(fetchRequest)) as? [ConsentInspectionItem]
         {
-            println(fetchResults.count)
+            print(fetchResults.count)
             if fetchResults.count != 0
             {
-                var managedObject = fetchResults[0]
+                let managedObject = fetchResults[0]
                 managedObject.itemResult = (self.supervisor!.text)
                 
                 managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
                 
-                managedContext.save(nil)
+                do {
+                    try managedContext.save()
+                } catch _ {
+                }
             }
         }
         
@@ -615,7 +621,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     
     private func saveData(itemName: String, value: String) {
         //on saving an item update officer and date
-         let itemInspectionArraySorted = inspectionTypeItems.sorted {$0.getOrderAsInt() < $1.getOrderAsInt()}
+         let itemInspectionArraySorted = inspectionTypeItems.sort {$0.getOrderAsInt() < $1.getOrderAsInt()}
         for item in itemInspectionArraySorted
         {
             let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
@@ -631,14 +637,17 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                         if itemResult.itemName == itemName
                         {
                             itemResult.itemResult = settings.getUser()
-                            managedContext.save(nil)
+                            do {
+                                try managedContext.save()
+                            } catch _ {
+                            }
                         }
                     }
                 }
             
                 else if itemName == "Date"
                 {
-                    let settings = AppSettings()
+                   // let settings = AppSettings()
                     
                     let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
                     for itemResult in itemResults
@@ -664,7 +673,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                                                     let dateFormatter = NSDateFormatter()
                                                     dateFormatter.dateFormat = "dd-MM-yyyy"
                                                     itemResult.itemResult = dateFormatter.stringFromDate(datePicker.date)
-                                                    managedContext.save(nil)
+                                                    do {
+                                                        try managedContext.save()
+                                                    } catch _ {
+                                                    }
 
                                                 }
                                             }
@@ -688,24 +700,27 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         
         if consentInspection.locked != NSNumber(bool: true)
         {
-            var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+            let fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
         
             let resultPredicate1 = NSPredicate(format: "inspectionName = %@", self.title!)
             let resultPredicate2 = NSPredicate(format: "itemName = %@", itemName)
             let resultPredicate3 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
-            var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+            let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1,resultPredicate2,resultPredicate3])
             fetchRequest.predicate = compound
         
-            if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
+            if let fetchResults = (try? managedContext.executeFetchRequest(fetchRequest)) as? [ConsentInspectionItem]
             {
                 if fetchResults.count != 0
                 {
-                    var managedObject = fetchResults[0]
+                    let managedObject = fetchResults[0]
                     managedObject.itemResult = value
                 
                     managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
 
-                    managedContext.save(nil)
+                    do {
+                        try managedContext.save()
+                    } catch _ {
+                    }
                 }
             }
         
@@ -723,7 +738,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         let storyboard : UIStoryboard = UIStoryboard(
             name: "Main",
             bundle: nil)
-        var commentsViewController: InspectionCommentsViewController = storyboard.instantiateViewControllerWithIdentifier("InspectionComments") as! InspectionCommentsViewController
+        let commentsViewController: InspectionCommentsViewController = storyboard.instantiateViewControllerWithIdentifier("InspectionComments") as! InspectionCommentsViewController
         
         commentsViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
         commentsViewController.preferredContentSize = CGSizeMake(500, 450)
@@ -746,7 +761,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         popoverMenuViewController?.delegate = self
         popoverMenuViewController?.sourceView = view
         popoverMenuViewController?.sourceRect = CGRectMake(view.frame.width / 2, view.frame.height / 2, 0,0)
-        popoverMenuViewController?.permittedArrowDirections = UIPopoverArrowDirection.allZeros
+        popoverMenuViewController?.permittedArrowDirections = UIPopoverArrowDirection()
         
         
         commentsViewController.needsInfo = needsInfo
@@ -766,7 +781,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         let storyboard : UIStoryboard = UIStoryboard(
             name: "Main",
             bundle: nil)
-        var commentsViewController: InspectionCommentsViewController = storyboard.instantiateViewControllerWithIdentifier("InspectionComments") as! InspectionCommentsViewController
+        let commentsViewController: InspectionCommentsViewController = storyboard.instantiateViewControllerWithIdentifier("InspectionComments") as! InspectionCommentsViewController
         
         commentsViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
         commentsViewController.preferredContentSize = CGSizeMake(500, 450)
@@ -791,20 +806,20 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     
     func generateNewInspection()
     {
-        var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
+        let existingRequest = NSFetchRequest(entityName: "ConsentInspection")
         let resultPredicate1 = NSPredicate(format: "inspectionId = %@", consentInspection.inspectionId)
         let resultPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
-        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2])
+        let compound1 = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1,resultPredicate2])
         existingRequest.predicate = compound1
 
-        let inspectionItemsArray = managedContext.executeFetchRequest(existingRequest, error: nil) as? [ConsentInspection]
+        let inspectionItemsArray = (try? managedContext.executeFetchRequest(existingRequest)) as? [ConsentInspection]
         
-        var fetchRequest = NSFetchRequest(entityName: "InspectionType")
+        let fetchRequest = NSFetchRequest(entityName: "InspectionType")
         let resultPredicate = NSPredicate(format: "inspectionId = %@", consentInspection.inspectionId)
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate])
         fetchRequest.predicate = compound
         
-        if let fetchResult = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as? InspectionType
+        if let fetchResult = (try? managedContext.executeFetchRequest(fetchRequest))?.first as? InspectionType
         {
             let inspection = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspection", inManagedObjectContext: managedContext) as! ConsentInspection
             inspection.inspectionId = fetchResult.inspectionId
@@ -828,7 +843,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
             inspection.needSynced = NSNumber(bool: false)
             inspection.status = ""
             
-            managedContext.save(nil)
+            do {
+                try managedContext.save()
+            } catch _ {
+            }
             
 
             //populate items into coredata
@@ -842,57 +860,63 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 inspectionItem.itemName = item.itemName
                 inspectionItem.consentInspection = inspection
             }
-            managedContext.save(nil)
+            do {
+                try managedContext.save()
+            } catch _ {
+            }
             
             
             //populate passes and N/A's from previous inspection and fail comments
             for item:AnyObject in consentInspection.inspectionItem
             {
-                managedContext.save(nil) // make sure everything is saved
+                do {
+                    try managedContext.save()
+                } catch _ {
+                } // make sure everything is saved
                 var inspectionDoneDate : String?
                 inspectionDoneDate = nil
                 
                 let currentItem = item as! ConsentInspectionItem
                 
                 //get date field
-                var dateRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+                let dateRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
                 
                 let datePredicate1 = NSPredicate(format: "inspectionName = %@", currentItem.inspectionName)
                 let datePredicate3 = NSPredicate(format: "consentId = %@", currentItem.consentId)
                 let datePredicate4 = NSPredicate(format: "itemName = %@", "Date")
-                var datecompound = NSCompoundPredicate.andPredicateWithSubpredicates([datePredicate1,datePredicate3,datePredicate4])
+                let datecompound = NSCompoundPredicate(andPredicateWithSubpredicates:[datePredicate1,datePredicate3,datePredicate4])
                 dateRequest.predicate = datecompound
                 
                 
                 
-                if let dateResults = managedContext.executeFetchRequest(dateRequest, error: nil)?.first as? ConsentInspectionItem
+                if let dateResults = (try? managedContext.executeFetchRequest(dateRequest))?.first as? ConsentInspectionItem
                 {
-                    println(dateResults.itemName)
-                    println(dateResults.itemResult!)
+                    print(dateResults.itemName)
+                    print(dateResults.itemResult!)
                     inspectionDoneDate = dateResults.itemResult!
                 }
                 
-                println(inspectionDoneDate)
+                print(inspectionDoneDate)
                 
                 
                 //get inspection item
                 
-                var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+                let fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
                 
                 let resultPredicate1 = NSPredicate(format: "inspectionName = %@", inspection.inspectionName)
                 let resultPredicate2 = NSPredicate(format: "itemName = %@", currentItem.itemName)
                 let resultPredicate3 = NSPredicate(format: "consentId = %@", inspection.consentId)
-                var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+                let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1,resultPredicate2,resultPredicate3])
                 fetchRequest.predicate = compound
                 
                 //managedContext.save(nil) // see if saves
                 
-                if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem]
+                if let fetchResults = (try? managedContext.executeFetchRequest(fetchRequest)) as? [ConsentInspectionItem]
                 {
                     if fetchResults.count != 0
                     {
-                        var managedObject = fetchResults[0]
-                        println(currentItem.itemResult)
+                        let managedObject = fetchResults[0]
+                        print(currentItem.itemResult)
                         if let result = currentItem.itemResult
                         {
                             if result.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "FAIL"
@@ -956,7 +980,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                         
                         managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
                         
-                        managedContext.save(nil)
+                        do {
+                            try managedContext.save()
+                        } catch _ {
+                        }
                     }
                 }
                 
@@ -972,23 +999,23 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         var requiredDone = false
         
         //get items with results
-        var resultRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+        let resultRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
         let itemPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
         let itemPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
         
-        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([itemPredicate1, itemPredicate2])
+        let compound1 = NSCompoundPredicate(andPredicateWithSubpredicates:[itemPredicate1, itemPredicate2])
         resultRequest.predicate = compound1
         
-        let inspectionItems = managedContext.executeFetchRequest(resultRequest, error: nil) as? [ConsentInspectionItem]
+        let inspectionItems = (try? managedContext.executeFetchRequest(resultRequest)) as? [ConsentInspectionItem]
         
         //get required items
-        var requiredRequest = NSFetchRequest(entityName: "InspectionTypeItems")
+        let requiredRequest = NSFetchRequest(entityName: "InspectionTypeItems")
         let resultPredicate1 = NSPredicate(format: "inspectionId = %@", consentInspection.inspectionId)
         let resultPredicate2 = NSPredicate(format: "required = %@", NSNumber(bool: true))
-        var compound2 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1, resultPredicate2])
+        let compound2 = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1, resultPredicate2])
         requiredRequest.predicate = compound2
         
-        if let requiredItems = managedContext.executeFetchRequest(requiredRequest, error: nil) as? [InspectionTypeItems]
+        if let requiredItems = (try? managedContext.executeFetchRequest(requiredRequest)) as? [InspectionTypeItems]
         {
             for item in requiredItems
             {
@@ -998,7 +1025,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                     let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                     if  resultName == itemName
                     {
-                        if let result = resultItem.itemResult
+                        if resultItem.itemResult != nil
                         {
                             requiredDone = true
                         }
@@ -1017,20 +1044,23 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     {
         consentInspection.status = ""
         consentInspection.needSynced = NSNumber(bool: false)
-        var resultRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+        let resultRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
         let itemPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
         let itemPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
         
-        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([itemPredicate1, itemPredicate2])
+        let compound1 = NSCompoundPredicate(andPredicateWithSubpredicates:[itemPredicate1, itemPredicate2])
         resultRequest.predicate = compound1
         
-        let inspectionItems = managedContext.executeFetchRequest(resultRequest, error: nil) as? [ConsentInspectionItem]
+        let inspectionItems = (try? managedContext.executeFetchRequest(resultRequest)) as? [ConsentInspectionItem]
         
         for item in inspectionItems!
         {
             item.itemResult = nil
         }
-        managedContext.save(nil)
+        do {
+            try managedContext.save()
+        } catch _ {
+        }
         
         navigationController!.popViewControllerAnimated(true)
 
@@ -1139,37 +1169,40 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     
     func deleteIns(alert: UIAlertAction!)
     {
-        var resultRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+        let resultRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
         let itemPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
         let itemPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
         
-        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([itemPredicate1, itemPredicate2])
+        let compound1 = NSCompoundPredicate(andPredicateWithSubpredicates:[itemPredicate1, itemPredicate2])
         resultRequest.predicate = compound1
         
-        let inspectionItems = managedContext.executeFetchRequest(resultRequest, error: nil) as? [ConsentInspectionItem]
+        let inspectionItems = (try? managedContext.executeFetchRequest(resultRequest)) as? [ConsentInspectionItem]
         
         for item in inspectionItems!
         {
             managedContext.deleteObject(item as NSManagedObject)
         }
         
-        var resultRequest2 = NSFetchRequest(entityName: "ConsentInspection")
+        let resultRequest2 = NSFetchRequest(entityName: "ConsentInspection")
         
-        var compound2 = NSCompoundPredicate.andPredicateWithSubpredicates([itemPredicate1, itemPredicate2])
+        let compound2 = NSCompoundPredicate(andPredicateWithSubpredicates:[itemPredicate1, itemPredicate2])
         resultRequest2.predicate = compound2
         
-        let inspection = managedContext.executeFetchRequest(resultRequest2, error: nil) as! [ConsentInspection]
+        let inspection = (try! managedContext.executeFetchRequest(resultRequest2)) as! [ConsentInspection]
         
         if inspection.count == 1
         {
             let inspectionToDelete = inspection[0]
             managedContext.deleteObject(inspectionToDelete as NSManagedObject)
-            managedContext.save(nil)
+            do {
+                try managedContext.save()
+            } catch _ {
+            }
         }
         else
         {
-            println(inspection.count)
-            println("Conflicting inspections found: " + consentInspection.consentId)
+            print(inspection.count)
+            print("Conflicting inspections found: " + consentInspection.consentId)
         }
         navigationController!.popViewControllerAnimated(true)
 
@@ -1181,7 +1214,10 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     {
 saveFinished()
         navigationController?.popViewControllerAnimated(true)
-        managedContext.save(nil)
+        do {
+            try managedContext.save()
+        } catch _ {
+        }
     }
     
     func finishAddNew(alert:UIAlertAction!)
@@ -1189,23 +1225,29 @@ saveFinished()
          generateNewInspection()
 saveFinished()
         navigationController?.popViewControllerAnimated(true)
-        managedContext.save(nil)
+        do {
+            try managedContext.save()
+        } catch _ {
+        }
     }
     
     private func saveFinished()
     {
-        var fetchRequest = NSFetchRequest(entityName: "ConsentInspection")
+        let fetchRequest = NSFetchRequest(entityName: "ConsentInspection")
         
         let resultPredicate1 = NSPredicate(format: "inspectionName = %@", self.title!)
         let resultPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1,resultPredicate2])
         fetchRequest.predicate = compound
         
-        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as? ConsentInspection {
-                var managedObject = fetchResults
+        if let fetchResults = (try? managedContext.executeFetchRequest(fetchRequest))?.first as? ConsentInspection {
+                let managedObject = fetchResults
                 managedObject.locked = NSNumber(bool: true)
                 managedObject.needSynced = true
-                managedContext.save(nil)
+                do {
+                    try managedContext.save()
+                } catch _ {
+                }
         }
 
     }
@@ -1229,14 +1271,14 @@ saveFinished()
         
         
         //get current inspection item
-        var resultRequest = NSFetchRequest(entityName: "ConsentInspection")
+        let resultRequest = NSFetchRequest(entityName: "ConsentInspection")
         let itemPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
         let itemPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
         
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([itemPredicate1,itemPredicate2])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[itemPredicate1,itemPredicate2])
         resultRequest.predicate = compound
         
-        if let fetchResult = managedContext.executeFetchRequest(resultRequest, error: nil)?.first as? ConsentInspection
+        if let fetchResult = (try? managedContext.executeFetchRequest(resultRequest))?.first as? ConsentInspection
         {
             for item in fetchResult.inspectionItem
             {

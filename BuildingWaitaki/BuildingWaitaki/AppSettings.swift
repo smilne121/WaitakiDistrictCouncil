@@ -67,8 +67,8 @@ import UIKit
     
     func getBlurEffect(frame: CGRect) -> UIVisualEffectView
     {
-        var blur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        var blurView = UIVisualEffectView(effect: blur)
+        let blur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurView = UIVisualEffectView(effect: blur)
         blurView.frame = frame
         
         return blurView
@@ -93,14 +93,14 @@ import UIKit
         {
             if view.isKindOfClass(UIView)
             {
-                (view as! UIView).backgroundColor = self.getBackgroundColour()
-                (view as! UIView).tintColor = self.getTintColour()
+                (view ).backgroundColor = self.getBackgroundColour()
+                (view ).tintColor = self.getTintColour()
                 for subview in view.subviews
                 {
                     if subview.isKindOfClass(UIView)
                     {
-                        (subview as! UIView).backgroundColor = self.getBackgroundColour()
-                        (subview as! UIView).tintColor = self.getTintColour()
+                        (subview ).backgroundColor = self.getBackgroundColour()
+                        (subview ).tintColor = self.getTintColour()
                     }
                 }
             }
@@ -125,7 +125,7 @@ import UIKit
         }
         else
         {
-            return UIColor.darkGrayColor()
+            return UIColor(red: 15/255, green: 15/255, blue: 15/255, alpha: 1.0)
         }
     }
     func getTextColour() -> UIColor

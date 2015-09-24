@@ -82,25 +82,25 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
             view.removeFromSuperview()
         }
         
-        var inspectionItemPhotos : [UIImage]
-        var fetchRequest = NSFetchRequest(entityName: "Photo")
+       // var inspectionItemPhotos : [UIImage]
+        let fetchRequest = NSFetchRequest(entityName: "Photo")
         let resultPredicate1 = NSPredicate(format: "inspectionName = %@", inspectionItem.inspectionName)
         let resultPredicate2 = NSPredicate(format: "itemId = %@", inspectionItem.itemId)
         let resultPredicate3 = NSPredicate(format: "consentNumber = %@", inspectionItem.consentId)
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1,resultPredicate2,resultPredicate3])
         fetchRequest.predicate = compound
         
-        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [Photo]
+        if let fetchResults = (try? managedContext.executeFetchRequest(fetchRequest)) as? [Photo]
         {
             if fetchResults.count != 0
             {
                 for photoInfo in fetchResults
                 {
-                    println(photoInfo.photoIdentifier)
+                    print(photoInfo.photoIdentifier)
                     let photo = PhotoHandler()
                     photo.delegate = self
                     photo.retrieveImageWithIdentifer(photoInfo.photoIdentifier, completion: { (image) -> Void in
-                        let retrievedImage = image
+                        //let retrievedImage = image
                     })
                     
                 }
@@ -109,7 +109,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         cameraViewer.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         saveImageToAlbum(cameraViewer.image!)
@@ -155,7 +155,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
     func photoSaveCompleted(identifier: String, image : UIImage)
     {
         let data = UIImageJPEGRepresentation(image as UIImage, 1)
-        let encodedImage = data.base64EncodedStringWithOptions(.allZeros)
+        let encodedImage = data!.base64EncodedStringWithOptions([])
         
        // add photo details to database
         let currentImage = NSEntityDescription.insertNewObjectForEntityForName("Photo", inManagedObjectContext: managedContext) as! Photo
@@ -166,7 +166,10 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         currentImage.encodedString = encodedImage
         currentImage.dateTaken = NSDate()
         currentImage.photoIdentifier = identifier
-        managedContext.save(nil)
+        do {
+            try managedContext.save()
+        } catch _ {
+        }
         
         //clear view and reload
         for view in pictureScroller.subviews
@@ -177,7 +180,10 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         loadImages()
         
         inspectionItem.consentInspection.needSynced = NSNumber(bool: true)
-        managedContext.save(nil)
+        do {
+            try managedContext.save()
+        } catch _ {
+        }
         
         
     }
@@ -223,7 +229,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         
         let imageview = sender.view! as! UIImageView
 
-        let deleteBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let deleteBtn = UIButton(type: UIButtonType.System)
         deleteBtn.frame = CGRectMake(0, 150, 200, 50)
         deleteBtn.setTitle("Delete", forState: .Normal)
         deleteBtn.layer.backgroundColor = UIColor(red: 235/255.0, green: 5/255.0, blue: 5/255.0, alpha: 1.0).CGColor
@@ -236,7 +242,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
     {
         let imageview = sender.view! as! UIImageView
         
-        let deleteBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let deleteBtn = UIButton(type: UIButtonType.System)
         deleteBtn.frame = CGRectMake(0, imageview.frame.height - 50, imageview.frame.width, 50)
         deleteBtn.setTitle("Edit", forState: .Normal)
         deleteBtn.layer.backgroundColor = AppSettings().getTintColour().CGColor
@@ -283,15 +289,15 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
                 idnt = label.text!
             }
         }
-        var fetchRequest = NSFetchRequest(entityName: "Photo")
+        let fetchRequest = NSFetchRequest(entityName: "Photo")
         let resultPredicate1 = NSPredicate(format: "inspectionName = %@", inspectionItem.inspectionName)
         let resultPredicate2 = NSPredicate(format: "itemId = %@", inspectionItem.itemId)
         let resultPredicate3 = NSPredicate(format: "consentNumber = %@", inspectionItem.consentId)
         let resultPredicate4 = NSPredicate(format: "photoIdentifier = %@", idnt)
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3,resultPredicate4])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1,resultPredicate2,resultPredicate3,resultPredicate4])
         fetchRequest.predicate = compound
         
-        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [Photo]
+        if let fetchResults = (try? managedContext.executeFetchRequest(fetchRequest)) as? [Photo]
         {
             if fetchResults.count != 0
             {
@@ -305,9 +311,12 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
             }
             else
             {
-                println("error: duplicate image returned")
+                print("error: duplicate image returned")
             }
-            managedContext.save(nil)
+            do {
+                try managedContext.save()
+            } catch _ {
+            }
             
           
             loadImages()

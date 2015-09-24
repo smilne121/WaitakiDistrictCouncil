@@ -22,7 +22,7 @@ class InspectionTypeItems: NSManagedObject {
     
     func getOrderAsInt() -> Int
     {
-        return self.order.toInt()!
+        return Int(self.order)!
     }
 
 }

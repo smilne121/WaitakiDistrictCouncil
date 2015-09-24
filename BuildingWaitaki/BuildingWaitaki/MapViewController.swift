@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
         localSearch.startWithCompletionHandler { (localSearchResponse, error) -> Void in
             
             if localSearchResponse == nil{
-                var alert = UIAlertView(title: nil, message: "Place not found", delegate: self, cancelButtonTitle: "Try again")
+                let alert = UIAlertView(title: nil, message: "Place not found", delegate: self, cancelButtonTitle: "Try again")
                 alert.show()
                 return
             }
@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
     
     func centerOnLocation (){
         if self.mapView.annotations.count != 0{
-            annotation = self.mapView.annotations[0] as! MKAnnotation
+            annotation = self.mapView.annotations[0] 
             self.mapView.removeAnnotation(annotation)
         }
         //2
@@ -61,26 +61,26 @@ class MapViewController: UIViewController {
         localSearch.startWithCompletionHandler { (localSearchResponse, error) -> Void in
             
             if localSearchResponse == nil{
-                var alert = UIAlertView(title: nil, message: "Place not found", delegate: self, cancelButtonTitle: "Try again")
+                let alert = UIAlertView(title: nil, message: "Place not found", delegate: self, cancelButtonTitle: "Try again")
                 alert.show()
                 return
             }
             //3
             self.pointAnnotation = MKPointAnnotation()
             self.pointAnnotation.title = self.searchText
-            self.pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse.boundingRegion.center.latitude, longitude:     localSearchResponse.boundingRegion.center.longitude)
+            self.pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude:     localSearchResponse!.boundingRegion.center.longitude)
             
             
             self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
             self.mapView.centerCoordinate = self.pointAnnotation.coordinate
             
-            var zoom = MKCoordinateRegionMakeWithDistance (
+            let zoom = MKCoordinateRegionMakeWithDistance (
                 self.pointAnnotation.coordinate, 4000, 4000);
             
             self.mapView.setRegion(zoom, animated: true)
             
             
-            self.mapView.addAnnotation(self.pinAnnotationView.annotation)
+            self.mapView.addAnnotation(self.pinAnnotationView.annotation!)
         }
     }
     

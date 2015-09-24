@@ -58,8 +58,8 @@ class ContactsViewController: UIViewController {
         }
         
         
-        let btnClose = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        println(view.frame.height)
+        let btnClose = UIButton(type: UIButtonType.System)
+        print(view.frame.height)
         btnClose.frame = CGRectMake(200,viewHeight! - 43, 100,40)
         btnClose.titleLabel!.font = AppSettings().getTextFont()
         btnClose.setTitle("Close", forState: .Normal)

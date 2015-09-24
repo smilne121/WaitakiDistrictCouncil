@@ -22,7 +22,7 @@ class ResultTransferArray : Serializable
     
     func append(inspection: ConsentInspection)
     {
-        var newInspection = ResultTransferInspection(inspection: inspection)
+        let newInspection = ResultTransferInspection(inspection: inspection)
         consentsArray.append(newInspection)
     }
     

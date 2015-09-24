@@ -22,8 +22,8 @@ class GeneratePDF
         self.consentInspection = inspection
         pageSize = CGSize(width: width, height: height)
         let newPdfName = name + ".pdf"
-        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentationDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+       // let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentationDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
         pdfPath = documentsDirectory.stringByAppendingPathComponent(newPdfName)
         
         startDrawing(pdfPath)
@@ -49,8 +49,8 @@ class GeneratePDF
         let address = consentInspection.consent.consentAddress
         let descriptionOfWork = consentInspection.consent.consentDescription
         
-        let  width = 595
-        let height = 842
+      //  let  width = 595
+      //  let height = 842
         
         
         
@@ -208,9 +208,9 @@ class GeneratePDF
                     }
 
                     let image = photo as! Photo
-                    let photoHandler = PhotoHandler()
+                  //  let photoHandler = PhotoHandler()
                     
-                    let imageData = NSData(base64EncodedString: image.encodedString, options: .allZeros)
+                    let imageData = NSData(base64EncodedString: image.encodedString, options: [])
                     let imageDecoded = UIImage(data: imageData!)
                     self.addImage(imageDecoded!, rect: CGRect(x: curX,y: currentY, width: imageWidth,height: imageHeight))
                     curX = curX + imageWidth + 20
@@ -277,7 +277,7 @@ class GeneratePDF
         return rectText
     }
     
-    func getTableRowHeight(text: String,text2:String,text3:String,var frame1: CGRect,var frame2: CGRect,frame3: CGRect, fontSize: CGFloat) -> CGFloat
+    func getTableRowHeight(text: String,text2:String,text3:String,frame1: CGRect,frame2: CGRect,frame3: CGRect, fontSize: CGFloat) -> CGFloat
     {
         //get height set width here
         let label1 = UILabel()
@@ -343,7 +343,7 @@ class GeneratePDF
         CGContextAddLineToPoint(currentContext, endPoint.x, endPoint.y);
         
         CGContextClosePath(currentContext);
-        CGContextDrawPath(currentContext, kCGPathFillStroke);
+        CGContextDrawPath(currentContext, CGPathDrawingMode.FillStroke);
         
         return frame
     }

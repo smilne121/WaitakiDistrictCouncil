@@ -26,7 +26,7 @@ class ResultTransferItem : Serializable
         
         if let result = item.itemResult
         {
-            self.itemResult = item.itemResult
+            self.itemResult = result
         }
         else
         {

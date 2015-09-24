@@ -24,7 +24,7 @@ class PhotoHandler {
         PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
             let changeRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(image)
             let placeHolder = changeRequest.placeholderForCreatedAsset
-            imageIdentifier = placeHolder.localIdentifier
+            imageIdentifier = placeHolder!.localIdentifier
             }, completionHandler: { (success, error) -> Void in
                 if success {
                     completion(localIdentifier: imageIdentifier)
@@ -66,13 +66,13 @@ class PhotoHandler {
     {
         if identifiers.count > 0
         {
-        println(identifiers.count)
+        print(identifiers.count)
         
         let fetchOptions = PHFetchOptions()
         fetchOptions.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.Image.rawValue)
         let fetchResults = PHAsset.fetchAssetsWithLocalIdentifiers(identifiers, options: fetchOptions)
         
-        println(fetchResults.count)
+        print(fetchResults.count)
         
         let total = fetchResults.count
         var assetArray : [PHAsset]
@@ -92,7 +92,7 @@ class PhotoHandler {
                     PHAssetChangeRequest.deleteAssets(assetArray)
                     }, completionHandler: { (success, error) -> Void in
                         if success {
-                            println("Pictures deleted")
+                            print("Pictures deleted")
                         }else{
                             
                         }
@@ -112,7 +112,7 @@ class PhotoHandler {
                 requestOptions.deliveryMode = .HighQualityFormat
                 manager.requestImageForAsset(imageAsset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFill, options: requestOptions, resultHandler: { (image, info) -> Void in
                     completion(image: image)
-                    self.delegate!.photoLoaded(image, imageIdentity: localIdentifier)
+                    self.delegate!.photoLoaded(image!, imageIdentity: localIdentifier)
                 })
             } else {
                 completion(image: nil)

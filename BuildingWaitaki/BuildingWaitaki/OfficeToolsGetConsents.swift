@@ -27,18 +27,18 @@ class OfficeToolsGetConsents {
     func getConcents()
     {
         let settings = AppSettings()
-        var needSynced = self.needSynced()
+        let needSynced = self.needSynced()
         background.addSubview(settings.getBlurEffect(background.bounds))
         
         if (needSynced == 0)
         {
-            let popupMessage: String
+           // let popupMessage: String
             //var to hold the json string from server
             var consents: String?
             let settings = AppSettings()
             let url = NSURL(string: (settings.getAPIServer()! + "/buildingwaitaki/getconsents"))
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-                consents = String(NSString(data: data, encoding: NSUTF8StringEncoding)!)
+                consents = String(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
                 let popupMessage: String
                 var popupExtra = ""
                 
@@ -76,7 +76,7 @@ class OfficeToolsGetConsents {
         {
             let popupMessage: String
             popupMessage = "Unsynced Inspections"
-            var popupExtra = "Inspections need synced before downloading new consents"
+            let popupExtra = "Inspections need synced before downloading new consents"
             var popup = UIAlertController(title: popupMessage,
                 message: popupExtra,
                 preferredStyle: .Alert)
@@ -122,11 +122,11 @@ class OfficeToolsGetConsents {
         fetchRequest5.returnsObjectsAsFaults = false
         
         
-        let items = managedContext.executeFetchRequest(fetchRequest, error: &error)!
-        let items2 = managedContext.executeFetchRequest(fetchRequest2, error: &error)!
-        let items3 = managedContext.executeFetchRequest(fetchRequest3, error: &error)!
-        let items4 = managedContext.executeFetchRequest(fetchRequest4, error: &error)!
-        let items5 = managedContext.executeFetchRequest(fetchRequest5, error: &error)!
+        let items = try! managedContext.executeFetchRequest(fetchRequest)
+        let items2 = try! managedContext.executeFetchRequest(fetchRequest2)
+        let items3 = try! managedContext.executeFetchRequest(fetchRequest3)
+        let items4 = try! managedContext.executeFetchRequest(fetchRequest4)
+        let items5 = try! managedContext.executeFetchRequest(fetchRequest5)
         
         for item in items {
             managedContext.deleteObject(item as! NSManagedObject)
@@ -158,14 +158,14 @@ class OfficeToolsGetConsents {
             managedContext.deleteObject(item as! NSManagedObject)
         }
         
-        var consentObjectArray = [Consent]()
+   //     var consentObjectArray = [Consent]()
         //encode data string
         let JSONData = JSONString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        println(JSONString) //show result from server
+        print(JSONString) //show result from server
         //convert into an array
         
         //loop throught the created array and create objects to store in core data
-        if let array = NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions(0), error: nil) as? [AnyObject]
+        if let array = (try? NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions(rawValue: 0))) as? [AnyObject]
         {
             for elem:AnyObject in array
             {
@@ -173,9 +173,9 @@ class OfficeToolsGetConsents {
                 consent.consentAddress = (elem["consentAddress"] as! String)
                 consent.consentDescription = (elem["consentDescription"] as! String)
                 consent.consentNumber = (elem["consentNumber"] as! String)
-                var consentContactsArray = (elem["contacts"] as! NSArray)
-                var consentInspectionResultsArray = (elem["InspectionResults"] as! NSArray)
-                var consentInspectionsArray = (elem["Inspections"] as! NSArray)
+                let consentContactsArray = (elem["contacts"] as! NSArray)
+                let consentInspectionResultsArray = (elem["InspectionResults"] as! NSArray)
+                let consentInspectionsArray = (elem["Inspections"] as! NSArray)
             
                 for consentContact:AnyObject in consentContactsArray
                 {
@@ -206,10 +206,10 @@ class OfficeToolsGetConsents {
                     fetchRequest.returnsObjectsAsFaults = false
                     let resultPredicate = NSPredicate(format: "inspectionId = %@", newConsentInspection.inspectionId)
                 
-                    var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+                    let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [resultPredicate])
                     fetchRequest.predicate = compound
                 
-                    let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
+                    let inspectionItems = (try! managedContext.executeFetchRequest(fetchRequest)) as! [InspectionTypeItems]
                 
                     for consentInspectionItem in inspectionItems
                     {
@@ -232,7 +232,7 @@ class OfficeToolsGetConsents {
                                     newInspectionItem.itemResult = consentInspectionResults["ItemResult"] as? String
                                     if let comment = consentInspectionResults["ItemComment"] as? String
                                     {
-                                        newInspectionItem.itemComment =  (consentInspectionResults["ItemComment"] as? String)!
+                                        newInspectionItem.itemComment =  comment
                                     }
                                 }
                             }
@@ -252,9 +252,11 @@ class OfficeToolsGetConsents {
                 }
 
                 //add consent to core data
-                if !managedContext.save(&error)
-                {
-                    println("Could not save \(error), \(error?.userInfo)")
+                do {
+                    try managedContext.save()
+                } catch let error1 as NSError {
+                    error = error1
+                    print("Could not save \(error), \(error?.userInfo)")
                 }
             }
         }
@@ -279,11 +281,11 @@ class OfficeToolsGetConsents {
         syncNeededRequest.returnsObjectsAsFaults = false
         let resultPredicate = NSPredicate(format: "needSynced = %@", NSNumber(bool: true))
         
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [resultPredicate])
         syncNeededRequest.predicate = compound
         
         //check if any inspections need synced
-        var results:NSArray = managedContext.executeFetchRequest(syncNeededRequest, error: nil)!
+        let results:NSArray = try! managedContext.executeFetchRequest(syncNeededRequest)
         
         return results.count
     }

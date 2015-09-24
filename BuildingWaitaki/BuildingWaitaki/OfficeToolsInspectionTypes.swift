@@ -29,8 +29,10 @@ class OfficeToolsInspectionTypes {
         let settings = AppSettings()
         let url = NSURL(string: settings.getAPIServer()! + "/buildingwaitaki/getinspectiontypes") //update to use stored property
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            
-            inspectionTypes = String(NSString(data: data, encoding: NSUTF8StringEncoding)!)
+            print(data)
+            if data != nil
+            {
+            inspectionTypes = String(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
             let popupMessage: String
             var popupExtra = ""
             
@@ -57,15 +59,15 @@ class OfficeToolsInspectionTypes {
             popup = AppSettings().getPopupStyle(popup)
 
             self.controller.presentViewController(popup, animated: true, completion: nil)
-            
+            }
         }
         task.resume()
     }
     
     func JSONInspectionTypeToObject(JSONString: String)
     {
-        println(JSONString)
-        var error: NSError?
+        print(JSONString)
+    //    var error: NSError?
         //remove existing inspection types
         let fetchRequest = NSFetchRequest(entityName: "InspectionType")
         fetchRequest.includesSubentities = false
@@ -75,8 +77,8 @@ class OfficeToolsInspectionTypes {
         fetchRequest2.includesSubentities = false
         fetchRequest2.returnsObjectsAsFaults = false
         
-        let items = managedContext.executeFetchRequest(fetchRequest, error: &error)!
-        let items2 = managedContext.executeFetchRequest(fetchRequest2, error: &error)!
+        let items = try! managedContext.executeFetchRequest(fetchRequest)
+        let items2 = try! managedContext.executeFetchRequest(fetchRequest2)
         
         for item in items {
             managedContext.deleteObject(item as! NSManagedObject)
@@ -86,14 +88,14 @@ class OfficeToolsInspectionTypes {
             managedContext.deleteObject(item as! NSManagedObject)
         }
         
-        println("Number of Inspection Types: " + String(items.count) + " Number of Inspection Type Items:" + String(items2.count))
-        println(items2)
+        print("Number of Inspection Types: " + String(items.count) + " Number of Inspection Type Items:" + String(items2.count))
+        print(items2)
         
-        var inspectionTypeObjectArray = [InspectionType]()
+       // var inspectionTypeObjectArray = [InspectionType]()
         //encode data string
         let JSONData = JSONString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         //convert into an array
-        let array = NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions(0), error: nil) as? [AnyObject]
+        let array = (try? NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions(rawValue: 0))) as? [AnyObject]
         //println(array)
         //loop throught the created array and create objects to store in core data
         
@@ -104,7 +106,7 @@ class OfficeToolsInspectionTypes {
             let inspectionType = NSEntityDescription.insertNewObjectForEntityForName("InspectionType", inManagedObjectContext: managedContext) as! InspectionType
             inspectionType.inspectionId = (elem["inspectionId"] as! String)
             inspectionType.inspectionName = (elem["inspectionName"] as! String)
-            var inspectionTypeItemsArray = (elem["inspectionItems"] as! NSArray)
+            let inspectionTypeItemsArray = (elem["inspectionItems"] as! NSArray)
             
             for inspectionTypeItem:AnyObject in inspectionTypeItemsArray
             {
@@ -117,12 +119,13 @@ class OfficeToolsInspectionTypes {
                 newInspectionTypeItem.photosAllowed = inspectionTypeItem["photosAllowed"] as! NSNumber
                 newInspectionTypeItem.required = inspectionTypeItem["required"] as! NSNumber
                 newInspectionTypeItem.order = inspectionTypeItem["order"] as! String
-                println(inspectionType)
+                print(inspectionType)
             }
             //add inspection type to core data
-            if !managedContext.save(&error)
-            {
-                println("Could not save \(error), \(error?.userInfo)")
+            do {
+                try managedContext.save()
+            } catch let error1 as NSError {
+                print("Could not save \(error1), \(error1.userInfo)")
             }
         }
         }

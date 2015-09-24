@@ -133,7 +133,7 @@
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Night mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5r-hH-jxo">
-                                <rect key="frame" x="539" y="88" width="117" height="21"/>
+                                <rect key="frame" x="539" y="83" width="117" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -148,6 +148,7 @@
                         <outlet property="background" destination="8bC-Xf-vdC" id="at5-AK-Lqi"/>
                         <outlet property="consentScrollView" destination="GMm-vr-wE9" id="m8S-cd-zrh"/>
                         <outlet property="daynightlabel" destination="w5r-hH-jxo" id="QRR-eZ-QSY"/>
+                        <outlet property="nightSwitch" destination="kIE-BW-3wD" id="0rh-Nh-wh6"/>
                         <outlet property="searchBar" destination="ULa-wb-XWu" id="FZf-WG-wjA"/>
                         <outlet property="unfinishedInspectionsScrollview" destination="Qij-XS-foT" id="KmI-om-5k1"/>
                     </connections>

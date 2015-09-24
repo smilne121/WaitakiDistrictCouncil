@@ -28,7 +28,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     func showActivityIndicatory(uiView: UIView) {
-        var actInd: UIActivityIndicatorView = UIActivityIndicatorView()
+        let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
         actInd.frame = CGRectMake(0.0, 0.0, 200.0, 200.0);
         actInd.center = uiView.center
         actInd.hidesWhenStopped = true
@@ -42,14 +42,14 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
 
         let genPDF = GeneratePDF(name: "Inspection Report", width: CGFloat(595), height: CGFloat(842), inspection: consentInspection)
 
-        var picker = MFMailComposeViewController()
+        let picker = MFMailComposeViewController()
         picker.mailComposeDelegate = self
         picker.setSubject("Report from " + consentInspection.inspectionName + " inspection for consent: " + consentInspection.consentId)
         picker.setMessageBody("Attached is the result for your inspection", isHTML: true)
         
         //add pdf
-        let fileData = NSData(contentsOfURL: NSURL(fileURLWithPath: genPDF.getPDFPath())!)
-        picker.addAttachmentData(fileData, mimeType: "application/pdf", fileName: "Inspection Report.pdf")
+        let fileData = NSData(contentsOfURL: NSURL(fileURLWithPath: genPDF.getPDFPath()))
+        picker.addAttachmentData(fileData!, mimeType: "application/pdf", fileName: "Inspection Report.pdf")
         if MFMailComposeViewController .canSendMail() == true
         {
        presentViewController(picker, animated: true, completion: nil)
@@ -74,7 +74,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     // MFMailComposeViewControllerDelegate
     
     // 1
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         dismissViewControllerAnimated(true, completion: nil)
         self.navigationController!.popViewControllerAnimated(true)
     }

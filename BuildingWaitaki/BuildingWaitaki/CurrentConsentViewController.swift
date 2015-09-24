@@ -28,9 +28,10 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         //add consent to core data
-        if !managedContext.save(nil)
-        {
-            println("Could not save")
+        do {
+            try managedContext.save()
+        } catch _ {
+            print("Could not save")
         }
         
         
@@ -76,8 +77,8 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         viewController.currentConsent = currentConsent
         viewController.managedContext = managedContext
         
-        var resultRequest = NSFetchRequest(entityName: "InspectionType")
-        let inspectionItems = managedContext.executeFetchRequest(resultRequest, error: nil) as? [InspectionType]
+        let resultRequest = NSFetchRequest(entityName: "InspectionType")
+        let inspectionItems = (try? managedContext.executeFetchRequest(resultRequest)) as? [InspectionType]
         
         viewController.inspectionItems = inspectionItems
         navigationController!.pushViewController(viewController, animated: true)
@@ -92,7 +93,7 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         
         let inspectionArray = currentConsent.consentInspection.allObjects as! [ConsentInspection]
         
-        let inspectionArraySorted = inspectionArray.sorted { $0.inspectionId < $1.inspectionId } //sort by item number after
+        let inspectionArraySorted = inspectionArray.sort { $0.inspectionId < $1.inspectionId } //sort by item number after
         
         cell.inspectionName.text = inspectionArraySorted[indexPath.row].inspectionName
         
@@ -159,7 +160,7 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //goto new controller
         let inspectionArray = currentConsent.consentInspection.allObjects as! [ConsentInspection]
-        let inspectionArraySorted = inspectionArray.sorted { $0.inspectionId < $1.inspectionId } //sort by item number after
+        let inspectionArraySorted = inspectionArray.sort { $0.inspectionId < $1.inspectionId } //sort by item number after
         let currentInspectionController = self.storyboard!.instantiateViewControllerWithIdentifier("CurrentInspectionViewController") as! CurrentInspectionViewController
         currentInspectionController.consentInspection = inspectionArraySorted[indexPath.row]
         currentInspectionController.title = inspectionArraySorted[indexPath.row].inspectionName

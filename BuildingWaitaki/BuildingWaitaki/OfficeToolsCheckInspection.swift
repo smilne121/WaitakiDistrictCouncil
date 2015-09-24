@@ -19,18 +19,18 @@ class OfficeToolsCheckInspection
     var uncomplete = 0
     
     //check if all required fields are completed
-    var error: NSError?
+    //var error: NSError?
     //get consents inspection
     let fetchRequest = NSFetchRequest(entityName: "InspectionTypeItems")
     fetchRequest.includesSubentities = true
     fetchRequest.returnsObjectsAsFaults = false
     let resultPredicate = NSPredicate(format: "inspectionId = %@", consentInspection.inspectionId)
     
-    var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+    let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [resultPredicate])
     fetchRequest.predicate = compound
     
     //inspection items for selected inspection
-    let inspectionItems = managedContext.executeFetchRequest(fetchRequest, error: nil) as! [InspectionTypeItems]
+    let inspectionItems = (try! managedContext.executeFetchRequest(fetchRequest)) as! [InspectionTypeItems]
     let inspectionResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
     
     var requiredItemsCount = 0
@@ -49,7 +49,7 @@ class OfficeToolsCheckInspection
                     {
                         if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "L"
                         {
-                            if result.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "PASS" || result.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "N/A"
+                            if currentResult.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "PASS" || result.itemResult!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "N/A"
                             {
                                 passed = passed + 1
                             }
@@ -60,7 +60,7 @@ class OfficeToolsCheckInspection
                         }
                         else if item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "T" || item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "D" || item.itemType.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "NR"
                         {
-                            if let test = result.itemResult
+                            if  result.itemResult != nil
                             {
                                 passed = passed + 1
                             }

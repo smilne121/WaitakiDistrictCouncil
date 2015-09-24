@@ -35,7 +35,7 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
     
     func getConsentsFromCoreData(searchString: String?) -> [AnyObject]
     {
-        var error: NSError?
+       // var error: NSError?
         //remove existing consents contacts and inspections
         let fetchRequest = NSFetchRequest(entityName: "Consent")
         fetchRequest.includesSubentities = true
@@ -45,12 +45,12 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         {
             let resultPredicate = NSPredicate(format: "consentAddress contains %@", searchtext)
             let resultPredicate2 = NSPredicate(format: "consentNumber contains %@", searchtext)
-            var compound = NSCompoundPredicate.orPredicateWithSubpredicates([resultPredicate,resultPredicate2])
+            let compound = NSCompoundPredicate(orPredicateWithSubpredicates:[resultPredicate,resultPredicate2])
             fetchRequest.predicate = compound
         }
         
         fetchRequest.relationshipKeyPathsForPrefetching = ["contact","consentInspection"]
-        let consents = managedContext.executeFetchRequest(fetchRequest, error: &error)!
+        let consents = try! managedContext.executeFetchRequest(fetchRequest)
 
         return consents
     }
@@ -71,8 +71,8 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         }
         
         
-        let fontsize :CGFloat
-        fontsize = 15
+       // let fontsize :CGFloat
+        //fontsize = 15
         currentY = 50
         
         var listOfConsents : [Consent]
@@ -117,20 +117,20 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
             myConsentAddress.text = consent.consentAddress
             myConsentAddress.textColor = settings.getTextColour()
             
-            let btnLocation = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+            let btnLocation = UIButton(type: UIButtonType.System)
             btnLocation.frame = CGRectMake(20, 40, 60, 60)
             let imgLocation = UIImage(named: "Map-50.png") as UIImage!
             btnLocation.addTarget(self, action: "openMap:", forControlEvents: UIControlEvents.TouchUpInside)
             btnLocation.setImage(imgLocation, forState: .Normal)
             
-            let btnComments = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+            let btnComments = UIButton(type: UIButtonType.System)
             btnComments.frame = CGRectMake(container.layer.frame.width / 2 - 30, 40, 60, 60)
             let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
             btnComments.addTarget(self, action: "displayDescription:", forControlEvents: UIControlEvents.TouchUpInside)
             btnComments.setImage(imgComments, forState: .Normal)
 
             
-            let btnContacts = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+            let btnContacts = UIButton(type: UIButtonType.System)
             btnContacts.frame = CGRectMake(container.layer.frame.width - 80, 40, 60, 60)
             let imgContacts = UIImage(named: "Contacts-50.png") as UIImage!
             btnContacts.addTarget(self, action: "showContacts:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -172,7 +172,7 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         }
         
         //get consent
-        var error: NSError?
+        //var error: NSError?
         //get consents inspection
         let fetchRequest = NSFetchRequest(entityName: "Consent")
         fetchRequest.includesSubentities = true
@@ -180,15 +180,15 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         
         let resultPredicate = NSPredicate(format: "consentNumber = %@", consentNumber)
         
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate])
         fetchRequest.predicate = compound
         
-        let consent = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as! Consent
+        let consent = (try? managedContext.executeFetchRequest(fetchRequest))?.first as! Consent
         
         let storyboard : UIStoryboard = UIStoryboard(
             name: "Main",
             bundle: nil)
-        var descViewController: DescriptionOfWorkViewController = storyboard.instantiateViewControllerWithIdentifier("DescriptionOfWorkViewController") as! DescriptionOfWorkViewController
+        let descViewController: DescriptionOfWorkViewController = storyboard.instantiateViewControllerWithIdentifier("DescriptionOfWorkViewController") as! DescriptionOfWorkViewController
 
         
         descViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
@@ -201,7 +201,7 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         popoverMenuViewController?.delegate = self
         popoverMenuViewController?.sourceView = homeController.view
         popoverMenuViewController?.sourceRect = CGRectMake(homeController.view.frame.width / 2, homeController.view.frame.height / 2, 0,0)
-        popoverMenuViewController?.permittedArrowDirections = UIPopoverArrowDirection.allZeros
+        popoverMenuViewController?.permittedArrowDirections = UIPopoverArrowDirection()
         
         
         descViewController.modalInPopover = true
@@ -251,7 +251,7 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                     //create a display inspections here.
                     let consentNumber = (view as! UILabel).text
                     
-                    var error: NSError?
+                    //var error: NSError?
                     //get consents inspection
                     let fetchRequest = NSFetchRequest(entityName: "Consent")
                     fetchRequest.includesSubentities = true
@@ -259,10 +259,10 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                     
                     let resultPredicate = NSPredicate(format: "consentNumber = %@", consentNumber!)
                     
-                    var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+                    let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate])
                     fetchRequest.predicate = compound
                     
-                    let consent = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as! Consent
+                    let consent = (try? managedContext.executeFetchRequest(fetchRequest))?.first as! Consent
                     
                     currentConsent = consent
                     
@@ -295,7 +295,7 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         }
         
         //get consent
-        var error: NSError?
+      //  var error: NSError?
         //get consents inspection
         let fetchRequest = NSFetchRequest(entityName: "Consent")
         fetchRequest.includesSubentities = true
@@ -303,16 +303,16 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         
         let resultPredicate = NSPredicate(format: "consentNumber = %@", consentNumber)
         
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate])
         fetchRequest.predicate = compound
         
-        let consent = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as! Consent
+        let consent = (try? managedContext.executeFetchRequest(fetchRequest))?.first as! Consent
         
         
         let storyboard : UIStoryboard = UIStoryboard(
             name: "Main",
             bundle: nil)
-        var contactViewController: ContactsViewController = storyboard.instantiateViewControllerWithIdentifier("ContactsViewController") as! ContactsViewController
+        let contactViewController: ContactsViewController = storyboard.instantiateViewControllerWithIdentifier("ContactsViewController") as! ContactsViewController
         
         
         //get height
@@ -323,21 +323,21 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         contactViewController.viewHeight = CGFloat(height)
         
         contactViewController.consent = consent
-        var itemName = ""
+       /* var itemName = ""
         for view in sender.superview!.subviews
         {
             if view.isKindOfClass(UILabel)
             {
                 itemName = (view as! UILabel).text!
             }
-        }
+        }*/
         
         let popoverMenuViewController = contactViewController.popoverPresentationController
         popoverMenuViewController?.permittedArrowDirections = .Any
         popoverMenuViewController?.delegate = self
         popoverMenuViewController?.sourceView = homeController.view
         popoverMenuViewController?.sourceRect = CGRectMake(homeController.view.frame.width / 2, homeController.view.frame.height / 2, 0,0)
-        popoverMenuViewController?.permittedArrowDirections = UIPopoverArrowDirection.allZeros
+        popoverMenuViewController?.permittedArrowDirections = UIPopoverArrowDirection()
         
         
         contactViewController.modalInPopover = true

@@ -23,13 +23,13 @@ class OfficeToolsSendInspections
     
     func getResults()
     {
-        var lightBlur = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
-        var blurView = UIVisualEffectView(effect: lightBlur)
+        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+        let blurView = UIVisualEffectView(effect: lightBlur)
         blurView.frame = controller.view.bounds
         controller.view.addSubview(blurView)
         
         
-        var error: NSError?
+        //var error: NSError?
         let fetchRequest = NSFetchRequest(entityName: "ConsentInspection")
         let resultPredicate = NSPredicate(format: "needSynced = %@", NSNumber(bool: true))
         fetchRequest.includesSubentities = true
@@ -37,7 +37,7 @@ class OfficeToolsSendInspections
         
         fetchRequest.predicate = resultPredicate
         
-        let items = managedContext.executeFetchRequest(fetchRequest, error: &error)! as! [ConsentInspection]
+        let items = (try! managedContext.executeFetchRequest(fetchRequest)) as! [ConsentInspection]
         
         let resultConsents = ResultTransferArray(consents: items)
         
@@ -53,7 +53,7 @@ class OfficeToolsSendInspections
     
     func post(params : NSData, url : String)
     {
-        var result = ""
+       // var result = ""
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         request.HTTPMethod = "POST"
         request.HTTPBody = params
@@ -69,13 +69,13 @@ class OfficeToolsSendInspections
                         curView.removeFromSuperview()
                     }
                 }
-                println("error=\(error)")
+                print("error=\(error)")
                 self.controller.sendInspectionsComplete("\"result\": \"failed\",\"error\", '\"\(error)\"");
                 return
             }
             else
             {
-                let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
                 //remove blur effect
                 for curView in self.controller.view.subviews
                 {
@@ -86,15 +86,18 @@ class OfficeToolsSendInspections
                 }
                 if responseString as! String == "{\"result\": \"success\"}"
                 {
-                    var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
+                    let existingRequest = NSFetchRequest(entityName: "ConsentInspection")
                     let resultPredicate1 = NSPredicate(format: "needSynced = %@", NSNumber(bool: true))
                     existingRequest.predicate = resultPredicate1
-                    let inspectionArray = self.managedContext.executeFetchRequest(existingRequest, error: nil) as? [ConsentInspection]
+                    let inspectionArray = (try? self.managedContext.executeFetchRequest(existingRequest)) as? [ConsentInspection]
                     for inspection: ConsentInspection in inspectionArray!
                     {
                         inspection.needSynced = NSNumber(bool: false)
                     }
-                    self.managedContext.save(nil)
+                    do {
+                        try self.managedContext.save()
+                    } catch _ {
+                    }
                 }
             self.controller.sendInspectionsComplete(responseString as! String);
         }

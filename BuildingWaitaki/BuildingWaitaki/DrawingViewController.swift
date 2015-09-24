@@ -12,7 +12,7 @@ import CoreData
 class DrawingViewController: UIViewController, PhotoCompletionDelegate{
     
     var mainImageView: UIImageView?
-    var lastPoint = CGPoint.zeroPoint
+    var lastPoint = CGPoint.zero
     var red: CGFloat = 0.0
     var green: CGFloat = 0.0
     var blue: CGFloat = 0.0
@@ -48,7 +48,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Edit image"
-        self.navigationController!.interactivePopGestureRecognizer.enabled = false
+        self.navigationController!.interactivePopGestureRecognizer!.enabled = false
         
         // Do any additional setup after loading the view, typically from a nib.
         mainImageView = UIImageView(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(768), height: CGFloat(1024)))
@@ -57,7 +57,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         arrayUIImageViews = [UIImageView]()
         
         //order and buttons
-        let grnBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let grnBtn = UIButton(type: UIButtonType.System)
         grnBtn.frame = CGRectMake(24, 894, 60, 30)
         grnBtn.setTitle("Green", forState: UIControlState.Normal)
         grnBtn.tintColor = UIColor.greenColor()
@@ -72,7 +72,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         self.view.addSubview(grnBtn)
         
         //order and buttons
-        let redBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let redBtn = UIButton(type: UIButtonType.System)
         redBtn.frame = CGRectMake(24, 856, 60, 30)
         redBtn.setTitle("Red", forState: UIControlState.Normal)
         redBtn.tintColor = UIColor(red: 235/255.0, green: 5/255.0, blue: 5/255.0, alpha: 1.0)
@@ -86,7 +86,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         redBtn.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
         self.view.addSubview(redBtn)
         //order and buttons
-        let blueBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let blueBtn = UIButton(type: UIButtonType.System)
         blueBtn.frame = CGRectMake(24, 932, 60, 30)
         blueBtn.setTitle("Blue", forState: UIControlState.Normal)
         blueBtn.tintColor = UIColor.blueColor()
@@ -100,7 +100,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         blueBtn.tag = 3
         self.view.addSubview(blueBtn)
         //order and buttons
-        let blackBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let blackBtn = UIButton(type: UIButtonType.System)
         blackBtn.frame = CGRectMake(24, 970, 60, 30)
         blackBtn.setTitle("Black", forState: UIControlState.Normal)
         blackBtn.titleLabel!.font = AppSettings().getTextFont()
@@ -115,7 +115,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         self.view.addSubview(blackBtn)
         
         //order and buttons
-        let eraseBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let eraseBtn = UIButton(type: UIButtonType.System)
         eraseBtn.frame = CGRectMake(706, 856, 60, 30)
         eraseBtn.setTitle("Erase", forState: UIControlState.Normal)
         eraseBtn.tintColor = AppSettings().getTintColour()
@@ -130,7 +130,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         
         
         //order and buttons
-        let resetBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let resetBtn = UIButton(type: UIButtonType.System)
         resetBtn.frame = CGRectMake(706, 894, 60, 30)
         resetBtn.setTitle("Reset", forState: UIControlState.Normal)
         resetBtn.tintColor = AppSettings().getTintColour()
@@ -144,7 +144,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         self.view.addSubview(resetBtn)
         
         //order and buttons
-        let saveBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let saveBtn = UIButton(type: UIButtonType.System)
         saveBtn.frame = CGRectMake(706, 932, 60, 30)
         saveBtn.setTitle("Save", forState: UIControlState.Normal)
         saveBtn.tintColor = AppSettings().getTintColour()
@@ -158,7 +158,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         self.view.addSubview(saveBtn)
         
         //order and buttons
-        let cancelBtn = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let cancelBtn = UIButton(type: UIButtonType.System)
         cancelBtn.frame = CGRectMake(706, 970, 60, 30)
         cancelBtn.setTitle("Cancel", forState: UIControlState.Normal)
         cancelBtn.tintColor = AppSettings().getTintColour()
@@ -262,7 +262,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
     }
     
     func showActivityIndicatory(uiView: UIView) {
-        var actInd: UIActivityIndicatorView = UIActivityIndicatorView()
+        let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
         actInd.frame = CGRectMake(0.0, 0.0, 200.0, 200.0);
         actInd.center = uiView.center
         actInd.layer.zPosition = 100001
@@ -275,8 +275,8 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
     
     func save(sender : UIButton)
     {
-        var lightBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        var blurView = UIVisualEffectView(effect: lightBlur)
+        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurView = UIVisualEffectView(effect: lightBlur)
         blurView.frame = self.view.bounds
         blurView.layer.zPosition = 100000
         
@@ -292,8 +292,8 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         for tempImageView in arrayUIImageViews!
         {
         UIGraphicsBeginImageContext(mainImageView!.frame.size)
-        mainImageView!.image?.drawInRect(CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height), blendMode: kCGBlendModeNormal, alpha: 1.0)
-        tempImageView.image?.drawInRect(CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height), blendMode: kCGBlendModeNormal, alpha: opacity)
+        mainImageView!.image?.drawInRect(CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height), blendMode: CGBlendMode.Normal, alpha: 1.0)
+        tempImageView.image?.drawInRect(CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height), blendMode: CGBlendMode.Normal, alpha: opacity)
         mainImageView!.image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -324,9 +324,9 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //clone size of main image view
-        var tempImageView = UIImageView(frame: mainImageView!.frame)
+        let tempImageView = UIImageView(frame: mainImageView!.frame)
         arrayUIImageViews!.append(tempImageView)
         tempImageView.tag = (arrayUIImageViews!.count)
       //  println(arrayUIImageViews!.count)
@@ -334,7 +334,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
 
         
         swiped = false
-        if let touch = touches.first as? UITouch {
+        if let touch = touches.first {
             lastPoint = touch.locationInView(self.view)
         }
     }
@@ -342,7 +342,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
     func photoSaveCompleted(identifier: String, image : UIImage)
     {
         let data = UIImageJPEGRepresentation(image as UIImage, 1)
-        let encodedImage = data.base64EncodedStringWithOptions(.allZeros)
+        let encodedImage = data!.base64EncodedStringWithOptions([])
         
         // add photo details to database
         let currentImage = NSEntityDescription.insertNewObjectForEntityForName("Photo", inManagedObjectContext: managedContext) as! Photo
@@ -353,7 +353,10 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         currentImage.encodedString = encodedImage
         currentImage.dateTaken = NSDate()
         currentImage.photoIdentifier = identifier
-        managedContext.save(nil)
+        do {
+            try managedContext.save()
+        } catch _ {
+        }
         
         //delete from core data
         let fetchRequest = NSFetchRequest(entityName: "Photo")
@@ -361,7 +364,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         fetchRequest.predicate = resultPredicate
         
         
-        let items = managedContext.executeFetchRequest(fetchRequest,error: nil)!
+        let items = try! managedContext.executeFetchRequest(fetchRequest)
         
         for item in items {
             managedContext.deleteObject(item as! NSManagedObject)
@@ -378,7 +381,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
 
         
        let id = arrayUIImageViews!.count - 1
-        var tempImageView = arrayUIImageViews![id]
+        let tempImageView = arrayUIImageViews![id]
         
         if scale > 1
         {
@@ -399,10 +402,10 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         CGContextAddLineToPoint(context, toPoint.x, toPoint.y)
         
         // 3
-        CGContextSetLineCap(context, kCGLineCapRound)
+        CGContextSetLineCap(context, CGLineCap.Round)
         CGContextSetLineWidth(context, brushWidth)
         CGContextSetRGBStrokeColor(context, red, green, blue, 1.0)
-        CGContextSetBlendMode(context, kCGBlendModeNormal)
+        CGContextSetBlendMode(context, CGBlendMode.Normal)
         
         // 4
         CGContextStrokePath(context)
@@ -416,11 +419,11 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         
     }
     
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-        println(touches.count)
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print(touches.count)
         // 6
         swiped = true
-        if let touch = touches.first as? UITouch {
+        if let touch = touches.first  {
             let currentPoint = touch.locationInView(view)
             drawLineFrom(lastPoint, toPoint: currentPoint)
             
@@ -429,7 +432,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {        
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {        
         if !swiped {
             // draw a single point
             drawLineFrom(lastPoint, toPoint: lastPoint)

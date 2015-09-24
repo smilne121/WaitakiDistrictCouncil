@@ -54,11 +54,11 @@ popup = settings.getPopupStyle(popup)
     private func SaveSetting(alert: UIAlertAction!){
         switch field!{
             case "Set API Server":
-            appSettings.setAPIServer(text!.text)
+            appSettings.setAPIServer(text!.text!)
             case "Set User":
-            appSettings.setUser(text!.text)
+            appSettings.setUser(text!.text!)
         default:
-            println("no value found")
+            print("no value found")
         }
     }
     

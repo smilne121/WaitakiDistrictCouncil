@@ -58,7 +58,7 @@ class AddInspectionViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let sorted = inspectionItems.sorted {$0.inspectionName < $1.inspectionName}
+        let sorted = inspectionItems.sort {$0.inspectionName < $1.inspectionName}
         
         let cell = tableView.dequeueReusableCellWithIdentifier("addInspectionCell", forIndexPath: indexPath) as! AddInspectionTableViewCell
         cell.textLabel?.text = sorted[indexPath.row].inspectionName
@@ -75,7 +75,7 @@ class AddInspectionViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let sorted = inspectionItems.sorted {$0.inspectionName < $1.inspectionName}
+        let sorted = inspectionItems.sort {$0.inspectionName < $1.inspectionName}
         
         inspectionId = sorted[indexPath.row].inspectionId
         createInspection(nil)
@@ -83,20 +83,20 @@ class AddInspectionViewController: UITableViewController {
     
     func createInspection (alert: UIAlertAction?)
     {
-        var existingRequest = NSFetchRequest(entityName: "ConsentInspection")
+        let existingRequest = NSFetchRequest(entityName: "ConsentInspection")
         let resultPredicate1 = NSPredicate(format: "inspectionId = %@", inspectionId!)
         let resultPredicate2 = NSPredicate(format: "consentId = %@", currentConsent.consentNumber)
-        var compound1 = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2])
+        let compound1 = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate1,resultPredicate2])
         existingRequest.predicate = compound1
         
-        let inspectionItemsArray = managedContext.executeFetchRequest(existingRequest, error: nil) as? [ConsentInspection]
+        let inspectionItemsArray = (try? managedContext.executeFetchRequest(existingRequest)) as? [ConsentInspection]
         
-        var fetchRequest = NSFetchRequest(entityName: "InspectionType")
+        let fetchRequest = NSFetchRequest(entityName: "InspectionType")
         let resultPredicate = NSPredicate(format: "inspectionId = %@", inspectionId!)
-        var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate])
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate])
         fetchRequest.predicate = compound
         
-        if let fetchResult = managedContext.executeFetchRequest(fetchRequest, error: nil)?.first as? InspectionType
+        if let fetchResult = (try? managedContext.executeFetchRequest(fetchRequest))?.first as? InspectionType
         {
             let inspection = NSEntityDescription.insertNewObjectForEntityForName("ConsentInspection", inManagedObjectContext: managedContext) as! ConsentInspection
             inspection.inspectionId = fetchResult.inspectionId
@@ -129,7 +129,10 @@ class AddInspectionViewController: UITableViewController {
                 inspectionItem.itemName = item.itemName
                 inspectionItem.consentInspection = inspection
             }
-            managedContext.save(nil)
+            do {
+                try managedContext.save()
+            } catch _ {
+            }
             
             navigationController?.popViewControllerAnimated(true)
         }

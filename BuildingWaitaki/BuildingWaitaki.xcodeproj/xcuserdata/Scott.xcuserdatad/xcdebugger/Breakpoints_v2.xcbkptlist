@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InspectionCameraViewController.swift"
-            timestampString = "462336677.592593"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
-            landmarkName = "handleImageEditSwipeUp(_:)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "loadImages()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InspectionCameraViewController.swift"
-            timestampString = "462336677.592593"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "editImage(_:)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "loadImages()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InspectionCameraViewController.swift"
-            timestampString = "462336677.592593"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "handleTap(_:)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "loadImages()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,13 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/DrawingViewController.swift"
-            timestampString = "461996660.206837"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DrawingViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -183,13 +183,90 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/DrawingViewController.swift"
-            timestampString = "462343095.162348"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "didReceiveMemoryWarning()"
-            landmarkType = "5">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DrawingViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.DrawingViewController.lastPoint.getter : C.CGPoint"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/DrawingViewController.swift"
+                  timestampString = "464779223.609007"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "8">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.DrawingViewController.lastPoint.setter : C.CGPoint"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/DrawingViewController.swift"
+                  timestampString = "464779223.609234"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.DrawingViewController.lastPoint.materializeForSet : C.CGPoint"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/DrawingViewController.swift"
+                  timestampString = "464779223.609379"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.DrawingViewController.init (BuildingWaitaki.DrawingViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; BuildingWaitaki.DrawingViewController"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/DrawingViewController.swift"
+                  timestampString = "464779223.609513"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "364">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.DrawingViewController.init (BuildingWaitaki.DrawingViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; Swift.Optional&lt;BuildingWaitaki.DrawingViewController&gt;"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/DrawingViewController.swift"
+                  timestampString = "464779223.609645"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "280">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -199,13 +276,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/DrawingViewController.swift"
-            timestampString = "461996660.206837"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DrawingViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -215,13 +292,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/DrawingViewController.swift"
-            timestampString = "461996660.206837"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DrawingViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -231,12 +308,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InspectionCameraViewController.swift"
-            timestampString = "462336677.592593"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "editImage(_:)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "loadImages()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -247,13 +324,90 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/DrawingViewController.swift"
-            timestampString = "462343095.162348"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "share(_:)"
-            landmarkType = "5">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DrawingViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.DrawingViewController.lastPoint.getter : C.CGPoint"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/DrawingViewController.swift"
+                  timestampString = "464779223.61137"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "8">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.DrawingViewController.lastPoint.setter : C.CGPoint"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/DrawingViewController.swift"
+                  timestampString = "464779223.611543"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.DrawingViewController.lastPoint.materializeForSet : C.CGPoint"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/DrawingViewController.swift"
+                  timestampString = "464779223.611684"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.DrawingViewController.init (BuildingWaitaki.DrawingViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; BuildingWaitaki.DrawingViewController"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/DrawingViewController.swift"
+                  timestampString = "464779223.611819"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "364">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BuildingWaitaki.DrawingViewController.init (BuildingWaitaki.DrawingViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; Swift.Optional&lt;BuildingWaitaki.DrawingViewController&gt;"
+                  moduleName = "BuildingWaitaki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/DrawingViewController.swift"
+                  timestampString = "464779223.611954"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "280">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -263,13 +417,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/DrawingViewController.swift"
-            timestampString = "462343095.162348"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
-            landmarkName = "save(_:)"
-            landmarkType = "5">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DrawingViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -279,13 +433,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/DrawingViewController.swift"
-            timestampString = "461996660.206837"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DrawingViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -295,13 +449,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/DrawingViewController.swift"
-            timestampString = "461996660.206837"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DrawingViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -311,13 +465,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/DrawingViewController.swift"
-            timestampString = "462343095.162348"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
-            landmarkName = "touchesBegan(_:withEvent:)"
-            landmarkType = "5">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DrawingViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -327,13 +481,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/DrawingViewController.swift"
-            timestampString = "462343095.162348"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
-            landmarkName = "photoSaveCompleted(_:image:)"
-            landmarkType = "5">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DrawingViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -423,11 +577,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/HomeController.swift"
-            timestampString = "464759171.102904"
+            timestampString = "464779222.578255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -503,12 +657,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/OfficeToolsSendInspections.swift"
-            timestampString = "462254019.487827"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "post(_:url:)"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "getResults()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -519,12 +673,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/OfficeToolsSendInspections.swift"
-            timestampString = "462254058.767403"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "resultsToJson(_:)"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "getResults()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -535,12 +689,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/OfficeToolsSendInspections.swift"
-            timestampString = "462254114.266543"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "post(_:url:)"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "getResults()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -551,12 +705,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/OfficeToolsSendInspections.swift"
-            timestampString = "462254115.203588"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "post(_:url:)"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "getResults()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -583,12 +737,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "438"
-            endingLineNumber = "438"
-            landmarkName = "addSupervisor(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -599,12 +753,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "430"
-            endingLineNumber = "430"
-            landmarkName = "addSupervisor(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -615,12 +769,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "519"
-            endingLineNumber = "519"
-            landmarkName = "SaveText(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -631,12 +785,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "517"
-            endingLineNumber = "517"
-            landmarkName = "SaveText(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -647,12 +801,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
-            landmarkName = "SaveSupervisor(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -663,28 +817,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "520"
-            endingLineNumber = "520"
-            landmarkName = "CurrentInspectionViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "495"
-            endingLineNumber = "495"
-            landmarkName = "SaveSupervisor(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -695,12 +833,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
-            landmarkName = "generateItemsOnscreen()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -711,12 +849,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
-            landmarkName = "generateItemsOnscreen()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -727,12 +865,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "352"
-            endingLineNumber = "352"
-            landmarkName = "generateItemsOnscreen()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -743,12 +881,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
-            landmarkName = "generateItemsOnscreen()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -759,12 +897,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "492"
-            endingLineNumber = "492"
-            landmarkName = "SaveSupervisor(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -775,12 +913,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "494"
-            endingLineNumber = "494"
-            landmarkName = "SaveSupervisor(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -791,12 +929,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "442"
-            endingLineNumber = "442"
-            landmarkName = "addSupervisor(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -807,12 +945,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
-            landmarkName = "addSupervisor(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
+            timestampString = "464773414.30803"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
             <Locations>
                <Location
@@ -855,12 +1009,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462335973.201641"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
-            landmarkName = "SaveSupervisor(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -871,12 +1025,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InspectionCameraViewController.swift"
-            timestampString = "462336802.149479"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "photoSaveCompleted(_:image:)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "loadImages()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -919,12 +1073,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435017.990095"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "872"
-            endingLineNumber = "872"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -935,12 +1089,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435017.990095"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "873"
-            endingLineNumber = "873"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -951,12 +1105,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435017.990095"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "912"
-            endingLineNumber = "912"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -967,12 +1121,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462434593.394948"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "852"
-            endingLineNumber = "852"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -983,12 +1137,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435017.990095"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "909"
-            endingLineNumber = "909"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -999,12 +1153,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435017.990095"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "916"
-            endingLineNumber = "916"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1015,12 +1169,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435017.990095"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "869"
-            endingLineNumber = "869"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1031,12 +1185,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435017.990095"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "871"
-            endingLineNumber = "871"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1047,12 +1201,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435017.990095"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "875"
-            endingLineNumber = "875"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1063,12 +1217,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435017.990095"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "880"
-            endingLineNumber = "880"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1079,12 +1233,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435317.006341"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "915"
-            endingLineNumber = "915"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
             <Locations>
                <Location
@@ -1127,12 +1281,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/CurrentInspectionViewController.swift"
-            timestampString = "462435318.299431"
+            timestampString = "464773414.30803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "917"
-            endingLineNumber = "917"
-            landmarkName = "generateNewInspection()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1143,11 +1297,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/HomeController.swift"
-            timestampString = "464759171.102904"
+            timestampString = "464779222.578255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "themechanged(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1159,12 +1313,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/HomeController.swift"
-            timestampString = "464759171.102904"
+            timestampString = "464779222.578255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "themechanged(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuildingWaitaki/OfficeToolsGetConsents.swift"
+            timestampString = "464765392.590516"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "JSONConsentToObject(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuildingWaitaki/HomeController.swift"
+            timestampString = "464779222.578255"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InspectionCameraViewController.swift"
+            timestampString = "464766183.637403"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "saveImageToAlbum(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

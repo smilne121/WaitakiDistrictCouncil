@@ -58,7 +58,7 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         {
             if item.itemName == itemName
             {
-                println(item)
+                print(item)
                 if let comment = item.itemComment
                 {
                     textView!.text = comment
@@ -67,7 +67,7 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         }
         
         
-        let btnClose = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let btnClose = UIButton(type: UIButtonType.System)
         btnClose.frame = CGRect(x: 175, y: 370, width: 150, height: 50)
         btnClose.setTitle("Done", forState: .Normal)
         btnClose.addTarget(self, action: "close:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -90,7 +90,7 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
     {
         if let mustEnter = needsInfo
         {
-        if needsInfo == NSNumber(bool: true)
+        if mustEnter == NSNumber(bool: true)
         {
             if self.textView?.text != ""
             {
@@ -129,18 +129,18 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
     {
         if consentInspection.locked != NSNumber(bool: true)
         {
-            var fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
+            let fetchRequest = NSFetchRequest(entityName: "ConsentInspectionItem")
                     
                     let resultPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
                     let resultPredicate2 = NSPredicate(format: "itemName = %@", itemName)
                     let resultPredicate3 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
-                    var compound = NSCompoundPredicate.andPredicateWithSubpredicates([resultPredicate1,resultPredicate2,resultPredicate3])
+                    let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [resultPredicate1,resultPredicate2,resultPredicate3])
                     fetchRequest.predicate = compound
                     
-                    if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [ConsentInspectionItem] {
+                    if let fetchResults = (try? managedContext.executeFetchRequest(fetchRequest)) as? [ConsentInspectionItem] {
                         if fetchResults.count != 0
                         {
-                            var managedObject = fetchResults[0]
+                            let managedObject = fetchResults[0]
                             //check if comments item
                             if itemName == "Comments"
                             {
@@ -150,7 +150,10 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
                             
                             managedObject.consentInspection.needSynced = NSNumber(bool: true) //add to need synced
                             
-                            managedContext.save(nil)
+                            do {
+                                try managedContext.save()
+                            } catch _ {
+                            }
                 }
             }
         }
