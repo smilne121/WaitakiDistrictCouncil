@@ -162,7 +162,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         var currentY = -63 // offset for uiscrollview
         let height = 200
         let width = Int(itemHolder.frame.width / 2 )
-        let background = UIColor.clearColor()
+        let background = AppSettings().getBackgroundColour()
         
         //loop though items and create containers
 

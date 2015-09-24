@@ -24,6 +24,23 @@ import UIKit
         defaults.setObject(APIServer, forKey: "APIServer")
     }
     
+    func setTheme(Theme: String)
+    {
+        defaults.setObject(Theme, forKey: "Theme")
+    }
+    
+    func getTheme() -> String?
+    {
+        if let theme = defaults.stringForKey("Theme")
+        {
+            return theme
+        }
+        else
+        {
+            return "light"
+        }
+    }
+    
     func getUser() -> String?
     {
         if let user = defaults.stringForKey("User")
@@ -59,7 +76,14 @@ import UIKit
     
     func getBackgroundColour() -> UIColor
     {
-        return UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 0.8)
+        if (self.getTheme() == "dark")
+        {
+            return UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 0.8)
+        }
+        else
+        {
+            return UIColor(red: 222/255.0, green: 222/255.0, blue: 222/255.0, alpha: 0.8)
+        }
     }
     
     func getPopupStyle(popup: UIAlertController) -> UIAlertController
@@ -95,21 +119,50 @@ import UIKit
     }
     func getTintColour() -> UIColor
     {
-        return UIColor.yellowColor()
+        if (self.getTheme() == "dark")
+        {
+            return UIColor.yellowColor()
+        }
+        else
+        {
+            return UIColor.darkGrayColor()
+        }
     }
     func getTextColour() -> UIColor
     {
+        if (self.getTheme() == "dark")
+        {
         return UIColor.whiteColor()
+        }
+        else
+        {
+            return UIColor.blackColor()
+        }
     }
     
     func getContainerBackground() -> UIColor
     {
-        return UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0.8)
+        if (self.getTheme() == "dark")
+        {
+            return UIColor(red: 0.0/255, green: 0.0/255, blue: 0.0/255, alpha: 0.8)
+        }
+        else
+        {
+            return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
+        }
+        
     }
     
     func getViewBackground() -> UIColor
     {
-        return UIColor(patternImage: UIImage(named: "background.png")!)
+        if (self.getTheme() == "dark")
+        {
+            return UIColor(patternImage: UIImage(named: "background.png")!)
+        }
+        else
+        {
+            return UIColor(patternImage: UIImage(named: "light-background.png")!)
+        }
     }
     
     func getTitleFont() -> UIFont

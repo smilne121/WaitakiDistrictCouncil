@@ -18,10 +18,30 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var consentScrollView: UIScrollView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var unfinishedInspectionsScrollview: UIScrollView!
+    @IBOutlet weak var daynightlabel: UILabel!
     
     var searchActive : Bool = false
     
+
+    @IBAction func themechanged(sender: UISwitch) {
+        if sender.on == true
+        {
+            AppSettings().setTheme("dark")
+            self.viewWillAppear(true)
+            self.viewDidLoad()
+        }
+        else
+        {
+            AppSettings().setTheme("light")
+            self.viewWillAppear(true)
+            self.viewDidLoad()
+        }
+        
+    }
     override func viewWillAppear(animated: Bool) {
+        daynightlabel.font = AppSettings().getTextFont()
+        daynightlabel.textColor = AppSettings().getTextColour()
+        
         let settings = AppSettings()
         
         for view in self.view.subviews
