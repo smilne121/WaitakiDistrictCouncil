@@ -151,8 +151,9 @@ class OfficeToolsGetConsents {
             arrayOfIdent.append(image.photoIdentifier)
             
         }
-        let ph = PhotoHandler()
-        ph.deleteAppImages(arrayOfIdent)
+        //Deleting images stopping sync
+     //   let ph = PhotoHandler()
+    //    ph.deleteAppImages(arrayOfIdent)
         
         for item in items5 {
             managedContext.deleteObject(item as! NSManagedObject)

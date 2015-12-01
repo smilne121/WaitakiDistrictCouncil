@@ -26,11 +26,6 @@ public class Serializable: NSObject {
             
             let propName = c.label
             let childMirror = c.value
-            
-            
-            //        for i in 1..<mirror..count {
-            //            let (propName, childMirror) = mirror[i]
-            
             if let propValue: AnyObject = self.unwrap(childMirror) as? AnyObject {
                 if let serializablePropValue = propValue as? Serializable {
                     propertiesDictionary.setValue(serializablePropValue.toDictionary(), forKey: propName!)

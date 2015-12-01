@@ -117,10 +117,12 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
     
     func saveImageToAlbum(image: UIImage)
     {
+        let newImage : UIImage = UIImage(data: image.lowQualityJPEGNSData)!
+        
         var identifier:String?
         let photo = PhotoHandler()
         photo.delegate = self
-        photo.saveImageAsAsset(image, completion: { (localIdentifier) -> Void in identifier = localIdentifier})
+        photo.saveImageAsAsset(newImage, completion: { (localIdentifier) -> Void in identifier = localIdentifier})
         
     }
     
@@ -322,6 +324,8 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
             loadImages()
 
         }}
+    
+    
 
 
     

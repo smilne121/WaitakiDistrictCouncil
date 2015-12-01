@@ -23,7 +23,7 @@ class OfficeToolsSendInspections
     
     func getResults()
     {
-        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         let blurView = UIVisualEffectView(effect: lightBlur)
         blurView.frame = controller.view.bounds
         controller.view.addSubview(blurView)
@@ -57,6 +57,7 @@ class OfficeToolsSendInspections
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         request.HTTPMethod = "POST"
         request.HTTPBody = params
+        //print(request.HTTPBody)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
             data, response, error in
             

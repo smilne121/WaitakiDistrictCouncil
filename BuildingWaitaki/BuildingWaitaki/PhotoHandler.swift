@@ -84,18 +84,16 @@ class PhotoHandler {
         
         if fetchResults.count > 0
         {
-           // if let imageAssets = fetchResults as? [PHAsset]
-           // {
-                PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+            PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
                     
-                    // Delete asset
-                    PHAssetChangeRequest.deleteAssets(assetArray)
-                    }, completionHandler: { (success, error) -> Void in
-                        if success {
-                            print("Pictures deleted")
-                        }else{
+            // Delete asset
+            PHAssetChangeRequest.deleteAssets(assetArray)
+            }, completionHandler: { (success, error) -> Void in
+            if success {
+                print("Pictures deleted")
+            }else{
                             
-                        }
+                }
                 })
             }
         }

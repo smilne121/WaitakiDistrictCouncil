@@ -335,12 +335,16 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
         
+        var result = false as Bool
+        
         var popup:UIAlertController
         if message == "success"
         {
             popup = UIAlertController(title: "Sending Inspections Complete",
-            message: "Syncing finished with result: " + message + ". Please remember to Receive inspections to get upto date consents",
+            message: "Syncing finished with result: " + message + ". New consents will now be downloaded",
             preferredStyle: .Alert)
+            result = true
+            
         }
         else
         {
@@ -348,6 +352,9 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
                 message: "Syncing failed. Please show your IT administrator: " + message,
                 preferredStyle: .Alert)
         }
+        
+    
+        
         
         
         
@@ -357,6 +364,11 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         
         popup = AppSettings().getPopupStyle(popup)
         self.presentViewController(popup, animated: true, completion: nil)
+        
+        if result
+        {
+            officeTools.getConsents()
+        }
         
     }
     
