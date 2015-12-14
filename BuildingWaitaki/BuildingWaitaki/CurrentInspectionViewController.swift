@@ -15,6 +15,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
     var managedContext: NSManagedObjectContext!
     var supervisor: UITextField?
     var supervisorControl : UITextView?
+    var startTime : NSDate?
     
     @IBOutlet weak var itemHolder: UIScrollView!
     
@@ -1313,6 +1314,42 @@ saveFinished()
         emailController.consentInspection = consentInspection
         self.navigationController!.pushViewController(emailController, animated: true)
 
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        let viewControllers : NSArray = (self.navigationController?.viewControllers)!
+        if (viewControllers.count > 1 && viewControllers.objectAtIndex(viewControllers.count - 2) as! NSObject == self)
+        {
+            
+        }
+        else
+        {
+            let timeInInspection = Int(NSDate().timeIntervalSinceDate(startTime!))
+            print(timeInInspection)
+            let resultRequest = NSFetchRequest(entityName: "ConsentInspection")
+            let itemPredicate1 = NSPredicate(format: "inspectionName = %@", consentInspection.inspectionName)
+            let itemPredicate2 = NSPredicate(format: "consentId = %@", consentInspection.consentId)
+            
+            let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[itemPredicate1,itemPredicate2])
+            resultRequest.predicate = compound
+            
+            if let fetchResult = (try? managedContext.executeFetchRequest(resultRequest))?.first as? ConsentInspection
+            {
+                if (fetchResult.locked == false)
+                {
+                    fetchResult.timeTaken = fetchResult.timeTaken + timeInInspection
+                }
+            }
+            do {
+                try managedContext.save()
+            } catch _ {
+            }
+
+            
+
+            
+        }
+        
     }
     
     func popoverControllerShouldDismissPopover(popoverController: UIPopoverController) -> Bool {

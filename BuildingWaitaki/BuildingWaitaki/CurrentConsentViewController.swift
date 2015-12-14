@@ -164,6 +164,7 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         let currentInspectionController = self.storyboard!.instantiateViewControllerWithIdentifier("CurrentInspectionViewController") as! CurrentInspectionViewController
         currentInspectionController.consentInspection = inspectionArraySorted[indexPath.row]
         currentInspectionController.title = inspectionArraySorted[indexPath.row].inspectionName
+        currentInspectionController.startTime = NSDate()
         currentInspectionController.managedContext = managedContext
         self.navigationController!.pushViewController(currentInspectionController, animated: true)
         

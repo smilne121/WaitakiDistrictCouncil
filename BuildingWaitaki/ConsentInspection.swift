@@ -17,6 +17,7 @@ class ConsentInspection: NSManagedObject {
     @NSManaged var needSynced: NSNumber
     @NSManaged var userCreated: NSNumber
     @NSManaged var locked: NSNumber
+    @NSManaged var timeTaken: Int32
     @NSManaged var consent: Consent
     @NSManaged var inspectionItem: NSSet
 }
