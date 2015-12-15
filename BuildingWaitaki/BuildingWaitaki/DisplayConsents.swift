@@ -117,38 +117,81 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
             myConsentAddress.text = consent.consentAddress
             myConsentAddress.textColor = settings.getTextColour()
             
-            let btnLocation = UIButton(type: UIButtonType.System)
-            btnLocation.frame = CGRectMake(20, 40, 60, 60)
-            let imgLocation = UIImage(named: "Map-50.png") as UIImage!
-            btnLocation.addTarget(self, action: "openMap:", forControlEvents: UIControlEvents.TouchUpInside)
-            btnLocation.setImage(imgLocation, forState: .Normal)
+            //display differently if there is a condition on the consent
+            if (consent.consentConditions == nil)
+            {
+                let btnLocation = UIButton(type: UIButtonType.System)
+                btnLocation.frame = CGRectMake(20, 40, 60, 60)
+                let imgLocation = UIImage(named: "Map-50.png") as UIImage!
+                btnLocation.addTarget(self, action: "openMap:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnLocation.setImage(imgLocation, forState: .Normal)
             
-            let btnComments = UIButton(type: UIButtonType.System)
-            btnComments.frame = CGRectMake(container.layer.frame.width / 2 - 30, 40, 60, 60)
-            let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
-            btnComments.addTarget(self, action: "displayDescription:", forControlEvents: UIControlEvents.TouchUpInside)
-            btnComments.setImage(imgComments, forState: .Normal)
+                let btnComments = UIButton(type: UIButtonType.System)
+                btnComments.frame = CGRectMake(container.layer.frame.width / 2 - 30, 40, 60, 60)
+                let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
+                btnComments.addTarget(self, action: "displayDescription:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnComments.setImage(imgComments, forState: .Normal)
 
             
-            let btnContacts = UIButton(type: UIButtonType.System)
-            btnContacts.frame = CGRectMake(container.layer.frame.width - 80, 40, 60, 60)
-            let imgContacts = UIImage(named: "Contacts-50.png") as UIImage!
-            btnContacts.addTarget(self, action: "showContacts:", forControlEvents: UIControlEvents.TouchUpInside)
-            btnContacts.setImage(imgContacts, forState: .Normal)
+                let btnContacts = UIButton(type: UIButtonType.System)
+                btnContacts.frame = CGRectMake(container.layer.frame.width - 80, 40, 60, 60)
+                let imgContacts = UIImage(named: "Contacts-50.png") as UIImage!
+                btnContacts.addTarget(self, action: "showContacts:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnContacts.setImage(imgContacts, forState: .Normal)
             
+                //update value of y
+                currentY = (container.frame.origin.y + container.frame.height)
             
-            //update value of y
-            currentY = (container.frame.origin.y + container.frame.height)
+                scrollView.contentSize = CGSize(width: scrollView.frame.width, height: (currentY + container.frame.height + 50))
             
-            scrollView.contentSize = CGSize(width: scrollView.frame.width, height: (currentY + container.frame.height + 50))
-            
-            //add items to parents
-            container.addSubview(myConsentNumber)
-            container.addSubview(myConsentAddress)
-            container.addSubview(btnComments)
-            container.addSubview(btnContacts)
-            container.addSubview(btnLocation)
-            scrollView.addSubview(container)
+                //add items to parents
+                container.addSubview(myConsentNumber)
+                container.addSubview(myConsentAddress)
+                container.addSubview(btnComments)
+                container.addSubview(btnContacts)
+                container.addSubview(btnLocation)
+                scrollView.addSubview(container)
+            }
+            else //if conditions apply
+            {
+                let btnLocation = UIButton(type: UIButtonType.System)
+                btnLocation.frame = CGRectMake(20, 40, 60, 60)
+                let imgLocation = UIImage(named: "Map-50.png") as UIImage!
+                btnLocation.addTarget(self, action: "openMap:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnLocation.setImage(imgLocation, forState: .Normal)
+                
+                let btnComments = UIButton(type: UIButtonType.System)
+                btnComments.frame = CGRectMake(container.layer.frame.width / 2 - 100, 40, 60, 60)
+                let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
+                btnComments.addTarget(self, action: "displayDescription:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnComments.setImage(imgComments, forState: .Normal)
+                
+                let btnConditions = UIButton(type: UIButtonType.System)
+                btnConditions.frame = CGRectMake(container.layer.frame.width / 2 + 40, 40, 60, 60)
+                let imgConditions = UIImage(named: "High Importance-100.png") as UIImage!
+                btnConditions.addTarget(self, action: "showConditions:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnConditions.setImage(imgConditions, forState: .Normal)
+                
+                let btnContacts = UIButton(type: UIButtonType.System)
+                btnContacts.frame = CGRectMake(container.layer.frame.width - 80, 40, 60, 60)
+                let imgContacts = UIImage(named: "Contacts-50.png") as UIImage!
+                btnContacts.addTarget(self, action: "showContacts:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnContacts.setImage(imgContacts, forState: .Normal)
+                
+                //update value of y
+                currentY = (container.frame.origin.y + container.frame.height)
+                
+                scrollView.contentSize = CGSize(width: scrollView.frame.width, height: (currentY + container.frame.height + 50))
+                
+                //add items to parents
+                container.addSubview(myConsentNumber)
+                container.addSubview(myConsentAddress)
+                container.addSubview(btnComments)
+                container.addSubview(btnContacts)
+                container.addSubview(btnConditions)
+                container.addSubview(btnLocation)
+                scrollView.addSubview(container)
+            }
         }
         
 
@@ -295,8 +338,6 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         }
         
         //get consent
-      //  var error: NSError?
-        //get consents inspection
         let fetchRequest = NSFetchRequest(entityName: "Consent")
         fetchRequest.includesSubentities = true
         fetchRequest.returnsObjectsAsFaults = false
@@ -323,14 +364,6 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         contactViewController.viewHeight = CGFloat(height)
         
         contactViewController.consent = consent
-       /* var itemName = ""
-        for view in sender.superview!.subviews
-        {
-            if view.isKindOfClass(UILabel)
-            {
-                itemName = (view as! UILabel).text!
-            }
-        }*/
         
         let popoverMenuViewController = contactViewController.popoverPresentationController
         popoverMenuViewController?.permittedArrowDirections = .Any
@@ -367,4 +400,38 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
             }
         }
     }
+    
+    func showConditions (sender: UIButton)
+    {
+        for view in sender.superview!.subviews
+        {
+            if view.isKindOfClass(UILabel)
+            {
+                if view.frame == CGRect(x: 390,y: 8,width: 100,height: 21)//position of the rect made for the consent number
+                {
+                    if let consentNumber = (view as! UILabel).text
+                    {
+                        let consentConditionController = homeController.storyboard!.instantiateViewControllerWithIdentifier("ConsentConditionsViewController") as! ConsentConditionsViewController
+                        
+                        
+                        let fetchRequest = NSFetchRequest(entityName: "Consent")
+                        fetchRequest.includesSubentities = true
+                        fetchRequest.returnsObjectsAsFaults = false
+                        
+                        let resultPredicate = NSPredicate(format: "consentNumber = %@", consentNumber)
+                        
+                        let compound = NSCompoundPredicate(andPredicateWithSubpredicates:[resultPredicate])
+                        fetchRequest.predicate = compound
+                        
+                        consentConditionController.consent = (try? managedContext.executeFetchRequest(fetchRequest))?.first as! Consent
+                        
+                        
+                        consentConditionController.title = "Conditions for consent: " + consentNumber
+                        homeController.navigationController!.pushViewController(consentConditionController, animated: true)
+                    }
+                }
+            }
+        }
+    }
+
 }

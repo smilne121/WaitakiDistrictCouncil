@@ -20,7 +20,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
     var inspectionItem : ConsentInspectionItem!
     var managedContext : NSManagedObjectContext!
     var imagePicker: UIImagePickerController!
-    var library:ALAssetsLibrary = ALAssetsLibrary()
+    //var library:ALAssetsLibrary = ALAssetsLibrary()
     var curX = 10
 
     

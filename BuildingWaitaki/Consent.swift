@@ -13,6 +13,7 @@ class Consent: NSManagedObject {
 
     @NSManaged var consentAddress: String
     @NSManaged var consentDescription: String
+    @NSManaged var consentConditions: String?
     @NSManaged var consentNumber: String
     @NSManaged var consentInspection: NSSet
     @NSManaged var contact: NSSet

@@ -17,6 +17,8 @@
 		D226D3951B82BC4500FF2007 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D226D3941B82BC4500FF2007 /* EmailViewController.swift */; };
 		D242F8E91B8ADFC800B83942 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D242F8E81B8ADFC800B83942 /* ContactsViewController.swift */; };
 		D242F8EB1B8B066900B83942 /* DescriptionOfWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D242F8EA1B8B066900B83942 /* DescriptionOfWorkViewController.swift */; };
+		D24BF96D1C1F8CFD000D3364 /* High Importance-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D24BF96C1C1F8CFD000D3364 /* High Importance-100.png */; };
+		D24BF9711C1F9111000D3364 /* ConsentConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24BF9701C1F9111000D3364 /* ConsentConditionsViewController.swift */; };
 		D26604891BB39DF900AA3CFC /* light-background.png in Resources */ = {isa = PBXBuildFile; fileRef = D26604881BB39DF900AA3CFC /* light-background.png */; };
 		D26C78461B461D5F009D995E /* ResultTransferArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C78451B461D5F009D995E /* ResultTransferArray.swift */; };
 		D271FB371B87159900A47925 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271FB361B87159900A47925 /* DrawingViewController.swift */; };
@@ -87,6 +89,8 @@
 		D226D3941B82BC4500FF2007 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		D242F8E81B8ADFC800B83942 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		D242F8EA1B8B066900B83942 /* DescriptionOfWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionOfWorkViewController.swift; sourceTree = "<group>"; };
+		D24BF96C1C1F8CFD000D3364 /* High Importance-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High Importance-100.png"; sourceTree = "<group>"; };
+		D24BF9701C1F9111000D3364 /* ConsentConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentConditionsViewController.swift; sourceTree = "<group>"; };
 		D26604881BB39DF900AA3CFC /* light-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-background.png"; sourceTree = "<group>"; };
 		D26C78451B461D5F009D995E /* ResultTransferArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferArray.swift; sourceTree = "<group>"; };
 		D271FB361B87159900A47925 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 		D2B6857A1B2AF19800C3E34A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D24BF96C1C1F8CFD000D3364 /* High Importance-100.png */,
 				D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */,
 				D2198D341B3E166B00D89FDE /* red.png */,
 				D2FACFC31B37D056008C0125 /* todo.png */,
@@ -234,6 +239,7 @@
 				D271FB361B87159900A47925 /* DrawingViewController.swift */,
 				D242F8E81B8ADFC800B83942 /* ContactsViewController.swift */,
 				D242F8EA1B8B066900B83942 /* DescriptionOfWorkViewController.swift */,
+				D24BF9701C1F9111000D3364 /* ConsentConditionsViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -399,6 +405,7 @@
 				D2FACFC41B37D056008C0125 /* todo.png in Resources */,
 				D2FACFC21B37969D008C0125 /* Camera-50.png in Resources */,
 				D2B1BE2B1B8C5741001ACF87 /* background.png in Resources */,
+				D24BF96D1C1F8CFD000D3364 /* High Importance-100.png in Resources */,
 				D2FACFC01B379677008C0125 /* Lock-50.png in Resources */,
 				D2EB21831B2FBBE4008D2AC4 /* Speech Bubble-50.png in Resources */,
 				D2198D371B3E166F00D89FDE /* green.png in Resources */,
@@ -447,6 +454,7 @@
 				D226D3951B82BC4500FF2007 /* EmailViewController.swift in Sources */,
 				D2C523C01B27C41800009952 /* OfficeToolsInspectionTypes.swift in Sources */,
 				D242F8EB1B8B066900B83942 /* DescriptionOfWorkViewController.swift in Sources */,
+				D24BF9711C1F9111000D3364 /* ConsentConditionsViewController.swift in Sources */,
 				D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */,
 				D2FACFBA1B3641FF008C0125 /* InspectionTypeItems.swift in Sources */,
 				D226D38F1B815A3D00FF2007 /* MapViewController.swift in Sources */,
