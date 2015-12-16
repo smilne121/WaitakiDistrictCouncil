@@ -45,6 +45,7 @@
 		D2C523C61B27E0D200009952 /* ConsentInspectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C51B27E0D200009952 /* ConsentInspectionItem.swift */; };
 		D2C523C81B27E15F00009952 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C71B27E15F00009952 /* Contact.swift */; };
 		D2C523CA1B29815600009952 /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C523C91B29815600009952 /* Consent.swift */; };
+		D2E468291C20CAEA00AD4BB4 /* Filter-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E468281C20CAEA00AD4BB4 /* Filter-100.png */; };
 		D2EB217F1B2EAF16008D2AC4 /* CurrentConsentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EB217E1B2EAF16008D2AC4 /* CurrentConsentTableViewCell.swift */; };
 		D2EB21811B2EC8DC008D2AC4 /* CurrentInspectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EB21801B2EC8DC008D2AC4 /* CurrentInspectionViewController.swift */; };
 		D2EB21831B2FBBE4008D2AC4 /* Speech Bubble-50.png in Resources */ = {isa = PBXBuildFile; fileRef = D2EB21821B2FBBE4008D2AC4 /* Speech Bubble-50.png */; };
@@ -117,6 +118,7 @@
 		D2C523C51B27E0D200009952 /* ConsentInspectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConsentInspectionItem.swift; path = ../ConsentInspectionItem.swift; sourceTree = "<group>"; };
 		D2C523C71B27E15F00009952 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ../Contact.swift; sourceTree = "<group>"; };
 		D2C523C91B29815600009952 /* Consent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Consent.swift; path = ../Consent.swift; sourceTree = "<group>"; };
+		D2E468281C20CAEA00AD4BB4 /* Filter-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Filter-100.png"; sourceTree = "<group>"; };
 		D2EB217E1B2EAF16008D2AC4 /* CurrentConsentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentConsentTableViewCell.swift; sourceTree = "<group>"; };
 		D2EB21801B2EC8DC008D2AC4 /* CurrentInspectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentInspectionViewController.swift; sourceTree = "<group>"; };
 		D2EB21821B2FBBE4008D2AC4 /* Speech Bubble-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Speech Bubble-50.png"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				D24BF96C1C1F8CFD000D3364 /* High Importance-100.png */,
 				D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */,
 				D2198D341B3E166B00D89FDE /* red.png */,
+				D2E468281C20CAEA00AD4BB4 /* Filter-100.png */,
 				D2FACFC31B37D056008C0125 /* todo.png */,
 				D2198D361B3E166F00D89FDE /* green.png */,
 				D2FACFBF1B379677008C0125 /* Lock-50.png */,
@@ -411,6 +414,7 @@
 				D2198D371B3E166F00D89FDE /* green.png in Resources */,
 				D226D3931B81A98F00FF2007 /* wdc-main-logo-300x80.png in Resources */,
 				D2198D351B3E166B00D89FDE /* red.png in Resources */,
+				D2E468291C20CAEA00AD4BB4 /* Filter-100.png in Resources */,
 				D2B685801B2AF1D600C3E34A /* Map-50.png in Resources */,
 				D2B1BE331B8D9A70001ACF87 /* pass.png in Resources */,
 			);

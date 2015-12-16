@@ -1295,6 +1295,8 @@ saveFinished()
         
         if let myItem = currentItem
         {
+            if myItem.itemResult != nil
+            {
             //goto new controller
             let cameraController = self.storyboard!.instantiateViewControllerWithIdentifier("InspectionCameraViewController") as! InspectionCameraViewController
             cameraController.managedContext = managedContext
@@ -1306,6 +1308,7 @@ saveFinished()
             //warning to show no inspection item could be found
         }
         }
+    }
     
     func emailReport(sender: UIButton)
     {

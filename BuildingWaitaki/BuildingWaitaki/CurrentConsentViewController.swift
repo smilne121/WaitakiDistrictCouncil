@@ -54,9 +54,29 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
         
+        let button : UIButton = UIButton(type: UIButtonType.Custom)
+        //set image for button
+        button.setImage(UIImage(named: "Filter-100.png"), forState: UIControlState.Normal)
+        //add function for button
+        button.addTarget(self, action: "addInspectionClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+        //set frame
+        button.frame = CGRectMake(0, 0, 25, 25)
+        
+        let button1 = UIBarButtonItem(customView: button)
+        //assign button to navigationbar
+        self.navigationItem.rightBarButtonItem = button1
         
         
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addInspectionClicked:"), animated: true)
+        
+        let button2 = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addInspectionClicked:")
+        
+        var items = [UIBarButtonItem]()
+        items.append(button2)
+        items.append(button1)
+        
+        self.navigationItem.setRightBarButtonItems(items, animated: true)// will add to used as filter
+        
+       // self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addInspectionClicked:"), animated: true)
         
         
         // Do any additional setup after loading the view.

@@ -17,4 +17,20 @@ class Consent: NSManagedObject {
     @NSManaged var consentNumber: String
     @NSManaged var consentInspection: NSSet
     @NSManaged var contact: NSSet
+    
+    func filteredConsents() -> NSSet
+    {
+        for inspection in consentInspection
+        {
+            if inspection.status == "failed"
+            {
+                var inspectionBaseName = inspection.inspectionName
+                
+                for compareInspection in consentInspection
+                {
+                    
+                }
+            }
+        }
+    }
 }
