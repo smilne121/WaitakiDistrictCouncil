@@ -20,6 +20,9 @@
 		D24BF96D1C1F8CFD000D3364 /* High Importance-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D24BF96C1C1F8CFD000D3364 /* High Importance-100.png */; };
 		D24BF9711C1F9111000D3364 /* ConsentConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24BF9701C1F9111000D3364 /* ConsentConditionsViewController.swift */; };
 		D26604891BB39DF900AA3CFC /* light-background.png in Resources */ = {isa = PBXBuildFile; fileRef = D26604881BB39DF900AA3CFC /* light-background.png */; };
+		D26948361C2362B2002D1E27 /* InspectionSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26948351C2362B2002D1E27 /* InspectionSummaryTableViewCell.swift */; };
+		D26948381C2365ED002D1E27 /* SummaryOfInspectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26948371C2365ED002D1E27 /* SummaryOfInspectionsViewController.swift */; };
+		D269483A1C236FBA002D1E27 /* To Do-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D26948391C236FBA002D1E27 /* To Do-100.png */; };
 		D26C78461B461D5F009D995E /* ResultTransferArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C78451B461D5F009D995E /* ResultTransferArray.swift */; };
 		D271FB371B87159900A47925 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271FB361B87159900A47925 /* DrawingViewController.swift */; };
 		D279D9121B79A1C9001B8F68 /* PhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */; };
@@ -93,6 +96,9 @@
 		D24BF96C1C1F8CFD000D3364 /* High Importance-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High Importance-100.png"; sourceTree = "<group>"; };
 		D24BF9701C1F9111000D3364 /* ConsentConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentConditionsViewController.swift; sourceTree = "<group>"; };
 		D26604881BB39DF900AA3CFC /* light-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-background.png"; sourceTree = "<group>"; };
+		D26948351C2362B2002D1E27 /* InspectionSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectionSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		D26948371C2365ED002D1E27 /* SummaryOfInspectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryOfInspectionsViewController.swift; sourceTree = "<group>"; };
+		D26948391C236FBA002D1E27 /* To Do-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "To Do-100.png"; sourceTree = "<group>"; };
 		D26C78451B461D5F009D995E /* ResultTransferArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferArray.swift; sourceTree = "<group>"; };
 		D271FB361B87159900A47925 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHandler.swift; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 		D2B6857A1B2AF19800C3E34A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D26948391C236FBA002D1E27 /* To Do-100.png */,
 				D24BF96C1C1F8CFD000D3364 /* High Importance-100.png */,
 				D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */,
 				D2198D341B3E166B00D89FDE /* red.png */,
@@ -231,6 +238,7 @@
 		D2EB21791B2E9C7D008D2AC4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D26948371C2365ED002D1E27 /* SummaryOfInspectionsViewController.swift */,
 				D2948AE31B730FD6003CD950 /* InspectionCameraViewController.swift */,
 				D21BF6831B3D108C00DD4AF3 /* AddInspectionViewController.swift */,
 				D2EB21801B2EC8DC008D2AC4 /* CurrentInspectionViewController.swift */,
@@ -285,6 +293,7 @@
 				D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */,
 				D2EB217E1B2EAF16008D2AC4 /* CurrentConsentTableViewCell.swift */,
 				D21BF6851B3D23B500DD4AF3 /* AddInspectionTableViewCell.swift */,
+				D26948351C2362B2002D1E27 /* InspectionSummaryTableViewCell.swift */,
 			);
 			path = BuildingWaitaki;
 			sourceTree = "<group>";
@@ -397,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D269483A1C236FBA002D1E27 /* To Do-100.png in Resources */,
 				D2FB40D51B16E18200474A15 /* Main.storyboard in Resources */,
 				D2B6857F1B2AF1D600C3E34A /* Contacts-50.png in Resources */,
 				D2B1BE391B8EA8E2001ACF87 /* launchScreenYellow1.png in Resources */,
@@ -448,6 +458,7 @@
 				D2F005811B25B28D00D3B0F5 /* InspectionType.swift in Sources */,
 				D2EB21851B2FBD47008D2AC4 /* CurrentConsentViewController.swift in Sources */,
 				D271FB371B87159900A47925 /* DrawingViewController.swift in Sources */,
+				D26948381C2365ED002D1E27 /* SummaryOfInspectionsViewController.swift in Sources */,
 				D28C41A11B44CF3200C69EAB /* ResultTransferItem.swift in Sources */,
 				D2FB40D01B16E18200474A15 /* BuildingWaitaki.xcdatamodeld in Sources */,
 				D279D91A1B7AD25C001B8F68 /* ResultsTransferImage.swift in Sources */,
@@ -462,6 +473,7 @@
 				D2C523C41B27E0D200009952 /* ConsentInspection.swift in Sources */,
 				D2FACFBA1B3641FF008C0125 /* InspectionTypeItems.swift in Sources */,
 				D226D38F1B815A3D00FF2007 /* MapViewController.swift in Sources */,
+				D26948361C2362B2002D1E27 /* InspectionSummaryTableViewCell.swift in Sources */,
 				D2FB40FC1B16FDFF00474A15 /* AppSettings.swift in Sources */,
 				D2FB40CD1B16E18200474A15 /* AppDelegate.swift in Sources */,
 				D2EFF0851B25501600E60F60 /* OfficeTools.swift in Sources */,

@@ -14,6 +14,7 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     var currentConsent: Consent!
     var managedContext: NSManagedObjectContext!
     var officeTools: OfficeTools!
+    var filtered: Bool = false
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -54,25 +55,36 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
         
-        let button : UIButton = UIButton(type: UIButtonType.Custom)
+        let filterButton : UIButton = UIButton(type: UIButtonType.Custom)
         //set image for button
-        button.setImage(UIImage(named: "Filter-100.png"), forState: UIControlState.Normal)
+        filterButton.setImage(UIImage(named: "Filter-100.png"), forState: UIControlState.Normal)
         //add function for button
-        button.addTarget(self, action: "addInspectionClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+        filterButton.addTarget(self, action: "filterClicked:", forControlEvents: UIControlEvents.TouchUpInside)
         //set frame
-        button.frame = CGRectMake(0, 0, 25, 25)
+        filterButton.frame = CGRectMake(0, 0, 25, 25)
         
-        let button1 = UIBarButtonItem(customView: button)
+        let btnFilter = UIBarButtonItem(customView: filterButton)
+        
+        let summaryButton : UIButton = UIButton(type: UIButtonType.Custom)
+        //set image for button
+        summaryButton.setImage(UIImage(named: "To Do-100.png"), forState: UIControlState.Normal)
+        //add function for button
+        summaryButton.addTarget(self, action: "summaryClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+        //set frame
+        summaryButton.frame = CGRectMake(0, 0, 25, 25)
+        
+        let btnSummary = UIBarButtonItem(customView: summaryButton)
         //assign button to navigationbar
-        self.navigationItem.rightBarButtonItem = button1
+        //self.navigationItem.rightBarButtonItem = btnFilter
         
         
         
-        let button2 = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addInspectionClicked:")
+        let btnAddInspection = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addInspectionClicked:")
         
         var items = [UIBarButtonItem]()
-        items.append(button2)
-        items.append(button1)
+        items.append(btnAddInspection)
+        items.append(btnFilter)
+        items.append(btnSummary)
         
         self.navigationItem.setRightBarButtonItems(items, animated: true)// will add to used as filter
         
@@ -91,6 +103,31 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         // Dispose of any resources that can be recreated.
     }
     
+    func summaryClicked(sender: UIBarButtonItem)
+    {
+        let summaryOfInspectionController = self.storyboard!.instantiateViewControllerWithIdentifier("SummaryOfInspectionsViewController") as! SummaryOfInspectionsViewController
+        
+        summaryOfInspectionController.consent = currentConsent
+        summaryOfInspectionController.title = currentConsent.consentAddress
+        summaryOfInspectionController.managedContext = managedContext
+        self.navigationController!.pushViewController(summaryOfInspectionController, animated: true)
+    }
+    
+    func filterClicked(sender: UIBarButtonItem)
+    {
+        if filtered
+        {
+            filtered = false
+        }
+        else
+        {
+            filtered = true
+        }
+        //reload the view
+        self.tableView.reloadData()
+        
+    }
+    
     func addInspectionClicked(sender: UIBarButtonItem)
     {
         let viewController = AddInspectionViewController()
@@ -105,13 +142,31 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentConsent.consentInspection.count;
+        if filtered
+        {
+            return currentConsent.filteredConsents().count
+        }
+        else
+        {
+            return currentConsent.consentInspection.count;
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("currentInspectionCell", forIndexPath: indexPath) as! CurrentConsentTableViewCell
         
-        let inspectionArray = currentConsent.consentInspection.allObjects as! [ConsentInspection]
+        let inspectionArray : [ConsentInspection]
+        
+        if filtered //check for filtered results
+        {
+            inspectionArray = currentConsent.filteredConsents().allObjects as! [ConsentInspection]
+        }
+        else
+        {
+            inspectionArray = currentConsent.consentInspection.allObjects as! [ConsentInspection]
+        }
+        
+        
         
         let inspectionArraySorted = inspectionArray.sort { $0.inspectionId < $1.inspectionId } //sort by item number after
         
@@ -179,7 +234,18 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //goto new controller
-        let inspectionArray = currentConsent.consentInspection.allObjects as! [ConsentInspection]
+        
+        let inspectionArray : [ConsentInspection]
+        if filtered
+        {
+            inspectionArray = currentConsent.filteredConsents().allObjects as! [ConsentInspection]
+        }
+        else
+        {
+            inspectionArray = currentConsent.consentInspection.allObjects as! [ConsentInspection]
+        }
+        
+        
         let inspectionArraySorted = inspectionArray.sort { $0.inspectionId < $1.inspectionId } //sort by item number after
         let currentInspectionController = self.storyboard!.instantiateViewControllerWithIdentifier("CurrentInspectionViewController") as! CurrentInspectionViewController
         currentInspectionController.consentInspection = inspectionArraySorted[indexPath.row]

@@ -36,6 +36,10 @@ class Consent: NSManagedObject {
                         filteredSet.append(inspection as! ConsentInspection) //need to add item to this set
                     }
                 }
+                else
+                {
+                filteredSet.append(inspection as! ConsentInspection)
+                }
             }
         }
         
@@ -79,7 +83,7 @@ class Consent: NSManagedObject {
     private func changeTitleToName (inspectionName : String) -> String
     {
         let split = inspectionName.componentsSeparatedByString(" ")
-        let splitResult: String = split[split.count]
+        let splitResult: String = split[split.count - 1]
         
         if let _ = Int(splitResult)
         {
@@ -109,7 +113,7 @@ class Consent: NSManagedObject {
     private func changeNameToSeq (inspectionName : String) -> Int
     {
         let split = inspectionName.componentsSeparatedByString(" ")
-        let splitResult: String = split[split.count]
+        let splitResult: String = split[split.count - 1]
         
         if let mySeq = Int(splitResult)
         {

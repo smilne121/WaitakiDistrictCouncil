@@ -417,6 +417,81 @@
             </objects>
             <point key="canvasLocation" x="297" y="1609"/>
         </scene>
+        <!--SummaryOfInspections-->
+        <scene sceneID="TDf-z4-Qne">
+            <objects>
+                <viewController storyboardIdentifier="SummaryOfInspectionsViewController" title="SummaryOfInspections" useStoryboardIdentifierAsRestorationIdentifier="YES" id="acT-ar-JSj" customClass="SummaryOfInspectionsViewController" customModule="BuildingWaitaki" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jJe-6C-dRr"/>
+                        <viewControllerLayoutGuide type="bottom" id="x8Q-cq-6M7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WTX-wZ-E2V">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tlm-Lw-6O3">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="InspectionSummaryTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="InspectionSummaryCell" rowHeight="32" id="J5o-3L-U4V" customClass="InspectionSummaryTableViewCell" customModule="BuildingWaitaki" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="768" height="32"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J5o-3L-U4V" id="cEi-Yb-8JA">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="31.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgR-tX-Kty">
+                                                    <rect key="frame" x="8" y="0.0" width="170" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9z-Lq-7Jn">
+                                                    <rect key="frame" x="186" y="0.0" width="438" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ret-Cn-3if">
+                                                    <rect key="frame" x="608" y="3" width="147" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bg4-7V-AGh">
+                                                    <rect key="frame" x="153" y="1" width="462" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="inspectionItemComments" destination="T9z-Lq-7Jn" id="RLr-FG-X8R"/>
+                                            <outlet property="inspectionItemName" destination="HgR-tX-Kty" id="WNN-8B-6ce"/>
+                                            <outlet property="inspectionName" destination="bg4-7V-AGh" id="562-mU-m0o"/>
+                                            <outlet property="inspectionResult" destination="Ret-Cn-3if" id="iQN-Kb-Fvf"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="acT-ar-JSj" id="k9j-GU-3m0"/>
+                                    <outlet property="delegate" destination="acT-ar-JSj" id="e94-yq-BMf"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="tableView" destination="Tlm-Lw-6O3" id="5d2-fv-MAB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dmn-7f-MM6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="2777"/>
+        </scene>
         <!--Current Inspection Scene-->
         <scene sceneID="olh-8u-psy">
             <objects>
