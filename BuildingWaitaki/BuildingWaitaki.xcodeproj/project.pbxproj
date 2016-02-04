@@ -22,7 +22,6 @@
 		D26604891BB39DF900AA3CFC /* light-background.png in Resources */ = {isa = PBXBuildFile; fileRef = D26604881BB39DF900AA3CFC /* light-background.png */; };
 		D26948361C2362B2002D1E27 /* InspectionSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26948351C2362B2002D1E27 /* InspectionSummaryTableViewCell.swift */; };
 		D26948381C2365ED002D1E27 /* SummaryOfInspectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26948371C2365ED002D1E27 /* SummaryOfInspectionsViewController.swift */; };
-		D269483A1C236FBA002D1E27 /* To Do-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D26948391C236FBA002D1E27 /* To Do-100.png */; };
 		D26C78461B461D5F009D995E /* ResultTransferArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C78451B461D5F009D995E /* ResultTransferArray.swift */; };
 		D271FB371B87159900A47925 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271FB361B87159900A47925 /* DrawingViewController.swift */; };
 		D279D9121B79A1C9001B8F68 /* PhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */; };
@@ -32,6 +31,7 @@
 		D28C419C1B43BDF900C69EAB /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C419B1B43BDF900C69EAB /* Serializable.swift */; };
 		D28C419F1B44CEFA00C69EAB /* ResultTransferInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */; };
 		D28C41A11B44CF3200C69EAB /* ResultTransferItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C41A01B44CF3200C69EAB /* ResultTransferItem.swift */; };
+		D2921F931C29E4340071BC8A /* To Do-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D2921F921C29E4340071BC8A /* To Do-100.png */; };
 		D2948AE41B730FD6003CD950 /* InspectionCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2948AE31B730FD6003CD950 /* InspectionCameraViewController.swift */; };
 		D2ACBD261B17C8B400C2DC2C /* DataTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */; };
 		D2B1BE2B1B8C5741001ACF87 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B1BE2A1B8C5741001ACF87 /* background.png */; };
@@ -98,7 +98,6 @@
 		D26604881BB39DF900AA3CFC /* light-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-background.png"; sourceTree = "<group>"; };
 		D26948351C2362B2002D1E27 /* InspectionSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectionSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		D26948371C2365ED002D1E27 /* SummaryOfInspectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryOfInspectionsViewController.swift; sourceTree = "<group>"; };
-		D26948391C236FBA002D1E27 /* To Do-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "To Do-100.png"; sourceTree = "<group>"; };
 		D26C78451B461D5F009D995E /* ResultTransferArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferArray.swift; sourceTree = "<group>"; };
 		D271FB361B87159900A47925 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		D279D9111B79A1C9001B8F68 /* PhotoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHandler.swift; sourceTree = "<group>"; };
@@ -108,6 +107,7 @@
 		D28C419B1B43BDF900C69EAB /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
 		D28C419E1B44CEFA00C69EAB /* ResultTransferInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferInspection.swift; sourceTree = "<group>"; };
 		D28C41A01B44CF3200C69EAB /* ResultTransferItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTransferItem.swift; sourceTree = "<group>"; };
+		D2921F921C29E4340071BC8A /* To Do-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "To Do-100.png"; sourceTree = "<group>"; };
 		D2948AE31B730FD6003CD950 /* InspectionCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InspectionCameraViewController.swift; path = ../InspectionCameraViewController.swift; sourceTree = "<group>"; };
 		D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransfer.swift; sourceTree = "<group>"; };
 		D2B1BE2A1B8C5741001ACF87 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 		D2B6857A1B2AF19800C3E34A /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				D26948391C236FBA002D1E27 /* To Do-100.png */,
+				D2921F921C29E4340071BC8A /* To Do-100.png */,
 				D24BF96C1C1F8CFD000D3364 /* High Importance-100.png */,
 				D226D3921B81A98F00FF2007 /* wdc-main-logo-300x80.png */,
 				D2198D341B3E166B00D89FDE /* red.png */,
@@ -406,7 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D269483A1C236FBA002D1E27 /* To Do-100.png in Resources */,
+				D2921F931C29E4340071BC8A /* To Do-100.png in Resources */,
 				D2FB40D51B16E18200474A15 /* Main.storyboard in Resources */,
 				D2B6857F1B2AF1D600C3E34A /* Contacts-50.png in Resources */,
 				D2B1BE391B8EA8E2001ACF87 /* launchScreenYellow1.png in Resources */,
@@ -613,14 +613,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Scott Milne (ZUBQ8752W6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Scott Milne (ZUBQ8752W6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BuildingWaitaki/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nz.govt.waitaki.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "19191574-4be9-4b95-8fd9-bd590e9aa260";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -629,14 +629,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Scott Milne (ZUBQ8752W6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Scott Milne (ZUBQ8752W6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BuildingWaitaki/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nz.govt.waitaki.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5a7a1f0f-59ab-4eb9-bd23-080d4a283fb3";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

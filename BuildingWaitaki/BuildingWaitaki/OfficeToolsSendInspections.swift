@@ -56,6 +56,7 @@ class OfficeToolsSendInspections
     {
        // var result = ""
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        request.timeoutInterval = 480
         request.HTTPMethod = "POST"
         request.HTTPBody = params
         //print(request.HTTPBody)

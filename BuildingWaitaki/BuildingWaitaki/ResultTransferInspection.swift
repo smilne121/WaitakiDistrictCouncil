@@ -30,6 +30,7 @@ class ResultTransferInspection: Serializable
         self.userCreated = inspection.userCreated.stringValue
         self.locked = inspection.locked.stringValue
         self.inspectionItems =  [ResultTransferItem]()
+        //self.timeTaken = String(inspection.timeTaken) move to add to items
         
         for item in inspection.inspectionItem
         {

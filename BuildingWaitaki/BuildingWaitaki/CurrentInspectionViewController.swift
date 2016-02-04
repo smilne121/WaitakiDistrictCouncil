@@ -171,7 +171,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         {
             let itemName = item.itemName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
-            if itemName != "Comments" && itemName != "Inspection Officer"
+            if itemName != "Comments" && itemName != "Inspection Officer" && itemName != "Time Taken"
             {
             let containerRect: CGRect = CGRect(x: currentX,y: currentY,width: width,height: height)
             let container: UIView = UIView(frame: containerRect)
@@ -1213,7 +1213,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
 
     func finish(alert: UIAlertAction!)
     {
-saveFinished()
+        saveFinished()
         navigationController?.popViewControllerAnimated(true)
         do {
             try managedContext.save()
@@ -1340,7 +1340,16 @@ saveFinished()
             {
                 if (fetchResult.locked == false)
                 {
-                    fetchResult.timeTaken = fetchResult.timeTaken + timeInInspection
+                    if fetchResult.needSynced == true
+                    {
+                        fetchResult.timeTaken = fetchResult.timeTaken + timeInInspection
+                        let time = fetchResult.timeTaken + timeInInspection
+                        //write into core data
+                        saveData("Time Taken", value: String(time))
+                        //
+                    }
+                    
+                    
                 }
             }
             do {

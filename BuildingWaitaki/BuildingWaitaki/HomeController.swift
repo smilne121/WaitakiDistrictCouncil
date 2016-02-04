@@ -205,6 +205,9 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
             container.addSubview(statusImage)
             unfinishedInspectionsScrollview.addSubview(container)
             
+            //update scrollview size
+            unfinishedInspectionsScrollview.contentSize = CGSize(width: unfinishedInspectionsScrollview.frame.width, height: currentY + height + 50)
+            
             
         }
         
@@ -282,6 +285,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         currentInspectionController.consentInspection = currentInspection
         currentInspectionController.title = currentInspection.inspectionName
         currentInspectionController.managedContext = managedObjectContext
+        currentInspectionController.startTime = NSDate()
         self.navigationController!.pushViewController(currentInspectionController, animated: true)
     }
     

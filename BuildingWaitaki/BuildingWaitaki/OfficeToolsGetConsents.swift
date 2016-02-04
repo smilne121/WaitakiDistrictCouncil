@@ -235,6 +235,13 @@ class OfficeToolsGetConsents {
                                     {
                                         newInspectionItem.itemComment =  comment
                                     }
+                                    else if let timeTaken : String = consentInspectionResults["Time Taken"] as? String
+                                    {
+                                        if let time = Int(timeTaken)
+                                        {
+                                            newConsentInspection.timeTaken = Int32(time)
+                                        }
+                                    }
                                 }
                             }
                         }
