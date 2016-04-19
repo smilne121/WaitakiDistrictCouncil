@@ -63,7 +63,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         grnBtn.tintColor = UIColor.greenColor()
         grnBtn.titleLabel!.font = AppSettings().getTextFont()
         grnBtn.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
-        grnBtn.addTarget(self, action: "pencilPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        grnBtn.addTarget(self, action: #selector(DrawingViewController.pencilPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         grnBtn.tag = 6
         grnBtn.layer.cornerRadius = 5.0
         grnBtn.layer.borderWidth = 2
@@ -76,7 +76,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         redBtn.frame = CGRectMake(24, 856, 60, 30)
         redBtn.setTitle("Red", forState: UIControlState.Normal)
         redBtn.tintColor = UIColor(red: 235/255.0, green: 5/255.0, blue: 5/255.0, alpha: 1.0)
-        redBtn.addTarget(self, action: "pencilPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        redBtn.addTarget(self, action: #selector(DrawingViewController.pencilPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         redBtn.layer.zPosition = 1000
         redBtn.layer.cornerRadius = 5.0
         redBtn.layer.borderWidth = 2
@@ -90,7 +90,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         blueBtn.frame = CGRectMake(24, 932, 60, 30)
         blueBtn.setTitle("Blue", forState: UIControlState.Normal)
         blueBtn.tintColor = UIColor.blueColor()
-        blueBtn.addTarget(self, action: "pencilPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        blueBtn.addTarget(self, action: #selector(DrawingViewController.pencilPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         blueBtn.layer.zPosition = 1000
         blueBtn.titleLabel!.font = AppSettings().getTextFont()
         blueBtn.layer.cornerRadius = 5.0
@@ -109,7 +109,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         blackBtn.layer.borderWidth = 2
         blackBtn.layer.borderColor = AppSettings().getTintColour().CGColor
         blackBtn.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
-        blackBtn.addTarget(self, action: "pencilPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        blackBtn.addTarget(self, action: #selector(DrawingViewController.pencilPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         blackBtn.tag = 0
         blackBtn.layer.zPosition = 1000
         self.view.addSubview(blackBtn)
@@ -124,7 +124,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         eraseBtn.layer.borderWidth = 2
         eraseBtn.layer.borderColor = AppSettings().getTintColour().CGColor
         eraseBtn.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
-        eraseBtn.addTarget(self, action: "eraseLastMove:", forControlEvents: UIControlEvents.TouchUpInside)
+        eraseBtn.addTarget(self, action: #selector(DrawingViewController.eraseLastMove(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         eraseBtn.layer.zPosition = 1000
         self.view.addSubview(eraseBtn)
         
@@ -139,7 +139,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         resetBtn.layer.cornerRadius = 5.0
         resetBtn.layer.borderWidth = 2
         resetBtn.layer.borderColor = AppSettings().getTintColour().CGColor
-        resetBtn.addTarget(self, action: "reset:", forControlEvents: UIControlEvents.TouchUpInside)
+        resetBtn.addTarget(self, action: #selector(DrawingViewController.reset(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         resetBtn.layer.zPosition = 1000
         self.view.addSubview(resetBtn)
         
@@ -153,7 +153,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         saveBtn.layer.borderWidth = 2
         saveBtn.layer.borderColor = AppSettings().getTintColour().CGColor
         saveBtn.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
-        saveBtn.addTarget(self, action: "save:", forControlEvents: UIControlEvents.TouchUpInside)
+        saveBtn.addTarget(self, action: #selector(DrawingViewController.save(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         saveBtn.layer.zPosition = 1000
         self.view.addSubview(saveBtn)
         
@@ -167,7 +167,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         cancelBtn.layer.borderColor = AppSettings().getTintColour().CGColor
         cancelBtn.titleLabel!.font = AppSettings().getTextFont()
         cancelBtn.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
-        cancelBtn.addTarget(self, action: "cancel:", forControlEvents: UIControlEvents.TouchUpInside)
+        cancelBtn.addTarget(self, action: #selector(DrawingViewController.cancel(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         cancelBtn.layer.zPosition = 1000
         self.view.addSubview(cancelBtn)
         
@@ -176,7 +176,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         slider.minimumValue = 1
         slider.tintColor = AppSettings().getTintColour()
         slider.maximumValue = 60
-        slider.addTarget(self, action: "brushSizeChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        slider.addTarget(self, action: #selector(DrawingViewController.brushSizeChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         slider.layer.zPosition = 1000
         slider.value = 10
         self.view.addSubview(slider)

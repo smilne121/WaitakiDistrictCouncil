@@ -96,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         var managedObjectContext = NSManagedObjectContext()
         managedObjectContext.persistentStoreCoordinator = coordinator
+        
         return managedObjectContext
     }()
 

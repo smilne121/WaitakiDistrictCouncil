@@ -63,7 +63,7 @@ class ContactsViewController: UIViewController {
         btnClose.frame = CGRectMake(200,viewHeight! - 43, 100,40)
         btnClose.titleLabel!.font = AppSettings().getTextFont()
         btnClose.setTitle("Close", forState: .Normal)
-      btnClose.addTarget(self, action: "close:", forControlEvents: UIControlEvents.TouchUpInside)
+      btnClose.addTarget(self, action: #selector(ContactsViewController.close(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(btnClose)
     }
 

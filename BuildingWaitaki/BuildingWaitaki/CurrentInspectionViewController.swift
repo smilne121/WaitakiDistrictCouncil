@@ -70,7 +70,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnComments.frame = CGRectMake(20, 85, 150, 40)
         btnComments.setTitle("Comments", forState: .Normal)
         btnComments.layer.borderColor = UIColor.blackColor().CGColor
-        btnComments.addTarget(self, action: "loadCommentsView:", forControlEvents: UIControlEvents.TouchUpInside)
+        btnComments.addTarget(self, action: #selector(CurrentInspectionViewController.loadCommentsView(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         btnComments.layer.borderWidth = 1
         btnComments.titleLabel!.font = AppSettings().getTextFont()
         btnComments.tintColor = AppSettings().getTintColour()
@@ -81,7 +81,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnDeleteInspection.frame = CGRectMake(itemHolder.frame.width / 2 - 75, 85, 150, 40)
         btnDeleteInspection.setTitle("Delete Inspection", forState: .Normal)
         btnDeleteInspection.layer.borderColor = UIColor.blackColor().CGColor
-        btnDeleteInspection.addTarget(self, action: "deleteThisInspection:", forControlEvents: UIControlEvents.TouchUpInside)
+        btnDeleteInspection.addTarget(self, action: #selector(CurrentInspectionViewController.deleteThisInspection(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         btnDeleteInspection.layer.borderWidth = 1
         btnDeleteInspection.titleLabel!.font = AppSettings().getTextFont()
         btnDeleteInspection.tintColor = AppSettings().getTintColour()
@@ -96,7 +96,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         let btnEmail = UIButton(type: UIButtonType.System)
         btnEmail.frame = CGRectMake(itemHolder.superview!.frame.width - CGFloat(140), 85, 120, 40)
         btnEmail.setTitle("Email Report", forState: .Normal)
-        btnEmail.addTarget(self, action: "emailReport:", forControlEvents: UIControlEvents.TouchUpInside)
+        btnEmail.addTarget(self, action: #selector(CurrentInspectionViewController.emailReport(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         btnEmail.layer.borderColor = UIColor.blackColor().CGColor
         btnEmail.layer.borderWidth = 1
         btnEmail.titleLabel!.font = AppSettings().getTextFont()
@@ -108,7 +108,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         let btnFinished = UIButton(type: UIButtonType.System)
         btnFinished.frame = CGRectMake(20, itemHolder.superview!.frame.height - 70, 150, 40)
         btnFinished.setTitle("Finished", forState: .Normal)
-        btnFinished.addTarget(self, action: "finishInspection:", forControlEvents: UIControlEvents.TouchUpInside)
+        btnFinished.addTarget(self, action: #selector(CurrentInspectionViewController.finishInspection(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         btnFinished.layer.borderColor = UIColor.blackColor().CGColor
         btnFinished.layer.borderWidth = 1
         btnFinished.titleLabel!.font = AppSettings().getTextFont()
@@ -127,7 +127,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnClearInspection.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
         btnClearInspection.layer.borderWidth = 1
         btnClearInspection.titleLabel!.font = AppSettings().getTextFont()
-        btnClearInspection.addTarget(self, action: "clearInspectionResults:", forControlEvents: UIControlEvents.TouchUpInside)
+        btnClearInspection.addTarget(self, action: #selector(CurrentInspectionViewController.clearInspectionResults(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         btnClearInspection.tintColor = AppSettings().getTintColour()
         if consentInspection.locked == true
         {
@@ -142,7 +142,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         btnNeedsReinspection.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor
         btnNeedsReinspection.layer.borderWidth = 1
         btnNeedsReinspection.titleLabel!.font = AppSettings().getTextFont()
-        btnNeedsReinspection.addTarget(self, action: "finishNeedReinspection:", forControlEvents: UIControlEvents.TouchUpInside)
+        btnNeedsReinspection.addTarget(self, action: #selector(CurrentInspectionViewController.finishNeedReinspection(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         btnNeedsReinspection.tintColor = AppSettings().getTintColour()
       //  if consentInspection.locked == true
       //  {
@@ -195,7 +195,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 let selector = UISegmentedControl(items: selectorItems)
                 selector.selectedSegmentIndex = -1
                 selector.tintColor = AppSettings().getTintColour()
-                selector.addTarget(self, action: "saveItem:",forControlEvents: .ValueChanged)
+                selector.addTarget(self, action: #selector(CurrentInspectionViewController.saveItem(_:)),forControlEvents: .ValueChanged)
                 
                 
                 
@@ -255,14 +255,14 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 let image = UIImage(named: "Camera-50.png")
                 btnCamera.setImage(image, forState: .Normal)
                 btnCamera.imageView!.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-                btnCamera.addTarget(self, action: "openCamera:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnCamera.addTarget(self, action: #selector(CurrentInspectionViewController.openCamera(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 btnCamera.imageView?.tintColor = AppSettings().getTintColour()
                 container.addSubview(btnCamera)
                 
                 let btnNotes = UIButton(type: UIButtonType.System)
                 btnNotes.frame = CGRect(x: container.frame.width - 60 , y: 142, width: 40, height: 40)
                 let commentimage = UIImage(named: "Speech Bubble-50.png")
-                btnNotes.addTarget(self, action: "loadNotesBtn:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnNotes.addTarget(self, action: #selector(CurrentInspectionViewController.loadNotesBtn(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 btnNotes.setImage(commentimage, forState: .Normal)
                 btnNotes.imageView!.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
                 btnNotes.imageView!.tintColor = AppSettings().getTintColour()
@@ -274,7 +274,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                 let datePicker = UIDatePicker(frame: CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80))
                 datePicker.setValue(AppSettings().getTintColour(), forKey: "textColor")
                 datePicker.datePickerMode = UIDatePickerMode.Date
-                datePicker.addTarget(self, action: "saveDate:", forControlEvents: .ValueChanged)
+                datePicker.addTarget(self, action: #selector(CurrentInspectionViewController.saveDate(_:)), forControlEvents: .ValueChanged)
                 
                 //populate results
                 let itemResults = consentInspection.inspectionItem.allObjects as! [ConsentInspectionItem]
@@ -321,7 +321,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
                     selector.tintColor = AppSettings().getTintColour()
                     let attr = NSDictionary(object: AppSettings().getTextFont(), forKey: NSFontAttributeName)
                     selector.setTitleTextAttributes(attr as [NSObject : AnyObject], forState: .Normal)
-                    selector.addTarget(self, action: "addSupervisor:",forControlEvents: .ValueChanged)
+                    selector.addTarget(self, action: #selector(CurrentInspectionViewController.addSupervisor(_:)),forControlEvents: .ValueChanged)
                     selector.frame = CGRect(x: 10, y: 50, width: container.frame.width - 20, height: 80)
                     
                     

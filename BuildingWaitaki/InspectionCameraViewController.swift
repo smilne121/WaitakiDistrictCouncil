@@ -42,7 +42,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
             takePicBtn.titleLabel?.textColor = AppSettings().getTintColour()
         }
         
-        let swipeEdit = UISwipeGestureRecognizer(target: self, action:Selector("handleImageEditSwipeUp:"))
+        let swipeEdit = UISwipeGestureRecognizer(target: self, action:#selector(InspectionCameraViewController.handleImageEditSwipeUp(_:)))
         swipeEdit.direction = UISwipeGestureRecognizerDirection.Up
         swipeEdit.delegate = self
         cameraViewer.addGestureRecognizer(swipeEdit)
@@ -131,12 +131,12 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         let imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: CGFloat(curX), y: (pictureScroller.frame.height - 200) / 2 , width: CGFloat(200), height: CGFloat(200))
         imageView.userInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action:Selector("handleTap:"))
+        let tap = UITapGestureRecognizer(target: self, action:#selector(InspectionCameraViewController.handleTap(_:)))
         tap.delegate = self
-        let swipeUp = UISwipeGestureRecognizer(target: self, action:Selector("handleSwipeUp:"))
+        let swipeUp = UISwipeGestureRecognizer(target: self, action:#selector(InspectionCameraViewController.handleSwipeUp(_:)))
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
         swipeUp.delegate = self
-        let swipeDown = UISwipeGestureRecognizer(target: self, action:Selector("handleSwipeDown:"))
+        let swipeDown = UISwipeGestureRecognizer(target: self, action:#selector(InspectionCameraViewController.handleSwipeDown(_:)))
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
         swipeDown.delegate = self
         let identifier = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -236,7 +236,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         deleteBtn.setTitle("Delete", forState: .Normal)
         deleteBtn.layer.backgroundColor = UIColor(red: 235/255.0, green: 5/255.0, blue: 5/255.0, alpha: 1.0).CGColor
         deleteBtn.tintColor = UIColor.whiteColor()
-        deleteBtn.addTarget(self, action: "deleteImage:", forControlEvents: UIControlEvents.TouchUpInside)
+        deleteBtn.addTarget(self, action: #selector(InspectionCameraViewController.deleteImage(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         imageview.addSubview(deleteBtn)
     }
     
@@ -250,7 +250,7 @@ class InspectionCameraViewController:  UIViewController, UINavigationControllerD
         deleteBtn.layer.backgroundColor = AppSettings().getTintColour().CGColor
         deleteBtn.tintColor = AppSettings().getBackgroundColour()
         deleteBtn.titleLabel?.font = AppSettings().getTextFont()
-        deleteBtn.addTarget(self, action: "editImage:", forControlEvents: UIControlEvents.TouchUpInside)
+        deleteBtn.addTarget(self, action: #selector(InspectionCameraViewController.editImage(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         imageview.addSubview(deleteBtn)
     }
     

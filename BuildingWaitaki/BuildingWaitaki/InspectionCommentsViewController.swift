@@ -70,7 +70,7 @@ class InspectionCommentsViewController: UIViewController, UITextViewDelegate {
         let btnClose = UIButton(type: UIButtonType.System)
         btnClose.frame = CGRect(x: 175, y: 370, width: 150, height: 50)
         btnClose.setTitle("Done", forState: .Normal)
-        btnClose.addTarget(self, action: "close:", forControlEvents: UIControlEvents.TouchUpInside)
+        btnClose.addTarget(self, action: #selector(InspectionCommentsViewController.close(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         btnClose.layer.borderColor = UIColor.blackColor().CGColor
         btnClose.layer.borderWidth = 1
         btnClose.layer.backgroundColor = AppSettings().getBackgroundColour().CGColor

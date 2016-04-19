@@ -89,7 +89,7 @@ class Consent: NSManagedObject {
         {
             var stringBuild = ""
             
-            for var index = 0; index < split.count - 1; ++index
+            for index in 0 ..< split.count - 1
             {
                 stringBuild = stringBuild + split[index]
             }
@@ -100,7 +100,7 @@ class Consent: NSManagedObject {
         {
             var stringBuild = ""
             
-            for var index = 0; index < split.count; ++index
+            for index in 0 ..< split.count
             {
                 stringBuild = stringBuild + split[index]
             }

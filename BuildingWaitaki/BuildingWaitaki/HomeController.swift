@@ -163,7 +163,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
             container.layer.addSublayer(border)
             
             
-            let tap = UITapGestureRecognizer(target: self, action:Selector("handleTap:"))
+            let tap = UITapGestureRecognizer(target: self, action:#selector(HomeController.handleTap(_:)))
             tap.delegate = self
             container.addGestureRecognizer(tap)
             

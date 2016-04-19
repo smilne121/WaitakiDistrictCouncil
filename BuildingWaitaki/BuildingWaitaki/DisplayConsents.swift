@@ -100,7 +100,7 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
             container.backgroundColor = settings.getContainerBackground()
             container.tintColor = settings.getTintColour()
             
-            let tap = UITapGestureRecognizer(target: self, action:Selector("handleTap:"))
+            let tap = UITapGestureRecognizer(target: self, action:#selector(DisplayConsents.handleTap(_:)))
             tap.delegate = self
             container.addGestureRecognizer(tap)
             
@@ -123,20 +123,20 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                 let btnLocation = UIButton(type: UIButtonType.System)
                 btnLocation.frame = CGRectMake(20, 40, 60, 60)
                 let imgLocation = UIImage(named: "Map-50.png") as UIImage!
-                btnLocation.addTarget(self, action: "openMap:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnLocation.addTarget(self, action: #selector(DisplayConsents.openMap(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 btnLocation.setImage(imgLocation, forState: .Normal)
             
                 let btnComments = UIButton(type: UIButtonType.System)
                 btnComments.frame = CGRectMake(container.layer.frame.width / 2 - 30, 40, 60, 60)
                 let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
-                btnComments.addTarget(self, action: "displayDescription:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnComments.addTarget(self, action: #selector(DisplayConsents.displayDescription(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 btnComments.setImage(imgComments, forState: .Normal)
 
             
                 let btnContacts = UIButton(type: UIButtonType.System)
                 btnContacts.frame = CGRectMake(container.layer.frame.width - 80, 40, 60, 60)
                 let imgContacts = UIImage(named: "Contacts-50.png") as UIImage!
-                btnContacts.addTarget(self, action: "showContacts:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnContacts.addTarget(self, action: #selector(DisplayConsents.showContacts(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 btnContacts.setImage(imgContacts, forState: .Normal)
             
                 //update value of y
@@ -157,25 +157,25 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
                 let btnLocation = UIButton(type: UIButtonType.System)
                 btnLocation.frame = CGRectMake(20, 40, 60, 60)
                 let imgLocation = UIImage(named: "Map-50.png") as UIImage!
-                btnLocation.addTarget(self, action: "openMap:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnLocation.addTarget(self, action: #selector(DisplayConsents.openMap(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 btnLocation.setImage(imgLocation, forState: .Normal)
                 
                 let btnComments = UIButton(type: UIButtonType.System)
                 btnComments.frame = CGRectMake(container.layer.frame.width / 2 - 100, 40, 60, 60)
                 let imgComments = UIImage(named: "Speech Bubble-50.png") as UIImage!
-                btnComments.addTarget(self, action: "displayDescription:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnComments.addTarget(self, action: #selector(DisplayConsents.displayDescription(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 btnComments.setImage(imgComments, forState: .Normal)
                 
                 let btnConditions = UIButton(type: UIButtonType.System)
                 btnConditions.frame = CGRectMake(container.layer.frame.width / 2 + 40, 40, 60, 60)
                 let imgConditions = UIImage(named: "High Importance-100.png") as UIImage!
-                btnConditions.addTarget(self, action: "showConditions:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnConditions.addTarget(self, action: #selector(DisplayConsents.showConditions(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 btnConditions.setImage(imgConditions, forState: .Normal)
                 
                 let btnContacts = UIButton(type: UIButtonType.System)
                 btnContacts.frame = CGRectMake(container.layer.frame.width - 80, 40, 60, 60)
                 let imgContacts = UIImage(named: "Contacts-50.png") as UIImage!
-                btnContacts.addTarget(self, action: "showContacts:", forControlEvents: UIControlEvents.TouchUpInside)
+                btnContacts.addTarget(self, action: #selector(DisplayConsents.showContacts(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 btnContacts.setImage(imgContacts, forState: .Normal)
                 
                 //update value of y

@@ -37,7 +37,7 @@ class GeneratePDF
     
     func startDrawing(pdfPath: String)
     {
-        for var i = 0; i < 2; i++
+        for i in 0 ..< 2
         {
              UIGraphicsBeginPDFContextToFile(pdfPath, CGRectZero, nil)
             

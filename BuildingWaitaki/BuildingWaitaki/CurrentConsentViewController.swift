@@ -59,7 +59,7 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         //set image for button
         filterButton.setImage(UIImage(named: "Filter-100.png"), forState: UIControlState.Normal)
         //add function for button
-        filterButton.addTarget(self, action: "filterClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+        filterButton.addTarget(self, action: #selector(CurrentConsentViewController.filterClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //set frame
         filterButton.frame = CGRectMake(0, 0, 25, 25)
         
@@ -69,7 +69,7 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         //set image for button
         summaryButton.setImage(UIImage(named: "To Do-100.png"), forState: UIControlState.Normal)
         //add function for button
-        summaryButton.addTarget(self, action: "summaryClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+        summaryButton.addTarget(self, action: #selector(CurrentConsentViewController.summaryClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //set frame
         summaryButton.frame = CGRectMake(0, 0, 25, 25)
         
@@ -79,7 +79,7 @@ class CurrentConsentViewController: UIViewController, UITableViewDelegate, UITab
         
         
         
-        let btnAddInspection = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addInspectionClicked:")
+        let btnAddInspection = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(CurrentConsentViewController.addInspectionClicked(_:)))
         
         var items = [UIBarButtonItem]()
         items.append(btnAddInspection)
