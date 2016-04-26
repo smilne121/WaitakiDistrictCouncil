@@ -131,7 +131,8 @@ class AddInspectionViewController: UITableViewController {
             }
             do {
                 try managedContext.save()
-            } catch _ {
+            } catch let error1 as NSError {
+                print("Could not save \(error1), \(error1.userInfo)")
             }
             
             navigationController?.popViewControllerAnimated(true)
