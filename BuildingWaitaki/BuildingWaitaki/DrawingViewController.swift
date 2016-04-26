@@ -319,7 +319,7 @@ class DrawingViewController: UIViewController, PhotoCompletionDelegate{
         ph.delegate = self
         ph.deleteImage(localIdentifier)
         ph.saveImageAsAsset(mainImageView!.image!, completion: { (localIdentifier) -> Void in identifier = localIdentifier})
-        
+        print(identifier)
 
         
     }

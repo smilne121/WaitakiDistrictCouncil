@@ -1010,22 +1010,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BuildingWaitaki/AppDelegate.swift"
-            timestampString = "462337912.070217"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BuildingWaitaki/OfficeToolsGetConsents.swift"
             timestampString = "462354539.086408"
             startingColumnNumber = "9223372036854775807"
@@ -3283,7 +3267,7 @@
                   moduleName = "BuildingWaitaki"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/OfficeToolsGetConsents.swift"
-                  timestampString = "482721685.773988"
+                  timestampString = "483323734.404811"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "240"
@@ -3298,7 +3282,7 @@
                   moduleName = "BuildingWaitaki"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Scott/Documents/WaitakiDistrictCouncil/BuildingWaitaki/BuildingWaitaki/OfficeToolsGetConsents.swift"
-                  timestampString = "482721685.774089"
+                  timestampString = "483323734.40491"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "240"

@@ -238,19 +238,21 @@ class GeneratePDF
         UIGraphicsEndPDFContext()
     }
     
-    func addText(text: String,var frame: CGRect, fontSize: CGFloat, textAlignment: NSTextAlignment, backgroundColour: UIColor, fixedHeight:Bool) -> CGRect
+    func addText(text: String, frame: CGRect, fontSize: CGFloat, textAlignment: NSTextAlignment, backgroundColour: UIColor, fixedHeight:Bool) -> CGRect
     {
+        var myFrame = frame;
+        
         if fixedHeight != true
         {
             //get height set width here
             let label = UILabel()
             label.text = text
             label.textAlignment = textAlignment
-            label.frame = frame
+            label.frame = myFrame
             label.font = UIFont(name: "Arial", size: fontSize)
             label.lineBreakMode = NSLineBreakMode.ByWordWrapping
         
-            frame = CGRectMake(frame.origin.x, frame.origin.y, frame.width, label.requiredHeight())
+            myFrame = CGRectMake(myFrame.origin.x, myFrame.origin.y, myFrame.width, label.requiredHeight())
         }
         
         
@@ -258,7 +260,7 @@ class GeneratePDF
         //Add some text to be displayed
         let font = UIFont(name: "Arial", size: fontSize)
         let text: String = text
-        let rectText = frame
+        let rectText = myFrame
         let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         textStyle.alignment = textAlignment
         textStyle.lineBreakMode = NSLineBreakMode.ByWordWrapping

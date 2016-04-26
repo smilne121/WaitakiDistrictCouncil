@@ -43,6 +43,9 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         daynightlabel.font = AppSettings().getTextFont()
         daynightlabel.textColor = AppSettings().getTextColour()
         
+        //stop screen dimming
+        UIApplication.sharedApplication().idleTimerDisabled = true
+        
         if AppSettings().getTheme() == "dark"
         {
             nightSwitch.on = true
@@ -373,7 +376,6 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         {
             officeTools.getConsents()
         }
-        
     }
     
     @IBAction func getConsents(sender: UIButton)
