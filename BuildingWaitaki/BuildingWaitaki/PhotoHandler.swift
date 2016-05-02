@@ -13,7 +13,6 @@ import Photos
 class PhotoHandler {
     
     var manager = PHImageManager.defaultManager()
-    //var sender : InspectionCameraViewController!
     var delegate: PhotoCompletionDelegate?
 
     

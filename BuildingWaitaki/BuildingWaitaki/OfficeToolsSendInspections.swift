@@ -1,3 +1,4 @@
+
 //
 //  OfficeToolsSendInspections.swift
 //  BuildingWaitaki
@@ -40,6 +41,8 @@ class OfficeToolsSendInspections
         let items = (try! managedContext.executeFetchRequest(fetchRequest)) as! [ConsentInspection]
         
         let resultConsents = ResultTransferArray(consents: items)
+        
+        //managedContext.reset()
         
         resultsToJson(resultConsents)
     }

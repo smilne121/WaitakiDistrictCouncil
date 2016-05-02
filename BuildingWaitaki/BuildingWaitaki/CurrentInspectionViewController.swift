@@ -1255,6 +1255,8 @@ saveFinished()
     
     func openCamera(sender: UIButton)
     {
+        
+        
         //get current item name
         var currentItem : ConsentInspectionItem?
         var itemName = ""
@@ -1299,6 +1301,7 @@ saveFinished()
             {
             //goto new controller
             let cameraController = self.storyboard!.instantiateViewControllerWithIdentifier("InspectionCameraViewController") as! InspectionCameraViewController
+
             cameraController.managedContext = managedContext
             cameraController.inspectionItem = myItem
             self.navigationController!.pushViewController(cameraController, animated: true)

@@ -280,7 +280,6 @@
 				D2C523BE1B27C3E700009952 /* OfficeTools */,
 				D28C419D1B44CEC200C69EAB /* Transfer Result Classes */,
 				D2ACBD3A1B19A27300C2DC2C /* CoreDataClasses */,
-				D2FB40CC1B16E18200474A15 /* AppDelegate.swift */,
 				D2EB21791B2E9C7D008D2AC4 /* ViewController */,
 				D2FB40D31B16E18200474A15 /* Main.storyboard */,
 				D2FB40D61B16E18200474A15 /* Images.xcassets */,
@@ -288,6 +287,7 @@
 				D2FB40CE1B16E18200474A15 /* BuildingWaitaki.xcdatamodeld */,
 				D2FB40CA1B16E18200474A15 /* Supporting Files */,
 				D2FB40F91B16FAB300474A15 /* SettingsPopover.swift */,
+				D2FB40CC1B16E18200474A15 /* AppDelegate.swift */,
 				D2FB40FB1B16FDFF00474A15 /* AppSettings.swift */,
 				D2ACBD251B17C8B400C2DC2C /* DataTransfer.swift */,
 				D2B685781B2A8F0700C3E34A /* DisplayConsents.swift */,
@@ -644,10 +644,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -664,10 +661,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = BuildingWaitakiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nz.govt.waitaki.$(PRODUCT_NAME:rfc1034identifier)";

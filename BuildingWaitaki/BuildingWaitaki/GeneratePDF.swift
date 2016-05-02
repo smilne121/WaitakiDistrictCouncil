@@ -22,7 +22,6 @@ class GeneratePDF
         self.consentInspection = inspection
         pageSize = CGSize(width: width, height: height)
         let newPdfName = name + ".pdf"
-       // let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentationDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
         pdfPath = documentsDirectory.stringByAppendingPathComponent(newPdfName)
         
@@ -48,11 +47,6 @@ class GeneratePDF
         let consentNumber = consentInspection.consent.consentNumber
         let address = consentInspection.consent.consentAddress
         let descriptionOfWork = consentInspection.consent.consentDescription
-        
-      //  let  width = 595
-      //  let height = 842
-        
-        
         
         self.beginPDFPage()
             currentPage = currentPage + 1

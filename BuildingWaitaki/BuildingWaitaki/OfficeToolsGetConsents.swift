@@ -259,15 +259,25 @@ class OfficeToolsGetConsents {
                     }
                 }
 
-                //add consent to core data
+                /*add consents to core data
                 do {
                     try managedContext.save()
                 } catch let error1 as NSError {
                     error = error1
                     print("Could not save \(error), \(error?.userInfo)")
-                }
+                }*/
             }
         }
+        //add consents to core data
+        do {
+            try managedContext.save()
+        } catch let error1 as NSError {
+            error = error1
+            print("Could not save \(error), \(error?.userInfo)")
+        }
+
+        //added to clear out memory
+       // managedContext.reset()
     }
     
     private func ClosePopup(alert: UIAlertAction!){

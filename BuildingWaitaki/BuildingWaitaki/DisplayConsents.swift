@@ -35,6 +35,8 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
     
     func getConsentsFromCoreData(searchString: String?) -> [AnyObject]
     {
+        //make sure it is clear
+        //managedContext.reset()
        // var error: NSError?
         //remove existing consents contacts and inspections
         let fetchRequest = NSFetchRequest(entityName: "Consent")
@@ -52,7 +54,11 @@ class DisplayConsents : NSObject, UISearchBarDelegate, UIGestureRecognizerDelega
         fetchRequest.relationshipKeyPathsForPrefetching = ["contact","consentInspection"]
         let consents = try! managedContext.executeFetchRequest(fetchRequest)
 
+        
         return consents
+        
+
+        
     }
     
     func popoverControllerShouldDismissPopover(popoverController: UIPopoverController) -> Bool {
