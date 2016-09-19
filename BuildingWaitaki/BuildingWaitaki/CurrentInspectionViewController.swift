@@ -1061,6 +1061,7 @@ class CurrentInspectionViewController: UIViewController, UITextViewDelegate, UIP
         do {
             try managedContext.save()
         } catch _ {
+            
         }
         
         navigationController!.popViewControllerAnimated(true)

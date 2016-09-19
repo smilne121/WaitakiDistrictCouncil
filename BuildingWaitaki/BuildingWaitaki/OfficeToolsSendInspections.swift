@@ -82,6 +82,7 @@ class OfficeToolsSendInspections
             else
             {
                 let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print(responseString)
                 //remove blur effect
                 for curView in self.controller.view.subviews
                 {
